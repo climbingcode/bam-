@@ -9,7 +9,7 @@ class UsersController < ApplicationController
 	end
 
 	def create
-		@user = Brand.new(user_params)
+		@user = User.new(user_params)
 
     respond_to do |format|
       if @user.save
@@ -36,11 +36,8 @@ class UsersController < ApplicationController
 
 	private
    
-    def set_user
-      @brand = Brand.find(params[:id])
-    end
-
     def user_params
+    	binding.pry
       params[:user]
     end
 	
