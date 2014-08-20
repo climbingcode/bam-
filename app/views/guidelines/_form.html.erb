@@ -1,0 +1,17 @@
+<%= form_for(@guideline) do |f| %>
+  <% if @guideline.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@guideline.errors.count, "error") %> prohibited this guideline from being saved:</h2>
+
+      <ul>
+      <% @guideline.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

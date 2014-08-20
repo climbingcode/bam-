@@ -1,0 +1,17 @@
+<%= form_for(@logo) do |f| %>
+  <% if @logo.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@logo.errors.count, "error") %> prohibited this logo from being saved:</h2>
+
+      <ul>
+      <% @logo.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>
