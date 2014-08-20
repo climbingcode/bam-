@@ -1,13 +1,26 @@
 class UsersController < ApplicationController
 
 	def index 
+		@users = User.all
 	end
 
 	def new
+		@user = User.new
 	end
 
 	def create
-	end
+		@user = Brand.new(user_params)
+
+    respond_to do |format|
+      if @user.save
+        format.html { redirect_to @user, notice: 'User was successfully created.' }
+        format.json { render :show, status: :created, location: @user }
+      else
+        format.html { render :new }
+        format.json { render json: @user.errors, status: :unprocessable_entity }
+      end
+    end
+  end
 
 	def show
 	end
@@ -20,5 +33,15 @@ class UsersController < ApplicationController
 
 	def destroy
 	end
+
+	private
+   
+    def set_user
+      @brand = Brand.find(params[:id])
+    end
+
+    def user_params
+      params[:user]
+    end
 	
 end
