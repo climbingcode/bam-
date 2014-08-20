@@ -1,0 +1,15 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  path: MyString
+  permission: MyString
+  description: MyString
+  name: MyString
+  brand_id: 
+
+two:
+  path: MyString
+  permission: MyString
+  description: MyString
+  name: MyString
+  brand_id: 

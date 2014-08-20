@@ -1,0 +1,13 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  hex: MyString
+  name: MyString
+  primary: MyString
+  brand_id: 
+
+two:
+  hex: MyString
+  name: MyString
+  primary: MyString
+  brand_id: 
