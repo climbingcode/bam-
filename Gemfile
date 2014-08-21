@@ -41,6 +41,10 @@ end
 #layout and design 
 gem 'bootstrap_form'
 
+# Uploading Assets
+
+gem 'carrierwave'
+gem 'mini_magick'
 
 
 

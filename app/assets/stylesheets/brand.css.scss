@@ -1,3 +1,25 @@
 // Place all the styles related to the brand controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+
+#multi_asset_form {
+  position: fixed;
+  left: 0px;
+  width: 380px;
+  padding: 10px;
+  background-color: black;
+  color: white;
+  .asset_module {
+    position: relative;
+    width: 90%;
+    height: auto;
+    text-align: center;
+    border: 1px solid white;
+    border-radius: 5px;
+    padding: 10px;
+    margin: 4px;
+    input {
+      color: black;
+    }
+  }
+}

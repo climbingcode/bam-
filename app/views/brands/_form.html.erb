@@ -1,17 +1,28 @@
-<%= form_for(@brand) do |f| %>
-  <% if @brand.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(@brand.errors.count, "error") %> prohibited this brand from being saved:</h2>
 
-      <ul>
-      <% @brand.errors.full_messages.each do |message| %>
-        <li><%= message %></li>
-      <% end %>
-      </ul>
-    </div>
-  <% end %>
 
-  <div class="actions">
-    <%= f.submit %>
+<div id="multi_asset_form">
+  <div class="asset_module">
+    <%= form_tag('/logos', method: 'post') do %>
+      <%= label_tag(:name, "Logo Name") %>
+      <%= text_field_tag(:name) %>
+      <%= label_tag(:description, "What is the logo used for?") %>
+      <%= text_field_tag(:description) %>
+      <%= label_tag(:image, "Add a logo") %>
+      <%= file_field_tag(:image) %>
+      <%= submit_tag 'Add File' %>
+    <% end %> 
   </div>
-<% end %>
+  
+  <div class="asset_module">
+    <%= form_tag('/colors', method: 'post') do %>
+
+      <%= label_tag(:color, "Add a color") %>
+      <%= text_field_tag(:color) %>
+      <%= submit_tag 'Add color' %>
+    <% end %>
+  </div>
+
+  <div class="asset_module">
+    
+  </div>
+</div>
