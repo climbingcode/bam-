@@ -12,14 +12,21 @@
   <% end %>
 
   <div class="users_signup">
+<!--     brand information -->
+    <div class="form-group">
+    <%= label_tag :name, "Brand name"%>
+    <%= text_field_tag :name, nil, class: 'form-control'%>
+    <%= label_tag :website, "Brand Website"%>
+    <%= url_field_tag :website, nil, class: 'form-control' %>
+    </div>
+<!-- user information -->
     <%= f.text_field :firstname %>
     <%= f.text_field :surname %>
     <%= f.text_field :username %>
-    <%= f.text_field :email %>
+    <%= f.email_field :email %>
     <%= f.text_field :position %>
     <%= f.password_field :password %>
     <%= f.password_field :password_confirmation%>
     <%= f.submit %>
   </div>
-  
 <% end %>

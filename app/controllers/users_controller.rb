@@ -10,22 +10,18 @@ class UsersController < ApplicationController
 	end
 
 	def create
+		@brand = params[:brand]
 		@user = User.new(user_params)
-
-    respond_to do |format|
       if @user.save
-        format.html { redirect_to brands_path, notice: 'User was successfully created.' }
-        format.json { render :show, status: :created, location: @brand }
-        session[:user_id] = @user.id
-      else
-        format.html { render :new }
-        format.json { render json: @user.errors, status: :unprocessable_entity }
+      	binding.pry
+      	@user.brands.create(name: params[:name], website: params[:website])
+      	session[:user_id] = @user.id
+        redirect_to brand_path(@user.brands[0].id)
       end
-    end
   end
 
 	def show
-			
+
 	end
 
 	def edit
