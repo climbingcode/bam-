@@ -1,10 +1,6 @@
 Rails.application.routes.draw do
 
-  get 'session/new'
-
-  get 'session/create'
-
-  get 'session/destroy'
+  root to: 'users#index'
 
   resources :users 
 
@@ -22,7 +18,7 @@ Rails.application.routes.draw do
 
   resources :misc_assets 
 
-  resource :session, only: [:new, :create, :destroy]
+  resource :sessions, only: [:new, :create, :destroy]
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".

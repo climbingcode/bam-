@@ -10,7 +10,6 @@ class BrandsController < ApplicationController
   # GET /brands/1
   # GET /brands/1.json
   def show
-    binding.pry
     @brand = User.find(params[:id]).brands
   end
 

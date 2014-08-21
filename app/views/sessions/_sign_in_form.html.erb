@@ -1,0 +1,7 @@
+<%= bootstrap_form_tag url: '/sessions' do |f|  %>
+
+  <p><%= f.text_field :username %></p>
+  <p><%= f.password_field :password %></p>
+  <p><%= f.submit "Log In" %></p>
+
+<% end %>
