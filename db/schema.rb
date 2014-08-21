@@ -11,13 +11,16 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
+
 ActiveRecord::Schema.define(version: 20140820235409) do
+
 
   create_table "brands", force: true do |t|
     t.string   "name"
     t.string   "website"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.boolean  "private"
   end
 
   create_table "colors", force: true do |t|

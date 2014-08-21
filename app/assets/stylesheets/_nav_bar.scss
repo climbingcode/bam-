@@ -1,3 +1,18 @@
-wrapper {
-	height: 400px;
+.wrapper {
+	height: 100px;
+}
+
+nav{
+  ul{
+    display: inline;
+  }
+  li{
+    display: inline;
+  }
+  form{
+    display: inline;
+  }
+  .form-group{
+    display: inline;
+  }
 }

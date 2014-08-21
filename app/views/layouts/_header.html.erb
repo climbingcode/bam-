@@ -7,8 +7,10 @@
           :action => 'destroy', :id => current_user.id }, :method => :delete %>
           <h2>welcome <%= current_user.firstname.capitalize %></h2>
         <% else %>      
+          <button class="btn bam_btn" data-toggle="modal" data-target="#signUpModal">
           <%= link_to 'Sign up with us', new_user_path %>
-          <%= render 'sessions/sign_in_form'%>
+          </button>
+          <%= render 'users/sign_up_modal'%>
         <% end %>
       <% end %>
     <% end %>
