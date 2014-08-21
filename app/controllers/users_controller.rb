@@ -13,8 +13,9 @@ class UsersController < ApplicationController
 
     respond_to do |format|
       if @user.save
-        format.html { redirect_to @user, notice: 'User was successfully created.' }
-        format.json { render :show, status: :created, location: @user }
+        format.html { redirect_to brands_path, notice: 'User was successfully created.' }
+        format.json { render :show, status: :created, location: @brand }
+
       else
         format.html { render :new }
         format.json { render json: @user.errors, status: :unprocessable_entity }
@@ -37,8 +38,7 @@ class UsersController < ApplicationController
 	private
    
     def user_params
-    	binding.pry
-      params[:user]
+  		params.require(:user).permit(:email, :firstname, :lastname, :position, :password, :password_confirmation)
     end
 	
 end
