@@ -5,7 +5,6 @@ body{
   margin: 0 auto;
 }
 
-
 #dashboard{
   background: #444;
   width: 25%;
@@ -13,10 +12,13 @@ body{
   float: left;
 }
 
-
 #brand-page{
   width: 75%;
   height: 100%;
   float: left;
- 
+}
+
+#logged-in-page-wrapper{
+  height: 100%;
+  width: 100%;
 }

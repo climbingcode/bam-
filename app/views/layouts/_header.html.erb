@@ -1,0 +1,15 @@
+<div class="form-inline">
+  <%= nav_bar :fixed => :top, :responsive => true do %>
+  	<%= menu_group do %>
+    	<%= menu_item "BAM", root_path %>
+        <% if current_user %>
+          <%= button_to "Log out", {:controller => :sessions,
+          :action => 'destroy', :id => current_user.id }, :method => :delete %>
+          <h2>welcome <%= current_user.firstname.capitalize %></h2>
+        <% else %>      
+          <%= link_to 'Sign up with us', new_user_path %>
+          <%= render 'sessions/sign_in_form'%>
+        <% end %>
+      <% end %>
+    <% end %>
+</div>
