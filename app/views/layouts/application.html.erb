@@ -8,20 +8,19 @@
 </head>
 <body>
 
-<nav class="wrapper">
+
 <%= render 'layouts/header' unless @disable_nav %>
-</nav>
-
+<div class="entire-page">
 <%= yield %>
+</div>
 
+<script type="text/javascript">
+ $('#signInModal').modal(options)
+</script>
 
-// <script type="text/javascript">
-//   $('#signInModal').modal(options)
-// </script>
-
-// <script type="text/javascript">
-//   $('#requestAccessModal').modal(options)
-// </script>
+<script type="text/javascript">
+  $('#requestAccessModal').modal(options)
+</script>
 
 </body>
 </html>

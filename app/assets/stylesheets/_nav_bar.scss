@@ -1,8 +1,7 @@
-.wrapper {
-	height: 100px;
-}
-
 nav{
+
+  background-color: blue;
+
   ul{
     display: inline;
   }
@@ -10,9 +9,59 @@ nav{
     display: inline;
   }
   form{
-    display: inline;
+    display: inline!important;
   }
+
+
+
+
+}
+
+
+.navbar{
+  background-color: #fff;
+}
   .form-group{
-    display: inline;
+    display: inline!important;
   }
+
+.navbar-form{
+  .form-control{
+
+    display: inline;
+    width: 70px;
+  }
+}
+
+#password_input, #username_input  {
+  width: 90px;
+  border: solid 2px #999;
+  transition: all 1s;
+  
+  ::-webkit-input-placeholder {color: red;}
+  :-moz-placeholder           {color: red;}
+  ::-moz-placeholder          {color: red;}
+  :-ms-input-placeholder      {color: red;} 
+}
+
+#username_input:focus, #password_input:focus{
+  width: 120px;
+  border: solid 2px $primary-color;
+  outline: none!important;
+
+}
+
+input{
+  outline: none!important;
+  box-shadow: none!important;
+}
+
+[contenteditable="true"]:focus {
+    outline: none!important;
+}
+input:focus,
+select:focus,
+textarea:focus,
+button:focus {
+    outline: none!important;
 }

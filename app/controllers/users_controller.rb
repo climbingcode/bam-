@@ -5,7 +5,7 @@ class UsersController < ApplicationController
 	end
 
 	def new
-		@disable_nav = true
+		@disable_nav = false
 		@user = User.new
 	end
 
