@@ -1,10 +1,6 @@
-<h1> Request Access</h1>
-<form>
-<label>First Name</label>
-<input type="text" name="first_name" placeholder="First Name"/>
-<label>Last Name</label>
-<input type="text" name="last_name" placeholder="Last Name"/>
-<label>Email</label>
-<input type="text" name="email" placeholder="Email"/>
-<input type="submit" value="Send"/>
-</form>
+<%= form_tag(contact_form_index_path, :method=>'post', :multipart => true) %>
+  <%= text_field_tag :firstname %>
+  <%= text_field_tag :lastname %>
+  <%= text_field_tag :email %>
+  <%= hidden_field_tag :id, params[:id] %>
+  <%= submit_tag :submit %>

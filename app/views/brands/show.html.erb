@@ -1,11 +1,33 @@
-<p id="notice"><%= notice %></p>
 
-<%= link_to 'Edit', edit_brand_path(@brand) %> |
-<%= link_to 'Back', brands_path %>
+
+
+
+
+  <div id="dashboard">
+  <!--render dashboard here -->
+  </div>
+
+  <div id="brand-page">
+   
+
+    <%= render 'logos' %>
+<hr/>
+    <%= render 'typography' %>
+    <!--render colors-->
+    <!--render typography-->
+    <!--render misc files-->
+    <!--render guidelines-->
+    <!--render copy-->
+  </div>
+
 
 
 <!-- IF PAGE IS SET TO PRIVATE AND USER IS NOT LOGGED IN: -->
-<%= render 'private_page' %>
+<div class="hidden"><!--hidden until we gett sessions working-->
+  <%= render 'private_page' %>
+</div>
+
+
 
 
 
