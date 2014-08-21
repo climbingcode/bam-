@@ -25,9 +25,9 @@ class LogosController < ApplicationController
   # POST /logos.json
   def create
     @logo = Logo.new(
-      path: params[:logo][:image],
-      permission: params[:logo][:permission],
-      description: params[:logo][:description],
+      path: params[:image],
+      permission: params[:permission],
+      description: params[:description],
       name: params[:name]
     )
 
