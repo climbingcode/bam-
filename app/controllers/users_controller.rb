@@ -1,7 +1,7 @@
 class UsersController < ApplicationController
 
 	def index 
-		@users = User.all
+		@brands = Brand.all
 	end
 
 	def new
@@ -10,12 +10,11 @@ class UsersController < ApplicationController
 	end
 
 	def create
-		@brand = params[:brand]
 		@user = User.new(user_params)
       if @user.save
       	@user.brands.create(name: params[:name], website: params[:website])
       	session[:user_id] = @user.id
-        redirect_to brand_path(@user.brands[0].id)
+        redirect_to user_brands_path(@user.id)
       end
   end
 

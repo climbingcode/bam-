@@ -5,13 +5,17 @@ class SessionsController < ApplicationController
   end
 
   def create
-    user = User.find_by(username: params[:username])
-    if user && user.authenticate(params[:password])
-      session[:user_id] = user.id
-      redirect_to brands_path, notice: "Welcome back, #{user.username}!"
+    @user = User.find_by(username: params[:username])
+    if @user && @user.authenticate(params[:password])
+      session[:user_id] = @user.id
+      if @user.brands.count == 1
+        redirect_to user_brand_path(@user.id, @user.brands[0].id), notice: "Welcome back, #{@user.username}!"
+      else 
+        redirect_to user_brands_path(@user.id)
+      end
     else
       flash.now[:alert] = "Login Failed..."
-      render :new
+      redirect_to users_path
     end
   end
 

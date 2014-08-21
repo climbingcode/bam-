@@ -14,8 +14,8 @@ class BrandsController < ApplicationController
   # GET /brands/1
   # GET /brands/1.json
   def show
-    @brand = User.find(params[:id]).brands
-    @name = Brand.find(params[:id]).name
+    @user = User.find(params[:user_id])
+    @brand = @user.brands
   end
 
   # GET /brands/new
@@ -34,7 +34,7 @@ class BrandsController < ApplicationController
 
     respond_to do |format|
       if @brand.save
-        format.html { redirect_to brand_path, notice: 'Brand was successfully created.' }
+        format.html { redirect_to user_brand_path, notice: 'Brand was successfully created.' }
         format.json { render :show, status: :created, location: @brand }
       else
         format.html { render :new }
