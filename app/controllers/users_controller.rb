@@ -5,6 +5,7 @@ class UsersController < ApplicationController
 	end
 
 	def new
+		@disable_nav = true
 		@user = User.new
 	end
 
@@ -15,7 +16,7 @@ class UsersController < ApplicationController
       if @user.save
         format.html { redirect_to brands_path, notice: 'User was successfully created.' }
         format.json { render :show, status: :created, location: @brand }
-
+        session[:user_id] = @user.id
       else
         format.html { render :new }
         format.json { render json: @user.errors, status: :unprocessable_entity }
@@ -24,7 +25,7 @@ class UsersController < ApplicationController
   end
 
 	def show
-		
+			
 	end
 
 	def edit
