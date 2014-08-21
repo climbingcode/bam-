@@ -13,7 +13,6 @@ class UsersController < ApplicationController
 		@brand = params[:brand]
 		@user = User.new(user_params)
       if @user.save
-      	binding.pry
       	@user.brands.create(name: params[:name], website: params[:website])
       	session[:user_id] = @user.id
         redirect_to brand_path(@user.brands[0].id)
