@@ -32,6 +32,9 @@ gem 'tux'
 
 gem 'pry'
 
+
+gem 'mail_form'
+
 group :development do
   gem "better_errors"
   gem "binding_of_caller"
@@ -40,6 +43,7 @@ end
 
 #layout and design 
 gem 'bootstrap_form'
+
 
 
 

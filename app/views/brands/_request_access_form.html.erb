@@ -1,0 +1,6 @@
+<%= form_tag(contact_form_index_path, :method=>'post', :multipart => true) %>
+  <%= text_field_tag :firstname %>
+  <%= text_field_tag :lastname %>
+  <%= text_field_tag :email %>
+  <%= hidden_field_tag :id, params[:id] %>
+  <%= submit_tag :submit %>

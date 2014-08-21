@@ -7,10 +7,15 @@ class BrandsController < ApplicationController
     @brands = Brand.all
   end
 
+  def mailer
+    binding.pry
+  end
+
   # GET /brands/1
   # GET /brands/1.json
   def show
     @brand = User.find(params[:id]).brands
+    @name = Brand.find(params[:id]).name
   end
 
   # GET /brands/new
