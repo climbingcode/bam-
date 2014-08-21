@@ -1,0 +1,13 @@
+.bam_btn{
+  background: $primary-color;
+  border-radius: 1px;
+  color: #fff;
+}
+
+.bam_btn_inverse{
+  background: transparent;
+  border: solid 2px $primary-color;
+  border-radius: 1px;
+  color: $primary-color;
+}
+
