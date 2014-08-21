@@ -1,14 +1,8 @@
 Rails.application.routes.draw do
 
-  get 'contact_form/new'
 
-  get 'contact_form/create'
+  root to: 'users#index'
 
-  get 'session/new'
-
-  get 'session/create'
-
-  get 'session/destroy'
 
   resources :users 
 
@@ -26,7 +20,7 @@ Rails.application.routes.draw do
 
   resources :misc_assets 
 
-  resource :session, only: [:new, :create, :destroy]
+  resource :sessions, only: [:new, :create, :destroy]
 
   resources :contact_form, only: [:new, :create]
 
