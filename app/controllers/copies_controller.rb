@@ -25,10 +25,9 @@ class CopiesController < ApplicationController
   # POST /copies.json
   def create
     @copy = Copy.new(
-      # description: params[:description],
-      # text: params[:text],
-      # brand_id: params[:brand_id]
-      copy_params
+      description: params[:description],
+      text: params[:text],
+      brand_id: params[:brand_id]
     )
 
     respond_to do |format|
