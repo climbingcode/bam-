@@ -26,6 +26,11 @@
       margin: 4px auto;
 
     }
+    input[type="submit"] {
+      background-color: grey;
+      border: none;
+    }
+
     textarea {
       position: relative;
       display: block;

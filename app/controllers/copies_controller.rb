@@ -24,11 +24,16 @@ class CopiesController < ApplicationController
   # POST /copies
   # POST /copies.json
   def create
-    @copy = Copy.new(copy_params)
+    @copy = Copy.new(
+      # description: params[:description],
+      # text: params[:text],
+      # brand_id: params[:brand_id]
+      copy_params
+    )
 
     respond_to do |format|
       if @copy.save
-        format.html { redirect_to @copy, notice: 'Copy was successfully created.' }
+        format.html { redirect_to brand_path(@copy.brand_id), notice: 'Copy was successfully created.' }
         format.json { render :show, status: :created, location: @copy }
       else
         format.html { render :new }
@@ -69,6 +74,6 @@ class CopiesController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def copy_params
-      params[:copy]
+      params.require(:copy).permit(:description, :text, :brand_id)
     end
 end

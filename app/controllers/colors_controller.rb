@@ -24,11 +24,17 @@ class ColorsController < ApplicationController
   # POST /colors
   # POST /colors.json
   def create
-    @color = Color.new(color_params)
+    @color = Color.new(
+      hex: params[:hex],
+      name: params[:name], 
+      primary: params[:primary],
+      brand_id: params[:brand_id]
+
+    )
 
     respond_to do |format|
       if @color.save
-        format.html { redirect_to @color, notice: 'Color was successfully created.' }
+        format.html { redirect_to brand_path(@color.brand_id), notice: 'Color was successfully created.' }
         format.json { render :show, status: :created, location: @color }
       else
         format.html { render :new }
@@ -69,6 +75,6 @@ class ColorsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def color_params
-      params[:color]
+      params.require(:color).permit(:hex, :name, :primary, :brand_id)
     end
 end

@@ -41,6 +41,18 @@
   </div>
 
   <div class="asset_module">
+        <%= form_tag('/fonts', method: 'post') do %>
+
+      <%= label_tag(:name, "Font Name") %>
+      <%= text_field_tag(:name) %>
+      <%= label_tag(:font_family, "Font Family") %>
+      <%= text_field_tag(:font_family) %>
+      <%= hidden_field_tag(:brand_id, params[:id]) %>
+      <%= submit_tag 'Add copy' %>
+    <% end %>
+  </div>
+
+  <div class="asset_module">
     <%= form_tag('/guidelines', method: 'post') do %>
 
       <%= label_tag(:description, "Guideline description") %>
@@ -48,19 +60,22 @@
       <%= label_tag(:text, "Guideline") %>
       <%= text_area_tag(:text) %>
       <%= hidden_field_tag(:brand_id, params[:id]) %>
-      <%= submit_tag 'Add copy' %>
+      <%= submit_tag 'Add Guideline' %>
     <% end %>
   </div>
 
     <div class="asset_module">
-    <%= form_tag('/misc_assets', method: 'post') do %>
-
-      <%= label_tag(:description, "Guideline description") %>
+    <%= form_tag('/misc_assets', method: 'post', multipart:true) do %>
+      <%= label_tag(:name, "Asset name" ) %>
+      <%= text_field_tag(:name) %>
+      <%= label_tag(:description, "Asset description") %>
       <%= text_field_tag(:description) %>
-      <%= label_tag(:text, "Guideline") %>
-      <%= text_area_tag(:text) %>
+      <%= label_tag(:thumbnail, "Asset") %>
+      <%= text_area_tag(:thumbnail) %>
+      <%= label_tag(:permissions, "Public") %>
+      <%= check_box_tag(:permissions) %>
       <%= hidden_field_tag(:brand_id, params[:id]) %>
-      <%= submit_tag 'Add copy' %>
+      <%= submit_tag 'Add Asset' %>
     <% end %>
   </div>
 
