@@ -9,15 +9,23 @@
 <body>
 
 <%= render 'layouts/header' unless @disable_nav %>
-<div class="entire-page">
+
 <%= yield %>
-</div>
+
 
 <div class="container">
   <% flash.each do |key, value| %>
     <%= content_tag(:div, value) %>
   <% end %>
 </div>
+
+<script type="text/javascript">
+$(function() {
+  $('#dashboard_toggle').click(function() {
+    $(this).css('background', 'red');
+  });
+}):
+</script>
 
 <script type="text/javascript">
   $('#requestAccessModal').modal(options)
