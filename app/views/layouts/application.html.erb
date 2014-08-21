@@ -8,15 +8,16 @@
 </head>
 <body>
 
-
 <%= render 'layouts/header' unless @disable_nav %>
 
 <%= yield %>
 
 
-<script type="text/javascript">
- $('#signInModal').modal(options)
-</script>
+<div class="container">
+  <% flash.each do |key, value| %>
+    <%= content_tag(:div, value) %>
+  <% end %>
+</div>
 
 <script type="text/javascript">
 $(function() {
