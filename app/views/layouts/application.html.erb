@@ -10,12 +10,20 @@
 
 
 <%= render 'layouts/header' unless @disable_nav %>
-<div class="entire-page">
+
 <%= yield %>
-</div>
+
 
 <script type="text/javascript">
  $('#signInModal').modal(options)
+</script>
+
+<script type="text/javascript">
+$(function() {
+  $('#dashboard_toggle').click(function() {
+    $(this).css('background', 'red');
+  });
+}):
 </script>
 
 <script type="text/javascript">
