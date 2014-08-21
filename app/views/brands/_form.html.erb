@@ -2,27 +2,67 @@
 
 <div id="multi_asset_form">
   <div class="asset_module">
-    <%= form_tag('/logos', method: 'post') do %>
+    <%= form_tag( '/logos', method: 'post', multipart: true) do %>
       <%= label_tag(:name, "Logo Name") %>
       <%= text_field_tag(:name) %>
       <%= label_tag(:description, "What is the logo used for?") %>
       <%= text_field_tag(:description) %>
-      <%= label_tag(:image, "Add a logo") %>
-      <%= file_field_tag(:image) %>
+      <%= label_tag(:path, "Add a logo") %>
+      <%= file_field_tag(:path) %>
+      <%= hidden_field_tag(:brand_id, params[:id]) %>
       <%= submit_tag 'Add File' %>
     <% end %> 
   </div>
-  
-  <div class="asset_module">
-    <%= form_tag('/colors', method: 'post') do %>
 
-      <%= label_tag(:color, "Add a color") %>
-      <%= text_field_tag(:color) %>
-      <%= submit_tag 'Add color' %>
+    <div class="asset_module">
+     <%= form_tag('/colors', method: 'post') do %>
+
+      <%= label_tag(:hex, "Hex Colour code") %>
+      <%= text_field_tag(:hex) %>
+      <%= label_tag(:name, "Colour name") %>
+      <%= text_field_tag(:name) %>
+      <%= label_tag(:primary, "Is it the primary colour?") %>
+      <%= check_box_tag(:primary) %>
+      <%= hidden_field_tag(:brand_id, params[:id]) %>
+      <%= submit_tag 'Add colour' %>
     <% end %>
   </div>
 
   <div class="asset_module">
-    
+    <%= form_tag('/copies', method: 'post') do %>
+
+      <%= label_tag(:description, "Copy description") %>
+      <%= text_field_tag(:description) %>
+      <%= label_tag(:text, "Copy text") %>
+      <%= text_area_tag(:text) %>
+      <%= hidden_field_tag(:brand_id, params[:id]) %>
+      <%= submit_tag 'Add copy' %>
+    <% end %>
   </div>
+
+  <div class="asset_module">
+    <%= form_tag('/guidelines', method: 'post') do %>
+
+      <%= label_tag(:description, "Guideline description") %>
+      <%= text_field_tag(:description) %>
+      <%= label_tag(:text, "Guideline") %>
+      <%= text_area_tag(:text) %>
+      <%= hidden_field_tag(:brand_id, params[:id]) %>
+      <%= submit_tag 'Add copy' %>
+    <% end %>
+  </div>
+
+    <div class="asset_module">
+    <%= form_tag('/misc_assets', method: 'post') do %>
+
+      <%= label_tag(:description, "Guideline description") %>
+      <%= text_field_tag(:description) %>
+      <%= label_tag(:text, "Guideline") %>
+      <%= text_area_tag(:text) %>
+      <%= hidden_field_tag(:brand_id, params[:id]) %>
+      <%= submit_tag 'Add copy' %>
+    <% end %>
+  </div>
+
+
 </div>

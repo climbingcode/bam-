@@ -1,5 +1,5 @@
 class LogosController < ApplicationController
-  before_action :set_logo, only: [:show, :edit, :update, :destroy]
+  # before_action :set_logo, only: [:show, :edit, :update, :destroy]
 
   # GET /logos
   # GET /logos.json
@@ -25,15 +25,15 @@ class LogosController < ApplicationController
   # POST /logos.json
   def create
     @logo = Logo.new(
-      path: params[:image],
-      permission: params[:permission],
-      description: params[:description],
-      name: params[:name]
+     name: params[:name],
+     description: params[:description],
+     path: params[:path],
+     brand_id: params[:brand_id]
     )
 
     respond_to do |format|
       if @logo.save
-        format.html { redirect_to @logo, notice: 'Logo was successfully created.' }
+        format.html { redirect_to brand_path(@logo.brand_id), notice: 'Logo was successfully created.' }
         format.json { render :show, status: :created, location: @logo }
       else
         format.html { render :new }
@@ -74,6 +74,6 @@ class LogosController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def logo_params
-      params[:logo]
+      params.require[:logo].permit(:name, :description, :permission, :path, :brand_id)
     end
 end
