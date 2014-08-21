@@ -15,5 +15,8 @@
 /log/*.log
 /tmp
 
+# Ignore all apple filesystem files 
+
+*.DS_Store
 #Ignore
 app/.DS_Store

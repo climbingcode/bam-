@@ -1,4 +1,8 @@
 
+<%= link_to 'Edit', edit_brand_path(@brand) %> 
+<%= link_to 'Back', brands_path %>
+
+<%= render "form" %>
 
 <div id="logged-in-page-wrapper" class="">
 
@@ -24,8 +28,5 @@
 <div class="hidden"><!--hidden until we gett sessions working-->
   <%= render 'private_page' %>
 </div>
-
-
-
 
 

@@ -8,7 +8,7 @@ class BrandsController < ApplicationController
   end
 
   def mailer
-    binding.pry
+
   end
 
   # GET /brands/1
