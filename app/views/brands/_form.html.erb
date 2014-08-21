@@ -2,7 +2,7 @@
 
 <div id="multi_asset_form">
   <div class="asset_module">
-    <%= form_tag( '/logos', method: 'post', multipart: true) do %>
+    <%= form_tag( user_brand_logos_path(params[:user_id], params[:id]), method: 'post', multipart: true) do %>
       <%= label_tag(:name, "Logo Name") %>
       <%= text_field_tag(:name) %>
       <%= label_tag(:description, "What is the logo used for?") %>
@@ -15,7 +15,7 @@
   </div>
 
     <div class="asset_module">
-     <%= form_tag('/colors', method: 'post') do %>
+     <%= form_tag(user_brand_colors_path(params[:user_id], params[:id]), method: 'post') do %>
 
       <%= label_tag(:hex, "Hex Colour code") %>
       <%= text_field_tag(:hex) %>

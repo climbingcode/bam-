@@ -1,25 +1,6 @@
 class LogosController < ApplicationController
   # before_action :set_logo, only: [:show, :edit, :update, :destroy]
 
-  # GET /logos
-  # GET /logos.json
-  def index
-    @logos = Logo.all
-  end
-
-  # GET /logos/1
-  # GET /logos/1.json
-  def show
-  end
-
-  # GET /logos/new
-  def new
-    @logo = Logo.new
-  end
-
-  # GET /logos/1/edit
-  def edit
-  end
 
   # POST /logos
   # POST /logos.json
@@ -33,7 +14,7 @@ class LogosController < ApplicationController
 
     respond_to do |format|
       if @logo.save
-        format.html { redirect_to brand_path(@logo.brand_id), notice: 'Logo was successfully created.' }
+        format.html { redirect_to user_brand_path(current_user, @logo.brand_id), notice: 'Logo was successfully created.' }
         format.json { render :show, status: :created, location: @logo }
       else
         format.html { render :new }
@@ -41,6 +22,28 @@ class LogosController < ApplicationController
       end
     end
   end
+
+  # GET /logos
+  # GET /logos.json
+  # def index
+  #   @logos = Logo.all
+  # end
+
+  # # GET /logos/1
+  # # GET /logos/1.json
+  # def show
+  # end
+
+  # # GET /logos/new
+  # def new
+  #   @logo = Logo.new
+  # end
+
+  # GET /logos/1/edit
+  def edit
+  end
+
+
 
   # PATCH/PUT /logos/1
   # PATCH/PUT /logos/1.json

@@ -42,7 +42,7 @@ class GuidelinesController < ApplicationController
   def update
     respond_to do |format|
       if @guideline.update(guideline_params)
-        format.html { redirect_to @guideline, notice: 'Guideline was successfully updated.' }
+        format.html { redirect_to brand_path(@guideline.brand_id), notice: 'Guideline was successfully updated.' }
         format.json { render :show, status: :ok, location: @guideline }
       else
         format.html { render :edit }
@@ -69,6 +69,7 @@ class GuidelinesController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def guideline_params
-      params[:guideline]
+      binding.pry
+      params.require(:guideline).permit(:description, :text, :brand_id)
     end
 end
