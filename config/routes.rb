@@ -1,6 +1,8 @@
 Rails.application.routes.draw do
 
+
   root to: 'users#index'
+
 
   resources :users 
 
@@ -19,6 +21,8 @@ Rails.application.routes.draw do
   resources :misc_assets 
 
   resource :sessions, only: [:new, :create, :destroy]
+
+  resources :contact_form, only: [:new, :create]
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
