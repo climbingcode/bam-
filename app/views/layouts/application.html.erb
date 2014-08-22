@@ -20,16 +20,29 @@
 </div>
 
 <script type="text/javascript">
-$(function() {
-  $('#dashboard_toggle').click(function() {
-    $(this).css('background', 'red');
+$( document ).ready(function() {
+  $('#dashboard_toggle').on('click', function() {
+    $("#dashboard").toggleClass('closed');
+    $("#brand-page").toggleClass('dashboard-open');
+    $("#multi_asset_form").animate({'left': '-500px'}, 500);
   });
-}):
+});
+</script>
+<script type="text/javascript">
+  var $menuTrigger = $('[data-ic-class="button-trigger"]'),
+    $menuOverlay = $('[data-ic-class="overlay"]'),
+    $menuItem = $('.menu-item'),
+    activeClass = 'active';
+
+$menuTrigger.click(function(){
+  $menuTrigger.toggleClass(activeClass);
+});
 </script>
 
-<script type="text/javascript">
-  $('#requestAccessModal').modal(options)
-</script>
+<!--<script type="text/javascript">
+//   $('#requestAccessModal').modal(options)
+// </script>
+-->
 
 </body>
 </html>

@@ -15,9 +15,9 @@
       <%= f.submit 'Add File' %>
     <% end %> 
   </div>
-
+<hr/>
     <div class="asset_module">
-     <%= form_for Color.new, url: user_brand_colors_path(params[:user_id], params[:id]), method: 'post') do %>
+     <%= form_for Color.new, url: user_brand_colors_path(params[:user_id], params[:id]), method: 'post' do %>
 
       <%= label_tag(:hex, "Hex Colour code") %>
       <%= text_field_tag(:hex) %>
@@ -29,7 +29,7 @@
       <%= submit_tag 'Add colour' %>
     <% end %>
   </div>
-
+<hr/>
   <div class="asset_module">
     <%= form_tag(user_brand_copies_path(params[:user_id], params[:id]), method: 'post') do %>
 
@@ -41,9 +41,9 @@
       <%= submit_tag 'Add copy' %>
     <% end %>
   </div>
-
+<hr/>
   <div class="asset_module">
-        <%= form_tag(user_brand_fonts_path(params[:user_id], params[:id]), method: 'post') do %>
+    <%= form_tag(user_brand_fonts_path(params[:user_id], params[:id]), method: 'post') do %>
 
       <%= label_tag(:name, "Font Name") %>
       <%= text_field_tag(:name) %>
@@ -53,7 +53,7 @@
       <%= submit_tag 'Add font' %>
     <% end %>
   </div>
-
+<hr/>
   <div class="asset_module">
     <%= form_for Guideline.new, url: user_brand_guidelines_path(params[:user_id], params[:id]), method: 'post' do |f| %>
 
@@ -65,7 +65,7 @@
       <%= f.submit 'Add Guideline' %>
     <% end %>
   </div>
-
+<hr/>
     <div class="asset_module">
     <%= form_tag( user_brand_misc_assets_path(params[:user_id], params[:id]), method: 'post', multipart:true) do %>
       <%= label_tag(:name, "Asset name" ) %>

@@ -1,15 +1,10 @@
 #dashboard_toggle{
-  height: 45px;
-  width: 45px;
+
   margin-top: 67px;
   margin-left: 15px;
-  background: $primary-color;
 }
 
 .closed{
   display: none;
-}
 
-#dashboard{
-  transition: all 1s;
 }
