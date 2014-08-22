@@ -17,7 +17,7 @@
   </div>
 
     <div class="asset_module">
-     <%= form_for Color.new, url: user_brand_colors_path(params[:user_id], params[:id]), method: 'post') do %>
+     <%= form_for Color.new, url: user_brand_colors_path(params[:user_id], params[:id]), method: 'post' do %>
 
       <%= label_tag(:hex, "Hex Colour code") %>
       <%= text_field_tag(:hex) %>
