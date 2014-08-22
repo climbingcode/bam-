@@ -2,17 +2,19 @@
 <div id="logged-in-page-wrapper" class="">
 
   <div id="dashboard" class="">
+    <ul class="nav nav-tabs">
+      <li class="active"><a href="#dashboardTab" data-toggle="tab">Dashboard</a></li>
+      <li><a href="#accountTab" data-toggle="tab">Account</a></li>
+    </ul>
 
-      <ul class="nav nav-tabs">
-        <li class="active"><a href="#dashboard_tab" data-toggle="tab">Dashboard</a></li>
-          <li><a href="#account_tab" data-toggle="tab">Account</a></li>
-      </ul>
-      <div id="dashboard_tab" class="tab-content">
+    <div class="tab-content">
+      <div id="dashboardTab" class="tab-pane fade in active">
         <%= render 'form' %>  <!--render dashboard here -->
       </div>
-      <div id="account_tab" class="tab-content">
+      <div id="accountTab" class="tab-pane fade">
         <%= render 'account_form'%>
       </div>
+    </div>
   </div>
 
 
@@ -34,7 +36,6 @@
   </div>
 
 </div>
-
 
 <!-- IF PAGE IS SET TO PRIVATE AND USER IS NOT LOGGED IN: -->
 <div class="hidden"><!--hidden until we gett sessions working-->
