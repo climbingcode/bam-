@@ -24,14 +24,18 @@ class FontsController < ApplicationController
   # POST /fonts
   # POST /fonts.json
   def create
-    @font = Font.new(font_params)
+    @font = Font.new(
+      name: params[:name],
+      font_family: params[:font_family],
+      brand_id: params[:brand_id]
+    )
 
     respond_to do |format|
       if @font.save
-        format.html { redirect_to @font, notice: 'Font was successfully created.' }
+        format.html { redirect_to user_brand_path(current_user, @font.brand_id), notice: 'Font was successfully saved.' }
         format.json { render :show, status: :created, location: @font }
       else
-        format.html { render :new }
+        format.html { redirect_to user_brand_path(current_user, @font.brand_id), notice: 'Font was not saved.' }
         format.json { render json: @font.errors, status: :unprocessable_entity }
       end
     end
@@ -69,6 +73,6 @@ class FontsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def font_params
-      params[:font]
+      params.require(:font).permit(:name, :font_family, :brand_id)
     end
 end

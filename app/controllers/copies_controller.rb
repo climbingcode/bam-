@@ -32,10 +32,10 @@ class CopiesController < ApplicationController
 
     respond_to do |format|
       if @copy.save
-        format.html { redirect_to brand_path(@copy.brand_id), notice: 'Copy was successfully created.' }
+        format.html { redirect_to user_brand_path(current_user, @copy.brand_id), notice: 'Copy was successfully saved.' }
         format.json { render :show, status: :created, location: @copy }
       else
-        format.html { render :new }
+        format.html { redirect_to user_brand_path(current_user, @copy.brand_id), notice: 'Copy was not saved.'}
         format.json { render json: @copy.errors, status: :unprocessable_entity }
       end
     end
