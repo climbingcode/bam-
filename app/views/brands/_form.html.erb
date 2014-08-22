@@ -18,7 +18,6 @@
 
     <div class="asset_module">
      <%= form_for Color.new, url: user_brand_colors_path(params[:user_id], params[:id]), method: 'post' do |f| %>
-
       <%= f.label(:hex, "Hex Colour code") %>
       <%= f.text_field(:hex) %>
       <%= f.label(:name, "Colour name") %>
