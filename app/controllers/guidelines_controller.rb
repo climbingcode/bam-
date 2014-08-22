@@ -28,10 +28,10 @@ class GuidelinesController < ApplicationController
 
     respond_to do |format|
       if @guideline.save
-        format.html { redirect_to @guideline, notice: 'Guideline was successfully created.' }
+        format.html { redirect_to user_brand_path(current_user, @guideline.brand_id), notice: 'Guideline was successfully saved.' }
         format.json { render :show, status: :created, location: @guideline }
       else
-        format.html { render :new }
+        format.html { redirect_to user_brand_path(current_user, @guideline.brand_id), notice: 'Guideline was not saved.' }
         format.json { render json: @guideline.errors, status: :unprocessable_entity }
       end
     end
@@ -69,7 +69,6 @@ class GuidelinesController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def guideline_params
-      binding.pry
       params.require(:guideline).permit(:description, :text, :brand_id)
     end
 end

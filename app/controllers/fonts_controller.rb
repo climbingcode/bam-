@@ -32,10 +32,10 @@ class FontsController < ApplicationController
 
     respond_to do |format|
       if @font.save
-        format.html { redirect_to brand_path(@font.brand_id), notice: 'Font was successfully created.' }
+        format.html { redirect_to user_brand_path(current_user, @font.brand_id), notice: 'Font was successfully saved.' }
         format.json { render :show, status: :created, location: @font }
       else
-        format.html { render :new }
+        format.html { redirect_to user_brand_path(current_user, @font.brand_id), notice: 'Font was not saved.' }
         format.json { render json: @font.errors, status: :unprocessable_entity }
       end
     end

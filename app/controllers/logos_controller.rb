@@ -5,19 +5,14 @@ class LogosController < ApplicationController
   # POST /logos
   # POST /logos.json
   def create
-    @logo = Logo.new(
-     name: params[:name],
-     description: params[:description],
-     path: params[:path],
-     brand_id: params[:brand_id]
-    )
+    @logo = Logo.new(logo_params)
 
     respond_to do |format|
       if @logo.save
-        format.html { redirect_to user_brand_path(current_user, @logo.brand_id), notice: 'Logo was successfully created.' }
+        format.html { redirect_to user_brand_path(current_user, @logo.brand_id), notice: 'Logo was successfully saved.' }
         format.json { render :show, status: :created, location: @logo }
       else
-        format.html { render :new }
+        format.html { redirect_to user_brand_path(current_user, @logo.brand_id), notice: 'Logo was not saved.' }
         format.json { render json: @logo.errors, status: :unprocessable_entity }
       end
     end
@@ -77,6 +72,7 @@ class LogosController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def logo_params
+      binding.pry
       params.require[:logo].permit(:name, :description, :permission, :path, :brand_id)
     end
 end
