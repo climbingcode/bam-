@@ -1,7 +1,7 @@
 #multi_asset_form {
-  position: absolute;
+  position: relative;
   left: 0px;
-  
+  height: auto;
   padding: 10px;
 
   color: white;
@@ -28,11 +28,6 @@
 
     input[type="file"] {
       background-color: rgba(255,255,255, 0.5);
-    }
-
-    input[type="submit"] {
-      background-color: grey;
-      border: none;
     }
 
     textarea {
