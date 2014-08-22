@@ -2,6 +2,7 @@
 
 <div id="multi_asset_form">
   <div class="asset_module">
+    <h3>Logos</h3>
     <%= form_for(Logo.new, url: user_brand_logos_path(params[:user_id], params[:id]), remote: true, authenticity_token: true, method: 'post', multipart: true) do |f| %>
       <%= f.label(:name, "Logo Name") %>
       <%= f.text_field(:name, class: "form-control") %>
@@ -17,7 +18,7 @@
   </div>
 <hr/>
     <div class="asset_module">
-
+    <h3>Colors</h3>
      <%= form_for Color.new, url: user_brand_colors_path(params[:user_id], params[:id]), method: 'post' do |f| %>
       <%= f.label(:hex, "Hex Colour code") %>
       <%= f.text_field(:hex, class: "form-control") %>
@@ -32,6 +33,7 @@
   </div>
 <hr/>
   <div class="asset_module">
+  <h3>Brand Copy</h3>
     <%= form_for Copy.new, url: user_brand_copies_path(params[:user_id], params[:id]), method: 'post' do |f| %>
 
       <%= f.label(:description, "Copy description") %>
