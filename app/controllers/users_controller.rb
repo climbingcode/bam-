@@ -13,14 +13,15 @@ class UsersController < ApplicationController
 
 	def create
 		@user = User.new(user_params)
-		@brandname = params[:name]
+		@brand = Brand.find_by(name: params[:name])
+
 
       if @user.save
-      	if !first_time_brand?(params[:name])
-      		@user.brands.create(name: params[:name], website: params[:website])
-      		if set_user_to_admin(@user, @brandname)
+      	if !@brand
+      		@brand = @user.brands.create(name: params[:name], website: params[:website])
+      		if set_user_to_admin(@user, @brand.name)
       			session[:user_id] = @user.id
-      			redirect_to user_brands_path(@user.id), notice: 'You have full access to the site'
+      			redirect_to user_brand_path(@user.id, @brand.id), notice: 'You have full access to the site'
       		else
       			redirect_to :new, notice: 'Sorry account did not save correctly'
       		end

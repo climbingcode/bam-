@@ -1,7 +1,6 @@
 Rails.application.routes.draw do
 
 
-  get 'brand/show'
 
   root to: 'users#index'
 
@@ -34,6 +33,8 @@ Rails.application.routes.draw do
   resource :sessions, only: [:new, :create, :destroy]
 
   resources :contact_form, only: [:new, :create]
+
+  resources :permissions, only: [:show, :update, :edit]  
 
   resource :brand, only: [:show]
 

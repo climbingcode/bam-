@@ -6,8 +6,14 @@ require 'rails/all'
 # you've limited to :test, :development, or :production.
 Bundler.require(*Rails.groups)
 
+
+
 module Bam
   class Application < Rails::Application
+
+    # mailer config for host email
+    config.action_mailer.default_url_options = { host: 'tom_doido@hotmail.com' }
+
     # Settings in config/environments/* take precedence over those specified here.
     # Application configuration should go into files in config/initializers
     # -- all .rb files in that directory are automatically loaded.
