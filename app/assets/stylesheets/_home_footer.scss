@@ -1,0 +1,29 @@
+footer{
+  height: 150px;
+  background: #111;
+  padding: 45px;
+  a{
+    color: #fff;
+  }
+  a:hover{
+    text-decoration: none;
+    color: $primary-color;
+  }
+  ul{
+    list-style-type: none;
+  }
+}
+
+#back-to-top{
+  height: 30px;
+  width: 30px;
+  background: #444;
+  float: right;
+  font-size: 2em;
+  font-weight: bold;
+  padding-left:6px;
+  color: #fff;
+}
+#back-to-top:hover{
+  background: $primary-color;
+}

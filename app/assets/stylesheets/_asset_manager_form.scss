@@ -1,20 +1,23 @@
 #multi_asset_form {
   position: absolute;
   left: 0px;
-  width: 380px;
+  
   padding: 10px;
-  background-color: black;
+
   color: white;
   z-index: 1000;
   .asset_module {
     position: relative;
-    width: 90%;
+    width: 300px;
     height: auto;
     text-align: center;
-    border: 1px solid white;
+    // border: 1px solid white;
     border-radius: 5px;
     padding: 10px;
-    margin: 4px;
+    margin-left: auto;
+    margin-right: auto;
+    float:none;
+    display: block;
     input {
       position: relative;
       display: block;
@@ -22,6 +25,11 @@
       margin: 4px auto;
 
     }
+
+    input[type="file"] {
+      background-color: rgba(255,255,255, 0.5);
+    }
+
     input[type="submit"] {
       background-color: grey;
       border: none;
