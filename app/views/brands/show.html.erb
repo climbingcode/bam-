@@ -2,14 +2,19 @@
 <div id="logged-in-page-wrapper" class="">
 
   <div id="dashboard" class="">
-    <div class="modal-body">
+
       <ul class="nav nav-tabs">
-        <li class="active"><a href="#login" data-toggle="tab">Dashboard</a></li>
-          <li><a href="#create" data-toggle="tab">Account</a></li>
+        <li class="active"><a href="#dashboard_tab" data-toggle="tab">Dashboard</a></li>
+          <li><a href="#account_tab" data-toggle="tab">Account</a></li>
       </ul>
+      <div id="dashboard_tab" class="tab-content">
         <%= render 'form' %>  <!--render dashboard here -->
-    </div>
+      </div>
+      <div id="account_tab" class="tab-content">
+        <%= render 'account_form'%>
+      </div>
   </div>
+
 
   <div id="brand-page" class="">
   
