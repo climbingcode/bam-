@@ -6,4 +6,7 @@ class Brand < ActiveRecord::Base
 	has_many :guidelines
 	has_many :misc_assets
 	has_many :users, through: :user_brands 
+
+	extend FriendlyId
+  friendly_id :name, use: :slugged
 end
