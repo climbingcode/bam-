@@ -13,7 +13,6 @@ class Permission::UsersController < ApplicationController
 		admin = current_user
 		brands = current_user.brands
 		brands.each do |brand| 
-			binding.pry
 			relation = UserBrand.where('user_id = ? AND brand_id = ?', admin.id, brand.id)[0].user_id
 			users << User.find(relation)
 		end
