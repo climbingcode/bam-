@@ -2,6 +2,10 @@ Rails.application.routes.draw do
 
 
 
+  get 'brand/show'
+
+  get 'brand/index'
+
   root to: 'users#index'
 
   resources :users do
