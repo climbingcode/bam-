@@ -42,7 +42,7 @@
       <div class="panel-body">
           <div class="asset_module">
           <h3>Colors</h3>
-           <%= form_for Color.new, url: user_brand_colors_path(params[:user_id], params[:id]), method: 'post' do |f| %>
+           <%= form_for Color.new, url: user_brand_colors_path(params[:user_id], params[:id]), remote: true, authenticity_token: true,  method: 'post' do |f| %>
             <%= f.label(:hex, "Hex Colour code") %>
             <%= f.text_field(:hex, class: "form-control") %>
             <%= f.label(:name, "Colour name") %>

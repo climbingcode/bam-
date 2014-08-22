@@ -28,11 +28,14 @@ class ColorsController < ApplicationController
 
     respond_to do |format|
       if @color.save
+        @colors = Color.all  
+        @colors.to_json
         format.html { redirect_to user_brand_path(current_user, @color.brand_id), notice: 'Color was successfully created.' }
-        format.json { render :show, status: :created, location: @color }
+        format.js {}
       else
         format.html { redirect_to user_brand_path(current_user, params[:id]), notice: 'Color was not created.' }
         format.json { render json: @color.errors, status: :unprocessable_entity }
+        format.js { render :show, status: :created, location: user_brand_path(current_user, @color.brand_id) }
       end
     end
   end
