@@ -24,20 +24,14 @@ class ColorsController < ApplicationController
   # POST /colors
   # POST /colors.json
   def create
-    @color = Color.new(
-      hex: params[:hex],
-      name: params[:name], 
-      primary: params[:primary],
-      brand_id: params[:brand_id]
-
-    )
+    @color = Color.new(color_params)
 
     respond_to do |format|
       if @color.save
-        format.html { redirect_to brand_path(@color.brand_id), notice: 'Color was successfully created.' }
+        format.html { redirect_to user_brand_path(current_user, @color.brand_id), notice: 'Color was successfully created.' }
         format.json { render :show, status: :created, location: @color }
       else
-        format.html { render :new }
+        format.html { redirect_to user_brand_path(current_user, params[:id]), notice: 'Color was not created.' }
         format.json { render json: @color.errors, status: :unprocessable_entity }
       end
     end
