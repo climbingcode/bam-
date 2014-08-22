@@ -1,6 +1,8 @@
 Rails.application.routes.draw do
 
 
+  get 'brand/show'
+
   root to: 'users#index'
 
 
@@ -33,7 +35,9 @@ Rails.application.routes.draw do
 
   resources :contact_form, only: [:new, :create]
 
-  get '/:id', to: 'brands#show'
+  resource :brand, only: [:show]
+
+  get '/:id', to: 'brand#show'
 
 
 end

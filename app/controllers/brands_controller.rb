@@ -4,7 +4,7 @@ class BrandsController < ApplicationController
   # GET /brands
   # GET /brands.json
   def index
-    @brands = Brand.all
+    @brand = Brand.all
   end
 
   def mailer
@@ -14,15 +14,8 @@ class BrandsController < ApplicationController
   # GET /brands/1
   # GET /brands/1.json
   def show
-    if params[:user_id].present?
       @user = User.find(params[:user_id])
       @brand = @user.brands
-    else 
-      @brand = Brand.find_by(name: params[:id])
-      if @brand == nil 
-        redirect_to '/', notice: 'This Brand does not exist'
-      end
-    end
   end
 
   # GET /brands/new
