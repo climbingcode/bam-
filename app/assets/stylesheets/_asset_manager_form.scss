@@ -22,6 +22,11 @@
       margin: 4px auto;
 
     }
+
+    input[type="file"] {
+      background-color: rgba(255,255,255, 0.5);
+    }
+
     input[type="submit"] {
       background-color: grey;
       border: none;
