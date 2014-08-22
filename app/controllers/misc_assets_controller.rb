@@ -28,10 +28,10 @@ class MiscAssetsController < ApplicationController
 
     respond_to do |format|
       if @misc_asset.save
-        format.html { redirect_to @misc_asset, notice: 'Misc asset was successfully created.' }
+        format.html { redirect_to user_brand_path(current_user, @misc_asset.brand_id), notice: 'Misc asset was successfully created.' }
         format.json { render :show, status: :created, location: @misc_asset }
       else
-        format.html { render :new }
+        format.html { redirect_to user_brand_path(current_user, @misc_asset.brand_id), notice: 'Misc asset was not saved.'}
         format.json { render json: @misc_asset.errors, status: :unprocessable_entity }
       end
     end
@@ -69,6 +69,6 @@ class MiscAssetsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def misc_asset_params
-      params[:misc_asset]
+      params.require(:misc_asset).permit(:name, :description, :thumbnail, :permissions, :brand_id)
     end
 end

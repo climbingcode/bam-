@@ -72,7 +72,6 @@ class LogosController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def logo_params
-      binding.pry
-      params.require[:logo].permit(:name, :description, :permission, :path, :brand_id)
+      params.require(:logo).permit(:name, :description, :permission, :path, :brand_id)
     end
 end
