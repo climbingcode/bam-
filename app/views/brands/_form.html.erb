@@ -1,90 +1,174 @@
 
 
 <div id="multi_asset_form">
-  <div class="asset_module">
-    <h3>Logos</h3>
-    <%= form_for(Logo.new, url: user_brand_logos_path(params[:user_id], params[:id]), remote: true, authenticity_token: true, method: 'post', multipart: true) do |f| %>
-      <%= f.label(:name, "Logo Name") %>
-      <%= f.text_field(:name, class: "form-control") %>
-      <%= f.label(:description, "What is the logo used for?") %>
-      <%= f.text_field(:description, class: "form-control") %>
-      <%= f.label(:permission, "Private") %>
-      <%= f.check_box(:permission) %>
-      <%= f.label(:path, "Add a logo") %>
-      <%= f.file_field(:path, class: "form-control") %>
-      <%= f.hidden_field(:brand_id, :value => params[:id]) %>
-      <%= f.submit('Add File', class: "bam_btn btn") %>
-    <% end %> 
-  </div>
-<hr/>
-    <div class="asset_module">
-    <h3>Colors</h3>
-     <%= form_for Color.new, url: user_brand_colors_path(params[:user_id], params[:id]), method: 'post' do |f| %>
-      <%= f.label(:hex, "Hex Colour code") %>
-      <%= f.text_field(:hex, class: "form-control") %>
-      <%= f.label(:name, "Colour name") %>
-      <%= f.text_field(:name, class: "form-control") %>
-      <%= f.label(:primary, "Is it the primary colour?") %>
-      <%= f.check_box(:primary) %>
-      <%= f.hidden_field(:brand_id, :value => params[:id]) %>
-      <%= f.submit('Add colour', class: "bam_btn btn") %>
 
-    <% end %>
-  </div>
-<hr/>
-  <div class="asset_module">
-  <h3>Brand Copy</h3>
-    <%= form_for Copy.new, url: user_brand_copies_path(params[:user_id], params[:id]), method: 'post' do |f| %>
+    <div class="panel-group" id="accordion">
+      
+      <div class="panel ">
+        <div class="panel-heading">
+          <h4 class="panel-title">
+            <a data-toggle="collapse" data-parent="#accordion" href="#collapseOne">
+              Logos
+            </a>
+          </h4>
+        </div>
+        <div id="collapseOne" class="panel-collapse collapse in"> 
+          <div class="panel-body">
+            <div class="asset_module">
+              <%= form_for(Logo.new, url: user_brand_logos_path(params[:user_id], params[:id]), remote: true, authenticity_token: true, method: 'post', multipart: true) do |f| %>
+                <%= f.label(:name, "Logo Name") %>
+                <%= f.text_field(:name, class: "form-control") %>
+                <%= f.label(:description, "What is the logo used for?") %>
+                <%= f.text_field(:description, class: "form-control") %>
+                <%= f.label(:permission, "Private") %>
+                <%= f.check_box(:permission) %>
+                <%= f.label(:path, "Add a logo") %>
+                <%= f.file_field(:path, class: "form-control") %>
+                <%= f.hidden_field(:brand_id, :value => params[:id]) %>
+                <%= f.submit('Add File', class: "bam_btn btn") %>
+              <% end %> 
+            </div>
+          </div>
+        </div>
+      </div>
+    
+<div class="panel ">
+    <div class="panel-heading">
+      <h4 class="panel-title">
+        <a data-toggle="collapse" data-parent="#accordion" href="#collapseTwo">
+          Colors
+        </a>
+      </h4>
+    </div>
+    <div id="collapseTwo" class="panel-collapse collapse">
+      <div class="panel-body">
+          <div class="asset_module">
+          <h3>Colors</h3>
+           <%= form_for Color.new, url: user_brand_colors_path(params[:user_id], params[:id]), method: 'post' do |f| %>
+            <%= f.label(:hex, "Hex Colour code") %>
+            <%= f.text_field(:hex, class: "form-control") %>
+            <%= f.label(:name, "Colour name") %>
+            <%= f.text_field(:name, class: "form-control") %>
+            <%= f.label(:primary, "Is it the primary colour?") %>
+            <%= f.check_box(:primary) %>
+            <%= f.hidden_field(:brand_id, :value => params[:id]) %>
+            <%= f.submit('Add colour', class: "bam_btn btn") %>
 
-      <%= f.label(:description, "Copy description") %>
-      <%= f.text_field(:description, class: "form-control") %>
-      <%= f.label(:text, "Copy text") %>
-      <%= f.text_area(:text, class: "form-control") %>
-      <%= f.hidden_field(:brand_id, :value => params[:id]) %>
-      <%= f.submit('Add copy', class: "bam_btn btn") %>
-    <% end %>
-  </div>
-<hr/>
-  <div class="asset_module">
-
-        <%= form_for Font.new, url: user_brand_fonts_path(params[:user_id], params[:id]), method: 'post' do |f| %>
-
-
-      <%= f.label(:name, "Font Name") %>
-      <%= f.text_field(:name, class: "form-control") %>
-      <%= f.label(:font_family, "Font Family") %>
-      <%= f.text_field(:font_family, class: "form-control") %>
-      <%= f.hidden_field(:brand_id, :value => params[:id]) %>
-      <%= f.submit('Add font', class: "bam_btn btn") %>
-    <% end %>
-  </div>
-<hr/>
-  <div class="asset_module">
-    <%= form_for Guideline.new, url: user_brand_guidelines_path(params[:user_id], params[:id]), method: 'post' do |f| %>
-
-      <%= f.label :description, "Guideline description" %>
-      <%= f.text_field(:description, class: "form-control") %>
-      <%= f.label(:text, "Guideline") %>
-      <%= f.text_area(:text, class: "form-control") %>
-      <%= f.hidden_field(:brand_id, :value => params[:id]) %>
-      <%= f.submit('Add Guideline', class: "bam_btn btn") %>
-    <% end %>
-  </div>
-<hr/>
-    <div class="asset_module">
-    <%= form_for MiscAsset.new, url: user_brand_misc_assets_path(params[:user_id], params[:id]), method: 'post', multipart:true do |f| %>
-      <%= f.label(:name, "Asset name" ) %>
-      <%= f.text_field(:name, class: "form-control") %>
-      <%= f.label(:description, "Asset description") %>
-      <%= f.text_field(:description, class: "form-control") %>
-      <%= f.label(:thumbnail, "Asset") %>
-      <%= f.file_field(:thumbnail, class: "form-control") %>
-      <%= f.label(:permissions, "Public") %>
-      <%= f.check_box(:permissions) %>
-      <%= f.hidden_field(:brand_id, :value => params[:id]) %>
-      <%= f.submit('Add Asset', class: "bam_btn btn") %>
-    <% end %>
+          <% end %>
+        </div>
+      </div>
+    </div>
   </div>
 
 
-</div>
+    <div class="panel ">
+    <div class="panel-heading">
+      <h4 class="panel-title">
+        <a data-toggle="collapse" data-parent="#accordion" href="#collapseThree">
+          Brand Copy
+        </a>
+      </h4>
+    </div>
+    <div id="collapseThree" class="panel-collapse collapse">
+      <div class="panel-body">
+        <div class="asset_module">
+          <h3>Brand Copy</h3>
+            <%= form_for Copy.new, url: user_brand_copies_path(params[:user_id], params[:id]), method: 'post' do |f| %>
+
+              <%= f.label(:description, "Copy description") %>
+              <%= f.text_field(:description, class: "form-control") %>
+              <%= f.label(:text, "Copy text") %>
+              <%= f.text_area(:text, class: "form-control") %>
+              <%= f.hidden_field(:brand_id, :value => params[:id]) %>
+              <%= f.submit('Add copy', class: "bam_btn btn") %>
+            <% end %>
+        </div>
+      </div>
+    </div>
+  </div>
+
+    <div class="panel">
+    <div class="panel-heading">
+      <h4 class="panel-title">
+        <a data-toggle="collapse" data-parent="#accordion" href="#collapseFour">
+          Typography
+        </a>
+      </h4>
+    </div>
+    <div id="collapseFour" class="panel-collapse collapse">
+      <div class="panel-body">
+          <div class="asset_module">
+
+            <%= form_for Font.new, url: user_brand_fonts_path(params[:user_id], params[:id]), method: 'post' do |f| %>
+
+
+          <%= f.label(:name, "Font Name") %>
+          <%= f.text_field(:name, class: "form-control") %>
+          <%= f.label(:font_family, "Font Family") %>
+          <%= f.text_field(:font_family, class: "form-control") %>
+          <%= f.hidden_field(:brand_id, :value => params[:id]) %>
+          <%= f.submit('Add font', class: "bam_btn btn") %>
+        <% end %>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="panel">
+    <div class="panel-heading">
+      <h4 class="panel-title">
+        <a data-toggle="collapse" data-parent="#accordion" href="#collapseFive">
+          Brand Guidelines
+        </a>
+      </h4>
+    </div>
+    <div id="collapseFive" class="panel-collapse collapse">
+      <div class="panel-body">
+        <div class="asset_module">
+          <%= form_for Guideline.new, url: user_brand_guidelines_path(params[:user_id], params[:id]), method: 'post' do |f| %>
+
+            <%= f.label :description, "Guideline description" %>
+            <%= f.text_field(:description, class: "form-control") %>
+            <%= f.label(:text, "Guideline") %>
+            <%= f.text_area(:text, class: "form-control") %>
+            <%= f.hidden_field(:brand_id, :value => params[:id]) %>
+            <%= f.submit('Add Guideline', class: "bam_btn btn") %>
+          <% end %>
+        </div>
+      </div>
+    </div>
+  </div>
+
+    <div class="panel">
+    <div class="panel-heading">
+      <h4 class="panel-title">
+        <a data-toggle="collapse" data-parent="#accordion" href="#collapseSix">
+          Files
+        </a>
+      </h4>
+    </div>
+    <div id="collapseSix" class="panel-collapse collapse">
+      <div class="panel-body">
+                  <div class="asset_module">
+          <%= form_for MiscAsset.new, url: user_brand_misc_assets_path(params[:user_id], params[:id]), method: 'post', multipart:true do |f| %>
+            <%= f.label(:name, "Asset name" ) %>
+            <%= f.text_field(:name, class: "form-control") %>
+            <%= f.label(:description, "Asset description") %>
+            <%= f.text_field(:description, class: "form-control") %>
+            <%= f.label(:thumbnail, "Asset") %>
+            <%= f.file_field(:thumbnail, class: "form-control") %>
+            <%= f.label(:permissions, "Public") %>
+            <%= f.check_box(:permissions) %>
+            <%= f.hidden_field(:brand_id, :value => params[:id]) %>
+            <%= f.submit('Add Asset', class: "bam_btn btn") %>
+          <% end %>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+
+
+    </div><!--panel-group-->
+  </div><!--#multi-asset-form-->
