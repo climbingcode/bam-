@@ -1,6 +1,7 @@
 class BrandsController < ApplicationController
   before_action :set_brand, only: [:show, :edit, :update, :destroy]
 
+  before_filter :restrict_access
   # GET /brands
   # GET /brands.json
   def index

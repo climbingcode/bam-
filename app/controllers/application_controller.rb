@@ -3,25 +3,24 @@ class ApplicationController < ActionController::Base
   # For APIs, you may want to use :null_session instead.
   protect_from_forgery with: :exception
 
-
   protected
 
   def restrict_access
     if !current_user
       flash[:alert] = "You must log in."
-      redirect_to new_session_path
+      redirect_to '/'
     end
   end
 
-  def admin_access
-    if current_user
-      user_brand_access = current_user.user_brands.where("user_id = ? AND brand_id = ?", current_user.id, params[:id])  
-      if user_brand_access[0].permission != 1 
-        flash[:alert] = "You must be an administrator to see site admin."
-        redirect_to '/'
-      end
+  def check_permission_status
+    if !current_user.user_brands[0].permission == 1
+      flash[:alert] = "Sorry, you don't have permission"
+      redirect_to user_brands(current_user.id)
     end
   end
+
+
+
 
   def current_user
     @current_user ||= User.find(session[:user_id]) if session[:user_id]

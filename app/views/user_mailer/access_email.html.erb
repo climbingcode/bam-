@@ -4,12 +4,10 @@
     <meta content='text/html; charset=UTF-8' http-equiv='Content-Type' />
   </head>
   <body>
-  <% binding.pry %>
-  	<p>Please take a moment to activate your account by going to:</P>
-    <h1><%= @user.firstname %> wants to join</h1>
+    <h1><%= @employee.firstname %> <%= @employee.surname %> wants access to the to BAM</h1>
     <p>
-      To add this user follow this go to <%= @url %>.
+      To add and set permissions please go to <%= @url %>.
     </p>
-    <p>Thanks and have a greate day:)</p>
+    <p>Thanks and have a greate day from the BAM team:)</p>
   </body>
 </html>

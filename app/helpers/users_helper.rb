@@ -21,12 +21,11 @@ module UsersHelper
 	end
 
 	def send_email_to_admin(brandname, user)
+		joined_account = user
 		users = find_email_info(brandname, user)
-
-		users.each do |user| 
-			UserMailer.access_email(user).deliver
-		end
-		
+		users.each do |current_user| 
+			UserMailer.access_email(current_user, joined_account).deliver
+		end	
 	end
 
 
