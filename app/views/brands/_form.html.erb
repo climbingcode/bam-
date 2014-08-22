@@ -31,26 +31,26 @@
   </div>
 
   <div class="asset_module">
-    <%= form_tag(user_brand_copies_path(params[:user_id], params[:id]), method: 'post') do %>
+    <%= form_for Copy.new, url: user_brand_copies_path(params[:user_id], params[:id]), method: 'post' do |f| %>
 
-      <%= label_tag(:description, "Copy description") %>
-      <%= text_field_tag(:description) %>
-      <%= label_tag(:text, "Copy text") %>
-      <%= text_area_tag(:text) %>
-      <%= hidden_field_tag(:brand_id, params[:id]) %>
-      <%= submit_tag 'Add copy' %>
+      <%= f.label(:description, "Copy description") %>
+      <%= f.text_field(:description) %>
+      <%= f.label(:text, "Copy text") %>
+      <%= f.text_area(:text) %>
+      <%= f.hidden_field(:brand_id, :value => params[:id]) %>
+      <%= f.submit 'Add copy' %>
     <% end %>
   </div>
 
   <div class="asset_module">
-        <%= form_tag(user_brand_fonts_path(params[:user_id], params[:id]), method: 'post') do %>
+        <%= form_for Font.new, url: user_brand_fonts_path(params[:user_id], params[:id]), method: 'post' do |f| %>
 
-      <%= label_tag(:name, "Font Name") %>
-      <%= text_field_tag(:name) %>
-      <%= label_tag(:font_family, "Font Family") %>
-      <%= text_field_tag(:font_family) %>
-      <%= hidden_field_tag(:brand_id, params[:id]) %>
-      <%= submit_tag 'Add font' %>
+      <%= f.label(:name, "Font Name") %>
+      <%= f.text_field(:name) %>
+      <%= f.label(:font_family, "Font Family") %>
+      <%= f.text_field(:font_family) %>
+      <%= f.hidden_field(:brand_id, :value => params[:id]) %>
+      <%= f.submit 'Add font' %>
     <% end %>
   </div>
 
@@ -67,17 +67,17 @@
   </div>
 
     <div class="asset_module">
-    <%= form_tag( user_brand_misc_assets_path(params[:user_id], params[:id]), method: 'post', multipart:true) do %>
-      <%= label_tag(:name, "Asset name" ) %>
-      <%= text_field_tag(:name) %>
-      <%= label_tag(:description, "Asset description") %>
-      <%= text_field_tag(:description) %>
-      <%= label_tag(:thumbnail, "Asset") %>
-      <%= text_area_tag(:thumbnail) %>
-      <%= label_tag(:permissions, "Public") %>
-      <%= check_box_tag(:permissions) %>
-      <%= hidden_field_tag(:brand_id, params[:id]) %>
-      <%= submit_tag 'Add Asset' %>
+    <%= form_for MiscAsset.new, url: user_brand_misc_assets_path(params[:user_id], params[:id]), method: 'post', multipart:true do |f| %>
+      <%= f.label(:name, "Asset name" ) %>
+      <%= f.text_field(:name) %>
+      <%= f.label(:description, "Asset description") %>
+      <%= f.text_field(:description) %>
+      <%= f.label(:thumbnail, "Asset") %>
+      <%= f.file_field(:thumbnail) %>
+      <%= f.label(:permissions, "Public") %>
+      <%= f.check_box(:permissions) %>
+      <%= f.hidden_field(:brand_id, :value => params[:id]) %>
+      <%= f.submit 'Add Asset' %>
     <% end %>
   </div>
 

@@ -24,11 +24,7 @@ class FontsController < ApplicationController
   # POST /fonts
   # POST /fonts.json
   def create
-    @font = Font.new(
-      name: params[:name],
-      font_family: params[:font_family],
-      brand_id: params[:brand_id]
-    )
+    @font = Font.new(font_params)
 
     respond_to do |format|
       if @font.save
