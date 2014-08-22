@@ -1,0 +1,7 @@
+class BrandController < ApplicationController
+  def show
+  end
+
+  def index
+  end
+end

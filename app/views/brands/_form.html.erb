@@ -1,5 +1,3 @@
-
-
 <div id="multi_asset_form">
 
     <div class="panel-group" id="accordion">
@@ -98,10 +96,7 @@
     <div id="collapseFour" class="panel-collapse collapse">
       <div class="panel-body">
           <div class="asset_module">
-
-            <%= form_for Font.new, url: user_brand_fonts_path(params[:user_id], params[:id]), method: 'post' do |f| %>
-
-
+          <%= form_for Font.new, url: user_brand_fonts_path(params[:user_id], params[:id]), method: 'post' do |f| %>
           <%= f.label(:name, "Font Name") %>
           <%= f.text_field(:name, class: "form-control") %>
           <%= f.label(:font_family, "Font Family") %>
