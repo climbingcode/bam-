@@ -5,13 +5,13 @@
     <div class="panel-group" id="accordion">
       
       <div class="panel ">
+      <a data-toggle="collapse" data-parent="#accordion" href="#collapseOne">
         <div class="panel-heading">
           <h4 class="panel-title">
-            <a data-toggle="collapse" data-parent="#accordion" href="#collapseOne">
               Logos
-            </a>
           </h4>
         </div>
+        </a>
         <div id="collapseOne" class="panel-collapse collapse in"> 
           <div class="panel-body">
             <div class="asset_module">
@@ -32,43 +32,38 @@
         </div>
       </div>
     
-<div class="panel ">
-    <div class="panel-heading">
-      <h4 class="panel-title">
-        <a data-toggle="collapse" data-parent="#accordion" href="#collapseTwo">
-          Colors
-        </a>
-      </h4>
-    </div>
-    <div id="collapseTwo" class="panel-collapse collapse">
-      <div class="panel-body">
-          <div class="asset_module">
-          <h3>Colors</h3>
-           <%= form_for Color.new, url: user_brand_colors_path(params[:user_id], params[:id]), method: 'post' do |f| %>
-            <%= f.label(:hex, "Hex Colour code") %>
-            <%= f.text_field(:hex, class: "form-control") %>
-            <%= f.label(:name, "Colour name") %>
-            <%= f.text_field(:name, class: "form-control") %>
-            <%= f.label(:primary, "Is it the primary colour?") %>
-            <%= f.check_box(:primary) %>
-            <%= f.hidden_field(:brand_id, :value => params[:id]) %>
-            <%= f.submit('Add colour', class: "bam_btn btn") %>
+    <div class="panel ">
+      <a data-toggle="collapse" data-parent="#accordion" href="#collapseTwo">
+        <div class="panel-heading">
+          <h4 class="panel-title">Colors</h4>
+        </div>
+      </a>
+      <div id="collapseTwo" class="panel-collapse collapse">
+        <div class="panel-body">
+            <div class="asset_module">
+            <h3>Colors</h3>
+             <%= form_for Color.new, url: user_brand_colors_path(params[:user_id], params[:id]), method: 'post' do |f| %>
+              <%= f.label(:hex, "Hex Colour code") %>
+              <%= f.text_field(:hex, class: "form-control") %>
+              <%= f.label(:name, "Colour name") %>
+              <%= f.text_field(:name, class: "form-control") %>
+              <%= f.label(:primary, "Is it the primary colour?") %>
+              <%= f.check_box(:primary) %>
+              <%= f.hidden_field(:brand_id, :value => params[:id]) %>
+              <%= f.submit('Add colour', class: "bam_btn btn") %>
 
-          <% end %>
+            <% end %>
+          </div>
         </div>
       </div>
     </div>
-  </div>
 
-
-    <div class="panel ">
-    <div class="panel-heading">
-      <h4 class="panel-title">
-        <a data-toggle="collapse" data-parent="#accordion" href="#collapseThree">
-          Brand Copy
-        </a>
-      </h4>
-    </div>
+  <div class="panel ">
+      <a data-toggle="collapse" data-parent="#accordion" href="#collapseThree">
+        <div class="panel-heading">
+          <h4 class="panel-title">Brand Copy</h4>
+        </div>
+      </a>
     <div id="collapseThree" class="panel-collapse collapse">
       <div class="panel-body">
         <div class="asset_module">
@@ -87,14 +82,12 @@
     </div>
   </div>
 
-    <div class="panel">
-    <div class="panel-heading">
-      <h4 class="panel-title">
-        <a data-toggle="collapse" data-parent="#accordion" href="#collapseFour">
-          Typography
-        </a>
-      </h4>
-    </div>
+  <div class="panel">
+    <a data-toggle="collapse" data-parent="#accordion" href="#collapseFour">
+      <div class="panel-heading">
+        <h4 class="panel-title">Typography</h4>
+      </div>
+    </a>
     <div id="collapseFour" class="panel-collapse collapse">
       <div class="panel-body">
           <div class="asset_module">
@@ -115,13 +108,11 @@
   </div>
 
   <div class="panel">
-    <div class="panel-heading">
-      <h4 class="panel-title">
-        <a data-toggle="collapse" data-parent="#accordion" href="#collapseFive">
-          Brand Guidelines
-        </a>
-      </h4>
-    </div>
+    <a data-toggle="collapse" data-parent="#accordion" href="#collapseFive">
+      <div class="panel-heading">
+        <h4 class="panel-title">Brand Guidelines</h4>
+      </div>
+    </a>
     <div id="collapseFive" class="panel-collapse collapse">
       <div class="panel-body">
         <div class="asset_module">
@@ -140,13 +131,11 @@
   </div>
 
     <div class="panel">
-    <div class="panel-heading">
-      <h4 class="panel-title">
-        <a data-toggle="collapse" data-parent="#accordion" href="#collapseSix">
-          Files
-        </a>
-      </h4>
-    </div>
+      <a data-toggle="collapse" data-parent="#accordion" href="#collapseSix">
+        <div class="panel-heading">
+          <h4 class="panel-title">Files</h4>
+        </div>
+      </a>
     <div id="collapseSix" class="panel-collapse collapse">
       <div class="panel-body">
                   <div class="asset_module">
