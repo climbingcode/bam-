@@ -4,6 +4,7 @@ Rails.application.routes.draw do
   root to: 'users#index'
 
 
+
   resources :users do
 
     resources :brands do
@@ -31,6 +32,8 @@ Rails.application.routes.draw do
   resource :sessions, only: [:new, :create, :destroy]
 
   resources :contact_form, only: [:new, :create]
+
+  get '/:id', to: 'brands#show'
 
 
 end

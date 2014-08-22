@@ -14,8 +14,15 @@ class BrandsController < ApplicationController
   # GET /brands/1
   # GET /brands/1.json
   def show
-    @user = User.find(params[:user_id])
-    @brand = @user.brands
+    if params[:user_id].present?
+      @user = User.find(params[:user_id])
+      @brand = @user.brands
+    else 
+      @brand = Brand.find_by(name: params[:id])
+      if @brand == nil 
+      redirect_to '/', notice: 'This Brand does not exist'
+      end
+    end
   end
 
   # GET /brands/new
@@ -70,7 +77,7 @@ class BrandsController < ApplicationController
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_brand
-      @brand = Brand.find(params[:id])
+      @brand = Brand.find_by(name: params[:id])
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.
