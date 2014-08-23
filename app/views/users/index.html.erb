@@ -13,12 +13,22 @@
 
 
   <div  id="search_input_wrapper">
-    <div id="search_form_input_wrapper">
+
+    <%= form_tag brand_index_path, method: 'get' do |f| %>
+      <%= text_field_tag :search, params[:search], placeholder: "Search by Title" %>
+      <%= submit_tag %>  
+    <% end %>
+
+    <form action="brand#search" method="get">
+    <input name="search" type="text" id="search_form_input_wrapper" placeholder="Search" />
+    <button type="submit" id="search_icon_wrapper"><img src="/assets/search_icon.png" class="img-responsive"></button>
+    </form>
+<!--     <div id="search_form_input_wrapper">
     
     </div>
     <div id="search_icon_wrapper">
     <img src="/assets/search_icon.png" class="img-responsive">
-    </div>
+    </div> -->
   </div>
 
 </section>

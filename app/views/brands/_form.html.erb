@@ -1,8 +1,8 @@
 <div id="multi_asset_form">
 
-    <div class="panel-group" id="accordion">
+    <div class="panel-group" id="dashboard-accordion">
       
-      <div class="panel ">
+      <div class="panel">
       <a data-toggle="collapse" data-parent="#accordion" href="#collapseOne">
         <div class="panel-heading">
           <h4 class="panel-title">
@@ -135,7 +135,7 @@
       </a>
     <div id="collapseSix" class="panel-collapse collapse">
       <div class="panel-body">
-                  <div class="asset_module">
+          <div class="asset_module">
           <%= form_for MiscAsset.new, url: user_brand_misc_assets_path(params[:user_id], params[:id]), method: 'post', multipart:true do |f| %>
             <%= f.label(:name, "Asset name" ) %>
             <%= f.text_field(:name, class: "form-control") %>
