@@ -58,12 +58,12 @@ function hexToCMYK (hex) {
 
    var minCMY = Math.min(computedC,Math.min(computedM,computedY));
 
-   computedC = (computedC - minCMY) / (1 - minCMY) ;
-   computedM = (computedM - minCMY) / (1 - minCMY) ;
-   computedY = (computedY - minCMY) / (1 - minCMY) ;
-   computedK = minCMY;
+   computedC = Math.round( 100 * (computedC - minCMY) / (1 - minCMY)) ;
+   computedM = Math.round( 100 * (computedM - minCMY) / (1 - minCMY)) ;
+   computedY = Math.round( 100 * (computedY - minCMY) / (1 - minCMY)) ;
+   computedK = Math.round(100 * minCMY);
 
-   return [computedC,computedM,computedY,computedK];
+   return [computedC + "% ", " " + computedM + "% ", " " + computedY + "% ", " " + computedK + "%"];
 }
   
 
@@ -81,18 +81,19 @@ function hexToCMYK (hex) {
         colorHex = $("<li>").html("CSS HEX: <span>#" + data.hex + "</span>"),
         colorRgb = $("<li>").html("RGB: <span>" + r + ", " + g + ", "+ b + "</span>"),
         colorCmyk = $("<li>").html("CMYK: <span>" + hexToCMYK(data.hex) + "</span>"),
+        colorListItems = targetColor + " ul.color-list",
         colorSass = $("<li>").html("Sass: <span></span>");
+
     console.log(targetColor);
     
     $color.append(colorWrapper);
     colorSwatch.appendTo(targetColor);
     colorList.appendTo(targetColor);
-    colorName.appendTo(targetColor);
-    colorHex.appendTo(targetColor);
-    colorRgb.appendTo(targetColor);
-    colorCmyk.appendTo(targetColor);
-    colorSass.appendTo(targetColor);
-    // $("#"+data.id).children("div").css("background-color", data.hex);
+    colorName.appendTo(colorListItems);
+    colorHex.appendTo(colorListItems);
+    colorRgb.appendTo(colorListItems);
+    colorCmyk.appendTo(colorListItems);
+    colorSass.appendTo(colorListItems);
     // $wrapper.append(colorSwatch).css("background", data.hex)
     //   .append(colorList)
     //   .append(colorName)
