@@ -1,4 +1,8 @@
+
+
 $( document ).ready(function() {
+
+  $("#load_color").submit();
 
 	$('#dashboardTab').on("click", "dashboardTab", function (e) {
   	e.preventDefault()
@@ -69,6 +73,7 @@ function hexToCMYK (hex) {
 
   function createNewColor(data){
     console.log(data);
+
     var $color = $("#color"),
         r = hexToR(data.hex),
         g = hexToG(data.hex),
@@ -98,6 +103,21 @@ function hexToCMYK (hex) {
 
   };
 
+  function loadColors(colorArray){
+    var i = 0,
+        len = colorArray.length; 
+    if(len === 0) {
+      $("<p>").html("Looks like your brand needs some colors!");
+    } else {
+      for(i;i < len; i++){
+        var color = colorArray[i]
+          console.log(color);
+          createNewColor(color);
+      }
+    };
+
+  }
+
   // $('#new_logo').on('ajax:success', function(e,data) {
   //   console.log(data);
   // });
@@ -114,6 +134,11 @@ function hexToCMYK (hex) {
   $('#new_font').on("ajax:success", function(e, data){
     console.log(data);
   }); 
+
+  $('#load_color').on('ajax:success', function(e, data) {
+    console.log(data);
+    loadColors(data);
+  });
 
 
 

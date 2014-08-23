@@ -4,7 +4,12 @@ class ColorsController < ApplicationController
   # GET /colors
   # GET /colors.json
   def index
-    @colors = Color.all
+    @colors = Color.where("brand_id = ?", params[:brand_id])
+    respond_to do | format |
+      format.html 
+      format.json { render json: @colors, location: user_brand_path(current_user, params[:brand_id])  }
+    end
+
   end
 
   # GET /colors/1
@@ -43,7 +48,7 @@ class ColorsController < ApplicationController
     respond_to do |format|
       if @color.update(color_params)
         format.html { redirect_to @color, notice: 'Color was successfully updated.' }
-        format.json { render :show, status: :ok, location: @color }
+        format.json { render json: @color, status: :ok, location: @color }
       else
         format.html { render :edit }
         format.json { render json: @color.errors, status: :unprocessable_entity }
