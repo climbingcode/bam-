@@ -78,7 +78,7 @@ function hexToCMYK (hex) {
         colorSwatch = $("<div>").addClass("swatch").css("background-color", "#"+data.hex),
         colorList = $("<ul>").addClass("color-list"),
         colorName = $("<li>").addClass("color-name").html(data.name),
-        colorHex = $("<li>").html("CSS HEX: <span>#" + data.hex + "</span>"),
+        colorHex = $("<li>").html("CSS HEX: <span>#" + data.hex.toUpperCase() + "</span>"),
         colorRgb = $("<li>").html("RGB: <span>" + r + ", " + g + ", "+ b + "</span>"),
         colorCmyk = $("<li>").html("CMYK: <span>" + hexToCMYK(data.hex) + "</span>"),
         colorListItems = targetColor + " ul.color-list",
