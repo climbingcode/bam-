@@ -1,11 +1,11 @@
 $( document ).ready(function() {
 
-	$('#dashboardTab a').click(function (e) {
+	$('#dashboardTab').on("click", "dashboardTab", function (e) {
   	e.preventDefault()
   	$(this).tab('show')
 	});
 
-		$('#accountTab a').click(function (e) {
+		$('#accountTab').on("click", "accountTab", function (e) {
   	e.preventDefault()
   	$(this).tab('show')
 	});

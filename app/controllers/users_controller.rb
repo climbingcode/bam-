@@ -27,11 +27,20 @@ class UsersController < ApplicationController
      		end
    		else
      		send_email_to_admin(params[:name], @user)
+        awaiting_admin_confirmation(@user, @brand.name)
      		redirect_to '/', notice: 'Waiting for account holder to grant access'
  	    end 
     else
     	redirect_to :new, notice: 'Sorry there was problems saving you account'
     end
+  end
+
+  def edit 
+
+  end
+
+  def update
+
   end
 
 
