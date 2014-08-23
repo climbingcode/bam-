@@ -13,7 +13,7 @@
         <div id="collapseOne" class="panel-collapse collapse in"> 
           <div class="panel-body">
             <div class="asset_module">
-              <%= form_for(Logo.new, url: user_brand_logos_path(params[:user_id], params[:id]), remote: true, authenticity_token: true, method: 'post', multipart: true) do |f| %>
+              <%= form_for(Logo.new, url: user_brand_logos_path(params[:user_id], params[:id], format: :json), remote: true, authenticity_token: true, method: 'post', multipart: true) do |f| %>
                 <%= f.label(:name, "Logo Name") %>
                 <%= f.text_field(:name, class: "form-control") %>
                 <%= f.label(:description, "What is the logo used for?") %>
@@ -30,24 +30,27 @@
         </div>
       </div>
     
-    <div class="panel ">
-      <a data-toggle="collapse" data-parent="#accordion" href="#collapseTwo">
-        <div class="panel-heading">
-          <h4 class="panel-title">Colors</h4>
-        </div>
-      </a>
-      <div id="collapseTwo" class="panel-collapse collapse">
-        <div class="panel-body">
-            <div class="asset_module">
-             <%= form_for Color.new, url: user_brand_colors_path(params[:user_id], params[:id]), method: 'post' do |f| %>
-              <%= f.label(:hex, "Hex Colour code") %>
-              <%= f.text_field(:hex, class: "form-control") %>
-              <%= f.label(:name, "Colour name") %>
-              <%= f.text_field(:name, class: "form-control") %>
-              <%= f.label(:primary, "Is it the primary colour?") %>
-              <%= f.check_box(:primary) %>
-              <%= f.hidden_field(:brand_id, :value => params[:id]) %>
-              <%= f.submit('Add colour', class: "bam_btn btn") %>
+<div class="panel ">
+    <div class="panel-heading">
+      <h4 class="panel-title">
+        <a data-toggle="collapse" data-parent="#accordion" href="#collapseTwo">
+          Colors
+        </a>
+      </h4>
+    </div>
+    <div id="collapseTwo" class="panel-collapse collapse">
+      <div class="panel-body">
+          <div class="asset_module">
+          <h3>Colors</h3>
+           <%= form_for Color.new, url: user_brand_colors_path(params[:user_id], params[:id], format: :json), remote: true, authenticity_token: true,  method: 'post' do |f| %>
+            <%= f.label(:hex, "Hex Colour code") %>
+            <%= f.text_field(:hex, class: "form-control") %>
+            <%= f.label(:name, "Colour name") %>
+            <%= f.text_field(:name, class: "form-control") %>
+            <%= f.label(:primary, "Is it the primary colour?") %>
+            <%= f.check_box(:primary) %>
+            <%= f.hidden_field(:brand_id, :value => params[:id]) %>
+            <%= f.submit('Add colour', class: "bam_btn btn") %>
 
             <% end %>
           </div>
@@ -64,7 +67,8 @@
     <div id="collapseThree" class="panel-collapse collapse">
       <div class="panel-body">
         <div class="asset_module">
-            <%= form_for Copy.new, url: user_brand_copies_path(params[:user_id], params[:id]), method: 'post' do |f| %>
+          <h3>Brand Copy</h3>
+            <%= form_for Copy.new, url: user_brand_copies_path(params[:user_id], params[:id], format: :json), remote: true, authenticity_token: true, method: 'post' do |f| %>
 
               <%= f.label(:description, "Copy description") %>
               <%= f.text_field(:description, class: "form-control") %>
@@ -87,7 +91,7 @@
     <div id="collapseFour" class="panel-collapse collapse">
       <div class="panel-body">
           <div class="asset_module">
-          <%= form_for Font.new, url: user_brand_fonts_path(params[:user_id], params[:id]), method: 'post' do |f| %>
+          <%= form_for Font.new, url: user_brand_fonts_path(params[:user_id], params[:id], format: :json), method: 'post' do |f| %>
           <%= f.label(:name, "Font Name") %>
           <%= f.text_field(:name, class: "form-control") %>
           <%= f.label(:font_family, "Font Family") %>

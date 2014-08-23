@@ -24,16 +24,12 @@ class CopiesController < ApplicationController
   # POST /copies
   # POST /copies.json
   def create
-    @copy = Copy.new(
-      description: params[:description],
-      text: params[:text],
-      brand_id: params[:brand_id]
-    )
+    @copy = Copy.new(copy_params)
 
     respond_to do |format|
       if @copy.save
         format.html { redirect_to user_brand_path(current_user, @copy.brand_id), notice: 'Copy was successfully saved.' }
-        format.json { render :show, status: :created, location: @copy }
+        format.json { render json: @copy, status: :created, location: user_brand_path(current_user, @copy.brand_id) }
       else
         format.html { redirect_to user_brand_path(current_user, @copy.brand_id), notice: 'Copy was not saved.'}
         format.json { render json: @copy.errors, status: :unprocessable_entity }
