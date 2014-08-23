@@ -30,7 +30,7 @@ Rails.application.routes.draw do
 
   resources :contact_form, only: [:new, :create] 
 
-  resource :brand, only: [:show]
+  resource :brand, only: [:show, :index]
 
   namespace 'permission' do 
     resources :users 

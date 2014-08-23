@@ -1,12 +1,59 @@
 #dashboard_toggle{
-  border: solid 1px $primary-color;
-  height: 30px;
-  width: 30px;
+
   margin-left: 7.5px;
+
+  p{
+     border: solid 1px $primary-color;
+     display: inline;
+     border-radius: 2px;
+     padding: 5px;
+  }
+  p:hover{
+   background: $primary-color;
+  }
 }
+
 
 .closed{
   display: none;
-
 }
+
+
+.nav-tabs{
+  width: 100%;
+  li{
+    width: 50%;
+    a{
+      background: #fafafa;
+    }
+  }
+}
+
+#dashboard-accordion{
+
+  .panel{
+    border-radius: 0px;
+    border: none;
+  }
+   a:hover{
+      text-decoration: none;
+      color: $primary-color;
+
+    }
+  .panel-heading{
+    border-radius:0px;
+    
+    color: #999;
+    transition: all 0.25s;
+    border:none;
+
+  }
+  .panel-heading:hover{
+    color: #fff;
+    background: $primary-color;
+  }
+}
+
+
+
 

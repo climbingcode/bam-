@@ -15,13 +15,22 @@ class BrandsController < ApplicationController
   # GET /brands/1
   # GET /brands/1.json
   def show
-      @user = User.find(params[:user_id])
-      @brand = @user.brands
+      if params[:search].present?
+        @search = Brand.find_by(name: params[:search])
+        redirect_to brand_index_path
+      else
+        @user = User.find(params[:user_id])
+        @brand = @user.brands
+      end
   end
 
   # GET /brands/new
   def new
     @brand = Brand.new
+  end
+
+  def search
+
   end
 
   # GET /brands/1/edit

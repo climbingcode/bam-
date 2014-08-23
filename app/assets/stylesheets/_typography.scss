@@ -7,9 +7,11 @@
 #primary_capital_letters,
 #primary_lower_case_letters,
 #secondary_capital_letters,
-#secondary_lower_case_letter{
+#secondary_lower_case_letters{
   font-size: 1.2em;
-  letter-spacing: 3px;
+  letter-spacing: 6px;
+  display: block;
+  color: #999;
 
 }
 
@@ -17,5 +19,21 @@
   margin-right: auto;
   margin-left: auto;
   display: block;
+  margin-top: 45px;
   float: none;
+}
+
+.letter-wrapper{
+  width: 100%;
+}
+
+.font-description{
+  display: inline;
+}
+
+.font-name{
+  display: inline;
+}
+.font-header{
+  display: block;
 }
