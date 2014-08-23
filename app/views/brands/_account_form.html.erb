@@ -1,16 +1,50 @@
 <div id="multi_asset_form">
 
-    <div class="panel-group" id="accordion">
+	<div class="panel-group" id="accordion">
       
       <div class="panel ">
         <div class="panel-heading">
           <h4 class="panel-title">
-            <a data-toggle="collapse" data-parent="#accordion" href="#collapseOne">
+            <a data-toggle="collapse" data-parent="#accordion" href="#accountCollapseInfo">
              Account Information
         		</a>
         	</h4>
         </div>
+      	<div id="accountCollapseInfo" class="panel-collapse collapse"> 
+        	<div class="panel-body">
+            <h3><%= @brand.name.capitalize %></h3><br>
+        		Name: <%= @user.firstname.capitalize %> <%= @user.surname.capitalize %><hr>
+        		Email: <%= @user.email %><hr>
+            Username: <%= @user.username %>
+        	</div>
+        </div>
       </div>
 
-    </div>
-</div>
+      <div class="panel ">
+        <div class="panel-heading">
+          <h4 class="panel-title">
+            <a data-toggle="collapse" data-parent="#accordion" href="#accountCollapsePermissions">
+              Brand Permissions
+            </a>
+          </h4>
+        </div>
+        <div id="accountCollapsePermissions" class="panel-collapse collapse"> 
+          <div class="panel-body">
+            <% @user.brands.each do |brand|%>
+              <h4><strong><%= brand.name.capitalize %></strong></h4><br>
+              <%= User::display_permission_status(@user) %><hr> 
+              <% if @user.user_has_admin_permissions?(brand) %>
+                <h4><strong>Employees awaiting access to <%= brand.name.capitalize %></stong><h4>
+                <% user = User::users_awaiting_permission(brand)[0] %>
+                <%= link_to "#{user.firstname} #{user.surname}", edit_user_path(user) %>
+              <% end %>
+            <% end %>
+        	</div>
+        </div>
+			</div>
+    
+
+      
+
+	</div><!--panel-group-->
+</div><!--#multi-asset-form-->

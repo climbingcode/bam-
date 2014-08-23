@@ -19,8 +19,9 @@ class ApplicationController < ActionController::Base
     end
   end
 
-
-
+  def brand_tracker(brand)
+    @current_brand ||= Brand.find(brand.id) if session[:user_id]
+  end
 
   def current_user
     @current_user ||= User.find(session[:user_id]) if session[:user_id]

@@ -5,7 +5,8 @@ class BrandsController < ApplicationController
   # GET /brands
   # GET /brands.json
   def index
-    @brand = Brand.all
+    @user = User.find(params[:user_id].to_i)
+    @brands = @user.brands
   end
 
   def mailer
@@ -22,6 +23,10 @@ class BrandsController < ApplicationController
         @user = User.find(params[:user_id])
         @brand = @user.brands
       end
+      @user = User.find(params[:user_id])
+      @brand = Brand.find(params[:id])
+      @brands = @user.brands
+      brand_tracker(@brand)
   end
 
   # GET /brands/new
