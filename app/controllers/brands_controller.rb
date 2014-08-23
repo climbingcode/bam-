@@ -26,6 +26,7 @@ class BrandsController < ApplicationController
       @user = User.find(params[:user_id])
       @brand = Brand.find(params[:id])
       @brands = @user.brands
+      @colors = @brand.colors.all.to_json
       brand_tracker(@brand)
   end
 

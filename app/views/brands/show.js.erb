@@ -1,2 +1,18 @@
 
-
+<% if @colors.size != 0 %>
+  <% @colors.each do | color | %>
+    <div id="<%= color.id %>" class="col-sm-4 swatch-wrapper">
+      <div class="swatch" style="background:#<%= color.hex %>">
+      </div>
+      <ul class="color-list">
+        <li class="color-name"><%= color.name %></li>
+        <li>CSS HEX: <span><%= color.hex.upcase %></span></li>
+        <li>RGB: <span></span></li>
+        <li>CMYK: <span></span></li>
+        <li>Sass:<span></span></li>
+      </ul>
+    </div>
+  <% end %>
+<% else %>
+  <p>Give this brand some color!</p>
+<% end %>

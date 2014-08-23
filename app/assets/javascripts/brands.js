@@ -73,12 +73,13 @@ function hexToCMYK (hex) {
         r = hexToR(data.hex),
         g = hexToG(data.hex),
         b = hexToG(data.hex),
+        upperCaseHex = data.hex.toUpperCase(),
         colorWrapper = $("<div>").attr("id", data.id).addClass("col-sm-4 swatch-wrapper"),
         targetColor = "#"+data.id, 
         colorSwatch = $("<div>").addClass("swatch").css("background-color", "#"+data.hex),
         colorList = $("<ul>").addClass("color-list"),
         colorName = $("<li>").addClass("color-name").html(data.name),
-        colorHex = $("<li>").html("CSS HEX: <span>#" + data.hex.toUpperCase() + "</span>"),
+        colorHex = $("<li>").html("CSS HEX: <span>#" + upperCaseHex + "</span>"),
         colorRgb = $("<li>").html("RGB: <span>" + r + ", " + g + ", "+ b + "</span>"),
         colorCmyk = $("<li>").html("CMYK: <span>" + hexToCMYK(data.hex) + "</span>"),
         colorListItems = targetColor + " ul.color-list",
@@ -94,24 +95,6 @@ function hexToCMYK (hex) {
     colorRgb.appendTo(colorListItems);
     colorCmyk.appendTo(colorListItems);
     colorSass.appendTo(colorListItems);
-    // $wrapper.append(colorSwatch).css("background", data.hex)
-    //   .append(colorList)
-    //   .append(colorName)
-    //   .append(colorHex)
-    //   .append(colorRgb)
-    //   .append(colorCmyk)
-    //   .append(colorSass);
-
-//   <div class="swatch" id="swatch-1">
-//   </div>
-//   <ul class="color-list">
-//     <li class="color-name">Lighthouse Blue</li>
-//     <li>CSS HEX: <span>#002D3C</span></li>
-//     <li>RGB: <span></span></li>
-//     <li>CMYK: <span></span></li>
-//     <li>Sass:<span></span></li>
-//   </ul>
-// </div>
 
   };
 
