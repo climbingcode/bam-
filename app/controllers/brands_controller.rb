@@ -27,6 +27,7 @@ class BrandsController < ApplicationController
       @brand = Brand.find(params[:id])
       @brands = @user.brands
       # @colors = @brand.colors.all
+      @logos = @brand.logos.all
       brand_tracker(@brand)
   end
 

@@ -2,7 +2,9 @@
 
 $( document ).ready(function() {
 
+  $("load_logo").submit();
   $("#load_color").submit();
+
 
 	$('#dashboardTab').on("click", "dashboardTab", function (e) {
   	e.preventDefault()
@@ -72,7 +74,6 @@ function hexToCMYK (hex) {
   
 
   function createNewColor(data){
-    console.log(data);
 
     var $color = $("#color"),
         r = hexToR(data.hex),
@@ -90,7 +91,6 @@ function hexToCMYK (hex) {
         colorListItems = targetColor + " ul.color-list",
         colorSass = $("<li>").html("Sass: <span></span>");
 
-    console.log(targetColor);
     
     $color.append(colorWrapper);
     colorSwatch.appendTo(targetColor);
@@ -111,16 +111,15 @@ function hexToCMYK (hex) {
     } else {
       for(i;i < len; i++){
         var color = colorArray[i]
-          console.log(color);
           createNewColor(color);
       }
     };
 
   }
 
-  // $('#new_logo').on('ajax:success', function(e,data) {
-  //   console.log(data);
-  // });
+  $('#new_logo').on('ajax:success', function(e,data) {
+    console.log(data);
+  });
 
   $('#new_color').on('ajax:success', function(e,data) {
     createNewColor(data);
@@ -135,11 +134,13 @@ function hexToCMYK (hex) {
     console.log(data);
   }); 
 
-  $('#load_color').on('ajax:success', function(e, data) {
-    console.log(data);
+  $('#load_color').on('ajax:success', function(e, data) {;
     loadColors(data);
   });
 
+  $('#new_logo').on('ajax:success', function(e, data) {
+    console.log("success", data);
+  });
 
 
 });
