@@ -34,10 +34,12 @@
               <h4><strong><%= brand.name.capitalize %></strong></h4><br>
               <%= User::display_permission_status(@user) %><hr> 
               <% if @user.user_has_admin_permissions?(brand) %>
-                <h4><strong>Employees awaiting access to <%= brand.name.capitalize %></stong><h4>
+                
                 <% user = User::users_awaiting_permission(brand)[0] %>
                 <% if user != nil %>
-                <%= link_to "#{user.firstname} #{user.surname}", edit_user_path(user) %>
+                <h4><strong>Employees awaiting access to <%= brand.name.capitalize %></stong><h4>
+                  <%= link_to "#{user.firstname} #{user.surname}", edit_user_path(user) %>
+                <% end %>
               <% end %>
             <% end %>
         	</div>
