@@ -1,11 +1,11 @@
 <section id="logos" class="row">
 
   <h2>Logos</h2>
-  <div style="display:none">
+<!--   <div style="display:none">
     <%= form_for Logo.new, url: user_brand_logos_path(params[:user_id], params[:id], format: :json) , remote: true, authenticity_token: true, method: 'get', html: {id: 'load_logo' } do |f|%>
       <%= f.hidden_field(:brand_id, :value => params[:id]) %>
     <% end %> 
-  </div> 
+  </div> --> 
 <!--   <% if @logos.size != 0 %>
     <% @logos.each do | logo | %>
           <div class="col-sm-4">

@@ -29,10 +29,10 @@ class MiscAssetsController < ApplicationController
     respond_to do |format|
       if @misc_asset.save
         format.html { redirect_to user_brand_path(current_user, @misc_asset.brand_id), notice: 'Misc asset was successfully created.' }
-        format.json { render :show, status: :created, location: @misc_asset }
+        format.json { render json: @misc_asset, status: :created, location: user_brand_path(current_user, @misc_asset.brand_id) }
       else
         format.html { redirect_to user_brand_path(current_user, @misc_asset.brand_id), notice: 'Misc asset was not saved.'}
-        format.json { render json: @misc_asset.errors, status: :unprocessable_entity }
+        format.json { render json: @misc_asset.errors, status: :unprocessable_entity,location: user_brand_path(current_user, @misc_asset.brand_id)  }
       end
     end
   end

@@ -11,10 +11,9 @@ class LogosController < ApplicationController
       if @logo.save
         format.html { redirect_to user_brand_path(current_user, @logo.brand_id), notice: 'Logo was successfully saved.' }
         format.json { render json: @logo, status: :created, location: user_brand_path(current_user, @logo.brand_id) }
-
         # render :show, status: :created, location: user_brand_path(current_user, @logo.brand_id)
       else
-        format.html { redirect_to user_brand_path(current_user, @logo.brand_id), notice: 'Logo was not saved.' }
+        # format.html { redirect_to user_brand_path(current_user, @logo.brand_id), notice: 'Logo was not saved.' }
         format.json { render json: @logo.errors, status: :unprocessable_entity }
       end
     end

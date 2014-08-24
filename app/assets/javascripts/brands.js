@@ -2,8 +2,7 @@
 
 $( document ).ready(function() {
 
-  $("load_logo").submit();
-  $("#load_color").submit();
+  // $("#load_color").submit();
 
 
 	$('#dashboardTab').on("click", "dashboardTab", function (e) {
@@ -115,11 +114,56 @@ function hexToCMYK (hex) {
       }
     };
 
-  }
+  };
 
-  $('#new_logo').on('ajax:success', function(e,data) {
-    console.log(data);
-  });
+  function addNewLogo(logo){
+    var logoId = logo.result.id,
+        logoPath = logo.result.path.url,
+        logoName = logo.result.name,
+        logoDescription = logo.result.description,
+        $logo = $("#logos"),
+        logoWrapper = $("<div>").attr("id", logoId).addClass("col-sm-4"),
+        logoBackground = $("<div>").addClass("img-background").css("height", "300px"),
+        logoPicture = $("<img>").attr("src", logoPath).addClass("img-responsive logo"),
+        logoMeta = $("<div>").addClass("logo-meta"),
+        logoLabel = $("<label>").addClass("img-label").html(logoName),
+        logoOptions = $("<div>").addClass("logo-options"),
+        logoCaret = $("<span>").addClass("caret"),
+        logoDropDownLink = "<a href='#' data-toggle='dropdown' class='dropdown-toggle'>Options<span class='caret'></span></a>"
+        // $("<a>").attr({
+        //     "href" : "#",
+        //     "data-toggle" : "dropdown"
+        //   }).addClass("dropdown-toggle").html("Options"),
+        // logoMenu = $("<ul role='menu'>").addClass("dropdown-menu"),
+        // logoMenuHeader = $("<li>").addClass("dropdown-header").html("Download"),
+        // logoMenuDivider = $("<li>").addClass("divider"),
+        // logoAi = $("<li>"),
+        // logoToAiLink = $("<a>").attr("href", "#").html(logoName + ".ai");
+
+    $logo.append(logoWrapper);
+    logoBackground.appendTo(logoWrapper);
+    logoPicture.appendTo(logoBackground);
+    logoMeta.appendTo(logoWrapper);
+    logoLabel.appendTo(logoMeta);
+    logoOptions.appendTo(logoMeta);
+    logoOptions.html(logoDropDownLink);
+    // logoDropDownLink.appendTo(logoOptions);
+    // logoCaret.appendTo(logoDropDownLink);
+    // logoMenu.appendTo(logoOptions);
+    // logoMenuHeader.appendTo(logoMenu);
+    // logoMenuDivider.appendTo(logoMenu);
+    // logoAi.appendTo(logoMenu);
+    // logoToAiLink.appendTo(logoAi);
+
+
+
+
+      
+
+
+  };  
+
+
 
   $('#new_color').on('ajax:success', function(e,data) {
     createNewColor(data);
@@ -130,17 +174,37 @@ function hexToCMYK (hex) {
     console.log("success", data);
   });
 
-  $('#new_font').on("ajax:success", function(e, data){
+  $('#new_font').on('ajax:success', function(e, data){
     console.log(data);
   }); 
 
-  $('#load_color').on('ajax:success', function(e, data) {;
-    loadColors(data);
+  $("#new_guideline").on('ajax:success', function(e, data) {
+    console.log(data);
   });
 
-  $('#new_logo').on('ajax:success', function(e, data) {
-    console.log("success", data);
+
+
+  // $('#load_color').on('ajax:success', function(e, data) {;
+  //   loadColors(data);
+  // });
+  
+  $('#new_logo').fileupload({
+    dataType: 'json',
+    done: function(e, data){
+      console.log("success!", data);
+      addNewLogo(data);
+
+    }
   });
+
+  $('#new_misc_asset').fileupload({
+    dataType: 'json',
+    done: function(e, data){
+      console.log(data)
+    }
+  });
+
+
 
 
 });

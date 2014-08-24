@@ -46,6 +46,8 @@ gem 'bootstrap_form'
 
 # Uploading Assets
 
+gem 'jquery-fileupload-rails'
+# gem 'remotipart'
 gem 'carrierwave'
 gem 'mini_magick'
 gem "therubyracer"
