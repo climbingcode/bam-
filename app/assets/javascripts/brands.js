@@ -117,28 +117,33 @@ function hexToCMYK (hex) {
   };
 
   function addNewLogo(logo){
-    var logoId = logo.result.id,
-        logoPath = logo.result.path.url,
-        logoName = logo.result.name,
-        logoDescription = logo.result.description,
-        $logo = $("#logos"),
-        logoWrapper = $("<div>").attr("id", logoId).addClass("col-sm-4"),
-        logoBackground = $("<div>").addClass("img-background").css("height", "300px"),
-        logoPicture = $("<img>").attr("src", logoPath).addClass("img-responsive logo"),
-        logoMeta = $("<div>").addClass("logo-meta"),
-        logoLabel = $("<label>").addClass("img-label").html(logoName),
-        logoOptions = $("<div>").addClass("logo-options"),
-        logoCaret = $("<span>").addClass("caret"),
-        logoDropDownLink = "<a href='#' data-toggle='dropdown' class='dropdown-toggle'>Options<span class='caret'></span></a>"
-        // $("<a>").attr({
-        //     "href" : "#",
-        //     "data-toggle" : "dropdown"
-        //   }).addClass("dropdown-toggle").html("Options"),
-        // logoMenu = $("<ul role='menu'>").addClass("dropdown-menu"),
-        // logoMenuHeader = $("<li>").addClass("dropdown-header").html("Download"),
-        // logoMenuDivider = $("<li>").addClass("divider"),
-        // logoAi = $("<li>"),
-        // logoToAiLink = $("<a>").attr("href", "#").html(logoName + ".ai");
+
+  var logoId = logo.result.id,
+      logoPath = logo.result.path.url,
+      logoName = logo.result.name,
+      logoDescription = logo.result.description,
+      $logo = $("#logos"),
+      logoWrapper = $("<div>").attr("id", logoId).addClass("col-sm-4"),
+      logoBackground = $("<div>").addClass("img-background").css("height", "339px"),
+      logoPicture = $("<img>").attr("src", logoPath).addClass("img-responsive logo"),
+      logoMeta = $("<div>").addClass("logo-meta"),
+      logoLabel = $("<label>").addClass("img-label").html(logoName),
+      logoOptions = $("<div>").addClass("logo-options"),
+      logoCaret = $("<span>").addClass("caret"),
+      logoDropDownLink = 
+        $("<a>").attr({
+            "href" : "#",
+            "data-toggle" : "dropdown"
+          }).addClass("dropdown-toggle").html("Options"),
+        logoMenu = $("<ul role='menu'>").addClass("dropdown-menu"),
+        logoMenuHeader = $("<li>").addClass("dropdown-header").html("Download"),
+        logoMenuDivider = $("<li>").addClass("divider"),
+        logoAi = $("<li>"),
+        logoPng = $("<li>"),
+        logoJpg = $("<li>"),
+        logoToAiLink = $("<a>").attr("href", "#").html(logoName + ".ai"),
+        logoToPngLink = $("<a>").attr("href", "#").html(logoName + ".png"),
+        logoToJpgLink = $("<a>").attr("href", "#").html(logoName + ".jpg");
 
     $logo.append(logoWrapper);
     logoBackground.appendTo(logoWrapper);
@@ -147,21 +152,47 @@ function hexToCMYK (hex) {
     logoLabel.appendTo(logoMeta);
     logoOptions.appendTo(logoMeta);
     logoOptions.html(logoDropDownLink);
-    // logoDropDownLink.appendTo(logoOptions);
-    // logoCaret.appendTo(logoDropDownLink);
-    // logoMenu.appendTo(logoOptions);
-    // logoMenuHeader.appendTo(logoMenu);
-    // logoMenuDivider.appendTo(logoMenu);
-    // logoAi.appendTo(logoMenu);
-    // logoToAiLink.appendTo(logoAi);
+    logoDropDownLink.appendTo(logoOptions);
+    logoCaret.appendTo(logoDropDownLink);
+    logoMenu.appendTo(logoOptions);
+    logoMenuHeader.appendTo(logoMenu);
+    logoMenuDivider.appendTo(logoMenu);
+    logoAi.appendTo(logoMenu);
+    logoToAiLink.appendTo(logoAi);
+    logoPng.appendTo(logoMenu);
+    logoToPngLink.appendTo(logoPng);
+    logoJpg.appendTo(logoMenu);
+    logoToJpgLink.appendTo(logoJpg);
 
 
-
-
-      
-
-
+    $('.dropdown-toggle').dropdown();
   };  
+
+  function addTypography(data){
+    var fontName = data.name,
+        fontFamily = data.font_family,
+        upperCaseLetters = "ABCDEFGHIJKLMNOPQRSTUVWXYZ",
+        $typo = $("#typography"),
+        lowerCaseLetters = upperCaseLetters.toLowerCase(),
+        typoWrapper = $("<div>").addClass("letters_wrapper col-sm-10"),
+        typoFontHeader = $("<div>").addClass("font-header"),
+        typoFontDescription = $("<h3>").addClass("font-description").html(fontName + ":"),
+        typoFontFamily = $("<h3>").addClass("font-name").html(fontFamily),
+        lineDivider = $("<hr>"),
+        typoCapitalLetters = $("<p>").addClass("primary_capital_letters").css("font-family", fontFamily).html(upperCaseLetters),
+        typoLowerCaseLetters = $("<p>").addClass("primary_lower_case_letters").css("font-family", fontFamily).html(lowerCaseLetters);
+        
+    $typo.append(typoWrapper);
+    typoFontHeader.appendTo(typoWrapper);
+    typoFontDescription.appendTo(typoFontHeader);
+    typoFontFamily.appendTo(typoFontHeader);
+    $("<hr>").appendTo(typoWrapper);
+    typoCapitalLetters.appendTo(typoWrapper);
+    typoLowerCaseLetters.appendTo(typoWrapper);
+    lineDivider.appendTo(typoWrapper);
+  };
+
+
 
 
 
@@ -175,7 +206,9 @@ function hexToCMYK (hex) {
   });
 
   $('#new_font').on('ajax:success', function(e, data){
+    addTypography(data);
     console.log(data);
+
   }); 
 
   $("#new_guideline").on('ajax:success', function(e, data) {

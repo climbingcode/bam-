@@ -1,10 +1,10 @@
 <section id="color" class="row">
 <h2>Colors</h2>
-  <div style="display:none">
+ <div style="display:none">
     <%= form_for Color.new, url: user_brand_colors_path(params[:user_id], params[:id], format: :json) , remote: true, authenticity_token: true, method: 'get', html: {id: 'load_color' } do |f|%>
       <%= f.hidden_field(:brand_id, :value => params[:id]) %>
     <% end %> 
-  </div>
+  </div> 
 
 <!-- <div class="col-sm-4 swatch-wrapper">
   <div class="swatch" id="swatch-2">
