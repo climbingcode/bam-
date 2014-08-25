@@ -9,6 +9,7 @@ class UsersController < ApplicationController
 	def new
 		@disable_nav = false
 		@user = User.new
+    @brand = Brand.new
 	end
 
 	def create
@@ -16,22 +17,23 @@ class UsersController < ApplicationController
 		@brand = Brand.find_by(name: params[:name])
     if @user.save
       if !@brand 
-      	@brand = @user.brands.create(name: params[:name], website: params[:website])
-        session[:current_brand] = @brand.id
-      	if set_user_to_admin(@user, @brand.name)
-      		session[:user_id] = @user.id
+        if @user.brands.create(name: params[:name], website: params[:website]).save
+      	  @brand = @user.brands.last
+          session[:current_brand] = @brand.id
+          session[:user_id] = @user.id
+          set_user_to_admin(@user, @brand.name)
       		redirect_to user_brand_path(@user.id, @brand.id), notice: 'You have full access to the site'
       	else
-     			redirect_to new_user_path, notice: 'Sorry account did not save correctly'
+     			render :new, notice: "Please enter a brand"
      		end
    		else
         session[:current_brand] = @brand.id
      		send_email_to_admin(params[:name], @user)
-        awaiting_admin_confirmation(@user, @brand.name)
+        awaiting_admin_confirmation(@user, @brand)
      		redirect_to '/', notice: 'Waiting for account holder to grant access'
  	    end 
     else
-    	redirect_to new_user_path, notice: 'Sorry there where problems saving your account'
+    	render :new
     end
   end
 
