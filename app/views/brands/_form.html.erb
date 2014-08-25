@@ -22,9 +22,22 @@
                 <%= f.check_box(:permission) %>
                 <%= f.label(:path, "Add a logo") %>
                 <%= f.file_field(:path, class: "form-control file-upload") %>
+                <p>Click or drag a file into the section above to upload</p> 
+                <section id="upload_status">
+                </section>
                 <%= f.hidden_field(:brand_id, :value => params[:id]) %>
-                <%= f.submit('Add File', class: "bam_btn btn") %>
+                <%= f.submit('Add File', id: "logo_submit", class: "bam_btn btn") %>
               <% end %> 
+              <script id="logo_upload" type="text/x-tmpl">
+                <div class="file-upload">
+                  <hr>
+                  <p class="file-upload-name">{%= o.name%}</p>
+                  <div class="file-progess-bar">
+                    <div class="file-progress-meter"></div>
+                  </div>
+                  <hr>
+                </div>
+              </script>
             </div>
           </div>
         </div>
@@ -40,6 +53,7 @@
       <div class="panel-body">
           <div class="asset_module">
            <%= form_for Color.new, url: user_brand_colors_path(params[:user_id], params[:id], format: :json), remote: true, authenticity_token: true,  method: 'post' do |f| %>
+
           <!--   <%= f.label(:hex, "Hex Colour code") %> -->
             <%= f.text_field(:hex, class: "form-control", :maxlength => 6, :placeholder => 'HEX Color', :id => "hex-input") %>
             <div class="checkbox-wrapper">
@@ -91,7 +105,7 @@
     <div id="collapseFour" class="panel-collapse collapse">
       <div class="panel-body">
           <div class="asset_module">
-          <%= form_for Font.new, url: user_brand_fonts_path(params[:user_id], params[:id], format: :json), method: 'post' do |f| %>
+          <%= form_for Font.new, url: user_brand_fonts_path(params[:user_id], params[:id], format: :json), remote: true, authenticity_token: true, method: 'post' do |f| %>
           <%= f.label(:name, "Font Name") %>
           <%= f.text_field(:name, class: "form-control") %>
           <%= f.label(:font_family, "Font Family") %>
@@ -113,7 +127,7 @@
     <div id="collapseFive" class="panel-collapse collapse">
       <div class="panel-body">
         <div class="asset_module">
-          <%= form_for Guideline.new, url: user_brand_guidelines_path(params[:user_id], params[:id]), method: 'post' do |f| %>
+          <%= form_for Guideline.new, url: user_brand_guidelines_path(params[:user_id], params[:id], format: :json), remote: true, authenticity_token: true,  method: 'post' do |f| %>
 
             <%= f.label :description, "Guideline description" %>
             <%= f.text_field(:description, class: "form-control") %>
@@ -136,7 +150,7 @@
     <div id="collapseSix" class="panel-collapse collapse">
       <div class="panel-body">
           <div class="asset_module">
-          <%= form_for MiscAsset.new, url: user_brand_misc_assets_path(params[:user_id], params[:id]), method: 'post', multipart:true do |f| %>
+          <%= form_for(MiscAsset.new, url: user_brand_misc_assets_path(params[:user_id], params[:id]), authenticity_token: true, method: 'post') do |f| %>
             <%= f.label(:name, "Asset name" ) %>
             <%= f.text_field(:name, class: "form-control") %>
             <%= f.label(:description, "Asset description") %>
@@ -146,7 +160,7 @@
             <%= f.label(:permissions, "Public") %>
             <%= f.check_box(:permissions) %>
             <%= f.hidden_field(:brand_id, :value => params[:id]) %>
-            <%= f.submit('Add Asset', class: "bam_btn btn") %>
+            <%= f.submit("Add Asset", class: "bam_btn btn") %>
           <% end %>
         </div>
       </div>

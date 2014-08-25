@@ -29,7 +29,7 @@ class GuidelinesController < ApplicationController
     respond_to do |format|
       if @guideline.save
         format.html { redirect_to user_brand_path(current_user, @guideline.brand_id), notice: 'Guideline was successfully saved.' }
-        format.json { render :show, status: :created, location: @guideline }
+        format.json { render json: @guideline, status: :created, location: user_brand_path(current_user, @guideline.brand_id)}
       else
         format.html { redirect_to user_brand_path(current_user, @guideline.brand_id), notice: 'Guideline was not saved.' }
         format.json { render json: @guideline.errors, status: :unprocessable_entity }

@@ -1,2 +1,11 @@
+  
+$(document).ready(function{
+    // $('#new_logo').fileupload({
+    //   dataType: 'json'
+      
+    // })
 
-
+    $('#new_logo').on('ajax:success', function(e, data, status, xhr) {
+      console.log("success", e, data, status , xhr);
+    });
+)};
