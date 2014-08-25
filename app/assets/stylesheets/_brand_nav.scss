@@ -1,0 +1,28 @@
+#brand-nav{
+  margin-left: auto;
+  margin-right: auto;
+  float: none;
+  display: block;
+  margin-top: 30px;
+
+  ul{
+    margin-left: auto;
+    margin-right: auto;
+    float: none;
+    display: block;
+    list-style-type: none;
+    text-align: center;
+
+  }
+  li{
+    margin-left: 15px;
+    margin-right: 15px;
+  }
+  a{
+    color: #999;
+  }
+  a:hover{
+    color: $primary-color;
+    text-decoration: none;
+  }
+}

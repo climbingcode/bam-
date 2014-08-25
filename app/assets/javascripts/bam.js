@@ -5,14 +5,22 @@
 
 $( document ).ready(function() {
 
-  $('#dashboard_toggle').on('click', function() {
-    console.log('hello')
-    $("#dashboard").toggleClass('closed');
-    $("#brand-page").toggleClass('dashboard-open');
-    // $("#multi_asset_form").animate({'left': '-500px'}, 500);
     var initWidth = $('.img-background').width();
     $('.img-background').height(initWidth);
+
+  $('#dashboard_toggle').on('click', function() {
+    $("#dashboard").toggleClass('dashboard-closed');
+    $("#brand-page").toggleClass('dashboard-closed');
+    $("#dashboard").toggleClass('display-none');
+    $('#mobile-nav').toggleClass('open');
+    // $("#multi_asset_form").animate({'left': '-500px'}, 500);
+
   });
+
+  //Dropdown for Logo Files
+
+
+    
 
   var initWidth = $('.img-background').width();
     $('.img-background').height(initWidth);
@@ -23,12 +31,13 @@ $( document ).ready(function() {
       $('.img-background').height(divWidth);
   });
 
+
   $('.dropdown-toggle').dropdown()
 
   $("#primary_capital_letters").fitText(2.5);
-  $("#primary_lower_case_letters").fitText(2.5);
+  $("#primary_lower_case_letters").fitText(1.9);
   $("#secondary_capital_letters").fitText(2.5);
-  $("#secondary_lower_case_letters").fitText(2.5);
+  $("#secondary_lower_case_letters").fitText(1.9);
 
 
 });

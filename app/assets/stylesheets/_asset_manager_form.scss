@@ -1,17 +1,27 @@
 #multi_asset_form {
 
-  position: relative;
+  // position: relative;
+  // position: fixed;
   left: 0px;
   height: auto;
   padding-top: 5px;
   color: #999;
   font-weight: 100;
   z-index: 1000;
+        .file-upload{
+      color: white;
+      background: $primary-color;
+      height: 40px;
+    }
+   .form-control{
+      background-color: #666;
+      border: none;
+
+    }
   .asset_module {
     position: relative;
-    
     height: auto;
-    text-align: center;
+    text-align: left;
     // border: 1px solid white;
     border-radius: 5px;
     padding: 10px;
@@ -19,17 +29,38 @@
     margin-right: auto;
     float:none;
     display: block;
+    font-weight: 100;
     input {
       position: relative;
       display: block;
-      color: black;
+      color: #fff;
       margin: 4px auto;
-      width: 90%;
+      // width: 90%;
+   
+    input:focus{
+      border: solid 1px $primary-color;
+    }
+
+
+
+    label{
+      font-weight: 100;
     }
 
     input[type="file"] {
       background-color: rgba(255,255,255, 0.5);
     }
+    .bam_btn_inverse{
+      color: $primary-color;
+    }
+
+
+  }
+
+    // #logo_permission{
+    //   display: inline;
+    //   width: 100px;
+    // }
 
     textarea {
       position: relative;
@@ -39,5 +70,115 @@
       margin: 4px auto;
       color: black;
     }
+  }
+}
+
+#hex-input{
+  width: 49%;
+  display: inline;
+  float: left;
+}
+
+
+
+// 
+
+label.checkbox{
+  margin-left: 15px;
+}
+
+$base: $primary-color;
+$whiteLight: #fafafa;
+
+#primary{
+  display: inline;
+}
+
+#check-1{
+  visibility: hidden;
+  float: right;
+}
+
+.checkbox-wrapper{
+  background-color: #666;
+  height: 34px;
+  float: right;
+  margin-top: 4px;
+  width: 49%;
+  display: inline-block;
+  border-radius: 4px;
+  padding-top: 6px;
+  label{
+    margin-bottom: 5px;
+  }
+}
+
+.hidden-field{
+  width: 0px;
+}
+
+
+/*Checkbox Specific styles*/
+input[type='checkbox']{
+   & + label:before{
+     border-radius: 3px;
+  }
+  
+  & + label:hover:after,
+  &:checked + label:after{
+    content:"\2713";
+    line-height:18px;
+    font-size:14px;
+  }
+  & + label:hover:after{
+    color:#fff;  
+  }
+  &:checked + label:after,
+  &:checked + label:hover:after{
+    color:#fff;
+  }
+}
+
+//begin custom input styles
+input[type='radio'],
+input[type='checkbox']{
+  display:none; //hide by default
+  cursor:pointer; //make the cursor a pointer when over the items
+  &:focus,
+  &:active{
+    outline:none;  //remove the annoying outline
+  }
+ & + label{
+   cursor:pointer; 
+   display:inline-block;
+   position: relative;
+   font-weight: 200;
+   padding-left:25px;
+   padding-bottom: -25px;
+   margin-right:10px;
+   margin-left: 10px;
+   margin-bottom: 10px;
+   color: #999;
+   &:before,
+   &:after{
+    content:'';
+    display:inline-block;
+    width:18px;
+    height:18px;      
+    left:0;
+    bottom:0;
+    text-align:center;
+    position: absolute;
+    }
+   &:before{
+    background-color:$whiteLight;
+    transition: all .3s ease-in-out;
+   }
+   &:after{
+    color:#fff;
+    }
+  }
+  &:checked + label:before{
+    box-shadow: inset 0 0 0 10px $base;    
   }
 }
