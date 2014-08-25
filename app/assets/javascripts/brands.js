@@ -89,7 +89,6 @@ function hexToCMYK (hex) {
         colorCmyk = $("<li>").html("CMYK: <span>" + hexToCMYK(data.hex) + "</span>"),
         colorListItems = targetColor + " ul.color-list",
         colorSass = $("<li>").html("Sass: <span></span>");
-
     
     $color.append(colorWrapper);
     colorSwatch.appendTo(targetColor);

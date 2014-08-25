@@ -10,18 +10,18 @@
           </h4>
         </div>
         </a>
-        <div id="collapseOne" class="panel-collapse collapse in"> 
+        <div id="collapseOne" class="panel-collapse collapse "> 
           <div class="panel-body">
             <div class="asset_module">
-              <%= form_for(Logo.new, url: user_brand_logos_path(params[:user_id], params[:id]), authenticity_token: true, remote: true) do |f| %>
-                <%= f.label(:name, "Logo Name") %>
-                <%= f.text_field(:name, class: "form-control") %>
-                <%= f.label(:description, "What is the logo used for?") %>
-                <%= f.text_field(:description, class: "form-control") %>
+              <%= form_for(Logo.new, url: user_brand_logos_path(params[:user_id], params[:id], format: :json), remote: true, authenticity_token: true, method: 'post', multipart: true) do |f| %>
+               <!--  <%= f.label(:name, "Logo Name") %> -->
+                <%= f.text_field(:name, class: "form-control", :placeholder => 'Logo Name') %>
+               <!--  <%= f.label(:description, "What is the logo used for?") %> -->
+                <%= f.text_field(:description, class: "form-control", :placeholder => 'Logo Description') %>
                 <%= f.label(:permission, "Private") %>
                 <%= f.check_box(:permission) %>
                 <%= f.label(:path, "Add a logo") %>
-                 <%= f.file_field(:path, name: "logo[path]", multiple: true, class: "form-control") %>
+                <%= f.file_field(:path, class: "form-control file-upload") %>
                 <p>Click or drag a file into the section above to upload</p> 
                 <section id="upload_status">
                 </section>
@@ -43,27 +43,28 @@
         </div>
       </div>
     
-<div class="panel ">
-    <div class="panel-heading">
-      <h4 class="panel-title">
-        <a data-toggle="collapse" data-parent="#accordion" href="#collapseTwo">
-          Colors
-        </a>
-      </h4>
-    </div>
+  <div class="panel">
+    <a data-toggle="collapse" data-parent="#accordion" href="#collapseTwo">
+      <div class="panel-heading">
+        <h4 class="panel-title">Colors</h4>
+      </div>
+    </a>
     <div id="collapseTwo" class="panel-collapse collapse">
       <div class="panel-body">
           <div class="asset_module">
-          <h3>Colors</h3>
            <%= form_for Color.new, url: user_brand_colors_path(params[:user_id], params[:id], format: :json), remote: true, authenticity_token: true,  method: 'post' do |f| %>
-            <%= f.label(:hex, "Hex Colour code") %>   
-            <%= f.text_field(:hex, class: "form-control") %>
-            <%= f.label(:name, "Colour name") %>
-            <%= f.text_field(:name, class: "form-control") %>
-            <%= f.label(:primary, "Is it the primary colour?") %>
-            <%= f.check_box(:primary) %>
-            <%= f.hidden_field(:brand_id, :value => params[:id]) %>
-            <%= f.submit('Add colour', class: "bam_btn btn") %>
+
+          <!--   <%= f.label(:hex, "Hex Colour code") %> -->
+            <%= f.text_field(:hex, class: "form-control", :maxlength => 6, :placeholder => 'HEX Color', :id => "hex-input") %>
+            <div class="checkbox-wrapper">
+            <%= f.check_box(:primary, :id => "check-1") %>
+            <%= f.label(:Primary, for: "check-1", class: "check-box") %>
+            </div>
+            <!-- <%= f.label(:name, "Colour name") %> -->
+            <%= f.text_field(:name, class: "form-control", :placeholder => 'Color Name' ) %>
+
+            <%= f.hidden_field(:brand_id, :value => params[:id], class: "hidden-field") %>
+            <%= f.submit('Add colour', class: "bam_btn_inverse btn") %>
 
             <% end %>
           </div>
@@ -88,7 +89,7 @@
               <%= f.label(:text, "Copy text") %>
               <%= f.text_area(:text, class: "form-control") %>
               <%= f.hidden_field(:brand_id, :value => params[:id]) %>
-              <%= f.submit('Add copy', class: "bam_btn btn") %>
+              <%= f.submit('Add copy', class: "bam_btn_inverse btn") %>
             <% end %>
         </div>
       </div>
@@ -110,7 +111,7 @@
           <%= f.label(:font_family, "Font Family") %>
           <%= f.text_field(:font_family, class: "form-control") %>
           <%= f.hidden_field(:brand_id, :value => params[:id]) %>
-          <%= f.submit('Add font', class: "bam_btn btn") %>
+          <%= f.submit('Add font', class: "bam_btn_inverse btn") %>
         <% end %>
         </div>
       </div>
