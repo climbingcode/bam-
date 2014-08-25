@@ -29,6 +29,9 @@ class BrandsController < ApplicationController
       @user = User.find(params[:user_id])
       @brand = Brand.find(params[:id])
       @brands = @user.brands
+      # @colors = @brand.colors.all
+      @logos = @brand.logos.all
+      brand_tracker(@brand)
       current_brand(@brand)
       @colors = @user.brands.find_by(id: session[:current_brand]).colors
 

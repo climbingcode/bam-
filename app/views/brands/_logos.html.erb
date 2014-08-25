@@ -1,6 +1,29 @@
 <section id="logos" class="row">
 
   <h2>Logos</h2>
+<!--   <div style="display:none">
+    <%= form_for Logo.new, url: user_brand_logos_path(params[:user_id], params[:id], format: :json) , remote: true, authenticity_token: true, method: 'get', html: {id: 'load_logo' } do |f|%>
+      <%= f.hidden_field(:brand_id, :value => params[:id]) %>
+    <% end %> 
+  </div> --> 
+<!--   <% if @logos.size != 0 %>
+    <% @logos.each do | logo | %>
+          <div class="col-sm-4">
+      <div class="img-background" style="height: 300px;">
+        <img src="<%= logo.path %>" class="img-responsive logo">
+      </div>
+      <div class="logo-meta">
+        <label class="img-label"> <%= logo.name %> </label>
+        <div class="logo-options">
+          <a href="#" class="dropdown-toggle" data-toggle="dropdown">Options<span class="caret"></span></a>
+          <ul class="dropdown-menu" role="menu">
+            <li class="dropdown-header">Download</li>
+            <li class="divider"></li>
+            <li><a href="#">logo.ai</a></li><a href="#">
+            </a><li><a href="#"></a><a href="#">logo.png</a></li>
+            <li><a href="#">logo.jpg</a></li>
+          </ul>
+        </div>
 
     <div class="col-sm-4">
       <div class="img-background"/>
@@ -17,34 +40,30 @@
         <ul>
       </div>
     </div>
+    <% end %>
+  <% else %>
+    <%= "Add some logos to you brand" %>
+  <% end %> -->
 
     <div class="col-sm-4">
       <div class="img-background"/>
         <img src="/assets/lighthouse-labs.png" class="img-responsive logo">
       </div>
       <div class="logo-meta">
-        <p class="img-label">Primary Logotype</p>
-        <ul>
-          <li><a>primary_logo.ai</a></li>
-          <li><a>primary_logo.png</a></li>
-          <li><a>primary_logo.jpeg</a></li>
-        <ul>
+        <label class="img-label"> Logo Name </label>
+        <div class="logo-options">
+          <a href="#" class="dropdown-toggle" data-toggle="dropdown">Options<span class="caret"></span></a>
+          <ul class="dropdown-menu" role="menu">
+            <li class="dropdown-header">Download</li>
+            <li class="divider"></li>
+            <li><a href="#">logo.ai</li>
+            <li><a href="#">logo.png</a></li>
+            <li><a href="#">logo.jpg</a></li>
+          </ul>
+        </div>
       </div>
     </div>
 
-    <div class="col-sm-4">
-      <div class="img-background"/>
-        <img src="/assets/nav-logo.png" class="img-responsive logo">
-      </div>
-      <div class="logo-meta">
-        <p class="img-label">Primary Logotype</p>
-        <ul>
-          <li><a>primary_logo.ai</a></li>
-          <li><a>primary_logo.png</a></li>
-          <li><a>primary_logo.jpeg</a></li>
-        <ul>
-      </div>
-    </div>
 
 
 </section>
