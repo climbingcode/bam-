@@ -91,13 +91,14 @@ function hexToCMYK (hex) {
         colorSass = $("<li>").html("Sass: <span></span>");
     
     $color.append(colorWrapper);
-    colorSwatch.appendTo(targetColor);
-    colorList.appendTo(targetColor);
+    colorSwatch.appendTo(colorWrapper);
+    colorList.appendTo(colorWrapper);
     colorName.appendTo(colorListItems);
     colorHex.appendTo(colorListItems);
     colorRgb.appendTo(colorListItems);
     colorCmyk.appendTo(colorListItems);
     colorSass.appendTo(colorListItems);
+    
 
   };
 
@@ -117,34 +118,35 @@ function hexToCMYK (hex) {
 
   function addNewLogo(logo){
 
-  var logoId = logo.result.id,
-      logoPath = logo.result.path.url,
-      logoName = logo.result.name,
-      logoDescription = logo.result.description,
-      $logo = $("#logos"),
-      logoWrapper = $("<div>").attr("id", logoId).addClass("col-sm-4"),
-      logoBackground = $("<div>").addClass("img-background").css("height", "339px"),
-      logoPicture = $("<img>").attr("src", logoPath).addClass("img-responsive logo"),
-      logoMeta = $("<div>").addClass("logo-meta"),
-      logoLabel = $("<label>").addClass("img-label").html(logoName),
-      logoOptions = $("<div>").addClass("logo-options"),
-      logoCaret = $("<span>").addClass("caret"),
-      logoDropDownLink = 
+  var logoId = logo.result.id;
+  var logoPath = logo.result.path.url;
+  var logoName = logo.result.name;
+  var    logoDescription = logo.result.description;
+  var    $logoParent = $("#logos");
+  var    logoWrapper = $("<div>").attr("id", logoId).addClass("col-sm-4");
+  var   logoBackground = $("<div>").addClass("img-background").css("height", "339px");
+  var    logoPicture = $("<img>").attr("src", logoPath).addClass("img-responsive logo");
+  var    logoMeta = $("<div>").addClass("logo-meta");
+  var    logoLabel = $("<label>").addClass("img-label").html(logoName);
+  var    logoOptions = $("<div>").addClass("logo-options");
+  var    logoCaret = $("<span>").addClass("caret");
+  var    logoDropDownLink = 
         $("<a>").attr({
             "href" : "#",
             "data-toggle" : "dropdown"
-          }).addClass("dropdown-toggle").html("Options"),
-        logoMenu = $("<ul role='menu'>").addClass("dropdown-menu"),
-        logoMenuHeader = $("<li>").addClass("dropdown-header").html("Download"),
-        logoMenuDivider = $("<li>").addClass("divider"),
-        logoAi = $("<li>"),
-        logoPng = $("<li>"),
-        logoJpg = $("<li>"),
-        logoToAiLink = $("<a>").attr("href", "#").html(logoName + ".ai"),
-        logoToPngLink = $("<a>").attr("href", "#").html(logoName + ".png"),
-        logoToJpgLink = $("<a>").attr("href", "#").html(logoName + ".jpg");
+          }).addClass("dropdown-toggle").html("Options");
+  var      logoMenu = $("<ul role='menu'>").addClass("dropdown-menu");
+  var      logoMenuHeader = $("<li>").addClass("dropdown-header").html("Download");
+  var      logoMenuDivider = $("<li>").addClass("divider");
+  var      logoAi = $("<li>");
+  var      logoPng = $("<li>");
+  var      logoJpg = $("<li>");
+  var      logoToAiLink = $("<a>").attr("href", "#").html(logoName + ".ai");
+  var      logoToPngLink = $("<a>").attr("href", "#").html(logoName + ".png");
+  var      logoToJpgLink = $("<a>").attr("href", "#").html(logoName + ".jpg");
 
-    $logo.append(logoWrapper);
+  
+    // $logoParent.append(logoWrapper);
     logoBackground.appendTo(logoWrapper);
     logoPicture.appendTo(logoBackground);
     logoMeta.appendTo(logoWrapper);
@@ -162,6 +164,8 @@ function hexToCMYK (hex) {
     logoToPngLink.appendTo(logoPng);
     logoJpg.appendTo(logoMenu);
     logoToJpgLink.appendTo(logoJpg);
+
+     $logoParent.append(logoWrapper);
 
 
     $('.dropdown-toggle').dropdown();
@@ -181,7 +185,7 @@ function hexToCMYK (hex) {
         typoCapitalLetters = $("<p>").addClass("primary_capital_letters").css("font-family", fontFamily).html(upperCaseLetters),
         typoLowerCaseLetters = $("<p>").addClass("primary_lower_case_letters").css("font-family", fontFamily).html(lowerCaseLetters);
         
-    $typo.append(typoWrapper);
+    
     typoFontHeader.appendTo(typoWrapper);
     typoFontDescription.appendTo(typoFontHeader);
     typoFontFamily.appendTo(typoFontHeader);
@@ -189,6 +193,7 @@ function hexToCMYK (hex) {
     typoCapitalLetters.appendTo(typoWrapper);
     typoLowerCaseLetters.appendTo(typoWrapper);
     lineDivider.appendTo(typoWrapper);
+    $typo.append(typoWrapper);
   };
 
 
