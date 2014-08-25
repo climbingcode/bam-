@@ -3,37 +3,52 @@ class User < ActiveRecord::Base
 	has_secure_password
 
 	validates_confirmation_of :password
+
+	validates :firstname, :surname, :username, :email, presence: true
+	validates :username, length: { minimum: 6 }
 	
 	has_many :user_brands
 	has_many :brands, through: :user_brands 
 
-	def self.display_permission_status(user)
-		user.user_brands.each do |brand|
-			brandname = Brand.find(brand.brand_id).name
-			permission = brand.permission
 
+# has user been give permissions / use to check when loading page 
+	def user_given_permissions(brand_id)
+		permission = self.user_brands.find_by(brand_id: brand_id).permission
+		return true if (permission == 1) || (permission == 2) || (permission == 3) 
+	end
+
+# will display users permissions for each brand
+	def display_permission_status(brand)
+		permission = self.user_brands.find_by(brand_id: brand.id).permission
+		
 			if permission == 1
 				return "Can View/Update Accounts and Assets"
 			elsif permission == 2
 				return "Can View/Update Assets Only"
-			else 
+			elsif permission == 3
 				return "View Only"
+			else 
+				return "Permission has not been granted by account owner"
 			end
-		end		
  	end 
 
+# returns true if user has admin permissions
  	def user_has_admin_permissions?(brand)
- 		userbrands = UserBrand.where("user_id = ? AND brand_id = ? AND permission = 1", self.id, brand.id).present?
+ 		return true if self.user_brands.find_by(brand_id: brand).permission == 1
  	end
 
+# assign user with admin status
+	def assign_user_to_admin(brand)
+		self.user_brands.find_by(brand_id: brand.id).update(permission: 1)
+	end
+
+# finds all users awaiting for permissions for a single brand
  	def self.users_awaiting_permission(brand)
  		awaiting_users = []
  		users = User.all
- 		users.each do |user|
- 			connection = UserBrand.where("user_id = ? AND brand_id = ? AND permission = 4", user.id, brand.id)
- 			connection.each do |connect|
- 				awaiting_users << User.find(connect.user_id)
- 			end
+ 		connection = UserBrand.where("brand_id = ? AND permission = 4", brand.id)
+ 		connection.each do |connect|
+ 			awaiting_users << User.find(connect.user_id)
  		end
  		return awaiting_users
  	end

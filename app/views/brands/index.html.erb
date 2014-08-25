@@ -1,6 +1,5 @@
 
 <h1>Listing brands</h1>
-
 <%= link_to 'New Brand', new_user_brand_path %><hr>
 <% @brands.each do |brand|%>
 	<%= link_to "Go to #{brand.name}", user_brand_path(@user.id, brand.id)%><hr>

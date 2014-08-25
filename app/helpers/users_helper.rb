@@ -34,5 +34,14 @@ module UsersHelper
 		end	
 	end
 
+	def find_all_users_with_brand
+		users = []
+		UserBrand.all.each do |user_brand|
+			if user_brand.brand_id == session[:current_brand] 
+				users << User.find(user_brand.user_id)
+			end
+		end
+		users
+	end
 
 end

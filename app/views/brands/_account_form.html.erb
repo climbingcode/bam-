@@ -2,6 +2,7 @@
 
 	<div class="panel-group" id="accordion">
       
+ <!--      ACCOUNT INFORMATION PANEL -->
       <div class="panel ">
         <div class="panel-heading">
           <h4 class="panel-title">
@@ -10,41 +11,116 @@
         		</a>
         	</h4>
         </div>
-      	<div id="accountCollapseInfo" class="panel-collapse collapse"> 
+
+      	<div id="accountCollapseInfo" class="panel-collapse collapse in"> 
         	<div class="panel-body">
+          <div class="asset_module">
+              <div class="pencil"><%= link_to image_tag('glyphicons_030_pencil.png', size: "30x30"), edit_user_path(@user.id) %></div>
             <h3><%= @brand.name.capitalize %></h3><br>
-        		Name: <%= @user.firstname.capitalize %> <%= @user.surname.capitalize %><hr>
-        		Email: <%= @user.email %><hr>
-            Username: <%= @user.username %>
+              Name: <%= @user.firstname.capitalize %> <%= @user.surname.capitalize %><hr>
+        		  Email: <%= @user.email %><hr>
+              Username: <%= @user.username %>
         	</div>
+          </div>
         </div>
       </div>
 
+      <!--     LIST ALL USERS -->
+      <% if @user.user_has_admin_permissions?(session[:current_brand]) %>
+        <div class="panel ">
+          <div class="panel-heading">
+            <h4 class="panel-title">
+              <a data-toggle="collapse" data-parent="#accordion" href="#accountCollapseAllUsers">
+               All Users with Permissions to <%= Brand.find(session[:current_brand]).name.capitalize %> 
+              </a>
+            </h4>
+          </div>
+          <div id="accountCollapseAllUsers" class="panel-collapse collapse"> 
+            <div class="panel-body">
+              <% find_all_users_with_brand.each do |user| %>
+                <% if user.user_given_permissions(session[:current_brand]) %>
+                  <p><%= user.firstname.capitalize %> <%= user.surname.capitalize %>
+                  <%=image_tag('glyphicons_030_pencil.png', size: "30x30") %>
+                  <%= image_tag('trashcan.png', size: "30x30") %></p>
+                <% end %>
+              <% end %>
+            </div>
+          </div>
+        </div>
+      <% end %>
+
+<!-- BRAND PERMISSIONS PANEL -->
       <div class="panel ">
         <div class="panel-heading">
           <h4 class="panel-title">
             <a data-toggle="collapse" data-parent="#accordion" href="#accountCollapsePermissions">
-              Brand Permissions
+              Brands and Permissions
             </a>
           </h4>
         </div>
         <div id="accountCollapsePermissions" class="panel-collapse collapse"> 
           <div class="panel-body">
             <% @user.brands.each do |brand|%>
-              <h4><strong><%= brand.name.capitalize %></strong></h4><br>
-              <%= User::display_permission_status(@user) %><hr> 
-              <% if @user.user_has_admin_permissions?(brand) %>
-                <h4><strong>Employees awaiting access to <%= brand.name.capitalize %></stong><h4>
-                <% user = User::users_awaiting_permission(brand)[0] %>
-                <%= link_to "#{user.firstname} #{user.surname}", edit_user_path(user) %>
+                <% if @user.user_given_permissions(brand.id) %>
+                  <h4><strong><%= link_to brand.name.capitalize, user_brand_path(current_user.id, brand.id) %></strong></h4><br>
+                <% else %>
+                  <h4><strong><%= brand.name.capitalize %></strong></h4><br>
+                <% end %>
+                <%= @user.display_permission_status(brand) %><hr> 
+                  <% if @user.user_has_admin_permissions?(brand) %>
+                  <% users = User::users_awaiting_permission(brand) %>
+                      <% users.each do |user| %>
+                        <% if user != nil%>
+
+                          <h4><strong><%= "#{user.firstname} #{user.surname}" %> awaiting access to <%= brand.name.capitalize %></stong><h4>
+                          <%= bootstrap_form_for user do |f| %>
+                          <%= select_tag "permission", "<option>Update / View Users and Assets</option><option>Update / View Assets Only</option><option>View Only</option><option>No Permissions Granted</option>".html_safe %>
+                          <%= hidden_field_tag :brand, brand.id %>
+                          <%= f.submit "Submit" %>
+                        <% end %>
+                  <% end %>
+                <% end %>
               <% end %>
             <% end %>
         	</div>
         </div>
 			</div>
-    
 
-      
+
+
+<!--       ADD BRAND PANEL -->
+       <div class="panel ">
+          <div class="panel-heading">
+            <h4 class="panel-title">
+              <a data-toggle="collapse" data-parent="#accordion" href="#accountCollapseAddBrand">
+               Add Brands
+              </a>
+            </h4>
+          </div>
+
+        <div id="accountCollapseAddBrand" class="panel-collapse collapse"> 
+          <div class="panel-body">
+            <%= form_tag({controller: "users", action: "add_brand"}, method: "post") do %>
+              <%= text_field_tag :name, nil, {label: "Brand Name", placeholder: "New Brand", class: "form-control"} %>
+              <%= url_field_tag :website, nil, {label: "Website", placeholder: "Website", class: "form-control"} %>
+              <%= submit_tag "Submit", class: 'btn btn-success' %>
+            <% end %>
+          </div>
+        </div>
+      </div>
+
+      <%= bootstrap_form_for(@brand) do |f| %>
+        <% if @user.errors.any? %>
+          <div id="error_explanation">
+            <h2><%= pluralize(@brand.errors.count, "error") %> prohibited this brand from being saved:</h2>
+              <ul>
+                <% @user.errors.full_messages.each do |message| %>
+                  <li><%= message %></li>
+                <% end %>
+              </ul>
+          </div>
+        <% end %>
+      <% end %>
 
 	</div><!--panel-group-->
 </div><!--#multi-asset-form-->

@@ -26,6 +26,8 @@ Rails.application.routes.draw do
     end
   end
 
+
+
   resource :sessions, only: [:new, :create, :destroy]
 
   resources :contact_form, only: [:new, :create] 
@@ -35,6 +37,8 @@ Rails.application.routes.draw do
   namespace 'permission' do 
     resources :users 
   end
+
+  match '/add_brand', to: 'users#add_brand', via: 'post'
 
   get '/:id', to: 'brand#show'
 

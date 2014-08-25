@@ -1,7 +1,10 @@
 class BrandsController < ApplicationController
+
   before_action :set_brand, only: [:show, :edit, :update, :destroy]
 
   before_filter :restrict_access
+
+  before_filter :check_permission_status
   # GET /brands
   # GET /brands.json
   def index
@@ -26,7 +29,7 @@ class BrandsController < ApplicationController
       @user = User.find(params[:user_id])
       @brand = Brand.find(params[:id])
       @brands = @user.brands
-      brand_tracker(@brand)
+      current_brand(@brand)
   end
 
   # GET /brands/new
@@ -40,6 +43,7 @@ class BrandsController < ApplicationController
 
   # GET /brands/1/edit
   def edit
+
   end
 
   # POST /brands
