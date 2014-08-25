@@ -131,6 +131,8 @@ function hexToCMYK (hex) {
     console.log(data);
   }); 
 
+  
+
 
 
 });

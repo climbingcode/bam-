@@ -18,8 +18,10 @@ class ApplicationController < ActionController::Base
 
   def check_permission_status
       awaiting_admin = current_user.user_brands.find_by(brand_id: session[:current_brand]) 
-      if awaiting_admin.permission == 4 || awaiting_admin.permission == nil
-        redirect_to '/', notice: "Sorry, waiting on admin permission"
+      if awaiting_admin != nil
+        if awaiting_admin.permission == 4
+          redirect_to '/', notice: "Sorry, waiting on admin permission"
+        end
       end
   end
 
