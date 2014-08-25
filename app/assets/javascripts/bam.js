@@ -13,6 +13,8 @@ $( document ).ready(function() {
     $("#brand-page").toggleClass('dashboard-closed');
     $("#dashboard").toggleClass('display-none');
     $('#mobile-nav').toggleClass('open');
+        var divWidth = $('.img-background').width();
+      $('.img-background').height(divWidth);
     // $("#multi_asset_form").animate({'left': '-500px'}, 500);
 
   });

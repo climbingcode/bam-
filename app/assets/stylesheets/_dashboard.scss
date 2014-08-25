@@ -115,7 +115,8 @@
 }
 
 .menu-nav.open {
-  background-position:  0 0px;
+  background-position:  1px 0px;
+  margin: 6.5px 0px 0px 6.5px;
       
   -webkit-transform: rotate(-180deg);
      -moz-transform: rotate(-180deg);
