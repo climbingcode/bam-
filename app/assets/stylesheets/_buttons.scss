@@ -2,8 +2,13 @@
   background: $primary-color;
   border-radius: 3px;
   color: #fff;
-  border-bottom: solid 3px #2D9F8E;
-  box-shadow: 0px 3px 0px 0px #2D9F8E;
+  box-sizing: border-box;
+  box-shadow: 0px 3px 0px 0px $accent-color;
+}
+
+.bam_btn:hover{
+  border-bottom: solid 3px $accent-color;
+  margin-bottom: -3px;
 }
 
 
