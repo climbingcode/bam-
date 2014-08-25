@@ -47,7 +47,7 @@ class LogosController < ApplicationController
     respond_to do |format|
       if @logo.update(logo_params)
         format.html { redirect_to @logo, notice: 'Logo was successfully updated.' }
-        format.json { render :show, status: :ok, location: @logo }
+        format.json { render json: @logo , status: :ok, location: @logo }
       else
         format.html { render :edit }
         format.json { render json: @logo.errors, status: :unprocessable_entity }
@@ -61,7 +61,7 @@ class LogosController < ApplicationController
     @logo.destroy
     respond_to do |format|
       format.html { redirect_to logos_url, notice: 'Logo was successfully destroyed.' }
-      format.json { head :no_content }
+      format.json { render json: "Logo Deleted" }
     end
   end
 

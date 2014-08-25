@@ -223,6 +223,27 @@ function hexToCMYK (hex) {
   
   $('#new_logo').fileupload({
     dataType: 'json',
+    
+    drop: function(e, data){
+      $.each(data.files, function(index, file){
+        // $('#upload_file_name').append("<p>" + file.name +"</p>");
+      });
+    },
+
+    change: function(e, data){
+      $.each(data.files, function(index, file){
+        // $('#upload_file_name').append("<p>" + file.name +"</p>");
+      });
+    },
+
+    add: function(e, data){
+      data.context = $(tmpl("logo_upload", data.files[0]))
+        $('#upload_status').append(data.context)
+        $("#logo_submit").on("click", function(){
+          data.submit();
+        });
+    },
+
     done: function(e, data){
       console.log("success!", data);
       addNewLogo(data);

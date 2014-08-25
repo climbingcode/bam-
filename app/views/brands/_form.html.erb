@@ -21,10 +21,23 @@
                 <%= f.label(:permission, "Private") %>
                 <%= f.check_box(:permission) %>
                 <%= f.label(:path, "Add a logo") %>
-                <%= f.file_field(:path, name: "logo[path]", multiple: true, class: "form-control") %>
+                 <%= f.file_field(:path, name: "logo[path]", multiple: true, class: "form-control") %>
+                <p>Click or drag a file into the section above to upload</p> 
+                <section id="upload_status">
+                </section>
                 <%= f.hidden_field(:brand_id, :value => params[:id]) %>
-                <%= f.submit('Add File', class: "bam_btn btn") %>
+                <%= f.submit('Add File', id: "logo_submit", class: "bam_btn btn") %>
               <% end %> 
+              <script id="logo_upload" type="text/x-tmpl">
+                <div class="file-upload">
+                  <hr>
+                  <p class="file-upload-name">{%= o.name%}</p>
+                  <div class="file-progess-bar">
+                    <div class="file-progress-meter"></div>
+                  </div>
+                  <hr>
+                </div>
+              </script>
             </div>
           </div>
         </div>
@@ -43,7 +56,7 @@
           <div class="asset_module">
           <h3>Colors</h3>
            <%= form_for Color.new, url: user_brand_colors_path(params[:user_id], params[:id], format: :json), remote: true, authenticity_token: true,  method: 'post' do |f| %>
-            <%= f.label(:hex, "Hex Colour code") %>
+            <%= f.label(:hex, "Hex Colour code") %>   
             <%= f.text_field(:hex, class: "form-control") %>
             <%= f.label(:name, "Colour name") %>
             <%= f.text_field(:name, class: "form-control") %>
@@ -146,7 +159,7 @@
             <%= f.label(:permissions, "Public") %>
             <%= f.check_box(:permissions) %>
             <%= f.hidden_field(:brand_id, :value => params[:id]) %>
-            <%= f.submit('Add Asset', class: "bam_btn btn") %>
+            <%= f.submit("Add Asset", class: "bam_btn btn") %>
           <% end %>
         </div>
       </div>

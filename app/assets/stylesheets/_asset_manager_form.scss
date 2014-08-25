@@ -39,5 +39,34 @@
       margin: 4px auto;
       color: black;
     }
+    .file-upload {
+      position: relative;
+      margin: 0 auto;
+      height: auto;
+      width: 90%;
+      background-color: #fff;
+      .file-upload-name {
+        position: relative;
+        display: block;
+        text-align: left;
+        padding: 4px;
+      }
+      .file-progress-bar {
+        margin: 0 auto;
+        height: 15px;
+        width: 90%;
+        background-color: #fff;
+        border: 1px solid #999;
+        .file-progress-bar{
+          position: absolute;
+          left: 0px;
+          top: 0px;
+          height: 100%;
+          width: 0%;
+          background-color: green;
+        }
+      }
+    
+    }
   }
 }
