@@ -264,5 +264,4 @@ function hexToCMYK (hex) {
 
 
 
-
 });

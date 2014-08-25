@@ -87,6 +87,7 @@ GEM
       subexec (~> 0.2.1)
     minitest (5.4.0)
     multi_json (1.10.1)
+    pdfkit (0.6.2)
     polyglot (0.3.5)
     pry (0.10.1)
       coderay (~> 1.1.0)
@@ -194,6 +195,7 @@ DEPENDENCIES
   less-rails
   mail_form
   mini_magick
+  pdfkit
   pry
   rails (= 4.1.2)
   sass-rails (~> 4.0.3)

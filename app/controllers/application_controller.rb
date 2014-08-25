@@ -12,23 +12,30 @@ class ApplicationController < ActionController::Base
     end
   end
 
-  def check_permission_status
-    if !current_user.user_brands[0].permission == 1
-      flash[:alert] = "Sorry, you don't have permission"
-      redirect_to user_brands(current_user.id)
-    end
+  def check_if_admin?
+    current_user.user_brands.find_by(brand_id: session[:current_brand]).permission == 1
   end
 
-  def brand_tracker(brand)
-    @current_brand ||= Brand.find(brand.id) if session[:user_id]
+  def check_permission_status
+      awaiting_admin = current_user.user_brands.find_by(brand_id: session[:current_brand]) 
+      if awaiting_admin != nil
+        if awaiting_admin.permission == 4
+          redirect_to '/', notice: "Sorry, waiting on admin permission"
+        end
+      end
   end
 
   def current_user
     @current_user ||= User.find(session[:user_id]) if session[:user_id]
   end
   
+  def current_brand(brand)
+    session[:current_brand] = brand.id
+  end
 
   helper_method :current_user
-
+  helper_method :brand_tracker
+  helper_method :check_permission_status
+  helper_method :check_if_admin?
 
 end

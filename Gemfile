@@ -42,6 +42,7 @@ end
 
 
 #layout and design 
+gem "twitter-bootstrap-rails"
 gem 'bootstrap_form'
 
 # Uploading Assets
@@ -52,9 +53,9 @@ gem 'carrierwave'
 gem 'mini_magick'
 gem "therubyracer"
 gem "less-rails" #Sprockets (what Rails 3.1 uses for its asset pipeline) supports LESS
-gem "twitter-bootstrap-rails"
 
-
+# pdf generation
+gem 'pdfkit'
 
 # url structure 
 gem 'friendly_id', '~> 5.0.0'

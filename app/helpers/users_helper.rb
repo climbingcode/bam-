@@ -7,11 +7,11 @@ module UsersHelper
 	def set_user_to_admin(user, brand)
 		brand_id = Brand.find_by(name: brand).id
 		user.user_brands.find_by(brand_id: brand_id).update(permission: 1)
-		return true if user.save 
+		return true if user.save  
 	end
 
 	def awaiting_admin_confirmation(user, brand)
-		brand_id = Brand.find_by(name: brand).id
+		brand_id = brand.id
 		user.user_brands.create(user_id: user.id, brand_id: brand_id, permission: 4)
 	end
 
@@ -34,5 +34,14 @@ module UsersHelper
 		end	
 	end
 
+	def find_all_users_with_brand
+		users = []
+		UserBrand.all.each do |user_brand|
+			if user_brand.brand_id == session[:current_brand] 
+				users << User.find(user_brand.user_id)
+			end
+		end
+		users
+	end
 
 end

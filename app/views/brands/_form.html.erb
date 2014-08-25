@@ -167,8 +167,26 @@
     </div>
   </div>
 
+  <div class="panel">
+      <a data-toggle="collapse" data-parent="#accordion" href="#collapseSeven">
+        <div class="panel-heading">
+          <h4 class="panel-title">Templates</h4>
+        </div>
+      </a>
+    <div id="collapseSeven" class="panel-collapse collapse">
+      <div class="panel-body">
+        <div class="asset_module">
+          <button class="btn btn-primary btn-sm" data-toggle="modal" data-target="#businessCardModal">
+              Business Cards
+          </button>     
+        </div>
+      </div>
+    </div>
+  </div>
 
 
+  <h2 style="color:white"><%= Brand.find(session[:current_brand]).name.capitalize %></h2>
+  <h2 style="color:white"><%= current_user.firstname.capitalize %></h2>
 
     </div><!--panel-group-->
   </div><!--#multi-asset-form-->

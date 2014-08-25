@@ -1,18 +1,20 @@
 
 <div class="col-xs-12 col-sm-4" id="sign_up_form_wrapper">
 
-<%= bootstrap_form_for(@user) do |f| %>
-  <% if @user.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(@user.errors.count, "error") %> prohibited this employee from being saved:</h2>
 
-      <ul>
-      <% @user.errors.full_messages.each do |message| %>
-        <li><%= message %></li>
-      <% end %>
-      </ul>
-    </div>
+  <%= form_for @user do |f| %>
+    <% if @user.errors.any? %>
+      <div>
+        <ul>
+          <% @user.errors.full_messages.each do |msg| %>
+            <li><%= msg %></li>
+          <% end %>
+        </ul>
+      </div> 
+    <% end %>
   <% end %>
+
+<%= bootstrap_form_for(@user) do |f| %>
 
   <div class="users_signup">
 <!--     brand information -->
@@ -33,5 +35,6 @@
     <%= f.submit :class => "bam_btn btn", :id => "sign_up_submit" %>
   </div>
 <% end %>
+
 
 </div>
