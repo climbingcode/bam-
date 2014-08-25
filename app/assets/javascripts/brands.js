@@ -78,10 +78,10 @@ function hexToCMYK (hex) {
         colorSwatch = $("<div>").addClass("swatch").css("background-color", "#"+data.hex),
         colorList = $("<ul>").addClass("color-list"),
         colorName = $("<li>").addClass("color-name").html(data.name),
-        colorHex = $("<li>").html("CSS HEX: <span>#" + data.hex + "</span>"),
-        colorRgb = $("<li>").html("RGB: <span>" + r + ", " + g + ", "+ b + "</span>"),
-        colorCmyk = $("<li>").html("CMYK: <span>" + hexToCMYK(data.hex) + "</span>"),
-        colorSass = $("<li>").html("Sass: <span></span>");
+        colorHex = $("<li>").addClass("color-name").html("CSS HEX: <span>#" + data.hex + "</span>"),
+        colorRgb = $("<li>").addClass("color-name").html("RGB: <span>" + r + ", " + g + ", "+ b + "</span>"),
+        colorCmyk = $("<li>").addClass("color-name").html("CMYK: <span>" + hexToCMYK(data.hex) + "</span>"),
+        colorSass = $("<li>").addClass("color-name").html("Sass: <span></span>");
     console.log(targetColor);
     
     $color.append(colorWrapper);
