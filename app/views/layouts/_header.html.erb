@@ -15,7 +15,7 @@
           <% if session[:current_brand] == nil && current_user == nil %>
             <%= render "sessions/sign_in_form" %>
           <% else %>
-            <%= button_to 'Destroy', sessions_path, :confirm => 'Are you sure?', :method => :delete %>
+            <%= button_to 'Logout', sessions_path, :confirm => 'Are you sure?', :method => :delete %>
           <% end %>
           <!-- else render name and logout button -->
         </div>
