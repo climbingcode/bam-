@@ -3,21 +3,17 @@
   // position: relative;
   // position: fixed;
   left: 0px;
+
   // height: auto;
   // padding-top: 5px;
-  color: #999;
+ 
+
+  height: auto;
+  padding-top: 5px;
+  color: #fff;
+
   font-weight: 100;
   z-index: 1000;
-        .file-upload{
-      color: white;
-      background: $primary-color;
-      height: 40px;
-    }
-   .form-control{
-      background-color: #666;
-      border: none;
-
-    }
   .asset_module {
     position: relative;
     height: auto;
@@ -35,8 +31,9 @@
       display: block;
       color: #fff;
       margin: 4px auto;
+      background-color: #666;
       // width: 90%;
-   
+    }
     input:focus{
       border: solid 1px $primary-color;
     }
@@ -48,14 +45,11 @@
     }
 
     input[type="file"] {
-      background-color: rgba(255,255,255, 0.5);
+      background-color: #666;
     }
     .bam_btn_inverse{
       color: $primary-color;
     }
-
-
-  }
 
     // #logo_permission{
     //   display: inline;
@@ -70,6 +64,7 @@
       margin: 4px auto;
       color: black;
     }
+<<<<<<< HEAD
     #upload_status{
       background: #666;
     }
@@ -81,6 +76,16 @@
       border-radius: 4px;
       border:0px;
       background-color: #666;
+=======
+    #logo-upload-status .file-upload-status {
+      position: relative;
+      margin: 0 auto;
+      height: auto;
+      width: 100%;
+      background-color: #666;
+      border-radius: 4px;
+      padding: 5px;
+>>>>>>> 0273774fdf1b3160d27c396896ec4cb395d0ac1d
       .file-upload-name {
         position: relative;
         display: block;
@@ -89,22 +94,24 @@
         color: #333;
         height: 45px;
       }
-      .file-progress-bar {
-        margin: 0 auto;
-        height: 15px;
+      .file-progress-meter {
+        position: relative;
+        height: 16px;
         width: 90%;
-        background-color: #fff;
-        border: 1px solid #999;
-        .file-progress-bar{
-          position: absolute;
-          left: 0px;
-          top: 0px;
-          height: 100%;
-          width: 0%;
-          background-color: green;
-        }
+        background-color: #666;
+        border: 1px solid #fff;
+        border-radius: 4px;
+        margin: 0 auto;
       }
-    
+      .file-progress-strip {
+        position: absolute;
+        top: 0px;
+        left: 0px;
+        height: 100%;
+        width: 0%;
+        background-color: #60d2c1;
+        border-radius: 4px;
+      }  
     }
   }
 }

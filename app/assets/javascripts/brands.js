@@ -121,30 +121,34 @@ function hexToCMYK (hex) {
   var logoId = logo.result.id;
   var logoPath = logo.result.path.url;
   var logoName = logo.result.name;
-  var    logoDescription = logo.result.description;
-  var    $logoParent = $("#logos");
-  var    logoWrapper = $("<div>").attr("id", logoId).addClass("col-sm-4");
-  var   logoBackground = $("<div>").addClass("img-background").css("height", "339px");
-  var    logoPicture = $("<img>").attr("src", logoPath).addClass("img-responsive logo");
-  var    logoMeta = $("<div>").addClass("logo-meta");
-  var    logoLabel = $("<label>").addClass("img-label").html(logoName);
-  var    logoOptions = $("<div>").addClass("logo-options");
-  var    logoCaret = $("<span>").addClass("caret");
-  var    logoDropDownLink = 
+  var logoDescription = logo.result.description;
+  var $logoParent = $("#logos");
+  var logoWrapper = $("<div>").attr("id", "logo" + logoId).addClass("col-sm-4").data("logoid", logoId);
+  var logoBackground = $("<div>").addClass("img-background").css("height", "339px");
+  var logoPicture = $("<img>").attr("src", logoPath).addClass("img-responsive logo");
+  var logoMeta = $("<div>").addClass("logo-meta");
+  var logoLabel = $("<label>").addClass("img-label").html(logoName);
+  var logoOptions = $("<div>").addClass("logo-options");
+  var logoCaret = $("<span>").addClass("caret");
+  var logoDropDownLink = 
         $("<a>").attr({
             "href" : "#",
             "data-toggle" : "dropdown"
           }).addClass("dropdown-toggle").html("Options");
-  var      logoMenu = $("<ul role='menu'>").addClass("dropdown-menu");
-  var      logoMenuHeader = $("<li>").addClass("dropdown-header").html("Download");
-  var      logoMenuDivider = $("<li>").addClass("divider");
-  var      logoAi = $("<li>");
-  var      logoPng = $("<li>");
-  var      logoJpg = $("<li>");
-  var      logoToAiLink = $("<a>").attr("href", "#").html(logoName + ".ai");
-  var      logoToPngLink = $("<a>").attr("href", "#").html(logoName + ".png");
-  var      logoToJpgLink = $("<a>").attr("href", "#").html(logoName + ".jpg");
+  var logoMenu = $("<ul role='menu'>").addClass("dropdown-menu");
+  var logoMenuHeader = $("<li>").addClass("dropdown-header").html("Download");
+  var logoMenuDivider = $("<li>").addClass("divider");
+  var logoAi = $("<li>");
+  var logoPng = $("<li>");
+  var logoJpg = $("<li>");
+  var logoDelete = $("<li>");
+  var logoToAiLink = $("<a>").attr("href", "#").html(logoName + ".ai");
+  var logoToPngLink = $("<a>").attr("href", "#").html(logoName + ".png");
+  var logoToJpgLink = $("<a>").attr("href", "#").html(logoName + ".jpg");
+  var logoDeleteLink = $("<a>").attr("href", "#").addClass("list-delete").html("Delete");   
 
+
+  // <li><a class="list-delete" href="#">Delete</a></li>
   
     // $logoParent.append(logoWrapper);
     logoBackground.appendTo(logoWrapper);
@@ -157,18 +161,49 @@ function hexToCMYK (hex) {
     logoCaret.appendTo(logoDropDownLink);
     logoMenu.appendTo(logoOptions);
     logoMenuHeader.appendTo(logoMenu);
-    logoMenuDivider.appendTo(logoMenu);
+    // logoMenuDivider.appendTo(logoMenu);
     logoAi.appendTo(logoMenu);
     logoToAiLink.appendTo(logoAi);
     logoPng.appendTo(logoMenu);
     logoToPngLink.appendTo(logoPng);
     logoJpg.appendTo(logoMenu);
     logoToJpgLink.appendTo(logoJpg);
+    logoDelete.appendTo(logoMenu);
+    logoDeleteLink.appendTo(logoDelete);
 
      $logoParent.append(logoWrapper);
 
 
     $('.dropdown-toggle').dropdown();
+
+    function onDeleteFadeOut(asset){
+      $("#logo" + asset.id).animate({
+        "width" : "0px"
+      }, 500, function(){
+        $(this).css("display", "none");
+      });
+  };
+
+    $(".logo-options .list-delete").on("click", function(event){
+      event.preventDefault();
+      var logoHolder = ".col-sm-4";
+      var logoId = $(this).closest(logoHolder).data("logoid");
+      var path = window.location.pathname + "/logos/" + logoId;
+
+      $.ajax({
+        type: "DELETE",
+        url: path,
+        dataType: "json",
+        success: function(response){
+          console.log(response);
+          onDeleteFadeOut(response);
+          }
+      });
+
+      console.log( path, logoId );
+
+    });
+
   };  
 
   function addTypography(data){
@@ -220,7 +255,10 @@ function hexToCMYK (hex) {
   });
 
 
-
+  function clearFileInput(element) {
+    element.wrap("<form>").parent("form").trigger("reset");
+    element.unwrap();
+  };
   // $('#load_color').on('ajax:success', function(e, data) {;
   //   loadColors(data);
   // });
@@ -228,30 +266,42 @@ function hexToCMYK (hex) {
   $('#new_logo').fileupload({
     dataType: 'json',
     
-    drop: function(e, data){
-      $.each(data.files, function(index, file){
-        // $('#upload_file_name').append("<p>" + file.name +"</p>");
-      });
-    },
+    // drop: function(e, data){
+    //   $.each(data.files, function(index, file){
+    //     // $('#upload_file_name').append("<p>" + file.name +"</p>");
+    //   });
+    // },
 
-    change: function(e, data){
-      $.each(data.files, function(index, file){
-        // $('#upload_file_name').append("<p>" + file.name +"</p>");
-      });
-    },
+    // change: function(e, data){
+    //   $.each(data.files, function(index, file){
+    //     // $('#upload_file_name').append("<p>" + file.name +"</p>");
+    //   });
+    // },
 
     add: function(e, data){
       data.context = $(tmpl("logo_upload", data.files[0]))
-        $('#upload_status').append(data.context)
-        $("#logo_submit").on("click", function(){
+        $('#logo-upload-status').append(data.context)
+        $("#logo_submit").on("click", function(event){
+          event.preventDefault();
           data.submit();
         });
+    },
+
+    progress: function(e, data){
+      if(data.context){
+        console.log(data);
+        var progress = parseInt(data.loaded / data.total * 100, 10);
+        data.context.find('.file-progress-strip').css('width', progress + '%');
+      };
     },
 
     done: function(e, data){
       console.log("success!", data);
       addNewLogo(data);
-
+      $("#logo_name").val("");
+      $("#logo_description").val("");
+      clearInputFile( $("#logo_path") );
+      $("#logo-upload-status").empty();
     }
   });
 
@@ -260,6 +310,35 @@ function hexToCMYK (hex) {
     done: function(e, data){
       console.log(data)
     }
+  });
+
+
+  function onDeleteFadeOut(asset){
+    $("#logo" + asset.id).animate({
+      "width" : "0px"
+    }, 500, function(){
+      $(this).css("display", "none");
+    });
+  };
+
+  $(".logo-options .list-delete").on("click", function(event){
+    event.preventDefault();
+    var logoHolder = ".col-sm-4";
+    var logoId = $(this).closest(logoHolder).data("logoid");
+    var path = window.location.pathname + "/logos/" + logoId;
+
+    $.ajax({
+        type: "DELETE",
+        url: path,
+        dataType: "json",
+        success: function(response){
+          console.log(response);
+          onDeleteFadeOut(response);
+        }
+      })
+
+    console.log( path, logoId );
+
   });
 
 
