@@ -31,15 +31,8 @@ class BrandsController < ApplicationController
       @brands = @user.brands
       # @colors = @brand.colors.all
       @logos = @brand.logos.all
-      brand_tracker(@brand)
       current_brand(@brand)
       @colors = @user.brands.find_by(id: session[:current_brand]).colors
-
-      respond_to do |format|
-      format.html
-      format.pdf do
-        render :pdf => "business_card_template"
-      end
   end
 
   # GET /brands/new

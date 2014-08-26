@@ -30,6 +30,8 @@ class UsersController < ApplicationController
         session[:current_brand] = @brand.id
      		send_email_to_admin(params[:name], @user)
         awaiting_admin_confirmation(@user, @brand)
+        session[:current_brand].clear
+        session[:user].clear
      		redirect_to '/', notice: 'Waiting for account holder to grant access'
  	    end 
     else

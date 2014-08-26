@@ -12,6 +12,7 @@
       <div class="navbar-collapse collapse">
         <div class="navbar-form navbar-right">
           <!-- if not in session render form-->
+
           <% if session[:current_brand] == nil && current_user == nil %>
             <%= render "sessions/sign_in_form" %>
           <% else %>
