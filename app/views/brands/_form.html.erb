@@ -10,7 +10,7 @@
           </h4>
         </div>
         </a>
-        <div id="collapseOne" class="panel-collapse collapse "> 
+        <div id="collapseOne" class="panel-collapse collapse"> 
           <div class="panel-body">
             <div class="asset_module">
               <%= form_for(Logo.new, url: user_brand_logos_path(params[:user_id], params[:id], format: :json), remote: true, authenticity_token: true, method: 'post', multipart: true) do |f| %>
@@ -177,7 +177,7 @@
     <div id="collapseSeven" class="panel-collapse collapse">
       <div class="panel-body">
         <div class="asset_module">
-          <button class="btn btn-primary btn-sm" data-toggle="modal" data-target="#businessCardModal">
+          <button class="btn-sm bam_btn" data-toggle="modal" data-target="#businessCardModal">
               Business Cards
           </button>     
         </div>
@@ -185,9 +185,6 @@
     </div>
   </div>
 
-
-  <h2 style="color:white"><%= Brand.find(session[:current_brand]).name.capitalize %></h2>
-  <h2 style="color:white"><%= current_user.firstname.capitalize %></h2>
 
     </div><!--panel-group-->
   </div><!--#multi-asset-form-->

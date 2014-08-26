@@ -32,7 +32,7 @@ class BrandsController < ApplicationController
       # @colors = @brand.colors.all
       @logos = @brand.logos.all
       current_brand(@brand)
-      @colors = @user.brands.find_by(id: session[:current_brand]).colors
+      @colors = @brand.colors
   end
 
   # GET /brands/new

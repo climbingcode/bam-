@@ -2,6 +2,8 @@ class UsersController < ApplicationController
 
 	include UsersHelper
 
+  before_filter :redirect_to_brands_page_if_signed_in
+
 	def index 
     @user = User.new
 		@brands = Brand.all

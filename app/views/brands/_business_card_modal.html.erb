@@ -6,15 +6,19 @@
         <h4 class="modal-title" id="businessCardModal">Business Card Builder</h4>
       </div>
       <div class="modal-body">
-        <div>
-        <%= render :partial => 'pdfs/business_card.pdf.erb' %>
+        <div id ="business_card_background">
+          <%= render :partial => 'pdfs/business_card.pdf.erb' %>
+        </div>
+        <div class="business_card_form">
+          <%= render 'business_card_form.html.erb' %>
         </div>
       </div>
       <div class="modal-footer">
-        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-        <button type="button" class="btn btn-primary">Save changes</button>
-      </div>
-        <%= link_to "Download to pdf", business_card_path(@user, :format => "pdf") %>
+        <button type="button" class="btn bam_btn" data-dismiss="modal">Close</button>
+        <%= link_to "Download to pdf", business_card_path(@user, :format => "pdf"), :id => "businessCardGenerator", :class => "btn bam_btn"%>
+      
+
+      </div>    
     </div>
   </div>
 </div>
