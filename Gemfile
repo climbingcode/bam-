@@ -16,6 +16,7 @@ gem 'coffee-rails', '~> 4.0.0'
 
 # Use jquery as the JavaScript library
 gem 'jquery-rails'
+
 # Turbolinks makes following links in your web application faster. Read more: https://github.com/rails/turbolinks
 gem 'turbolinks'
 # Build JSON APIs with ease. Read more: https://github.com/rails/jbuilder
@@ -62,6 +63,10 @@ gem 'friendly_id', '~> 5.0.0'
 
 # Use ActiveModel has_secure_password
 gem 'bcrypt', '~> 3.1.7'
+
+# Ensure javascript is reload when partials loaded.
+
+gem 'jquery-turbolinks'
 
 # Use unicorn as the app server
 # gem 'unicorn'

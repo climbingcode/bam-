@@ -41,9 +41,6 @@ $( document ).ready(function() {
 
   //Dropdown for Logo Files
 
-  $('.switch_brand').on('click', function(){
-    alert('hello')
-  })
   $('.dropdown-toggle').dropdown()
 
   $("#primary_capital_letters").fitText(2.5);
