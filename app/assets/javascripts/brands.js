@@ -356,7 +356,7 @@ $( document ).ready(function() {
     var showClass = "user-action-messages-show";
     var hideClass = "user-action-messages-hidden";
     var messageHolder = $("<p>").addClass("advisory-message")
-                          .html(response.name + " " + message);
+                          .html( + " " + message);
     advisory.append(messageHolder); 
     advisory.removeClass(hideClass).addClass(showClass);
     setTimeout(function(){
