@@ -256,6 +256,7 @@ function hexToCMYK (hex) {
 
 
   function clearFileInput(element) {
+    console.log(element)
     element.wrap("<form>").parent("form").trigger("reset");
     element.unwrap();
   };
