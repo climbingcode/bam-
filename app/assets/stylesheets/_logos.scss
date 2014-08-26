@@ -8,17 +8,26 @@
   cursor: pointer;
 }
 
+.image-column{
+  box-sizing: border-box;
+}
+
+.download-icon{
+  float: right;
+}
+
 .img-background{
   background-image: url("/assets/bg.jpg");
-  width: 100%;
+  width: 100%!important;
   height: width;
   text-align: center;
-  display: inline-block;
+  vertical-align: middle;
+  display: table-cell;
+  width: 100%;
+  // display: inline-block;
   white-space: nowrap;
   padding: 15px;
   position: relative;
-  vertical-align: middle;
-  // display: table-cell;
   transition: all 0.5s;
 }
 // .img-wrapper{
@@ -29,6 +38,8 @@
 
 .logo{
   vertical-align: middle;
+  position: relative;
+  width: 100%!important;
 }
 
 

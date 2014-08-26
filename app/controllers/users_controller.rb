@@ -3,6 +3,7 @@ class UsersController < ApplicationController
 	include UsersHelper
 
 	def index 
+    @user = User.new
 		@brands = Brand.all
 	end
 

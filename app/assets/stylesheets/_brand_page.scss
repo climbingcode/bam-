@@ -6,6 +6,18 @@ body{
  
 }
 
+#user-action-messages {
+  position: fixed;
+  background-color: red;
+  top: 50px;
+  left: 38%;
+  width: 50%;
+  height: 100px;
+  z-index: 10000;
+
+
+}
+
 .logged-in-page-wrapper{
  background: #333; 
  height: 100%;

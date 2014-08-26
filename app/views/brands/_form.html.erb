@@ -21,21 +21,22 @@
                 <%= f.label(:permission, "Private") %>
                 <%= f.check_box(:permission) %>
                 <%= f.label(:path, "Add a logo") %>
-                <%= f.file_field(:path, class: "form-control file-upload") %>
+                <%= f.file_field(:path, class: "form-control") %>
                 <p>Click or drag a file into the section above to upload</p> 
-                <section id="upload_status">
+                <section id="logo-upload-status">
                 </section>
                 <%= f.hidden_field(:brand_id, :value => params[:id]) %>
                 <%= f.submit('Add File', id: "logo_submit", class: "bam_btn btn") %>
               <% end %> 
               <script id="logo_upload" type="text/x-tmpl">
-                <div class="file-upload">
-                  <hr>
+
+                <div class="file-upload-status">
+
                   <p class="file-upload-name">{%= o.name%}</p>
-                  <div class="file-progess-bar">
-                    <div class="file-progress-meter"></div>
+                  <div class="file-progress-meter">
+                    <div class="file-progress-strip"></div>
                   </div>
-                  <hr>
+
                 </div>
               </script>
             </div>

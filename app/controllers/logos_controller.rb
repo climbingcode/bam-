@@ -58,10 +58,11 @@ class LogosController < ApplicationController
   # DELETE /logos/1
   # DELETE /logos/1.json
   def destroy
+    @logo = Logo.find(params[:id])
     @logo.destroy
     respond_to do |format|
       format.html { redirect_to logos_url, notice: 'Logo was successfully destroyed.' }
-      format.json { render json: "Logo Deleted" }
+      format.json { render json: @logo, status: :accepted, location: user_brand_path(current_user, @logo.brand_id)}
     end
   end
 
