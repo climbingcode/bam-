@@ -4,9 +4,9 @@ class User < ActiveRecord::Base
 
 	validates_confirmation_of :password
 
-	validates :firstname, :surname, :username, :email, presence: true
-	validates :username, uniqueness: true
-	validates :username, :password, length: { minimum: 6 }
+	# validates :firstname, :surname, :username, :email, presence: true
+	# validates :username, uniqueness: true
+	# validates :username, :password, length: { minimum: 6 }
 	
 	has_many :user_brands
 	has_many :brands, through: :user_brands 

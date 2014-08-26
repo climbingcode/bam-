@@ -39,7 +39,7 @@ nav{
 }
 
 #password_input, #username_input  {
-  width: 90px;
+  width: 150px;
   border: solid 1px #999;
   transition: all 1s;
   
@@ -50,7 +50,7 @@ nav{
 }
 
 #username_input:focus, #password_input:focus{
-  width: 120px;
+  width: 170px;
   border: solid 1px $primary-color;
   outline: none!important;
 

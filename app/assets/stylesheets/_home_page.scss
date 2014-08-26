@@ -2,11 +2,92 @@
   margin-top: 52px;
 }
 
-#home_landing{
-  width: 100%;
-  height: 400px;
-  background-image: url("/assets/landing.jpg");
+#parallax-bg{
+  height: 600px;
+  background-color: $primary-color;
+  background-image: url("/assets/computer_tile.png");
+  background-repeat: no-repeat;
+  background-position: center;
+  margin-top: 52px;
+  background-size: cover;
 }
+
+#left-landing-box{
+  margin-top: 200px;
+
+  h3{
+    font-size: 4em;
+    color: white;
+  }
+}
+
+#sign_up_btn{
+  margin-top: 45px;
+  margin-left: auto;
+  margin-right: auto;
+  display: block;
+  float: none;
+  // position: relative;
+  // top: 500px;
+}
+
+.call-to-action{
+  width: 100%;
+  background: $alt-color;
+  padding: 45px;
+}
+
+
+#pricing{
+  padding: 45px;
+
+  h2, h3{
+    text-align: center;
+    color: #999;
+  }
+  ul{
+    list-style-type: none;
+    padding-left: 0px;
+  }
+  li{
+    padding: 10px;
+    border-bottom: 1px solid #eee;
+  }
+  hr{
+    height: 2px;
+    
+  }
+}
+
+.tick{
+  color: $primary-color;
+  padding-right: 15px;
+}
+
+#personal-column, #agency-column{
+  position: relative;
+  top: 50px;
+  border: solid 3px #666;
+  transition: all 0.5s;
+}
+#personal-column:hover, #agency-column:hover{
+  border: solid 3px $primary-color;
+}
+
+#agency-column{
+  height: auto;
+}
+
+#business-column{
+  border: solid 3px $primary-color;
+}
+.pricing-column{
+  
+  height: auto;
+  padding: 15px;
+  font-size: 1.2em;
+
+ }
 
 #search_form_area{
   width: 100%;
@@ -17,6 +98,7 @@
 #sign_up_area{
   width: 100%;
   height: 400px;
+  background-color: white;
 }
 
 #search_input_wrapper{
@@ -48,5 +130,20 @@
   background-color: rgba(61, 201, 179, 0.5);
   display: inline;
   padding: 5px;
+}
+
+#signUpModal{
+  color: #333;
+  .modal-body{
+    background: white;
+  }
+  .modal-header{
+    background: $primary-color;
+    color: white;
+  }
+  .close{
+    color: white;
+    opacity: 1;
+  }
 }
 

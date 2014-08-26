@@ -5,41 +5,46 @@
 
 $( document ).ready(function() {
 
-    var initWidth = $('.img-background').width();
-    $('.img-background').height(initWidth);
+  var initWidth = $('.image-column').width();
+  $('.img-background').height(initWidth - 30);
+
+  var pricingHeight = $('#agency-column').height();
+  $('#business-column').height(pricingHeight + 50);
+  $('#personal-column').height(pricingHeight);
 
   $('#dashboard_toggle').on('click', function() {
     $("#dashboard").toggleClass('dashboard-closed');
     $("#brand-page").toggleClass('dashboard-closed');
     $("#dashboard").toggleClass('display-none');
     $('#mobile-nav').toggleClass('open');
-        var divWidth = $('.img-background').width();
+      var divWidth = $('.img-background').width();
       $('.img-background').height(divWidth);
     // $("#multi_asset_form").animate({'left': '-500px'}, 500);
+  });
 
+  $(window).resize(function(){
+    var divWidth = $('.img-background').width();
+    $('.img-background').height(divWidth);
+
+    var pricingHeight = $('#agency-column').height();
+    $('#business-column').height(pricingHeight + 50);
+    $('#personal-column').height(pricingHeight);
   });
 
   //Dropdown for Logo Files
 
-
-    
-
-  var initWidth = $('.img-background').width();
-    $('.img-background').height(initWidth);
-
-  
-  $(window).resize(function(){
-      var divWidth = $('.img-background').width();
-      $('.img-background').height(divWidth);
-  });
-
-
+  $('.switch_brand').on('click', function(){
+    alert('hello')
+  })
   $('.dropdown-toggle').dropdown()
 
   $("#primary_capital_letters").fitText(2.5);
   $("#primary_lower_case_letters").fitText(1.9);
   $("#secondary_capital_letters").fitText(2.5);
   $("#secondary_lower_case_letters").fitText(1.9);
+
+
+
 
 
 });

@@ -1,11 +1,90 @@
 <%= render 'layouts/header' unless @disable_nav %>
 
 
+
 <section id="home_landing" class="row">
+  <div id="parallax-bg">
+    <div class="container">
+      <div class="col-sm-6 " id="left-landing-box">
+        <h3>All Your Brand Assets<h3>
+        <h3>In One Place</h3>
+        <button class="btn bam_btn bam_btn_alt" id="sign_up_btn" data-toggle="modal" data-target="#signUpModal">Sign Up
+        </button>
+      </div>
+      <div class="col-sm-6" id="right-landing-box">
+        <img src="/assets/cloud.png" class="img-responsive">
+      </div>
+    </div>
+  </div>
+<!--   <div class="call-to-action">
+      <button class="btn bam_btn bam_btn_alt" id="sign_up_btn" data-toggle="modal" data-target="#signUpModal">
+      Sign Up
+    </button>
+  </div> -->
+ 
+    
+ 
+
+
+
+  <!-- Request Acces Modal -->
+  <div class="modal fade" id="signUpModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+          <h4 class="modal-title" id="requestAccessLabel">Sign Up</h4>
+        </div>
+        <div class="modal-body">
+          <%= render 'sign_up_form' %>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  </div>
 
 </section>
 
-<section id="sign_up_area" class="row">
+<section id="pricing" class="row">
+  <div class="container">
+    <div class="col-sm-4">
+      <div class="pricing-column" id="personal-column">
+      <h2>Personal Brand</h2>
+      <h3>Free</h3>
+      <hr/>
+        <ul>
+          <li><span class="tick">&#10003</span>3 File Uploads</li>
+        </ul>
+      </div>
+    </div>
+    <div class="col-sm-4">
+      <div class="pricing-column" id="business-column">
+      <h2>Business</h2>
+      <h3>$5/month</h3>
+      <hr/>
+        <ul>
+          <li><span class="tick">&#10003</span>Unlimited Uploads  </li>
+          <li><span class="tick">&#10003</span>Unlimited Users</li>
+          <li><span class="tick">&#10003</span>Complete Privacy Control</li>
+        </ul>
+      </div>
+    </div>
+    <div class="col-sm-4">
+      <div class="pricing-column" id="agency-column">
+      <h2>Agencies</h2>
+      <h3>$20/month</h3>
+      <hr/>
+        <ul>
+          <li><span class="tick">&#10003</span>Unlimited Uploads</li>
+          <li><span class="tick">&#10003</span>Unlimited Brands</li>
+          <li><span class="tick">&#10003</span>Unlimited Users</li>
+          <li><span class="tick">&#10003</span>White Label</li>
+          <li><span class="tick">&#10003</span>Complete Privacy Control</li>
+        </ul>
+      </div>
+    </div>
+  </div>
 
 </section>
 
