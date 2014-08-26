@@ -2,6 +2,13 @@
   margin-top: 52px;
 }
 
+#about{
+  padding:45px;
+  p{
+    font-size: 1.2em;
+  }
+}
+
 
 #parallax-bg{
   height: 600px;
@@ -13,13 +20,22 @@
   background-size: cover;
 }
 
+@media (max-width: 1079px) {
+  #parallax-bg{
+    height: 400px;
+  }
+  }
+
 #left-landing-box{
-  margin-top: 200px;
+  margin-top: 150px;
 
   h3{
-    font-size: 4em;
+    font-size: 3.6em;
+    padding: 10px;
     color: white;
+    border-bottom: solid 4px #666;
   }
+
 }
 
 #sign_up_btn{
@@ -40,6 +56,9 @@
 
 
 #pricing{
+  background-color: #3ac1d4;
+  // background-color: $accent-color;
+  // background-image: url("/assets/computer.jpg");
   padding: 45px;
 
   h2, h3{
@@ -68,26 +87,22 @@
 #personal-column, #agency-column{
   position: relative;
   top: 50px;
-  border: solid 3px #666;
+  
   transition: all 0.5s;
 }
-#personal-column:hover, #agency-column:hover{
-  border: solid 3px $primary-color;
-}
+
 
 #agency-column{
   height: auto;
 }
 
-#business-column{
-  border: solid 3px $primary-color;
-}
+
 .pricing-column{
-  
+  background: white;
   height: auto;
   padding: 15px;
   font-size: 1.2em;
-
+ border: solid 3px #666;
  }
 
 #search_form_area{

@@ -64,19 +64,7 @@
       margin: 4px auto;
       color: black;
     }
-<<<<<<< HEAD
-    #upload_status{
-      background: #666;
-    }
-    .file-upload {
-      position: relative;
-      margin: 0 auto;
-      height: auto;
-      width: 90%;
-      border-radius: 4px;
-      border:0px;
-      background-color: #666;
-=======
+
     #logo-upload-status .file-upload-status {
       position: relative;
       margin: 0 auto;
@@ -85,7 +73,7 @@
       background-color: #666;
       border-radius: 4px;
       padding: 5px;
->>>>>>> 0273774fdf1b3160d27c396896ec4cb395d0ac1d
+
       .file-upload-name {
         position: relative;
         display: block;
@@ -158,6 +146,14 @@ $whiteLight: #fafafa;
 
 .hidden-field{
   width: 0px;
+}
+
+#font-select{
+  margin-top: 5px;
+  background-color: #666;
+  color: white;
+  width: 100%;
+  height: 30px;
 }
 
 

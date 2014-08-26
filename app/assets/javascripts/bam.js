@@ -20,7 +20,15 @@ $( document ).ready(function() {
       var divWidth = $('.img-background').width();
       $('.img-background').height(divWidth);
     // $("#multi_asset_form").animate({'left': '-500px'}, 500);
+
   });
+
+  $('#close-notification-icon').on('click', function() {
+    $('#access-request-notification').addClass('close-notification');
+
+
+
+});
 
   $(window).resize(function(){
     var divWidth = $('.img-background').width();

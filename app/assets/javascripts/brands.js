@@ -207,7 +207,7 @@ function hexToCMYK (hex) {
   };  
 
   function addTypography(data){
-    var fontName = data.name,
+    var fontName = data.font_family,
         fontFamily = data.font_family,
         upperCaseLetters = "ABCDEFGHIJKLMNOPQRSTUVWXYZ",
         $typo = $("#typography"),

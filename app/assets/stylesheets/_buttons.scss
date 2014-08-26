@@ -19,6 +19,18 @@
   font-size: 2em;
 }
 
+.bam_btn_alt_inverse{
+  background: transparent;
+  border: solid 2px $alt-color;
+  border-radius: 5px; 
+}
+
+.bam_btn_alt_inverse:hover{
+  background: $alt-color;
+  border: solid 2px $alt-color;
+  color: #444;
+}
+
 // .bam_btn:hover{
 //   border-bottom: solid 3px $accent-color;
 //   margin-bottom: -3px;

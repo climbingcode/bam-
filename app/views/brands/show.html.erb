@@ -14,6 +14,10 @@
     <div class="tab-content">
 
       <div id="dashboardTab" class="tab-pane fade in active">
+        <div id="access-request-notification">
+        <p>You Have 2 Requests
+        <button class="bam_btn_alt_inverse">View</button><span class="times" id="close-notification-icon">&times;</span></p>
+        </div>
         <%= render 'form' %>  <!--render dashboard here -->
       </div>
       <div id="accountTab" class="tab-pane fade">
@@ -31,6 +35,7 @@
       <div id="dashboard_toggle">
         <a id="mobile-nav" class="menu-nav" ></a>
       </div>
+
 
     <h1 id="brand-name-header"><%= Brand.find(session[:current_brand]).name.capitalize %></h1> 
     <%= render 'brand_nav' %>  

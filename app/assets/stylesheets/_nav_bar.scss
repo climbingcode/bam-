@@ -12,6 +12,8 @@ nav{
 
 }
 
+
+
 .navbar-brand{
   color: $primary-color;
 }
@@ -26,19 +28,22 @@ nav{
   padding-right: 15px;
 
 }
+
+.sign-in-button{
+  margin-top: 2px;
+}
   .form-group{
     display: inline!important;
   }
 
 .navbar-form{
   .form-control{
-
     display: inline;
-    width: 70px;
   }
 }
 
 #password_input, #username_input  {
+  font-size: 1.2em;
   width: 150px;
   border: solid 1px #999;
   transition: all 1s;

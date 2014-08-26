@@ -107,11 +107,27 @@
       <div class="panel-body">
           <div class="asset_module">
           <%= form_for Font.new, url: user_brand_fonts_path(params[:user_id], params[:id], format: :json), remote: true, authenticity_token: true, method: 'post' do |f| %>
-          <%= f.label(:name, "Font Name") %>
-          <%= f.text_field(:name, class: "form-control") %>
-          <%= f.label(:font_family, "Font Family") %>
-          <%= f.text_field(:font_family, class: "form-control") %>
+
           <%= f.hidden_field(:brand_id, :value => params[:id]) %>
+          <%= select_tag( :font_family,
+          "<option>Abril Fatface</option>
+          <option>Arimo</option>
+          <option>Arvo</option>
+          <option>Droid Sans</option>
+          <option>Droid Serif</option>
+          <option>Exo</option>
+          <option>Josefin Slab</option>
+          <option>Lato</option>
+          <option>Nobile</option>
+          <option>Old Standard TT</option>
+          <option>Open Sans</option>
+          <option>Playfair Display</option>
+          <option>PT Sans</option>
+          <option>Roboto</option>
+          <option>Source Sans Pro</option>
+          <option>Raleway</option>
+          <option>Ubuntu</option>
+          <option>Vollkorn</option>".html_safe) %>
           <%= f.submit('Add font', class: "bam_btn_inverse btn") %>
         <% end %>
         </div>
