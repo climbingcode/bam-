@@ -68,17 +68,19 @@ var colorOperations = {
         colorWrapper = $("<div>").attr("id", data.id).addClass("col-sm-4 swatch-wrapper"),
         targetColor = "#"+data.id, 
         copyAlert = $("<div>").addClass('copy-alert'),
+        copyAlertMessage = $('<p>').html("Copied!"),
         colorSwatch = $("<div>").addClass("swatch").css("background-color", "#"+data.hex),
         colorList = $("<ul>").addClass("color-list"),
         colorName = $("<li>").addClass("color-name").html(data.name),
-        colorHex = $("<li>").html("CSS HEX: <span class='copy_text' data-clipboard-text>#" + upperCaseHex + "</span>"),
+        colorHex = $("<li>").html("CSS HEX: <span class='copy_text' data-clipboard-text>#" + upperCaseHex + "</span><img src='/assets/clipboard.png' class='clipboard'/>"),
         colorRgb = $("<li>").html("RGB: <span>" + r + ", " + g + ", "+ b + "</span>"),
         colorCmyk = $("<li>").html("CMYK: <span>" + colorOperations.hexToCMYK(data.hex) + "</span>"),
         colorListItems = targetColor + " ul.color-list",
-        colorSass = $("<li>").html("Sass:></span>");
+        colorSass = $("<li>").html("Sass: <span class='sass'>$" + data.name +  ": " + "#" + upperCaseHex + ";</span>");
     
     $color.append(colorWrapper);
     colorSwatch.appendTo(colorWrapper);
+    copyAlertMessage.appendTo(copyAlert);
     copyAlert.appendTo(colorSwatch);
     colorList.appendTo(colorWrapper);
     colorName.appendTo(colorListItems);
@@ -105,7 +107,15 @@ var colorOperations = {
 
         client.on( 'aftercopy', function(event) {
           console.log('Copied text to clipboard: ' + event.data['text/plain']);
-          $('.copy-alert').toggleClass('copied')
+
+          var copyAlert = $(event.target).parents('.swatch-wrapper').find('.copy-alert')
+  
+          copyAlert.toggleClass('copied')
+        
+          setTimeout(function () {  
+            copyAlert.toggleClass('copied')
+          }, 1000); 
+
         });
 
       });
