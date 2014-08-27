@@ -1,7 +1,7 @@
 var colorOperations = {
 
-  cutHex: function(h) {
-    return (h.charAt(0)=="#") ? h.substring(1,7):h
+  cutHex: function(hex) {
+    return (hex.charAt(0)=="#") ? hex.substring(1,7):hex;
   },
 
   // Converting Hex to R, G and B values.

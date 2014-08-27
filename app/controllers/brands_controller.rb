@@ -29,7 +29,7 @@ class BrandsController < ApplicationController
       @user = User.find(params[:user_id])
       @brand = Brand.find(params[:id])
       @brands = @user.brands
-      # @colors = @brand.colors.all
+      @colors = @brand.colors.all
       @logos = @brand.logos.all
       @fonts = @brand.fonts.all
       @copies = @brand.copies.all
@@ -105,4 +105,30 @@ class BrandsController < ApplicationController
     def brand_params
       params[:brand]
     end
+
+
+    def hex_convert_to_red(hex)
+      hex_red = hex.chomp[0,2]
+      hex_red.to_i(16)
+    end
+
+    def hex_convert_to_green(hex)
+      hex_green = hex.chomp[2,2]
+      hex_green.to_i(16)
+    end
+
+    def hex_convert_to_blue(hex)
+      hex_blue = hex.chomp[4,5]
+      hex_blue.to_i(16)
+    end
+
+    def rgb_concatenate(hex)
+      r = hex_convert_to_red(hex)
+      g = hex_convert_to_green(hex)
+      b = hex_convert_to_blue(hex)
+
+      "#{r}, #{g}, #{b}" 
+    end
+
+
 end

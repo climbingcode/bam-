@@ -30,7 +30,9 @@ class ColorsController < ApplicationController
   # POST /colors.json
   def create
     @color = Color.new(color_params)
-
+    if @color.hex[0] == "#"
+      @color.hex = @color.hex[1,7];
+    end
     respond_to do |format|
       if @color.save  
         format.html { redirect_to user_brand_path(current_user, @color.brand_id), notice: 'Color was successfully created.' }
