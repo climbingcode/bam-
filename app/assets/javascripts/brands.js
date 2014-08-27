@@ -26,15 +26,6 @@ var colorOperations = {
 
      hex = (hex.charAt(0)=="#") ? hex.substring(1,7) : hex;
 
-     // if (hex.length != 6) {
-     //  alert ('Invalid length of the input hex value!');   
-     //  return; 
-     // }
-     // if (/[0-9a-f]{6}/i.test(hex) != true) {
-     //  alert ('Invalid digits in the input hex value!');
-     //  return; 
-     // }
-
      var r = colorOperations.hexToR(hex); 
      var g = colorOperations.hexToG(hex); 
      var b = colorOperations.hexToB(hex); 
@@ -49,7 +40,11 @@ var colorOperations = {
      computedM = 1 - (g/255);
      computedY = 1 - (b/255);
 
+     console.log(computedC, computedM, computedY);
+
      var minCMY = Math.min(computedC,Math.min(computedM,computedY));
+
+     console.log(minCMY);
 
      computedC = Math.round( 100 * (computedC - minCMY) / (1 - minCMY)) ;
      computedM = Math.round( 100 * (computedM - minCMY) / (1 - minCMY)) ;
