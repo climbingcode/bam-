@@ -387,7 +387,7 @@ $( document ).ready(function() {
   });
 
   // BUSINESS CARD METHODS
-
+  
   $('.open_business_card_modal').on('click', function(e) {
     e.preventDefault()    
     $('.business_card_pdf').addClass('business_card_preview');
@@ -413,8 +413,16 @@ $( document ).ready(function() {
         $('#business_card_image').find('img').remove();
       };
       $(source).appendTo('#business_card_image');
- 
   });
 
+  // FIND ALL STYLES
+
+  $('#business_card_generation').on('click', function(e) {
+    styles = document.getElementsByClassName('business_card_pdf')
+    console.log(styles)
+    alert('hello')
+  
+  
+  });
 
 });
