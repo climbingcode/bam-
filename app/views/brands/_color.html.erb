@@ -15,8 +15,10 @@
       </div>
       <ul class="color-list">
         <li class="color-name"><%= color.name %><a href="#" class="delete-asset"></a></li>
-        <li>CSS HEX: <span class="copy_text" data-clipboard-text=""><%= color.hex %></li>
-         
+        <li>CSS HEX: <span class="copy_text" data-clipboard-text="">#<%= color.hex %></li>
+        <li>RGB: <%= rgb_to_show(color.hex) %></li>
+        <li>CMYK: </li>
+        <li>Sass:</li>          
       </ul>
     </div>
   <% end %>
