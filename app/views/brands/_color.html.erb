@@ -1,10 +1,5 @@
 <section id="color" class="row">
 <h2>Colors</h2>
-<!-- <div style="display:none">
-     <%= form_for Color.new, url: user_brand_colors_path(params[:user_id], params[:id], format: :json) , remote: true, authenticity_token: true, method: 'get', html: {id: 'load_color' } do |f|%>
-      <%= f.hidden_field(:brand_id, :value => params[:id]) %>
-    <% end %> 
-  </div>  -->
 
 <% if @colors.size > 0 %>
   <% @colors.each do | color | %>
@@ -14,11 +9,11 @@
         </div>
       </div>
       <ul class="color-list">
-        <li class="color-name"><%= color.name %><a href="#" class="delete-asset"></a></li>
-        <li>CSS HEX: <span class="copy_text" data-clipboard-text="">#<%= color.hex %></li>
+        <li class="color-name"><%= color.name %><a href="#" class="delete-asset" data-colorid="<%= color.id %>"></a></li>
+        <li>CSS HEX: <span class="copy_text" data-clipboard-text="">#<%= color.hex.upcase %></li>
         <li>RGB: <%= rgb_to_display(color.hex) %></li>
         <li>CMYK: <%= hex_to_cmyk(color.hex)%></li>
-        <li>Sass:<span class="sass"> $<%= color.name %>: #<%= color.hex %>;</li>          
+        <li>Sass:<span class="sass"> $<%= color.name %>: #<%= color.hex.upcase %>;</li>          
       </ul>
     </div>
   <% end %>
