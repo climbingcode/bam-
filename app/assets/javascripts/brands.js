@@ -67,27 +67,66 @@ var colorOperations = {
         upperCaseHex = data.hex.toUpperCase(),
         colorWrapper = $("<div>").attr("id", data.id).addClass("col-sm-4 swatch-wrapper"),
         targetColor = "#"+data.id, 
+        copyAlert = $("<div>").addClass('copy-alert'),
         colorSwatch = $("<div>").addClass("swatch").css("background-color", "#"+data.hex),
         colorList = $("<ul>").addClass("color-list"),
         colorName = $("<li>").addClass("color-name").html(data.name),
-        colorHex = $("<li>").html("CSS HEX: <span>#" + upperCaseHex + "</span>"),
+        colorHex = $("<li>").html("CSS HEX: <span class='copy_text' data-clipboard-text>#" + upperCaseHex + "</span>"),
         colorRgb = $("<li>").html("RGB: <span>" + r + ", " + g + ", "+ b + "</span>"),
         colorCmyk = $("<li>").html("CMYK: <span>" + colorOperations.hexToCMYK(data.hex) + "</span>"),
         colorListItems = targetColor + " ul.color-list",
-        colorSass = $("<li>").html("Sass: <span></span>");
+        colorSass = $("<li>").html("Sass:></span>");
     
     $color.append(colorWrapper);
     colorSwatch.appendTo(colorWrapper);
+    copyAlert.appendTo(colorSwatch);
     colorList.appendTo(colorWrapper);
     colorName.appendTo(colorListItems);
     colorHex.appendTo(colorListItems);
     colorRgb.appendTo(colorListItems);
     colorCmyk.appendTo(colorListItems);
     colorSass.appendTo(colorListItems);
+
+
+     var client = new ZeroClipboard( $('.copy_text') );
+
+      client.on( 'ready', function(event) {
+
+        client.on( 'copy', function(event) {
+          var textToCopy = event.target.innerHTML
+          event.clipboardData.setData('text/plain', textToCopy);
+        });
+
+        // $('.copy_text').on('click', function(event){
+        //   var targetText = event.target.innerHTML
+        //   console.log(targetText)
+        //   event.clipboardData.setData('text/plain', targetText);
+        // })
+
+        client.on( 'aftercopy', function(event) {
+          console.log('Copied text to clipboard: ' + event.data['text/plain']);
+          $('.copy-alert').toggleClass('copied')
+        });
+
+      });
+
+      client.on( 'error', function(event) {
+        // console.log( 'ZeroClipboard error of type "' + event.name + '": ' + event.message );
+        ZeroClipboard.destroy();
+      });
+
+
+
   }
 
 
+
+
 };
+
+
+
+
 
 
 
@@ -222,7 +261,7 @@ $( document ).ready(function() {
         success: function(response){
           console.log(response);
           onDeleteFadeOut(response);
-          onActionAdvisory(response, "Logo deleted");
+          onActionAdvisory(response, "Logo Deleted");
           }
       });
 
@@ -327,7 +366,7 @@ $( document ).ready(function() {
       console.log("success!", data);
       var assetName = data.name;
       addNewLogo(data);
-      onActionAdvisory(assetName, "logo uploaded")
+      onActionAdvisory(assetName, "Logo Uploaded")
       $("#logo_name").val("");
       $("#logo_description").val("");
       clearFileInput( $("#logo_path") );

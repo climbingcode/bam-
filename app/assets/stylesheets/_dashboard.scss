@@ -1,11 +1,16 @@
 #dashboard{
   background: #333;
-  padding-top: 10px;
+  // padding-top: 10px;
   transition: all 1s;
+  height: auto;
+}
+
+.display-none{
+  display: none;
 }
 
   .close-notification{
-    display: none;
+    transform: translateX(-600px);
     transition: all 1s;
   }
 
@@ -16,10 +21,13 @@
   margin-right: 15px;
   margin-left: 15px;
   color: $alt-color;
-  border: solid 3px $alt-color;
+  border: solid 2px $alt-color;
   border-radius: 5px;
   p{
     display: inline;
+  }
+  a{
+    color: $alt-color;
   }
   button{
     display: inline;
@@ -28,7 +36,7 @@
   .times{
     font-size: 2em;
     float: right;
-    margin-top: -5px;
+    margin-top: -8px;
     margin-bottom: 15px;
   }
 
@@ -40,10 +48,14 @@
   margin-left: -45px;
   margin-top: -40px;
   z-index: 1000;
-  background: $primary-color;
+  background: transparent;
   width: 30px;
   height: 30px;
   border-radius:  0px 5px 5px 0px;
+  border-top: solid 2px $primary-color;
+  border-bottom: solid 2px $primary-color;
+  border-right: solid 2px $primary-color;
+ 
   color: white;
   box-shadow: 0px 0px 1px 1px rgba(0, 0, 0, 0.1);
 }
@@ -58,6 +70,17 @@
   overflow-y: auto;
 }
 
+.form-control::-moz-placeholder {
+  color: #ccc;
+  opacity: 1;
+}
+.form-control:-ms-input-placeholder {
+  color: #ccc;
+}
+.form-control::-webkit-input-placeholder {
+  color: #ccc;
+}
+
 .nav-tabs{
   width: auto;
   li{
@@ -70,11 +93,14 @@
 
 
 #dashboard-accordion, #permissions_form{
+  .panel-group{
+    transition: all 1s;
+  }
   .panel{
     border-radius: 0px;
     border: none;
     background: #444;
-    color: #999;
+    color: #ccc;
   }
  a {
   color: #999;
@@ -142,11 +168,11 @@
 
 
 .menu-nav {
-  background:url(/assets/menu-mobile.png) 0 -16px no-repeat;
+  background:url(/assets/dashboard_toggle.png) 0 -16px no-repeat;
   width: 16px;
   height: 16px;
   display: block;
-  margin: 7px 0px 0px 6px;
+  margin: 6px 0px 0px 6px;
   
   -webkit-transform: rotate(0deg);
      -moz-transform: rotate(0deg);
@@ -154,15 +180,15 @@
      -o-transform: rotate(0deg);
       transform: rotate(0deg);
   
-  -webkit-transition: -webkit-transform 250ms ease-out 0s;  
-     -moz-transition: -moz-transform 250ms ease-out 0s;
-     -o-transition: -o-transform 250ms ease-out 0s;
-        transition: transform 250ms ease-out 0s;
+  -webkit-transition: -webkit-transform 1s ease-out 0s;  
+     -moz-transition: -moz-transform 1s ease-out 0s;
+     -o-transition: -o-transform 1s ease-out 0s;
+        transition: transform 1s ease-out 0s;
 }
 
 .menu-nav.open {
   background-position:  1px 0px;
-  margin: 6.5px 0px 0px 6.5px;
+  margin: 5px 0px 0px 6px;
       
   -webkit-transform: rotate(-180deg);
      -moz-transform: rotate(-180deg);
@@ -170,10 +196,10 @@
      -o-transform: rotate(-180deg);
       transform: rotate(-180deg);
   
-  -webkit-transition: -webkit-transform 250ms ease-out 0s;  
-     -moz-transition: -moz-transform 250ms ease-out 0s;
-     -o-transition: -o-transform 250ms ease-out 0s;
-        transition: transform 250ms ease-out 0s;  
+  -webkit-transition: -webkit-transform 1s ease-out 0s;  
+     -moz-transition: -moz-transform 1s ease-out 0s;
+     -o-transition: -o-transform 1s ease-out 0s;
+        transition: transform 1s ease-out 0s;  
 }
 
 

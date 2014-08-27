@@ -18,9 +18,11 @@
                 <%= f.text_field(:name, class: "form-control", :placeholder => 'Logo Name') %>
                <!--  <%= f.label(:description, "What is the logo used for?") %> -->
                 <%= f.text_field(:description, class: "form-control", :placeholder => 'Logo Description') %>
-                <%= f.label(:permission, "Private") %>
-                <%= f.check_box(:permission) %>
+                <div class="logo-checkbox-wrapper">
+                <%= f.check_box(:permission, :id => "check-private") %>
+                <%= f.label(:permission, "Private", for: "check-private", class: "check-box") %>
                 <%= f.label(:path, "Add a logo") %>
+                </div>
                 <%= f.file_field(:path, class: "form-control") %>
                 <p>Click or drag a file into the section above to upload</p> 
                 <section id="logo-upload-status">
@@ -65,7 +67,7 @@
             <%= f.text_field(:name, class: "form-control", :placeholder => 'Color Name' ) %>
 
             <%= f.hidden_field(:brand_id, :value => params[:id], class: "hidden-field") %>
-            <%= f.submit('Add colour', class: "bam_btn_inverse btn") %>
+            <%= f.submit('Add colour', class: "bam_btn_grey btn") %>
 
             <% end %>
           </div>
@@ -90,7 +92,7 @@
               <%= f.label(:text, "Copy text") %>
               <%= f.text_area(:text, class: "form-control") %>
               <%= f.hidden_field(:brand_id, :value => params[:id]) %>
-              <%= f.submit('Add copy', class: "bam_btn_inverse btn") %>
+              <%= f.submit('Add copy', class: "bam_btn_grey btn") %>
             <% end %>
         </div>
       </div>
@@ -109,7 +111,7 @@
           <%= form_for Font.new, url: user_brand_fonts_path(params[:user_id], params[:id], format: :json), remote: true, authenticity_token: true, method: 'post' do |f| %>
 
           <%= f.hidden_field(:brand_id, :value => params[:id]) %>
-          <%= select_tag( :font_family,
+          <%= select_tag :font_family,
           "<option>Abril Fatface</option>
           <option>Arimo</option>
           <option>Arvo</option>
@@ -127,8 +129,9 @@
           <option>Source Sans Pro</option>
           <option>Raleway</option>
           <option>Ubuntu</option>
-          <option>Vollkorn</option>".html_safe) %>
-          <%= f.submit('Add font', class: "bam_btn_inverse btn") %>
+          <option>Vollkorn</option>".html_safe %>
+          <%= f.submit('Add font', class: "bam_btn_grey btn") %>
+
         <% end %>
         </div>
       </div>
@@ -151,7 +154,7 @@
             <%= f.label(:text, "Guideline") %>
             <%= f.text_area(:text, class: "form-control") %>
             <%= f.hidden_field(:brand_id, :value => params[:id]) %>
-            <%= f.submit('Add Guideline', class: "bam_btn btn") %>
+            <%= f.submit('Add Guideline', class: "bam_btn_grey btn") %>
           <% end %>
         </div>
       </div>
@@ -177,7 +180,7 @@
             <%= f.label(:permissions, "Public") %>
             <%= f.check_box(:permissions) %>
             <%= f.hidden_field(:brand_id, :value => params[:id]) %>
-            <%= f.submit("Add Asset", class: "bam_btn btn") %>
+            <%= f.submit("Add Asset", class: "bam_btn_grey btn") %>
           <% end %>
         </div>
       </div>
@@ -193,7 +196,7 @@
     <div id="collapseSeven" class="panel-collapse collapse">
       <div class="panel-body">
         <div class="asset_module">
-          <button class="btn btn-primary btn-sm" data-toggle="modal" data-target="#businessCardModal">
+          <button class="btn bam_btn btn-sm" data-toggle="modal" data-target="#businessCardModal">
               Business Cards
           </button>     
         </div>
@@ -202,8 +205,7 @@
   </div>
 
 
-  <h2 style="color:white"><%= Brand.find(session[:current_brand]).name.capitalize %></h2>
-  <h2 style="color:white"><%= current_user.firstname.capitalize %></h2>
+
 
     </div><!--panel-group-->
   </div><!--#multi-asset-form-->
