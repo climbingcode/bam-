@@ -59,40 +59,69 @@ var colorOperations = {
      return [computedC + "% ", " " + computedM + "% ", " " + computedY + "% ", " " + computedK + "%"];
   },
 
+  destroyColor: function(path, elementid) {
+      $.ajax({
+        type: "DELETE",
+        url: path,
+        dataType: "json",
+        success: function(response){
+          console.log(response);
+          // onDeleteFadeOut(response);
+          $("#color"+ elementid).fadeOut('fast', function(){
+            $(this).remove();
+          });
+          onActionAdvisory(response, "Color deleted");
+        }
+      })
+  },
+
   createNewColor: function(data) {
-        var $color = $("#color");
-        var r = colorOperations.hexToR(data.hex);
-        var g = colorOperations.hexToG(data.hex);
-        var b = colorOperations.hexToG(data.hex);
-        var upperCaseHex = data.hex.toUpperCase();
-        var colorWrapper = $("<div>").attr("id", data.id).addClass("col-sm-4 swatch-wrapper").data("logoid", data.id);
-        var targetColor = "#"+data.id;
-        var colorSwatch = $("<div>").addClass("swatch").css("background-color", "#"+data.hex);
-        var colorList = $("<ul>").addClass("color-list");
-        var colorName = $("<li>").addClass("color-name").html(data.name);
-        var colorDelete = $("<a>").addClass("delete-asset");
-        var colorHex = $("<li>").html("CSS HEX: <span>#" + upperCaseHex + "</span>");
-        var colorRgb = $("<li>").html("RGB: <span>" + r + ", " + g + ", "+ b + "</span>");
-        var colorCmyk = $("<li>").html("CMYK: <span>" + colorOperations.hexToCMYK(data.hex) + "</span>");
-        var colorListItems = targetColor + " ul.color-list";
-        var colorSass = $("<li>").html("Sass: <span></span>");
+    var $color = $("#color");
+    var r = colorOperations.hexToR(data.hex);
+    var g = colorOperations.hexToG(data.hex);
+    var b = colorOperations.hexToG(data.hex);
+    var upperCaseHex = data.hex.toUpperCase();
+    var colorWrapper = $("<div>").attr("id", "color" + data.id).addClass("col-sm-4 swatch-wrapper");
+    var colorSwatch = $("<div>").addClass("swatch").css("background-color", "#"+data.hex);
+    var colorList = $("<ul>").addClass("color-list");
+    var colorDelete = $("<a>").addClass("delete-asset");
+    var colorName = $("<li>").addClass("color-name").html(data.name).data("colorid", data.id);
+    console.log(colorName.data());
+    var colorHex = $("<li>").html("CSS HEX: <span>#" + upperCaseHex + "</span>");
+    var colorRgb = $("<li>").html("RGB: <span>" + r + ", " + g + ", "+ b + "</span>");
+    var colorCmyk = $("<li>").html("CMYK: <span>" + colorOperations.hexToCMYK(data.hex) + "</span>");
+    var colorSass = $("<li>").html("Sass: <span></span>");
+    console.log(colorWrapper);
     
     $color.append(colorWrapper);
     colorSwatch.appendTo(colorWrapper);
     colorList.appendTo(colorWrapper);
-    colorName.appendTo(colorListItems);
-    colorDelete.appendTo(colorName);
-    colorHex.appendTo(colorListItems);
-    colorRgb.appendTo(colorListItems);
-    colorCmyk.appendTo(colorListItems);
-    colorSass.appendTo(colorListItems);
+    colorName.appendTo(colorList);
+    colorDelete.appendTo(colorName);  
+    
+
+
+  $(".color-name  .delete-asset").on("click", function(event){
+    event.preventDefault();
+    var $target = $(event.target);
+    var colorId = $target.parent().data("colorid");
+    var colorHolder = ".color-swatch";
+    var path = window.location.pathname + "/colors/"+ colorId;
+    var $swatch = $("#color" + colorId);
+    console.log(path, $swatch);
+    
+    colorOperations.destroyColor(path, colorId);
+
+    console.log( path, colorId );
+
+    });
   },
 
   loadColors: function(colorArray){
-        var i = 0,
-        len = colorArray.length; 
+    var i = 0;
+    var len = colorArray.length; 
     if(len === 0) {
-      $("<p>").html("Looks like your brand needs some colors!");
+      $("<h3>").html("Looks like your brand needs some colors!");
     } else {
       for(i;i < len; i++){
         var color = colorArray[i]
@@ -108,10 +137,90 @@ var colorOperations = {
 
 var logoOperations = {
 
+  logoAnimateOnDelete: function(asset){
+    $("#logo" + asset.id).animate({
+      "width" : "0px"
+    }, 500, function(){
+      $(this).css("display", "none");
+    });
+  },
+
+
+  destroyLogoAjax: function(path){ 
+
+    $.ajax({
+      type: "DELETE",
+      url: path,
+      dataType: "json",
+      success: function(response){
+        console.log(response);
+        logoOperations.logoAnimateOnDelete(response);
+        onActionAdvisory(response, "Logo deleted");
+      }
+    });
+  },
+
+  addNewLogo: function(logo) {
+
+    var logoId = logo.result.id;
+    var logoPath = logo.result.path.url;
+    var logoName = logo.result.name;
+    var logoDescription = logo.result.description;
+    var $logoParent = $("#logos");
+    var logoWrapper = $("<div>").attr("id", "logo" + logoId).addClass("col-sm-4").data("logoid", logoId);
+    var logoBackground = $("<div>").addClass("img-background").css("height", "339px");
+    var logoPicture = $("<img>").attr("src", logoPath).addClass("img-responsive logo");
+    var logoMeta = $("<div>").addClass("logo-meta");
+    var logoDeleteLink = $("<a>").attr("href", "#").addClass("delete-asset"); 
+    var logoLabel = $("<label>").addClass("img-label").html(logoName);
+    var logoOptions = $("<div>").addClass("logo-options");
+    var logoCaret = $("<span>").addClass("caret");
+    var logoDropDownLink = 
+          $("<a>").attr({
+              "href" : "#",
+              "data-toggle" : "dropdown"
+            }).addClass("dropdown-toggle").html("Options");
+    var logoMenu = $("<ul role='menu'>").addClass("dropdown-menu");
+    var logoMenuHeader = $("<li>").addClass("dropdown-header").html("Download");
+    var logoMenuDivider = $("<li>").addClass("divider");
+    var logoAi = $("<li>");
+    var logoPng = $("<li>");
+    var logoJpg = $("<li>");
+    var logoToAiLink = $("<a>").attr("href", "#").html(logoName + ".ai");
+    var logoToPngLink = $("<a>").attr("href", "#").html(logoName + ".png");
+    var logoToJpgLink = $("<a>").attr("href", "#").html(logoName + ".jpg");
+
+    logoBackground.appendTo(logoWrapper);
+    logoPicture.appendTo(logoBackground);
+    logoMeta.appendTo(logoWrapper);
+    logoDeleteLink.appendTo(logoMeta);
+    logoLabel.appendTo(logoMeta);
+    logoOptions.appendTo(logoMeta);
+    logoOptions.html(logoDropDownLink);
+    logoDropDownLink.appendTo(logoOptions);
+    logoCaret.appendTo(logoDropDownLink);
+    logoMenu.appendTo(logoOptions);
+    logoMenuHeader.appendTo(logoMenu);
+    // logoMenuDivider.appendTo(logoMenu);
+    logoAi.appendTo(logoMenu);
+    logoToAiLink.appendTo(logoAi);
+    logoPng.appendTo(logoMenu);
+    logoToPngLink.appendTo(logoPng);
+    logoJpg.appendTo(logoMenu);
+    logoToJpgLink.appendTo(logoJpg);
+    
+
+     $logoParent.append(logoWrapper);
+
+
+    $('.dropdown-toggle').dropdown();
 
 
 
-}
+  } 
+
+};
+
 
 
 
@@ -132,113 +241,101 @@ $( document ).ready(function() {
 
   
 
-  function addNewLogo(logo){
+  // function addNewLogo(logo){
 
-  var logoId = logo.result.id;
-  var logoPath = logo.result.path.url;
-  var logoName = logo.result.name;
-  var logoDescription = logo.result.description;
-  var $logoParent = $("#logos");
-  var logoWrapper = $("<div>").attr("id", "logo" + logoId).addClass("col-sm-4").data("logoid", logoId);
-  var logoBackground = $("<div>").addClass("img-background").css("height", "339px");
-  var logoPicture = $("<img>").attr("src", logoPath).addClass("img-responsive logo");
-  var logoMeta = $("<div>").addClass("logo-meta");
-  var logoDeleteLink = $("<a>").attr("href", "#").addClass("asset-delete"); 
-  var logoLabel = $("<label>").addClass("img-label").html(logoName);
-  var logoOptions = $("<div>").addClass("logo-options");
-  var logoCaret = $("<span>").addClass("caret");
-  var logoDropDownLink = 
-        $("<a>").attr({
-            "href" : "#",
-            "data-toggle" : "dropdown"
-          }).addClass("dropdown-toggle").html("Options");
-  var logoMenu = $("<ul role='menu'>").addClass("dropdown-menu");
-  var logoMenuHeader = $("<li>").addClass("dropdown-header").html("Download");
-  var logoMenuDivider = $("<li>").addClass("divider");
-  var logoAi = $("<li>");
-  var logoPng = $("<li>");
-  var logoJpg = $("<li>");
-  var logoToAiLink = $("<a>").attr("href", "#").html(logoName + ".ai");
-  var logoToPngLink = $("<a>").attr("href", "#").html(logoName + ".png");
-  var logoToJpgLink = $("<a>").attr("href", "#").html(logoName + ".jpg");
+  // var logoId = logo.result.id;
+  // var logoPath = logo.result.path.url;
+  // var logoName = logo.result.name;
+  // var logoDescription = logo.result.description;
+  // var $logoParent = $("#logos");
+  // var logoWrapper = $("<div>").attr("id", "logo" + logoId).addClass("col-sm-4").data("logoid", logoId);
+  // var logoBackground = $("<div>").addClass("img-background").css("height", "339px");
+  // var logoPicture = $("<img>").attr("src", logoPath).addClass("img-responsive logo");
+  // var logoMeta = $("<div>").addClass("logo-meta");
+  // var logoDeleteLink = $("<a>").attr("href", "#").addClass("asset-delete"); 
+  // var logoLabel = $("<label>").addClass("img-label").html(logoName);
+  // var logoOptions = $("<div>").addClass("logo-options");
+  // var logoCaret = $("<span>").addClass("caret");
+  // var logoDropDownLink = 
+  //       $("<a>").attr({
+  //           "href" : "#",
+  //           "data-toggle" : "dropdown"
+  //         }).addClass("dropdown-toggle").html("Options");
+  // var logoMenu = $("<ul role='menu'>").addClass("dropdown-menu");
+  // var logoMenuHeader = $("<li>").addClass("dropdown-header").html("Download");
+  // var logoMenuDivider = $("<li>").addClass("divider");
+  // var logoAi = $("<li>");
+  // var logoPng = $("<li>");
+  // var logoJpg = $("<li>");
+  // var logoToAiLink = $("<a>").attr("href", "#").html(logoName + ".ai");
+  // var logoToPngLink = $("<a>").attr("href", "#").html(logoName + ".png");
+  // var logoToJpgLink = $("<a>").attr("href", "#").html(logoName + ".jpg");
 
 
 
-  // <li><a class="list-delete" href="#">Delete</a></li>
+  // // <li><a class="list-delete" href="#">Delete</a></li>
   
-    // $logoParent.append(logoWrapper);
-    logoBackground.appendTo(logoWrapper);
-    logoPicture.appendTo(logoBackground);
-    logoMeta.appendTo(logoWrapper);
-    logoDeleteLink.appendTo(logoMeta);
-    logoLabel.appendTo(logoMeta);
-    logoOptions.appendTo(logoMeta);
-    logoOptions.html(logoDropDownLink);
-    logoDropDownLink.appendTo(logoOptions);
-    logoCaret.appendTo(logoDropDownLink);
-    logoMenu.appendTo(logoOptions);
-    logoMenuHeader.appendTo(logoMenu);
-    // logoMenuDivider.appendTo(logoMenu);
-    logoAi.appendTo(logoMenu);
-    logoToAiLink.appendTo(logoAi);
-    logoPng.appendTo(logoMenu);
-    logoToPngLink.appendTo(logoPng);
-    logoJpg.appendTo(logoMenu);
-    logoToJpgLink.appendTo(logoJpg);
-    logoDelete.appendTo(logoMenu);
+  //   // $logoParent.append(logoWrapper);
+  //   logoBackground.appendTo(logoWrapper);
+  //   logoPicture.appendTo(logoBackground);
+  //   logoMeta.appendTo(logoWrapper);
+  //   logoDeleteLink.appendTo(logoMeta);
+  //   logoLabel.appendTo(logoMeta);
+  //   logoOptions.appendTo(logoMeta);
+  //   logoOptions.html(logoDropDownLink);
+  //   logoDropDownLink.appendTo(logoOptions);
+  //   logoCaret.appendTo(logoDropDownLink);
+  //   logoMenu.appendTo(logoOptions);
+  //   logoMenuHeader.appendTo(logoMenu);
+  //   // logoMenuDivider.appendTo(logoMenu);
+  //   logoAi.appendTo(logoMenu);
+  //   logoToAiLink.appendTo(logoAi);
+  //   logoPng.appendTo(logoMenu);
+  //   logoToPngLink.appendTo(logoPng);
+  //   logoJpg.appendTo(logoMenu);
+  //   logoToJpgLink.appendTo(logoJpg);
+  //   logoDelete.appendTo(logoMenu);
     
 
-     $logoParent.append(logoWrapper);
+  //    $logoParent.append(logoWrapper);
 
 
-    $('.dropdown-toggle').dropdown();
+  //   $('.dropdown-toggle').dropdown();
 
-    function onDeleteFadeOut(asset){
-      $("#logo" + asset.id).animate({
-        "width" : "0px"
-      }, 500, function(){
-        $(this).css("display", "none");
-      });
-  };
-
-
-  function onActionAdvisory(response, message) {
-    var advisory = $("#user-action-messages");
-    var showClass = "user-action-messages-show";
-    var hideClass = "user-action-messages-hidden";
-    var messageHolder = $("<p>").addClass("advisory-message")
-                          .html(response.name + " " + message);
-    advisory.append(messageHolder);
-    advisory.removeClass(hideClass).addClass(showClass);
-    setTimeout(function(){
-      advisory.removeClass(showClass).addClass(hideClass);
-      advisory.empty();
-    }, 3000);
-  };
+  //   function onDeleteFadeOut(asset){
+  //     $("#logo" + asset.id).animate({
+  //       "width" : "0px"
+  //     }, 500, function(){
+  //       $(this).css("display", "none");
+  //     });
+  // };
 
 
-    $(".logo-meta .asset-delete").on("click", function(event){
-      event.preventDefault();
-      var logoHolder = ".col-sm-4";
-      var logoId = $(this).closest(logoHolder).data("logoid");
-      var path = window.location.pathname + "/logos/" + logoId;
 
-      $.ajax({
-        type: "DELETE",
-        url: path,
-        dataType: "json",
-        success: function(response){
-          console.log(response);
-          onDeleteFadeOut(response);
-          onActionAdvisory(response, "Logo deleted");
-          }
-      });
 
-      console.log( path, logoId );
 
-    });
+  //   $(".logo-meta .asset-delete").on("click", function(event){
+  //     event.preventDefault();
+  //     var logoHolder = ".col-sm-4";
+  //     var logoId = $(this).closest(logoHolder).data("logoid");
+  //     var path = window.location.pathname + "/logos/" + logoId;
 
-  };  
+  //     $.ajax({
+  //       type: "DELETE",
+  //       url: path,
+  //       dataType: "json",
+  //       success: function(response){
+  //         console.log(response);
+  //         onDeleteFadeOut(response);
+  //         onActionAdvisory(response, "Logo deleted");
+  //         }
+  //     });
+
+  //     console.log( path, logoId );
+
+  //   });
+
+  // };  
 
   function addTypography(data){
     var fontName = data.name;
@@ -337,7 +434,7 @@ $( document ).ready(function() {
     done: function(e, data){
       console.log("success!", data);
       var assetName = data.name;
-      addNewLogo(data);
+      logoOperations.addNewLogo(data);
       onActionAdvisory(assetName, "logo uploaded")
       $("#logo_name").val("");
       $("#logo_description").val("");
@@ -387,47 +484,10 @@ $( document ).ready(function() {
     var logoId = $(this).closest(logoHolder).data("logoid");
     var path = window.location.pathname + "/logos/" + logoId;
 
-    $.ajax({
-        type: "DELETE",
-        url: path,
-        dataType: "json",
-        success: function(response){
-          console.log(response);
-          onDeleteFadeOut(response);
-          onActionAdvisory(response, "Logo deleted");
-        }
-      })
+    logoOperations.destroyLogoAjax(path);
 
-    console.log( path, logoId );
-
+  
   });
-
-  $(".color-name  a.delete-asset").on("click", function(event){
-    event.preventDefault();
-    console.log("Done");
-    var colorHolder = ".color-swatch";
-    var that = this;
-    var colorId = $(this).closest(colorHolder).data("colorid");
-    var path = window.location.pathname + "/colors/" + colorId;
-
-    // $.ajax({
-    //     type: "DELETE",
-    //     url: path,
-    //     dataType: "json",
-    //     success: function(response){
-    //       console.log(response);
-    //       //onDeleteFadeOut(response);
-    //       that.fadeOut('fast', function(){
-    //         $(this).remove();
-    //       });
-    //       onActionAdvisory(response, "Color deleted");
-    //     }
-    //   })
-
-    console.log( path, logoId );
-
-  });
-
 
 
 });
