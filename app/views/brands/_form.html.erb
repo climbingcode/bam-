@@ -10,7 +10,7 @@
           </h4>
         </div>
         </a>
-        <div id="collapseOne" class="panel-collapse collapse "> 
+        <div id="collapseOne" class="panel-collapse collapse"> 
           <div class="panel-body">
             <div class="asset_module">
               <%= form_for(Logo.new, url: user_brand_logos_path(params[:user_id], params[:id], format: :json), remote: true, authenticity_token: true, method: 'post', multipart: true) do |f| %>
@@ -58,13 +58,17 @@
            <%= form_for Color.new, url: user_brand_colors_path(params[:user_id], params[:id], format: :json), remote: true, authenticity_token: true,  method: 'post' do |f| %>
 
           <!--   <%= f.label(:hex, "Hex Colour code") %> -->
-            <%= f.text_field(:hex, class: "form-control", :maxlength => 6, :placeholder => 'HEX Color', :id => "hex-input") %>
-            <div class="checkbox-wrapper">
-            <%= f.check_box(:primary, :id => "check-1") %>
-            <%= f.label(:Primary, for: "check-1", class: "check-box") %>
+          <%= f.text_field(:name, class: "form-control", :placeholder => 'Color Name' ) %>
+            
+              <div class="checkbox-wrapper">
+                <%= f.check_box(:primary, :id => "check-1") %>
+                <%= f.label(:Primary, for: "check-1", class: "check-box") %>
+                <!-- <%= f.label(:name, "Colour name") %> -->
+              </div>
+              <div class="input-group color-picker">
+              <%= f.text_field(:hex, class: "form-control", :maxlength => 6, :placeholder => 'HEX Color', :id => "hex-input") %><span class="input-group-addon" id="colorpicker-input-addon"><i><img src="/assets/search_icon.png" class="img-responsive"></i></span>
             </div>
-            <!-- <%= f.label(:name, "Colour name") %> -->
-            <%= f.text_field(:name, class: "form-control", :placeholder => 'Color Name' ) %>
+
 
             <%= f.hidden_field(:brand_id, :value => params[:id], class: "hidden-field") %>
             <%= f.submit('Add colour', class: "bam_btn_grey btn") %>
@@ -74,10 +78,17 @@
         </div>
       </div>
     </div>
+    <script type="text/javascript">
+
+    $(function(){
+        $('.color-picker').colorpicker();
+    });
+
+    </script>
 
   <div class="panel ">
       <a data-toggle="collapse" data-parent="#accordion" href="#collapseThree">
-        <div class="panel-heading">
+        <div class="panel-heading" id="brand-copy-header">
           <h4 class="panel-title">Brand Copy</h4>
         </div>
       </a>
@@ -196,16 +207,14 @@
     <div id="collapseSeven" class="panel-collapse collapse">
       <div class="panel-body">
         <div class="asset_module">
-          <button class="btn bam_btn btn-sm" data-toggle="modal" data-target="#businessCardModal">
-              Business Cards
+
+          <button class="btn-sm bam_btn open_business_card_modal" data-toggle="modal" data-target="#businessCardModal">
+            Business Cards
           </button>     
         </div>
       </div>
     </div>
   </div>
-
-
-
 
     </div><!--panel-group-->
   </div><!--#multi-asset-form-->

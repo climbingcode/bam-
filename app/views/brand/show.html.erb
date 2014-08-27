@@ -1,2 +1,47 @@
-<h1>Brand#show</h1>
-<p>Find me in app/views/brand/show.html.erb</p>
+<div id="user-action-messages" class="user-action-messages-hidden">
+</div>
+
+
+  
+
+    <div class="tab-content">
+
+      <div id="dashboardTab" class="tab-pane fade in active">
+        <div id="access-request-notification">
+        <p>You Have 2 Requests
+        <!-- <button class="bam_btn_alt_inverse" id="view-notification-button">View</button> -->
+        <span class="times" id="close-notification-icon">&times;</span></p>
+        </div>
+      
+      
+      <div id="accountTab" class="tab-pane fade">
+ 
+      </div>
+    </div>
+  
+
+
+
+  <div id="brand-page" class="">
+
+
+      <div id="dashboard_toggle">
+        <a id="mobile-nav" class="menu-nav" ></a>
+      </div>
+
+
+    <h1 id="brand-name-header"><%= @brand.name.capitalize %></h1> 
+   
+    <%= render 'logos' %>
+    <hr/>
+    <%= render 'typography' %>
+    <hr/>
+    <%= render 'color' %>
+    <!--render misc files-->
+    <!--render guidelines-->
+    <!--render copy-->
+ 
+
+</div>
+
+

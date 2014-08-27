@@ -3,17 +3,45 @@
     <div class="modal-content">
       <div class="modal-header">
         <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
-        <h4 class="modal-title" id="businessCardModal">Modal title</h4>
+        <h4 class="modal-title" id="businessCardModal">Business Card Builder</h4>
       </div>
       <div class="modal-body">
-        <div>
-        <%= render :partial => 'brands/templates/business_card_template' %>
+        <div id ="business_card_background">
+          <% content_for :head_includes do %>
+            <link rel="stylesheet" type="text/css" href="/wicked/business_card_template.css">
+          <% end %>
+          <%= render 'pdfs/business_card.pdf.erb' %>
         </div>
       </div>
       <div class="modal-footer">
-        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-        <button type="button" class="btn btn-primary">Save changes</button>
-      </div>
+        <button type="button" class="btn bam_btn" data-dismiss="modal">Close</button>
+       <!--      ADD COLORS -->
+            <div class="colors">
+            <div class="business_card_tags">Colors</div>
+              <% @colors.each do |color| %>
+                <button type="button" class="btn bam_btn change_background",
+                data-color="#<%= color.hex %>" >change background to <%= color.name %></button>
+                <% end %>
+            </div>
+            <div class="images">
+      <!--       ADD IMAGES -->
+            <div class="business_card_tags">Images</div>
+            <% @images.each do |image| %>
+              <button type="button" class="btn bam_btn change_image",
+              data-image="#<%= image.path %>" >change image to <%= image.name %></button>
+            <% end %>
+            </div>
+       <!--      EFFECTS -->
+          <div class="effects">
+            <div class="business_card_tags">Effects</div>
+            <button type="button" class="btn bam_btn" id="add_border">   Add Border
+            </button>
+          </div>
+
+          <div id="business_card_generation">
+          <%= link_to "Download to pdf", business_card_path(@user, :format => "pdf"), :id => "businessCardGenerator", :class => "btn bam_btn"%>
+        </div>
+      </div>    
     </div>
   </div>
 </div>

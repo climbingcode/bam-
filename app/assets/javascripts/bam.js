@@ -49,12 +49,14 @@ $( document ).ready(function() {
     alert('hello')
   })
 
+
   $('.dropdown-toggle').dropdown()
 
   $("#primary_capital_letters").fitText(2.5);
   $("#primary_lower_case_letters").fitText(1.9);
   $("#secondary_capital_letters").fitText(2.5);
   $("#secondary_lower_case_letters").fitText(1.9);
+
 
   $(window).resize(function(){
 
@@ -66,8 +68,6 @@ $( document ).ready(function() {
     $('#personal-column').height(pricingHeight);
   });
 
-
-   
 
 });
 

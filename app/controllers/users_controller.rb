@@ -2,6 +2,8 @@ class UsersController < ApplicationController
 
 	include UsersHelper
 
+  before_filter :redirect_to_brands_page_if_signed_in
+
 	def index 
     @user = User.new
 		@brands = Brand.all
@@ -31,6 +33,8 @@ class UsersController < ApplicationController
         session[:current_brand] = @brand.id
      		send_email_to_admin(params[:name], @user)
         awaiting_admin_confirmation(@user, @brand)
+        session[:current_brand].clear
+        session[:user].clear
      		redirect_to '/', notice: 'Waiting for account holder to grant access'
  	    end 
     else

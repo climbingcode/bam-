@@ -62,7 +62,7 @@ class ColorsController < ApplicationController
     @color.destroy
     respond_to do |format|
       format.html { redirect_to colors_url, notice: 'Color was successfully destroyed.' }
-      format.json { head :no_content }
+      format.json { render json: @color, status: :accepted,  location: user_brand_path(current_user, @color.brand_id) }
     end
   end
 

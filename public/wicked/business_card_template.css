@@ -1,0 +1,46 @@
+.business_card_pdf {
+	height: 2in;
+	width: 3.5in;
+	background-color: white ;
+	border: 1px dashed;
+	margin: 32px;
+	background-color: green;
+	text-align: center;
+	padding: 15px;
+}
+
+.background_color_one {
+	background-color: red;
+}
+
+#no_background {
+	background-color: white;
+}
+
+.business_card_preview {
+	height: 3in;
+	width: 5.5in;	
+	border: 2px solid;
+	background-color: white;
+}
+
+.no_border {
+
+}
+
+.add_card_border {
+	width: 2px;
+	height: 5px;
+	background-color: black;
+}
+
+.business_image_format {
+	height: 100px;
+	width: 100px;	
+	margin-right: 400px;
+	margin-top: -100px;
+}
+
+h1 {
+	color: red;
+}

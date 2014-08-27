@@ -33,6 +33,10 @@ Rails.application.routes.draw do
   resources :contact_form, only: [:new, :create] 
 
   resource :brand, only: [:show, :index]
+  
+  scope 'pdfs/:id' do
+    get 'business_card', to: 'pdfs#business_card'
+  end
 
   namespace 'permission' do 
     resources :users 

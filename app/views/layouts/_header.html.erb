@@ -14,11 +14,13 @@
         <div class="navbar-form navbar-right">
 
           <!-- if not in session render form-->
+
           <% if session[:current_brand] == nil && current_user == nil %>
             <%= render "sessions/sign_in_form" %>
           <% else %>
             <%= button_to 'Sign Out', sessions_path, :confirm => 'Are you sure?', :method => :delete, class: "bam_btn_inverse btn" %>
           <% end %>
+
           <!-- else render name and logout button -->
         </div>
      <!--    <ul class="nav navbar-nav navbar-right">

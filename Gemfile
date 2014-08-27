@@ -56,7 +56,8 @@ gem "therubyracer"
 gem "less-rails" #Sprockets (what Rails 3.1 uses for its asset pipeline) supports LESS
 
 # pdf generation
-gem 'pdfkit'
+gem 'wkhtmltopdf-binary'
+gem 'wicked_pdf'
 
 # url structure 
 gem 'friendly_id', '~> 5.0.0'

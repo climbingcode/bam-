@@ -16,10 +16,22 @@ class ApplicationController < ActionController::Base
     current_user.user_brands.find_by(brand_id: session[:current_brand]).permission == 1
   end
 
+  def redirect_to_brands_page_if_signed_in
+    if current_user
+      if current_user.brands.count > 1
+        redirect_to user_brands_path(current_user.id)
+      elsif current_user.brands.count == 1
+        redirect_to user_brand_path(current_user.id, session[:current_brand])
+      end
+    end
+  end
+
   def check_permission_status
       awaiting_admin = current_user.user_brands.find_by(brand_id: session[:current_brand]) 
       if awaiting_admin != nil
         if awaiting_admin.permission == 4
+          session[:user_id] = nil
+          session[:current_brand] = nil
           redirect_to '/', notice: "Sorry, waiting on admin permission"
         end
       end
