@@ -15,18 +15,31 @@
       </div>
       <div class="modal-footer">
         <button type="button" class="btn bam_btn" data-dismiss="modal">Close</button>
-        <div class="business_card_generation">
-          <%= link_to "Download to pdf", business_card_path(@user, :format => "pdf"), :id => "businessCardGenerator", :class => "btn bam_btn"%>
-            <% @colors.each do |color| %>
-              <button type="button" class="btn bam_btn change_background",
-              data-color="#<%= color.hex %>" >change background to <%= color.name %></button>
-            <% end %>
+       <!--      ADD COLORS -->
+            <div class="colors">
+            <div class="business_card_tags">Colors</div>
+              <% @colors.each do |color| %>
+                <button type="button" class="btn bam_btn change_background",
+                data-color="#<%= color.hex %>" >change background to <%= color.name %></button>
+                <% end %>
+            </div>
+            <div class="images">
+      <!--       ADD IMAGES -->
+            <div class="business_card_tags">Images</div>
             <% @images.each do |image| %>
               <button type="button" class="btn bam_btn change_image",
               data-image="#<%= image.path %>" >change image to <%= image.name %></button>
             <% end %>
-          <button type="button" class="btn bam_btn" id="add_border">Add Border
-          </button>
+            </div>
+       <!--      EFFECTS -->
+          <div class="effects">
+            <div class="business_card_tags">Effects</div>
+            <button type="button" class="btn bam_btn" id="add_border">   Add Border
+            </button>
+          </div>
+
+          <div id="business_card_generation">
+          <%= link_to "Download to pdf", business_card_path(@user, :format => "pdf"), :id => "businessCardGenerator", :class => "btn bam_btn"%>
         </div>
       </div>    
     </div>
