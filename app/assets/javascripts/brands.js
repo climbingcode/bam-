@@ -76,6 +76,7 @@ var colorOperations = {
   },
 
   createNewColor: function(data) {
+
     var $color = $("#color");
     var r = colorOperations.hexToR(data.hex);
     var g = colorOperations.hexToG(data.hex);
@@ -95,9 +96,14 @@ var colorOperations = {
     
     $color.append(colorWrapper);
     colorSwatch.appendTo(colorWrapper);
+    copyAlert.appendTo(colorSwatch);
     colorList.appendTo(colorWrapper);
     colorName.appendTo(colorList);
-    colorDelete.appendTo(colorName);  
+    colorDelete.appendTo(colorName);
+    colorHex.appendTo(colorListItems);
+    colorRgb.appendTo(colorListItems);
+    colorCmyk.appendTo(colorListItems);
+    colorSass.appendTo(colorListItems);  
     
 
 
@@ -129,10 +135,37 @@ var colorOperations = {
       }
     };
 
+    var client = new ZeroClipboard( $('.copy_text') );
+
+      client.on( 'ready', function(event) {
+
+        client.on( 'copy', function(event) {
+          var textToCopy = event.target.innerHTML
+          event.clipboardData.setData('text/plain', textToCopy);
+        });
+
+        // $('.copy_text').on('click', function(event){
+        //   var targetText = event.target.innerHTML
+        //   console.log(targetText)
+        //   event.clipboardData.setData('text/plain', targetText);
+        // })
+
+        client.on( 'aftercopy', function(event) {
+          console.log('Copied text to clipboard: ' + event.data['text/plain']);
+          $('.copy-alert').toggleClass('copied')
+        });
+
+      });
+
+      client.on( 'error', function(event) {
+        // console.log( 'ZeroClipboard error of type "' + event.name + '": ' + event.message );
+        ZeroClipboard.destroy();
+      });
+
+
   }
 
 
-};
 
 
 var logoOperations = {
@@ -222,8 +255,6 @@ var logoOperations = {
 };
 
 
-
-
 $( document ).ready(function() {
 
   $("#load_color").submit();
@@ -239,105 +270,9 @@ $( document ).ready(function() {
   	$(this).tab('show')
 	});
 
-  
-
-  // function addNewLogo(logo){
-
-  // var logoId = logo.result.id;
-  // var logoPath = logo.result.path.url;
-  // var logoName = logo.result.name;
-  // var logoDescription = logo.result.description;
-  // var $logoParent = $("#logos");
-  // var logoWrapper = $("<div>").attr("id", "logo" + logoId).addClass("col-sm-4").data("logoid", logoId);
-  // var logoBackground = $("<div>").addClass("img-background").css("height", "339px");
-  // var logoPicture = $("<img>").attr("src", logoPath).addClass("img-responsive logo");
-  // var logoMeta = $("<div>").addClass("logo-meta");
-  // var logoDeleteLink = $("<a>").attr("href", "#").addClass("asset-delete"); 
-  // var logoLabel = $("<label>").addClass("img-label").html(logoName);
-  // var logoOptions = $("<div>").addClass("logo-options");
-  // var logoCaret = $("<span>").addClass("caret");
-  // var logoDropDownLink = 
-  //       $("<a>").attr({
-  //           "href" : "#",
-  //           "data-toggle" : "dropdown"
-  //         }).addClass("dropdown-toggle").html("Options");
-  // var logoMenu = $("<ul role='menu'>").addClass("dropdown-menu");
-  // var logoMenuHeader = $("<li>").addClass("dropdown-header").html("Download");
-  // var logoMenuDivider = $("<li>").addClass("divider");
-  // var logoAi = $("<li>");
-  // var logoPng = $("<li>");
-  // var logoJpg = $("<li>");
-  // var logoToAiLink = $("<a>").attr("href", "#").html(logoName + ".ai");
-  // var logoToPngLink = $("<a>").attr("href", "#").html(logoName + ".png");
-  // var logoToJpgLink = $("<a>").attr("href", "#").html(logoName + ".jpg");
-
-
-
-  // // <li><a class="list-delete" href="#">Delete</a></li>
-  
-  //   // $logoParent.append(logoWrapper);
-  //   logoBackground.appendTo(logoWrapper);
-  //   logoPicture.appendTo(logoBackground);
-  //   logoMeta.appendTo(logoWrapper);
-  //   logoDeleteLink.appendTo(logoMeta);
-  //   logoLabel.appendTo(logoMeta);
-  //   logoOptions.appendTo(logoMeta);
-  //   logoOptions.html(logoDropDownLink);
-  //   logoDropDownLink.appendTo(logoOptions);
-  //   logoCaret.appendTo(logoDropDownLink);
-  //   logoMenu.appendTo(logoOptions);
-  //   logoMenuHeader.appendTo(logoMenu);
-  //   // logoMenuDivider.appendTo(logoMenu);
-  //   logoAi.appendTo(logoMenu);
-  //   logoToAiLink.appendTo(logoAi);
-  //   logoPng.appendTo(logoMenu);
-  //   logoToPngLink.appendTo(logoPng);
-  //   logoJpg.appendTo(logoMenu);
-  //   logoToJpgLink.appendTo(logoJpg);
-  //   logoDelete.appendTo(logoMenu);
-    
-
-  //    $logoParent.append(logoWrapper);
-
-
-  //   $('.dropdown-toggle').dropdown();
-
-  //   function onDeleteFadeOut(asset){
-  //     $("#logo" + asset.id).animate({
-  //       "width" : "0px"
-  //     }, 500, function(){
-  //       $(this).css("display", "none");
-  //     });
-  // };
-
-
-
-
-
-  //   $(".logo-meta .asset-delete").on("click", function(event){
-  //     event.preventDefault();
-  //     var logoHolder = ".col-sm-4";
-  //     var logoId = $(this).closest(logoHolder).data("logoid");
-  //     var path = window.location.pathname + "/logos/" + logoId;
-
-  //     $.ajax({
-  //       type: "DELETE",
-  //       url: path,
-  //       dataType: "json",
-  //       success: function(response){
-  //         console.log(response);
-  //         onDeleteFadeOut(response);
-  //         onActionAdvisory(response, "Logo deleted");
-  //         }
-  //     });
-
-  //     console.log( path, logoId );
-
-  //   });
-
-  // };  
 
   function addTypography(data){
+
     var fontName = data.name;
     var fontFamily = data.font_family;
     var upperCaseLetters = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
@@ -434,8 +369,8 @@ $( document ).ready(function() {
     done: function(e, data){
       console.log("success!", data);
       var assetName = data.name;
-      logoOperations.addNewLogo(data);
-      onActionAdvisory(assetName, "logo uploaded")
+      addNewLogo(data);
+      onActionAdvisory("Logo Uploaded")
       $("#logo_name").val("");
       $("#logo_description").val("");
       //clearFileInput( "#logo_path");

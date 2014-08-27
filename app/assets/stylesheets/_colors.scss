@@ -9,6 +9,16 @@ ul{
   }
 }
 
+.copy-alert{
+  background: rgba(255, 255, 255, 0.3);
+  height: 100%;
+  width: 100%;
+}
+
+.copy-alert.copied{
+  background: rgba(255, 255, 255, 0.3)
+}
+
 .swatch-wrapper{
   transition: all 1s;
 }
