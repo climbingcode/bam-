@@ -72,20 +72,19 @@
                   <% users = User::users_awaiting_permission(brand) %>
                       <% users.each do |user| %>
                         <% if user != nil%>
-
                           <h4><strong><%= "#{user.firstname} #{user.surname}" %> awaiting access to <%= brand.name.capitalize %></stong><h4>
-                          <%= bootstrap_form_for user do |f| %>
+                          <%= bootstrap_form_for users_path(user), :url => {:controller => 'users', :action => 'update', :id => user }, :html=>{:method=>:put} do |f| %>
                           <%= select_tag "permission", "<option>Update / View Users and Assets</option><option>Update / View Assets Only</option><option>View Only</option><option>No Permissions Granted</option>".html_safe %>
                           <%= hidden_field_tag :brand, brand.id %>
                           <%= f.submit "Submit" %>
                         <% end %>
+                      <% end %>
+                    <% end %>
                   <% end %>
                 <% end %>
-              <% end %>
-            <% end %>
-        	</div>
-        </div>
-			</div>
+        	    </div>
+            </div>
+			 </div>
 
 
 
