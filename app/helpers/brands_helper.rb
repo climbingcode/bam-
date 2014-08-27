@@ -37,7 +37,7 @@ module BrandsHelper
 
      # For colors that are black
       if r==0 && g==0 && b==0 
-        computedK = 1;
+        computedK = 100;
         return "0% , 0% , 0% , #{computedK}%"
       end
      
