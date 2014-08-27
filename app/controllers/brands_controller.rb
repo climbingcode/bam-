@@ -33,6 +33,7 @@ class BrandsController < ApplicationController
       @logos = @brand.logos.all
       current_brand(@brand)
       @colors = @brand.colors
+      @images = @brand.logos
   end
 
   # GET /brands/new

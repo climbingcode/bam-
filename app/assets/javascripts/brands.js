@@ -1,8 +1,100 @@
+var colorOperations = {
+
+  cutHex: function(h) {
+    return (h.charAt(0)=="#") ? h.substring(1,7):h
+  },
+
+  // Converting Hex to R, G and B values.
+
+  hexToR: function(hex) {
+    return parseInt((colorOperations.cutHex(hex)).substring(0,2),16)
+  },
+
+  hexToG: function(hex) {
+    return parseInt((colorOperations.cutHex(hex)).substring(2,4),16)
+  },
+
+  hexToB: function(hex) {
+    return parseInt((colorOperations.cutHex(hex)).substring(4,6),16)
+  },
+
+  hexToCMYK: function(hex) {
+     var computedC = 0;
+     var computedM = 0;
+     var computedY = 0;
+     var computedK = 0;
+
+     hex = (hex.charAt(0)=="#") ? hex.substring(1,7) : hex;
+
+     // if (hex.length != 6) {
+     //  alert ('Invalid length of the input hex value!');   
+     //  return; 
+     // }
+     // if (/[0-9a-f]{6}/i.test(hex) != true) {
+     //  alert ('Invalid digits in the input hex value!');
+     //  return; 
+     // }
+
+     var r = colorOperations.hexToR(hex); 
+     var g = colorOperations.hexToG(hex); 
+     var b = colorOperations.hexToB(hex); 
+
+     // BLACK
+     if (r==0 && g==0 && b==0) {
+      computedK = 1;
+      return [0,0,0,1];
+     }
+
+     computedC = 1 - (r/255);
+     computedM = 1 - (g/255);
+     computedY = 1 - (b/255);
+
+     var minCMY = Math.min(computedC,Math.min(computedM,computedY));
+
+     computedC = Math.round( 100 * (computedC - minCMY) / (1 - minCMY)) ;
+     computedM = Math.round( 100 * (computedM - minCMY) / (1 - minCMY)) ;
+     computedY = Math.round( 100 * (computedY - minCMY) / (1 - minCMY)) ;
+     computedK = Math.round(100 * minCMY);
+
+     return [computedC + "% ", " " + computedM + "% ", " " + computedY + "% ", " " + computedK + "%"];
+  },
+
+  createNewColor: function(data) {
+        var $color = $("#color"),
+        r = colorOperations.hexToR(data.hex),
+        g = colorOperations.hexToG(data.hex),
+        b = colorOperations.hexToG(data.hex),
+        upperCaseHex = data.hex.toUpperCase(),
+        colorWrapper = $("<div>").attr("id", data.id).addClass("col-sm-4 swatch-wrapper"),
+        targetColor = "#"+data.id, 
+        colorSwatch = $("<div>").addClass("swatch").css("background-color", "#"+data.hex),
+        colorList = $("<ul>").addClass("color-list"),
+        colorName = $("<li>").addClass("color-name").html(data.name),
+        colorHex = $("<li>").html("CSS HEX: <span>#" + upperCaseHex + "</span>"),
+        colorRgb = $("<li>").html("RGB: <span>" + r + ", " + g + ", "+ b + "</span>"),
+        colorCmyk = $("<li>").html("CMYK: <span>" + colorOperations.hexToCMYK(data.hex) + "</span>"),
+        colorListItems = targetColor + " ul.color-list",
+        colorSass = $("<li>").html("Sass: <span></span>");
+    
+    $color.append(colorWrapper);
+    colorSwatch.appendTo(colorWrapper);
+    colorList.appendTo(colorWrapper);
+    colorName.appendTo(colorListItems);
+    colorHex.appendTo(colorListItems);
+    colorRgb.appendTo(colorListItems);
+    colorCmyk.appendTo(colorListItems);
+    colorSass.appendTo(colorListItems);
+  }
+
+
+};
+
+
 
 
 $( document ).ready(function() {
 
-  // $("#load_color").submit();
+  $("#load_color").submit();
 
 
 	$('#dashboardTab').on("click", "dashboardTab", function (e) {
@@ -15,92 +107,9 @@ $( document ).ready(function() {
   	$(this).tab('show')
 	});
 
-  function cutHex(h) {
-    return (h.charAt(0)=="#") ? h.substring(1,7):h
-  }
-
-  function hexToR(h) {
-    return parseInt((cutHex(h)).substring(0,2),16)
-  }
-  function hexToG(h) {
-    return parseInt((cutHex(h)).substring(2,4),16)
-  }
-  function hexToB(h) {
-    return parseInt((cutHex(h)).substring(4,6),16)
-  }
-
-
-function hexToCMYK (hex) {
-   var computedC = 0;
-   var computedM = 0;
-   var computedY = 0;
-   var computedK = 0;
-
-   hex = (hex.charAt(0)=="#") ? hex.substring(1,7) : hex;
-
-   // if (hex.length != 6) {
-   //  alert ('Invalid length of the input hex value!');   
-   //  return; 
-   // }
-   // if (/[0-9a-f]{6}/i.test(hex) != true) {
-   //  alert ('Invalid digits in the input hex value!');
-   //  return; 
-   // }
-
-   var r = parseInt(hex.substring(0,2),16); 
-   var g = parseInt(hex.substring(2,4),16); 
-   var b = parseInt(hex.substring(4,6),16); 
-
-   // BLACK
-   if (r==0 && g==0 && b==0) {
-    computedK = 1;
-    return [0,0,0,1];
-   }
-
-   computedC = 1 - (r/255);
-   computedM = 1 - (g/255);
-   computedY = 1 - (b/255);
-
-   var minCMY = Math.min(computedC,Math.min(computedM,computedY));
-
-   computedC = Math.round( 100 * (computedC - minCMY) / (1 - minCMY)) ;
-   computedM = Math.round( 100 * (computedM - minCMY) / (1 - minCMY)) ;
-   computedY = Math.round( 100 * (computedY - minCMY) / (1 - minCMY)) ;
-   computedK = Math.round(100 * minCMY);
-
-   return [computedC + "% ", " " + computedM + "% ", " " + computedY + "% ", " " + computedK + "%"];
-}
   
 
-  function createNewColor(data){
 
-    var $color = $("#color"),
-        r = hexToR(data.hex),
-        g = hexToG(data.hex),
-        b = hexToG(data.hex),
-        upperCaseHex = data.hex.toUpperCase(),
-        colorWrapper = $("<div>").attr("id", data.id).addClass("col-sm-4 swatch-wrapper"),
-        targetColor = "#"+data.id, 
-        colorSwatch = $("<div>").addClass("swatch").css("background-color", "#"+data.hex),
-        colorList = $("<ul>").addClass("color-list"),
-        colorName = $("<li>").addClass("color-name").html(data.name),
-        colorHex = $("<li>").html("CSS HEX: <span>#" + upperCaseHex + "</span>"),
-        colorRgb = $("<li>").html("RGB: <span>" + r + ", " + g + ", "+ b + "</span>"),
-        colorCmyk = $("<li>").html("CMYK: <span>" + hexToCMYK(data.hex) + "</span>"),
-        colorListItems = targetColor + " ul.color-list",
-        colorSass = $("<li>").html("Sass: <span></span>");
-    
-    $color.append(colorWrapper);
-    colorSwatch.appendTo(colorWrapper);
-    colorList.appendTo(colorWrapper);
-    colorName.appendTo(colorListItems);
-    colorHex.appendTo(colorListItems);
-    colorRgb.appendTo(colorListItems);
-    colorCmyk.appendTo(colorListItems);
-    colorSass.appendTo(colorListItems);
-    
-
-  };
 
   function loadColors(colorArray){
     var i = 0,
@@ -110,7 +119,7 @@ function hexToCMYK (hex) {
     } else {
       for(i;i < len; i++){
         var color = colorArray[i]
-          createNewColor(color);
+          colorOperations.createNewColor(color);
       }
     };
 
@@ -184,6 +193,22 @@ function hexToCMYK (hex) {
       });
   };
 
+
+  function onActionAdvisory(response, message) {
+    var advisory = $("#user-action-messages");
+    var showClass = "user-action-messages-show";
+    var hideClass = "user-action-messages-hidden";
+    var messageHolder = $("<p>").addClass("advisory-message")
+                          .html(response.name + " " + message);
+    advisory.append(messageHolder);
+    advisory.removeClass(hideClass).addClass(showClass);
+    setTimeout(function(){
+      advisory.removeClass(showClass).addClass(hideClass);
+      advisory.empty();
+    }, 3000);
+  };
+
+
     $(".logo-options .list-delete").on("click", function(event){
       event.preventDefault();
       var logoHolder = ".col-sm-4";
@@ -197,6 +222,7 @@ function hexToCMYK (hex) {
         success: function(response){
           console.log(response);
           onDeleteFadeOut(response);
+          onActionAdvisory(response, "Logo deleted");
           }
       });
 
@@ -236,7 +262,7 @@ function hexToCMYK (hex) {
 
 
   $('#new_color').on('ajax:success', function(e,data) {
-    createNewColor(data);
+    colorOperations.createNewColor(data);
     this.reset(); 
   });
 
@@ -256,12 +282,14 @@ function hexToCMYK (hex) {
 
 
   function clearFileInput(element) {
+    console.log(element);
     element.wrap("<form>").parent("form").trigger("reset");
     element.unwrap();
   };
-  // $('#load_color').on('ajax:success', function(e, data) {;
-  //   loadColors(data);
-  // });
+  
+  $('#load_color').on('ajax:success', function(e, data) {;
+    loadColors(data);
+  });
   
   $('#new_logo').fileupload({
     dataType: 'json',
@@ -297,10 +325,12 @@ function hexToCMYK (hex) {
 
     done: function(e, data){
       console.log("success!", data);
+      var assetName = data.name;
       addNewLogo(data);
+      onActionAdvisory(assetName, "logo uploaded")
       $("#logo_name").val("");
       $("#logo_description").val("");
-      clearInputFile( $("#logo_path") );
+      clearFileInput( $("#logo_path") );
       $("#logo-upload-status").empty();
     }
   });
@@ -321,6 +351,20 @@ function hexToCMYK (hex) {
     });
   };
 
+  function onActionAdvisory(response, message) {
+    var advisory = $("#user-action-messages");
+    var showClass = "user-action-messages-show";
+    var hideClass = "user-action-messages-hidden";
+    var messageHolder = $("<p>").addClass("advisory-message")
+                          .html( + " " + message);
+    advisory.append(messageHolder); 
+    advisory.removeClass(hideClass).addClass(showClass);
+    setTimeout(function(){
+      advisory.removeClass(showClass).addClass(hideClass);
+      advisory.empty();
+    }, 3000);
+  };
+
   $(".logo-options .list-delete").on("click", function(event){
     event.preventDefault();
     var logoHolder = ".col-sm-4";
@@ -334,6 +378,7 @@ function hexToCMYK (hex) {
         success: function(response){
           console.log(response);
           onDeleteFadeOut(response);
+          onActionAdvisory(response, "Logo deleted");
         }
       })
 
@@ -341,6 +386,35 @@ function hexToCMYK (hex) {
 
   });
 
+  // BUSINESS CARD METHODS
+
+  $('.open_business_card_modal').on('click', function(e) {
+    e.preventDefault()    
+    $('.business_card_pdf').addClass('business_card_preview');
+  }); 
+
+  $('.change_background').on('click', function(e) {
+    e.preventDefault();
+    var color = $(this).data("color");
+    $('.business_card_preview').css('background-color', color)
+  });
+
+  $('#add_border').on('click', function(e) {
+    e.preventDefault();
+    $('.no_border').toggleClass('add_card_border');
+  });
+
+  $('.change_image').on('click', function(e) {
+    e.preventDefault();
+    var imageString = $(this).data("image");
+    var image = imageString.slice(1);
+    var source = $('<img>').attr('src', image).addClass('business_image_format')
+    if($('.business_card_pdf').find('img') != 'undefined') {
+        $('#business_card_image').find('img').remove();
+      };
+      $(source).appendTo('#business_card_image');
+ 
+  });
 
 
 });

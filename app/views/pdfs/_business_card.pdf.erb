@@ -1,11 +1,12 @@
-<%= wicked_pdf_stylesheet_link_tag 'business_card_template' %>
+<!-- 	margin and background -->
 
-
-<% if @colors.first != nil %>
-	<div class='business_card_pdf' style=<%="background-color:##{@colors.first.hex};"%> >
-<% else %>
-	<div class='business_card_pdf' style=<%="background-color:white;"%> >
-<% end %>
-	<h1 style="font-family:'Calibri'"><%= Brand.find(session[:current_brand]).name.capitalize %></h1>
-	<h4><%= @user.firstname.capitalize %> <%= @user.surname.capitalize %></h4>
-	</div>
+<div class='business_card_pdf' id='no_background'>
+	
+<!-- 	border and lines  -->
+	<div class="no_border">
+		<div id="business_card_image">
+			<h1 style="font-family:'Calibri'"><%= Brand.find(session[:current_brand]).name.capitalize %></h1>
+			<h4><%= @user.firstname.capitalize %> <%= @user.surname.capitalize %></h4>
+		</div>
+	</div>`
+</div>

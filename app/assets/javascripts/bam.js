@@ -33,18 +33,13 @@ $( document ).ready(function() {
 
   //Dropdown for Logo Files
 
-  $('.switch_brand').on('click', function(){
-  })
+
   $('.dropdown-toggle').dropdown()
 
   $("#primary_capital_letters").fitText(2.5);
   $("#primary_lower_case_letters").fitText(1.9);
   $("#secondary_capital_letters").fitText(2.5);
   $("#secondary_lower_case_letters").fitText(1.9);
-
-
-
-
 
 });
 
