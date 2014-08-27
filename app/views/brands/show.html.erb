@@ -1,5 +1,5 @@
-<%= render 'business_card_modal' %>
 
+<%= render 'business_card_modal' %>
 
 <div id="user-action-messages" class="user-action-messages-hidden">
 </div>
@@ -9,13 +9,19 @@
     <div id="dashboard-inner">
 
     <ul class="nav nav-tabs">
-      <li class="active"><a href="#dashboardTab" data-toggle="tab">Dashboard</a></li>
+      <li class="active" id="dashboardTabWrap"><a href="#dashboardTab" data-toggle="tab">Dashboard</a></li>
       <li><a href="#accountTab" data-toggle="tab">Account</a></li>
     </ul>
 
     <div class="tab-content">
 
       <div id="dashboardTab" class="tab-pane fade in active">
+        <div id="access-request-notification">
+        <p>You Have 2 Requests
+        <!-- <button class="bam_btn_alt_inverse" id="view-notification-button">View</button> -->
+        <span class="times" id="close-notification-icon">&times;</span></p>
+        </div>
+        <div> Balls<a class="copy_text">Hello</a></div><span class="copy_text" style="color:white;">Kitty</span>
         <%= render 'form' %>  <!--render dashboard here -->
       </div>
       <div id="accountTab" class="tab-pane fade">
@@ -34,6 +40,7 @@
         <a id="mobile-nav" class="menu-nav" ></a>
       </div>
 
+
     <h1 id="brand-name-header"><%= Brand.find(session[:current_brand]).name.capitalize %></h1> 
     <%= render 'brand_nav' %>  
     <%= render 'logos' %>
@@ -45,7 +52,7 @@
     <!--render guidelines-->
     <!--render copy-->
   </div>
-
+<%= render 'business_card_modal' %>
 </div>
 
 <!-- IF PAGE IS SET TO PRIVATE AND USER IS NOT LOGGED IN: -->

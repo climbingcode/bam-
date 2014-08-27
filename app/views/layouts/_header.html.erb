@@ -10,17 +10,17 @@
         <a class="navbar-brand" href="#">Brand Asset Mgr</a>
       </div>
       <div class="navbar-collapse collapse">
+
         <div class="navbar-form navbar-right">
+
           <!-- if not in session render form-->
-          <div id="nav_bar_elements">
-            <% if session[:current_brand] == nil && current_user == nil %>
-              <%= render "sessions/sign_in_form" %>
-            <% else %>
-       <!--   < else render logout and user name > -->
-              <%= current_user.firstname.capitalize %>
-              <%= button_to 'Sign Out', sessions_path, :confirm => 'Are you sure?', :method => :delete, class: "bam_btn btn" %>
-            <% end %>
-          </div>
+
+          <% if session[:current_brand] == nil && current_user == nil %>
+            <%= render "sessions/sign_in_form" %>
+          <% else %>
+            <%= button_to 'Sign Out', sessions_path, :confirm => 'Are you sure?', :method => :delete, class: "bam_btn_inverse btn" %>
+          <% end %>
+
           <!-- else render name and logout button -->
         </div>
      <!--    <ul class="nav navbar-nav navbar-right">
