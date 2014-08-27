@@ -59,36 +59,54 @@ var colorOperations = {
      return [computedC + "% ", " " + computedM + "% ", " " + computedY + "% ", " " + computedK + "%"];
   },
 
+  destroyColor: function(path, elementid) {
+      $.ajax({
+        type: "DELETE",
+        url: path,
+        dataType: "json",
+        success: function(response){
+          console.log(response);
+          // onDeleteFadeOut(response);
+          $("#color"+ elementid).fadeOut('fast', function(){
+            $(this).remove();
+          });
+          onActionAdvisory(response, "Color deleted");
+        }
+      })
+  },
+
   createNewColor: function(data) {
-        var $color = $("#color"),
-        r = colorOperations.hexToR(data.hex),
-        g = colorOperations.hexToG(data.hex),
-        b = colorOperations.hexToG(data.hex),
-        upperCaseHex = data.hex.toUpperCase(),
-        colorWrapper = $("<div>").attr("id", data.id).addClass("col-sm-4 swatch-wrapper"),
-        targetColor = "#"+data.id, 
-        copyAlert = $("<div>").addClass('copy-alert'),
-        colorSwatch = $("<div>").addClass("swatch").css("background-color", "#"+data.hex),
-        colorList = $("<ul>").addClass("color-list"),
-        colorName = $("<li>").addClass("color-name").html(data.name),
-        colorHex = $("<li>").html("CSS HEX: <span class='copy_text' data-clipboard-text>#" + upperCaseHex + "</span>"),
-        colorRgb = $("<li>").html("RGB: <span>" + r + ", " + g + ", "+ b + "</span>"),
-        colorCmyk = $("<li>").html("CMYK: <span>" + colorOperations.hexToCMYK(data.hex) + "</span>"),
-        colorListItems = targetColor + " ul.color-list",
-        colorSass = $("<li>").html("Sass:></span>");
+
+    var $color = $("#color");
+    var r = colorOperations.hexToR(data.hex);
+    var g = colorOperations.hexToG(data.hex);
+    var b = colorOperations.hexToG(data.hex);
+    var upperCaseHex = data.hex.toUpperCase();
+    var colorWrapper = $("<div>").attr("id", "color" + data.id).addClass("col-sm-4 swatch-wrapper");
+    var targetColor = "#color"+data.id; 
+    var colorDelete = $("<a>").attr("href", "#").addClass("delete-asset");
+    var copyAlert = $("<div>").addClass('copy-alert');
+    var colorSwatch = $("<div>").addClass("swatch").css("background-color", "#"+data.hex);
+    var colorList = $("<ul>").addClass("color-list");
+    var colorName = $("<li>").addClass("color-name").data("colorid", data.id).html(data.name);
+    var colorHex = $("<li>").html("CSS HEX: <span class='copy_text' data-clipboard-text>#" + upperCaseHex + "</span>");
+    var colorRgb = $("<li>").html("RGB: <span>" + r + ", " + g + ", "+ b + "</span>");
+    var colorCmyk = $("<li>").html("CMYK: <span>" + colorOperations.hexToCMYK(data.hex) + "</span>");
+    var colorListItems = targetColor + " ul.color-list";
+    var colorSass = $("<li>").html("Sass:></span>");
     
     $color.append(colorWrapper);
     colorSwatch.appendTo(colorWrapper);
     copyAlert.appendTo(colorSwatch);
     colorList.appendTo(colorWrapper);
-    colorName.appendTo(colorListItems);
+    colorName.appendTo(colorList);
+    colorDelete.appendTo(colorName);
     colorHex.appendTo(colorListItems);
     colorRgb.appendTo(colorListItems);
     colorCmyk.appendTo(colorListItems);
-    colorSass.appendTo(colorListItems);
+    colorSass.appendTo(colorListItems); 
 
-
-     var client = new ZeroClipboard( $('.copy_text') );
+    var client = new ZeroClipboard( $('.copy_text') );
 
       client.on( 'ready', function(event) {
 
@@ -113,21 +131,137 @@ var colorOperations = {
       client.on( 'error', function(event) {
         // console.log( 'ZeroClipboard error of type "' + event.name + '": ' + event.message );
         ZeroClipboard.destroy();
-      });
+      }); 
+    
 
 
+  $(".color-name  .delete-asset").on("click", function(event){
+    event.preventDefault();
+    var $target = $(event.target);
+    console.log($target);
+    var colorId = $target.parent().data("colorid");
+    console.log(colorId);
+    var colorHolder = ".color-swatch";
+    var path = window.location.pathname + "/colors/"+ colorId;
+    var $swatch = $("#color" + colorId);
+    console.log(path, $swatch);
+    
+    colorOperations.destroyColor(path, colorId);
 
+    console.log( path, colorId );
+
+    });
+  },
+
+  loadColors: function(colorArray){
+    var i = 0;
+    var len = colorArray.length; 
+    if(len === 0) {
+      $("<h3>").html("Looks like your brand needs some colors!");
+    } else {
+      for(i;i < len; i++){
+        var color = colorArray[i]
+          colorOperations.createNewColor(color);
+      }
+    };
   }
-
-
-
-
 };
 
 
 
 
+var logoOperations = {
 
+  logoAnimateOnDelete: function(asset){
+    $("#logo" + asset.id).slideUp("fast");
+  },
+
+
+  destroyLogoAjax: function(path){ 
+
+    $.ajax({
+      type: "DELETE",
+      url: path,
+      dataType: "json",
+      success: function(response){
+        console.log(response);
+        logoOperations.logoAnimateOnDelete(response);
+        onActionAdvisory(response, "Logo Deleted");
+      }
+    });
+  },
+
+  addNewLogo: function(logo) {
+
+    var logoId = logo.result.id;
+    var logoPath = logo.result.path.url;
+    var logoName = logo.result.name;
+    var logoDescription = logo.result.description;
+    var $logoParent = $("#logos");
+    var logoWrapper = $("<div>").attr("id", "logo" + logoId).addClass("col-sm-4").data("logoid", logoId);
+    var logoBackground = $("<div>").addClass("img-background").css("height", "339px");
+    var logoPicture = $("<img>").attr("src", logoPath).addClass("img-responsive logo");
+    var logoMeta = $("<div>").addClass("logo-meta");
+    var logoDeleteLink = $("<a>").attr("href", "#").addClass("delete-asset"); 
+    var logoLabel = $("<label>").addClass("img-label").html(logoName);
+    var logoOptions = $("<div>").addClass("logo-options");
+    var logoCaret = $("<span>").addClass("caret");
+    var logoDropDownLink = 
+          $("<a>").attr({
+              "href" : "#",
+              "data-toggle" : "dropdown"
+            }).addClass("dropdown-toggle").html("Options");
+    var logoMenu = $("<ul role='menu'>").addClass("dropdown-menu");
+    var logoMenuHeader = $("<li>").addClass("dropdown-header").html("Download");
+    var logoMenuDivider = $("<li>").addClass("divider");
+    var logoAi = $("<li>");
+    var logoPng = $("<li>");
+    var logoJpg = $("<li>");
+    var logoToAiLink = $("<a>").attr("href", "#").html(logoName + ".ai");
+    var logoToPngLink = $("<a>").attr("href", "#").html(logoName + ".png");
+    var logoToJpgLink = $("<a>").attr("href", "#").html(logoName + ".jpg");
+
+    logoBackground.appendTo(logoWrapper);
+    logoPicture.appendTo(logoBackground);
+    logoMeta.appendTo(logoWrapper);
+    logoDeleteLink.appendTo(logoMeta);
+    logoLabel.appendTo(logoMeta);
+    logoOptions.appendTo(logoMeta);
+    logoOptions.html(logoDropDownLink);
+    logoDropDownLink.appendTo(logoOptions);
+    logoCaret.appendTo(logoDropDownLink);
+    logoMenu.appendTo(logoOptions);
+    logoMenuHeader.appendTo(logoMenu);
+    // logoMenuDivider.appendTo(logoMenu);
+    logoAi.appendTo(logoMenu);
+    logoToAiLink.appendTo(logoAi);
+    logoPng.appendTo(logoMenu);
+    logoToPngLink.appendTo(logoPng);
+    logoJpg.appendTo(logoMenu);
+    logoToJpgLink.appendTo(logoJpg);
+    
+
+     $logoParent.append(logoWrapper);
+
+
+    $('.dropdown-toggle').dropdown();
+
+    $(".logo-meta .delete-asset").on("click", function(event){
+      event.preventDefault();
+      var logoHolder = ".col-sm-4";
+      var logoId = $(this).closest(logoHolder).data("logoid");
+      var path = window.location.pathname + "/logos/" + logoId;
+
+      logoOperations.destroyLogoAjax(path);
+
+  
+    });
+
+
+
+  } 
+
+};
 
 
 
@@ -148,147 +282,122 @@ $( document ).ready(function() {
 
   
 
+  // function addNewLogo(logo){
+
+  // var logoId = logo.result.id;
+  // var logoPath = logo.result.path.url;
+  // var logoName = logo.result.name;
+  // var logoDescription = logo.result.description;
+  // var $logoParent = $("#logos");
+  // var logoWrapper = $("<div>").attr("id", "logo" + logoId).addClass("col-sm-4").data("logoid", logoId);
+  // var logoBackground = $("<div>").addClass("img-background").css("height", "339px");
+  // var logoPicture = $("<img>").attr("src", logoPath).addClass("img-responsive logo");
+  // var logoMeta = $("<div>").addClass("logo-meta");
+  // var logoDeleteLink = $("<a>").attr("href", "#").addClass("asset-delete"); 
+  // var logoLabel = $("<label>").addClass("img-label").html(logoName);
+  // var logoOptions = $("<div>").addClass("logo-options");
+  // var logoCaret = $("<span>").addClass("caret");
+  // var logoDropDownLink = 
+  //       $("<a>").attr({
+  //           "href" : "#",
+  //           "data-toggle" : "dropdown"
+  //         }).addClass("dropdown-toggle").html("Options");
+  // var logoMenu = $("<ul role='menu'>").addClass("dropdown-menu");
+  // var logoMenuHeader = $("<li>").addClass("dropdown-header").html("Download");
+  // var logoMenuDivider = $("<li>").addClass("divider");
+  // var logoAi = $("<li>");
+  // var logoPng = $("<li>");
+  // var logoJpg = $("<li>");
+  // var logoToAiLink = $("<a>").attr("href", "#").html(logoName + ".ai");
+  // var logoToPngLink = $("<a>").attr("href", "#").html(logoName + ".png");
+  // var logoToJpgLink = $("<a>").attr("href", "#").html(logoName + ".jpg");
 
 
-  function loadColors(colorArray){
-    var i = 0,
-        len = colorArray.length; 
-    if(len === 0) {
-      $("<p>").html("Looks like your brand needs some colors!");
-    } else {
-      for(i;i < len; i++){
-        var color = colorArray[i]
-          colorOperations.createNewColor(color);
-      }
-    };
 
-  };
-
-  function addNewLogo(logo){
-
-  var logoId = logo.result.id;
-  var logoPath = logo.result.path.url;
-  var logoName = logo.result.name;
-  var logoDescription = logo.result.description;
-  var $logoParent = $("#logos");
-  var logoWrapper = $("<div>").attr("id", "logo" + logoId).addClass("col-sm-4").data("logoid", logoId);
-  var logoBackground = $("<div>").addClass("img-background").css("height", "339px");
-  var logoPicture = $("<img>").attr("src", logoPath).addClass("img-responsive logo");
-  var logoMeta = $("<div>").addClass("logo-meta");
-  var logoLabel = $("<label>").addClass("img-label").html(logoName);
-  var logoOptions = $("<div>").addClass("logo-options");
-  var logoCaret = $("<span>").addClass("caret");
-  var logoDropDownLink = 
-        $("<a>").attr({
-            "href" : "#",
-            "data-toggle" : "dropdown"
-          }).addClass("dropdown-toggle").html("Options");
-  var logoMenu = $("<ul role='menu'>").addClass("dropdown-menu");
-  var logoMenuHeader = $("<li>").addClass("dropdown-header").html("Download");
-  var logoMenuDivider = $("<li>").addClass("divider");
-  var logoAi = $("<li>");
-  var logoPng = $("<li>");
-  var logoJpg = $("<li>");
-  var logoDelete = $("<li>");
-  var logoToAiLink = $("<a>").attr("href", "#").html(logoName + ".ai");
-  var logoToPngLink = $("<a>").attr("href", "#").html(logoName + ".png");
-  var logoToJpgLink = $("<a>").attr("href", "#").html(logoName + ".jpg");
-  var logoDeleteLink = $("<a>").attr("href", "#").addClass("list-delete").html("Delete");   
-
-
-  // <li><a class="list-delete" href="#">Delete</a></li>
+  // // <li><a class="list-delete" href="#">Delete</a></li>
   
-    // $logoParent.append(logoWrapper);
-    logoBackground.appendTo(logoWrapper);
-    logoPicture.appendTo(logoBackground);
-    logoMeta.appendTo(logoWrapper);
-    logoLabel.appendTo(logoMeta);
-    logoOptions.appendTo(logoMeta);
-    logoOptions.html(logoDropDownLink);
-    logoDropDownLink.appendTo(logoOptions);
-    logoCaret.appendTo(logoDropDownLink);
-    logoMenu.appendTo(logoOptions);
-    logoMenuHeader.appendTo(logoMenu);
-    // logoMenuDivider.appendTo(logoMenu);
-    logoAi.appendTo(logoMenu);
-    logoToAiLink.appendTo(logoAi);
-    logoPng.appendTo(logoMenu);
-    logoToPngLink.appendTo(logoPng);
-    logoJpg.appendTo(logoMenu);
-    logoToJpgLink.appendTo(logoJpg);
-    logoDelete.appendTo(logoMenu);
-    logoDeleteLink.appendTo(logoDelete);
+  //   // $logoParent.append(logoWrapper);
+  //   logoBackground.appendTo(logoWrapper);
+  //   logoPicture.appendTo(logoBackground);
+  //   logoMeta.appendTo(logoWrapper);
+  //   logoDeleteLink.appendTo(logoMeta);
+  //   logoLabel.appendTo(logoMeta);
+  //   logoOptions.appendTo(logoMeta);
+  //   logoOptions.html(logoDropDownLink);
+  //   logoDropDownLink.appendTo(logoOptions);
+  //   logoCaret.appendTo(logoDropDownLink);
+  //   logoMenu.appendTo(logoOptions);
+  //   logoMenuHeader.appendTo(logoMenu);
+  //   // logoMenuDivider.appendTo(logoMenu);
+  //   logoAi.appendTo(logoMenu);
+  //   logoToAiLink.appendTo(logoAi);
+  //   logoPng.appendTo(logoMenu);
+  //   logoToPngLink.appendTo(logoPng);
+  //   logoJpg.appendTo(logoMenu);
+  //   logoToJpgLink.appendTo(logoJpg);
+  //   logoDelete.appendTo(logoMenu);
+    
 
-     $logoParent.append(logoWrapper);
-
-
-    $('.dropdown-toggle').dropdown();
-
-    function onDeleteFadeOut(asset){
-      $("#logo" + asset.id).animate({
-        "width" : "0px"
-      }, 500, function(){
-        $(this).css("display", "none");
-      });
-  };
+  //    $logoParent.append(logoWrapper);
 
 
-  function onActionAdvisory(response, message) {
-    var advisory = $("#user-action-messages");
-    var showClass = "user-action-messages-show";
-    var hideClass = "user-action-messages-hidden";
-    var messageHolder = $("<p>").addClass("advisory-message")
-                          .html(response.name + " " + message);
-    advisory.append(messageHolder);
-    advisory.removeClass(hideClass).addClass(showClass);
-    setTimeout(function(){
-      advisory.removeClass(showClass).addClass(hideClass);
-      advisory.empty();
-    }, 3000);
-  };
+  //   $('.dropdown-toggle').dropdown();
+
+  //   function onDeleteFadeOut(asset){
+  //     $("#logo" + asset.id).animate({
+  //       "width" : "0px"
+  //     }, 500, function(){
+  //       $(this).css("display", "none");
+  //     });
+  // };
 
 
-    $(".logo-options .list-delete").on("click", function(event){
-      event.preventDefault();
-      var logoHolder = ".col-sm-4";
-      var logoId = $(this).closest(logoHolder).data("logoid");
-      var path = window.location.pathname + "/logos/" + logoId;
 
-      $.ajax({
-        type: "DELETE",
-        url: path,
-        dataType: "json",
-        success: function(response){
-          console.log(response);
-          onDeleteFadeOut(response);
-          onActionAdvisory(response, "Logo Deleted");
-          }
-      });
 
-      console.log( path, logoId );
 
-    });
+  //   $(".logo-meta .asset-delete").on("click", function(event){
+  //     event.preventDefault();
+  //     var logoHolder = ".col-sm-4";
+  //     var logoId = $(this).closest(logoHolder).data("logoid");
+  //     var path = window.location.pathname + "/logos/" + logoId;
 
-  };  
+  //     $.ajax({
+  //       type: "DELETE",
+  //       url: path,
+  //       dataType: "json",
+  //       success: function(response){
+  //         console.log(response);
+  //         onDeleteFadeOut(response);
+  //         onActionAdvisory(response, "Logo deleted");
+  //         }
+  //     });
+
+  //     console.log( path, logoId );
+
+  //   });
+
+  // };  
 
   function addTypography(data){
-    var fontName = data.font_family,
-        fontFamily = data.font_family,
-        upperCaseLetters = "ABCDEFGHIJKLMNOPQRSTUVWXYZ",
-        $typo = $("#typography"),
-        lowerCaseLetters = upperCaseLetters.toLowerCase(),
-        typoWrapper = $("<div>").addClass("letters_wrapper col-sm-10"),
-        typoFontHeader = $("<div>").addClass("font-header"),
-        typoFontDescription = $("<h3>").addClass("font-description").html(fontName + ":"),
-        typoFontFamily = $("<h3>").addClass("font-name").html(fontFamily),
-        lineDivider = $("<hr>"),
-        typoCapitalLetters = $("<p>").addClass("primary_capital_letters").css("font-family", fontFamily).html(upperCaseLetters),
-        typoLowerCaseLetters = $("<p>").addClass("primary_lower_case_letters").css("font-family", fontFamily).html(lowerCaseLetters);
+
+    var fontName = data.name;
+    var fontFamily = data.font_family;
+    var upperCaseLetters = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+    var $typo = $("#typography");
+    var lowerCaseLetters = upperCaseLetters.toLowerCase();
+    var typoWrapper = $("<div>").addClass("letters_wrapper col-sm-10");
+    var typoFontDelete = $("<div>").addClass("asset-delete");
+    var typoFontDescription = $("<h3>").addClass("font-description").html(fontName + ":");
+    var typoFontFamily = $("<h3>").addClass("font-name").html(fontFamily);
+    var lineDivider = $("<hr>");
+    var typoCapitalLetters = $("<p>").addClass("primary_capital_letters").css("font-family", fontFamily).html(upperCaseLetters);
+    var typoLowerCaseLetters = $("<p>").addClass("primary_lower_case_letters").css("font-family", fontFamily).html(lowerCaseLetters);
         
     
     typoFontHeader.appendTo(typoWrapper);
     typoFontDescription.appendTo(typoFontHeader);
     typoFontFamily.appendTo(typoFontHeader);
+    typoFontDelete.appendTo(typoFontHeader)
     $("<hr>").appendTo(typoWrapper);
     typoCapitalLetters.appendTo(typoWrapper);
     typoLowerCaseLetters.appendTo(typoWrapper);
@@ -321,13 +430,14 @@ $( document ).ready(function() {
 
 
   function clearFileInput(element) {
-    console.log(element);
-    element.wrap("<form>").parent("form").trigger("reset");
-    element.unwrap();
+     var assetPathInput = $(element);
+    assetPathInput.wrap("<form>").parent("form").trigger("reset");
+    console.log(assetPathInput);
+    assetPathInput.unwrap();
   };
   
   $('#load_color').on('ajax:success', function(e, data) {;
-    loadColors(data);
+    colorOperations.loadColors(data);
   });
   
   $('#new_logo').fileupload({
@@ -347,6 +457,7 @@ $( document ).ready(function() {
 
     add: function(e, data){
       data.context = $(tmpl("logo_upload", data.files[0]))
+        console.log(data.files);
         $('#logo-upload-status').append(data.context)
         $("#logo_submit").on("click", function(event){
           event.preventDefault();
@@ -365,11 +476,16 @@ $( document ).ready(function() {
     done: function(e, data){
       console.log("success!", data);
       var assetName = data.name;
-      addNewLogo(data);
-      onActionAdvisory(assetName, "Logo Uploaded")
+      logoOperations.addNewLogo(data);
+      onActionAdvisory("Logo Uploaded")
       $("#logo_name").val("");
       $("#logo_description").val("");
-      clearFileInput( $("#logo_path") );
+      //clearFileInput( "#logo_path");
+      console.log(data.files, data.files.length);
+      data.files = [];
+      data.originalFiles = [];
+      // debugger
+      console.log(data.files.length);
       $("#logo-upload-status").empty();
     }
   });
@@ -383,11 +499,7 @@ $( document ).ready(function() {
 
 
   function onDeleteFadeOut(asset){
-    $("#logo" + asset.id).animate({
-      "width" : "0px"
-    }, 500, function(){
-      $(this).css("display", "none");
-    });
+    $("#logo" + asset.id).slideUp("fast");
   };
 
   function onActionAdvisory(response, message) {
@@ -401,28 +513,18 @@ $( document ).ready(function() {
     setTimeout(function(){
       advisory.removeClass(showClass).addClass(hideClass);
       advisory.empty();
-    }, 3000);
+    }, 2500);
   };
 
-  $(".logo-options .list-delete").on("click", function(event){
+  $(".logo-meta .delete-asset").on("click", function(event){
     event.preventDefault();
     var logoHolder = ".col-sm-4";
     var logoId = $(this).closest(logoHolder).data("logoid");
     var path = window.location.pathname + "/logos/" + logoId;
 
-    $.ajax({
-        type: "DELETE",
-        url: path,
-        dataType: "json",
-        success: function(response){
-          console.log(response);
-          onDeleteFadeOut(response);
-          onActionAdvisory(response, "Logo deleted");
-        }
-      })
+    logoOperations.destroyLogoAjax(path);
 
-    console.log( path, logoId );
-
+  
   });
 
   // BUSINESS CARD METHODS
@@ -437,6 +539,7 @@ $( document ).ready(function() {
     var color = $(this).data("color");
     $('.business_card_preview').css('background-color', color)
   });
+
 
   $('#add_border').on('click', function(e) {
     e.preventDefault();

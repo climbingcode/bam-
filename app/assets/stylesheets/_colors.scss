@@ -35,25 +35,17 @@ ul{
   background: $primary-color;
 }
 
-
-#swatch-1{
-  background: #002D3C;
-}
-
-#swatch-2{
-  background: #FF6569;
-}
-
-#swatch-3{
-  background: #6EC3D8;
-}
-
 .color-list{
   list-style-type: none;
   padding-left: 0px;
   li{
     padding: 7.5px;
     border-bottom: #999 solid 1px;
+
   }
 
+}
+
+.swatch-wrapper:hover .delete-asset {
+  opacity: 1.0;
 }

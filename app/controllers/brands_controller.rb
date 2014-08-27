@@ -31,6 +31,11 @@ class BrandsController < ApplicationController
       @brands = @user.brands
       # @colors = @brand.colors.all
       @logos = @brand.logos.all
+      @fonts = @brand.fonts.all
+      @copies = @brand.copies.all
+      @guidelines = @brand.guidelines.all
+      @misc_assets = @brand.misc_assets.all
+      # brand_tracker(@brand)
       current_brand(@brand)
       @colors = @brand.colors
       @images = @brand.logos
