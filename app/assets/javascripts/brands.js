@@ -89,6 +89,7 @@ var colorOperations = {
 
     $(".color-name .delete-asset").on("click", function(event){
       colorOperations.destroyColor(event);
+    });
 
     colorOperations.colorToClipboard();
 
