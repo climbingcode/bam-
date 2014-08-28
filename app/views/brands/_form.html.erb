@@ -28,7 +28,7 @@
                 <section id="logo-upload-status">
                 </section>
                 <%= f.hidden_field(:brand_id, :value => params[:id]) %>
-                <%= f.submit('Add File', id: "logo_submit", class: "bam_btn btn", disabled: true) %>
+                <%= f.submit('Add File', id: "logo_submit", class: "bam_btn btn", disabled: false) %>
               <% end %> 
               <script id="logo_upload" type="text/x-tmpl">
 
@@ -73,7 +73,7 @@
 
 
             <%= f.hidden_field(:brand_id, :value => params[:id], class: "hidden-field") %>
-            <%= f.submit('Add colour', class: "bam_btn_grey btn", disabled: true) %>
+            <%= f.submit('Add colour', class: "bam_btn_grey btn", disabled: false) %>
 
             <% end %>
           </div>
@@ -105,7 +105,7 @@
               <%= f.label(:text, "Copy text") %>
               <%= f.text_area(:text, class: "form-control") %>
               <%= f.hidden_field(:brand_id, :value => params[:id]) %>
-              <%= f.submit('Add copy', class: "bam_btn_grey btn", disabled: true) %>
+              <%= f.submit('Add copy', class: "bam_btn_grey btn", disabled: false) %>
             <% end %>
         </div>
       </div>
@@ -143,7 +143,7 @@
           <option>Raleway</option>
           <option>Ubuntu</option>
           <option>Vollkorn</option>".html_safe %>
-          <%= f.submit('Add font', class: "bam_btn_grey btn", disabled: true) %>
+          <%= f.submit('Add font', class: "bam_btn_grey btn", disabled: false) %>
 
         <% end %>
         </div>
@@ -167,7 +167,7 @@
             <%= f.label(:text, "Guideline") %>
             <%= f.text_area(:text, class: "form-control") %>
             <%= f.hidden_field(:brand_id, :value => params[:id]) %>
-            <%= f.submit('Add Guideline', class: "bam_btn_grey btn",disabled: true) %>
+            <%= f.submit('Add Guideline', class: "bam_btn_grey btn",disabled: false) %>
           <% end %>
         </div>
       </div>
@@ -193,7 +193,7 @@
             <%= f.label(:permissions, "Public") %>
             <%= f.check_box(:permissions) %>
             <%= f.hidden_field(:brand_id, :value => params[:id]) %>
-            <%= f.submit("Add Asset", class: "bam_btn_grey btn", disabled: true) %>
+            <%= f.submit("Add Asset", class: "bam_btn_grey btn", disabled: false) %>
           <% end %>
         </div>
       </div>

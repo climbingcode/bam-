@@ -289,7 +289,14 @@ var interfaceOperations = {
   },
 
   validationActions: function(){
-
+    // $("#new_logo > input").on("change", function(event){
+    //   $("#new_logo > input").each(function(){
+    //     console.log($(this).val());
+    //     if ( $(this).val() !== " " ) {
+    //       $("#logo_submit").prop("disabled", false);
+    //     };  
+    //   });
+    // });
   },
 
 
