@@ -1,33 +1,24 @@
 <section id="color" class="row">
 <h2>Colors</h2>
- <div style="display:none">
-    <%= form_for Color.new, url: user_brand_colors_path(params[:user_id], params[:id], format: :json) , remote: true, authenticity_token: true, method: 'get', html: {id: 'load_color' } do |f|%>
-      <%= f.hidden_field(:brand_id, :value => params[:id]) %>
-    <% end %> 
-  </div> 
 
-<!-- <div class="col-sm-4 swatch-wrapper">
-  <div class="swatch" id="swatch-2">
-  </div>
-  <ul class="color-list">
-    <li class="color-name">Beacon Red</li>
-    <li>CSS HEX: <span></span></li>
-    <li>RGB: <span></span></li>
-    <li>CMYK: <span></span></li>
-    <li>Sass:<span></span></li>
-  </ul>
-</div>
-
-<div class="col-sm-4 swatch-wrapper">
-  <div class="swatch" id="swatch-3">
-  </div>
-  <ul class="color-list">
-    <li class="color-name">Fog Blue</li>
-    <li>CSS HEX: <span></span></li>
-    <li>RGB: <span></span></li>
-    <li>CMYK: <span></span></li>
-    <li>Sass:<span></span></li>
-  </ul>
-</div> -->
+<% if @colors.size > 0 %>
+  <% @colors.each do | color | %>
+    <div id="color<%= color.id %>" class="col-sm-4 swatch-wrapper">
+      <div class="swatch" style="background-color: #<%= color.hex %>;">
+        <div class="copy-alert copied">
+        </div>
+      </div>
+      <ul class="color-list">
+        <li class="color-name"><%= color.name %><a href="#" class="delete-asset" data-colorid="<%= color.id %>"></a></li>
+        <li>CSS HEX: <span class="copy_text" data-clipboard-text="">#<%= color.hex.upcase %></li>
+        <li>RGB: <%= rgb_to_display(color.hex) %></li>
+        <li>CMYK: <%= hex_to_cmyk(color.hex)%></li>
+        <li>Sass:<span class="sass"> $<%= color.name %>: #<%= color.hex.upcase %>;</li>          
+      </ul>
+    </div>
+  <% end %>
+<% else %>
+  <h3> Looks like you need to add some colors to your brand!</h3>
+<% end %>
 
 </section>

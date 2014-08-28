@@ -29,7 +29,7 @@ class BrandsController < ApplicationController
       @user = User.find(params[:user_id])
       @brand = Brand.find(params[:id])
       @brands = @user.brands
-      # @colors = @brand.colors.all
+      @colors = @brand.colors.all
       @logos = @brand.logos.all
       @fonts = @brand.fonts.all
       @copies = @brand.copies.all
@@ -105,4 +105,5 @@ class BrandsController < ApplicationController
     def brand_params
       params[:brand]
     end
+
 end

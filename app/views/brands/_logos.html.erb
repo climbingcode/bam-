@@ -9,12 +9,13 @@
 
   <% if @logos.size != 0 %>
     <% @logos.each do | logo | %>
-      <div id="logo<%= logo.id %>" data-logoid="<%= logo.id %>" data-file-location="<%= logo.path %>" class="col-sm-4">
+      <div id="logo<%= logo.id %>" data-file-location="<%= logo.path %>" class="col-sm-4">
         <div class="img-background" style="height: 339px;">
           <img src="<%= logo.path %>" class="img-responsive logo">
         </div>
         <div class="logo-meta">
-          <label class="img-label"><%= logo.name %><a href="#" class="delete-asset"></a></label>
+          <label class="img-label"><%= logo.name %></label>
+          <a href="#" class="delete-asset" data-logoid="<%= logo.id %>"></a>
           <div class="logo-options">
             <a href="#" data-toggle="dropdown" class="dropdown-toggle">Options
               <span class="caret"></span>
