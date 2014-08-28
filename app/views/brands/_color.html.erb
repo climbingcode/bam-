@@ -10,7 +10,7 @@
       </div>
       <ul class="color-list">
         <li class="color-name"><%= color.name %><a href="#" class="delete-asset" data-colorid="<%= color.id %>"></a></li>
-        <li>CSS HEX: <span class="copy_text" data-clipboard-text="">#<%= color.hex.upcase %></li>
+        <li>CSS HEX: <span class="copy_text" data-clipboard-text="">#<%= color.hex.upcase %><img src='/assets/clipboard.png' class='clipboard'/></li>
         <li>RGB: <%= rgb_to_display(color.hex) %></li>
         <li>CMYK: <%= hex_to_cmyk(color.hex)%></li>
         <li>Sass:<span class="sass"> $<%= color.name %>: #<%= color.hex.upcase %>;</li>          
