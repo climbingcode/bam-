@@ -50,6 +50,8 @@ Rails.application.routes.draw do
 
   match '/sign_in_at_search', to: 'sessions#sign_in_at_search', via: 'post'
 
+  match '/change_privacy', to: 'brands#change_privacy', via: 'post'
+
   get '/:id', to: 'brand#show'
 
 

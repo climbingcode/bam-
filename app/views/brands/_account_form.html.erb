@@ -64,6 +64,12 @@
             <% @user.brands.each do |brand|%>
                 <% if @user.user_given_permissions(brand.id) %>
                   <h4 class="switch_brand"><strong><%= link_to brand.name.capitalize, user_brand_path(current_user.id, brand.id) %></strong></h4><br>
+                    <div class="logo-checkbox-wrapper">
+                      <%= form_for brand, :url => url_for(:controller => 'brands', :action => 'change_privacy', :remote => true, :html => {:'data-type' => 'json'}) do |f| %>
+                      <%= f.check_box(:open, :id => "check") %>
+                      <%= f.label(:open, "Private", for: "check-private", class: "check-box") %>             
+                      <% end %>
+                    </div>  
                 <% else %>
                   <h4><strong><%= brand.name.capitalize %></strong></h4><br>
                 <% end %>
@@ -72,7 +78,7 @@
                   <% users = User::users_awaiting_permission(brand) %>
                       <% users.each do |user| %>
                         <% if user != nil%>
-                          <h4><strong><%= "#{user.firstname} #{user.surname}" %> awaiting access to <%= brand.name.capitalize %></stong><h4>
+                          <h4><strong><%= "#{user.firstname} #{user.surname}" %> awaiting access to <%= brand.name.capitalize %></stong></h4>
                           <%= bootstrap_form_for users_path(user), :url => {:controller => 'users', :action => 'update', :id => user }, :html=>{:method=>:put} do |f| %>
                           <%= select_tag "permission", "<option>Update / View Users and Assets</option><option>Update / View Assets Only</option><option>View Only</option><option>No Permissions Granted</option>".html_safe %>
                           <%= hidden_field_tag :brand, brand.id %>

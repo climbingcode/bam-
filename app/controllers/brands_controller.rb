@@ -34,9 +34,13 @@ class BrandsController < ApplicationController
   def search_results
     @user_brand = current_user.brands if current_user
     @user ||= User.find(current_user.id) if current_user
+    @all_brands = Brand.all
   end
   # GET /brands/1
   # GET /brands/1.json
+  def change_privacy
+    binding.pry
+  end
   def show
       session[:current_brand] = params[:id].to_i
       @user = User.find(params[:user_id])

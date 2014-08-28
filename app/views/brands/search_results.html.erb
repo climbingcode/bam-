@@ -9,15 +9,23 @@
 			<% @brands << Brand.find(id) %>
 		<% end %>
 
+		<% if @brands != [] %>
 			<% if !current_user %>
 				<% @brands.each do |brand| %>
 					<h1><%= brand.name %>
     		<% end %>
 			<% else  %>
-				<% if @brands != [] %>
-    			<% @brands.each do |brand| %>
+    		<% @brands.each do |brand| %>
+    			<% if brand.open %>
     				<h1><%=link_to brand.name, user_brand_path(current_user, brand.id) %></h1>
+    			<% else %>
+    				<h1><%= brand.name %>
     			<% end %>
+    		<% end %>
+  		<% end %>
+  		<% else %>
+  			<% @all_brands.each do |brand| %>
+  				<h1><%= brand.name %></h1>
   			<% end %>
   		<% end %>  		
 	</div>

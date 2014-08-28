@@ -469,5 +469,8 @@ $( document ).ready(function() {
 
   brandPageInit();  
 
+  $('#check').on('click', function() {
+    alert('works');
+  });
 
 });

@@ -18,7 +18,7 @@ ActiveRecord::Schema.define(version: 20140821224001) do
     t.string   "website"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.boolean  "private"
+    t.boolean  "open",       default: false
     t.string   "slug"
   end
 
