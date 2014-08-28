@@ -104,16 +104,16 @@ display:none;
 
 }
 
-  .delete-asset {
-    float: right;
-    right: 20px;
-    height: 20px;
-    width: 20px;
-    opacity: 0.2;
-    background-image: url("trashcan_transparent.png");
-    background-position: center;
-    background-size: cover;
-    background-repeat: no-repeat;
-    transition: opacity 0.5s;
-    -webkit-transition: opacity 0.5s;
-  }
+.delete-asset {
+  float: right;
+  right: 20px;
+  height: 20px;
+  width: 20px;
+  opacity: 0.2;
+  background-image: url("trashcan_transparent.png");
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat;
+  transition: opacity 0.5s;
+  -webkit-transition: opacity 0.5s;
+}
