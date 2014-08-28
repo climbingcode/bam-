@@ -87,6 +87,12 @@ var colorOperations = {
     colorCmyk.appendTo(colorListItems);
     colorSass.appendTo(colorListItems);
 
+
+    colorOperations.colorToClipboard();
+
+  },
+
+  colorToClipboard: function(){
     var client = new ZeroClipboard( $('.copy_text') );
 
       client.on( 'ready', function(event) {
@@ -120,12 +126,9 @@ var colorOperations = {
       client.on( 'error', function(event) {
         // console.log( 'ZeroClipboard error of type "' + event.name + '": ' + event.message );
         ZeroClipboard.destroy();
-      }); 
-    
-    $(".color-name .delete-asset").on("click", function(event){
-      colorOperations.destroyColor(event);
-    });
+      });
   }
+
 };
 
 
@@ -217,7 +220,8 @@ var typographyOperations = {
       var $typo = $("#typography");
       var lowerCaseLetters = upperCaseLetters.toLowerCase();
       var typoWrapper = $("<div>").attr("id", "font" + data.id).addClass("letters_wrapper col-sm-10");
-      var typoFontDelete = $("<div>").data("fontid", data.id).addClass("asset-delete");
+      var typoFontHeader = $("<div>").addClass("font-header");
+      var typoFontDelete = $("<a>").data("fontid", data.id).addClass("asset-delete");
       var typoFontDescription = $("<h3>").addClass("font-description").html(fontName + ":");
       var typoFontFamily = $("<h3>").addClass("font-name").html(fontFamily);
       var lineDivider = $("<hr>");
@@ -280,10 +284,17 @@ var interfaceOperations = {
     });
   },
 
+  validationActions: function(){
+
+  },
+
+
   initializeListeners: function(){
     interfaceOperations.deleteAssetEvents();
     interfaceOperations.dashBoardEvents();
   }
+
+
 };
 
 var ajaxOperations = {
@@ -449,6 +460,7 @@ var brandPageInit = function(){
   ajaxOperations.initializeListeners();
   businessCardOperations.initializeListeners();
   interfaceOperations.initializeListeners();
+  colorOperations.colorToClipboard();
 
 };
 
