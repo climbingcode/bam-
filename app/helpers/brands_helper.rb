@@ -25,15 +25,15 @@ module BrandsHelper
     end
 
     def hex_to_cmyk(hex)
-     computedC = 0;
-     computedM = 0;
-     computedY = 0;
-     computedK = 0;
+     computedC = 0
+     computedM = 0
+     computedY = 0
+     computedK = 0
 
 
-     r = hex_convert_to_red(hex).to_f; 
-     g = hex_convert_to_green(hex).to_f; 
-     b = hex_convert_to_blue(hex).to_f; 
+     r = hex_convert_to_red(hex).to_f 
+     g = hex_convert_to_green(hex).to_f 
+     b = hex_convert_to_blue(hex).to_f 
 
      # For colors that are black
       if r==0 && g==0 && b==0 
@@ -42,9 +42,9 @@ module BrandsHelper
       end
      
 
-     computedC = 1.0 - (r/255.0);
-     computedM = 1.0 - (g/255.0);
-     computedY = 1.0 - (b/255.0);
+     computedC = 1.0 - (r/255.0)
+     computedM = 1.0 - (g/255.0)
+     computedY = 1.0 - (b/255.0)
 
      minCMY = [computedC, computedM, computedY].min
 
