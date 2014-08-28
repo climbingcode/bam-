@@ -52,25 +52,6 @@ var colorOperations = {
 
   destroyColor: function(event) { 
     ajaxOperations.destroyAsset(event, "color"); 
-    // event.preventDefault();
-    // var $target = $(event.target);
-    // console.log($target);
-    // var colorId = $target.data("colorid");
-    // var path = window.location.pathname + "/colors/"+ colorId;
-    // var $swatch = $("#color" + colorId); 
-    // $.ajax({
-    //   type: "DELETE",
-    //   url: path,
-    //   dataType: "json",
-    //   success: function(response){
-    //     console.log(response);
-    //     // onDeleteFadeOut(response);
-    //     $swatch.fadeOut('fast', function(){
-    //       $(this).remove();
-    //     });
-    //     notificationOperations.displayAdvisory("Color deleted");
-    //   }
-    // })
   },
 
   createNewColor: function(data) {
@@ -371,6 +352,11 @@ var ajaxOperations = {
 
 };
 
+var businessCardOperations = {
+
+
+};
+
 
 
 $( document ).ready(function() {
@@ -399,66 +385,7 @@ $( document ).ready(function() {
     assetPathInput.unwrap();
   };
   
-  
-  // $('#new_logo').fileupload({
-  //   dataType: 'json',
-    
-  //   // drop: function(e, data){
-  //   //   $.each(data.files, function(index, file){
-  //   //     // $('#upload_file_name').append("<p>" + file.name +"</p>");
-  //   //   });
-  //   // },
 
-  //   // change: function(e, data){
-  //   //   $.each(data.files, function(index, file){
-  //   //     // $('#upload_file_name').append("<p>" + file.name +"</p>");
-  //   //   });
-  //   // },
-
-  //   add: function(e, data){
-  //     data.context = $(tmpl("logo_upload", data.files[0]))
-  //       console.log(data.files);
-  //       $('#logo-upload-status').append(data.context)
-  //       $("#logo_submit").on("click", function(event){
-  //         event.preventDefault();
-  //         data.submit();
-  //       });
-  //   },
-
-  //   progress: function(e, data){
-  //     if(data.context){
-  //       console.log(data);
-  //       var progress = parseInt(data.loaded / data.total * 100, 10);
-  //       data.context.find('.file-progress-strip').css('width', progress + '%');
-  //     };
-  //   },
-
-  //   done: function(e, data){
-  //     console.log("success!", data);
-  //     var assetName = data.name;
-  //     logoOperations.addNewLogo(data);
-  //     notificationOperations.displayAdvisory("Logo Uploaded")
-  //     $("#logo_name").val("");
-  //     $("#logo_description").val("");
-  //     //clearFileInput( "#logo_path");
-  //     console.log(data.files, data.files.length);
-  //     data.files = [];
-  //     data.originalFiles = [];
-  //     // debugger
-  //     console.log(data.files.length);
-  //     $("#logo-upload-status").empty();
-  //   }
-  // });
-
-  // $('#new_misc_asset').fileupload({
-  //   dataType: 'json',
-  //   done: function(e, data){
-  //     console.log(data)
-  //   }
-  // });
-
-
-  // <= End of Jquery Fileupload event listeners
 
   // ASSET DELETE EVENT LISTENERS =>
 
