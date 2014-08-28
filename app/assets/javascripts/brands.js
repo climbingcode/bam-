@@ -66,14 +66,14 @@ var colorOperations = {
     var colorDelete = $("<a>").attr("href", "#").data("colorid", data.id).addClass("delete-asset");
     var copyAlert = $("<div>").addClass('copy-alert');
     var copyAlertMessage = $("<p>").html('Copied!').addClass('copy-alert-message');
-    var colorSwatch = $("<div>").addClass("swatch").css("background-color", "#" + data.hex);
+    var colorSwatch = $("<div>").addClass("swatch").css("background-color", "#"+data.hex);
     var colorList = $("<ul>").addClass("color-list");
     var colorName = $("<li>").addClass("color-name").data("colorid", data.id).html(data.name);
     var colorHex = $("<li>").html("CSS HEX: <span class='copy_text' data-clipboard-text>#" + upperCaseHex +  "</span><img src='/assets/clipboard.png' class='clipboard'/>");
     var colorRgb = $("<li>").html("RGB: <span>" + r + ", " + g + ", "+ b + "</span>");
     var colorCmyk = $("<li>").html("CMYK: <span>" + colorOperations.hexToCMYK(data.hex) + "</span>");
     var colorListItems = targetColor + " ul.color-list";
-    var colorSass = $("<li>").html("Sass: <span class='sass'>$" + data.name +  ": " + upperCaseHex + ";</span>");
+    var colorSass = $("<li>").html("Sass: <span class='sass'>$" + data.name +  ": #" + upperCaseHex + ";</span>");
 
     $color.append(colorWrapper);
     colorSwatch.appendTo(colorWrapper);
@@ -87,6 +87,8 @@ var colorOperations = {
     colorCmyk.appendTo(colorListItems);
     colorSass.appendTo(colorListItems);
 
+    $(".color-name .delete-asset").on("click", function(event){
+      colorOperations.destroyColor(event);
 
     colorOperations.colorToClipboard();
 
@@ -97,6 +99,7 @@ var colorOperations = {
   },
 
   colorToClipboard: function(){
+
     var client = new ZeroClipboard( $('.copy_text') );
 
       client.on( 'ready', function(event) {
@@ -106,12 +109,6 @@ var colorOperations = {
           event.clipboardData.setData('text/plain', textToCopy);
         });
 
-        // $('.copy_text').on('click', function(event){
-        //   var targetText = event.target.innerHTML
-        //   console.log(targetText)
-        //   event.clipboardData.setData('text/plain', targetText);
-        // })
-
         client.on( 'aftercopy', function(event) {
           console.log('Copied text to clipboard: ' + event.data['text/plain']);
 
@@ -119,9 +116,9 @@ var colorOperations = {
 
           copyAlert.toggleClass('copied')
 
-          setTimeout(function () {  
+          setTimeout(function () {
             copyAlert.toggleClass('copied')
-          }, 1000); 
+          }, 1000);
 
         });
 
@@ -130,7 +127,9 @@ var colorOperations = {
       client.on( 'error', function(event) {
         // console.log( 'ZeroClipboard error of type "' + event.name + '": ' + event.message );
         ZeroClipboard.destroy();
-      });
+
+    });
+
   }
 
 };
