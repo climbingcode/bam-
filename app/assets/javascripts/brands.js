@@ -92,7 +92,27 @@ var colorOperations = {
         //    console.log(targetText);
         // });
 
-      
+      var client = new ZeroClipboard( $('.clipboard') );
+
+      client.on( 'ready', function(event) {
+
+        client.on( 'copy', function(event) {
+          var targetText = $(event.target).parents('li').find('.copy_text').html();
+          console.log(targetText)
+          event.clipboardData.setData('text/plain', targetText);
+        });
+
+        client.on( 'aftercopy', function(event) {
+          console.log('Copied text to clipboard: ' + event.data['text/plain']);
+
+        });
+
+      });
+
+      client.on( 'error', function(event) {
+        // console.log( 'ZeroClipboard error of type "' + event.name + '": ' + event.message );
+        ZeroClipboard.destroy();
+    });
 
     var client = new ZeroClipboard( $('.copy_text') );
 
