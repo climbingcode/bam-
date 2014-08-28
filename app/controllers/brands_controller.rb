@@ -2,9 +2,9 @@ class BrandsController < ApplicationController
 
   before_action :set_brand, only: [:show, :edit, :update, :destroy]
 
-  before_filter :restrict_access
+  before_filter :restrict_access, only: [:show, :create, :update, :destroy]
 
-  before_filter :check_permission_status
+  before_filter :check_permission_status, only: [:show, :create, :update, :destroy]
   # GET /brands
   # GET /brands.json
   def index
@@ -16,16 +16,29 @@ class BrandsController < ApplicationController
 
   end
 
+  # methods for view only and ask for access
+  def search_brand 
+    search = params['/search_brand'][:search].downcase
+    @brands = Brand.where('name LIKE ?', "%#{search}%")
+    tracked_brands = @brands.pluck(:id).join(' ')
+    cookies[:tracked_brands] = tracked_brands
+      if params['/search_brand'][:search] == ""
+        redirect_to users_path, notice: 'sorry, you need to enter something'
+      elsif @brands == nil
+        redirect_to users_path, notice: 'sorry, no brands where found'
+      else 
+        redirect_to search_results_path
+      end
+  end
+
+  def search_results
+    @user_brand = current_user.brands if current_user
+    @user ||= User.find(current_user.id) if current_user
+  end
   # GET /brands/1
   # GET /brands/1.json
   def show
-      if params[:search].present?
-        @search = Brand.find_by(name: params[:search])
-        redirect_to brand_index_path
-      else
-        @user = User.find(params[:user_id])
-        @brand = @user.brands
-      end
+      session[:current_brand] = params[:id].to_i
       @user = User.find(params[:user_id])
       @brand = Brand.find(params[:id])
       @brands = @user.brands
@@ -35,7 +48,6 @@ class BrandsController < ApplicationController
       @copies = @brand.copies.all
       @guidelines = @brand.guidelines.all
       @misc_assets = @brand.misc_assets.all
-      # brand_tracker(@brand)
       current_brand(@brand)
       @colors = @brand.colors
       @images = @brand.logos
