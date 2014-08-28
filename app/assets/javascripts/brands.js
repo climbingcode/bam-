@@ -87,32 +87,14 @@ var colorOperations = {
     colorCmyk.appendTo(colorListItems);
     colorSass.appendTo(colorListItems);
 
-        // $('.clipboard').on('click', function(event){
-        //    var targetText = $(event.target).parents('li').find('.copy_text').html();
-        //    console.log(targetText);
-        // });
+    $(".color-name .delete-asset").on("click", function(event){
+      colorOperations.destroyColor(event);
 
-      var client = new ZeroClipboard( $('.clipboard') );
+    colorOperations.colorToClipboard();
 
-      client.on( 'ready', function(event) {
+  },
 
-        client.on( 'copy', function(event) {
-          var targetText = $(event.target).parents('li').find('.copy_text').html();
-          console.log(targetText)
-          event.clipboardData.setData('text/plain', targetText);
-        });
-
-        client.on( 'aftercopy', function(event) {
-          console.log('Copied text to clipboard: ' + event.data['text/plain']);
-
-        });
-
-      });
-
-      client.on( 'error', function(event) {
-        // console.log( 'ZeroClipboard error of type "' + event.name + '": ' + event.message );
-        ZeroClipboard.destroy();
-    });
+  colorToClipboard: function(){
 
     var client = new ZeroClipboard( $('.copy_text') );
 
@@ -141,12 +123,11 @@ var colorOperations = {
       client.on( 'error', function(event) {
         // console.log( 'ZeroClipboard error of type "' + event.name + '": ' + event.message );
         ZeroClipboard.destroy();
+
     });
 
-    $(".color-name .delete-asset").on("click", function(event){
-      colorOperations.destroyColor(event);
-    });
   }
+
 };
 
 
@@ -238,7 +219,8 @@ var typographyOperations = {
       var $typo = $("#typography");
       var lowerCaseLetters = upperCaseLetters.toLowerCase();
       var typoWrapper = $("<div>").attr("id", "font" + data.id).addClass("letters_wrapper col-sm-10");
-      var typoFontDelete = $("<div>").data("fontid", data.id).addClass("asset-delete");
+      var typoFontHeader = $("<div>").addClass("font-header");
+      var typoFontDelete = $("<a>").data("fontid", data.id).addClass("asset-delete");
       var typoFontDescription = $("<h3>").addClass("font-description").html(fontName + ":");
       var typoFontFamily = $("<h3>").addClass("font-name").html(fontFamily);
       var lineDivider = $("<hr>");
@@ -260,7 +242,7 @@ var typographyOperations = {
 };
 
 
-var notificationOperations = {
+var interfaceOperations = {
 
   displayAdvisory: function(message) {
     var advisory = $("#user-action-messages");
@@ -273,7 +255,45 @@ var notificationOperations = {
       advisory.removeClass(showClass).addClass(hideClass);
       advisory.empty();
     }, 2500);
+  },
+
+  deleteAssetEvents: function(){
+    $(".color-name  .delete-asset").on("click", function(event){
+      colorOperations.destroyColor(event);
+    });
+
+    $(".logo-meta .delete-asset").on("click", function(event){
+      logoOperations.destroyLogo(event);
+    });
+
+    $(".font-header .delete-asset").on("click", function(event){
+      typographyOperations.destroyTypography(event);
+    });
+  },
+
+  dashBoardEvents: function(){
+    $('#dashboardTab').on("click", "dashboardTab", function (e) {
+      e.preventDefault()
+      $(this).tab('show')
+    });
+
+    $('#accountTab').on("click", "accountTab", function (e) {
+      e.preventDefault()
+      $(this).tab('show')
+    });
+  },
+
+  validationActions: function(){
+
+  },
+
+
+  initializeListeners: function(){
+    interfaceOperations.deleteAssetEvents();
+    interfaceOperations.dashBoardEvents();
   }
+
+
 };
 
 var ajaxOperations = {
@@ -292,7 +312,7 @@ var ajaxOperations = {
       success: function(response){
         console.log(response);
         $elementToRemove.slideUp("fast");
-        notificationOperations.displayAdvisory("Asset deleted");
+        interfaceOperations.displayAdvisory("Asset deleted");
       }
     });
   },
@@ -343,9 +363,15 @@ var ajaxOperations = {
             $('#logo-upload-status').append(data.context)
             $("#logo_submit").on("click", function(event){
               event.preventDefault();
-              data.submit();
-            });
-        },
+                function clearFileInput(element) {
+                var assetPathInput = $(element);
+                 assetPathInput.wrap("<form>").parent("form").trigger("reset");
+                  console.log(assetPathInput);
+                     assetPathInput.unwrap();
+                };
+                data.submit();
+              });
+          },
 
         progress: function(e, data){
           if(data.context){
@@ -359,7 +385,7 @@ var ajaxOperations = {
           console.log("success!", data);
           var assetName = data.name;
           logoOperations.addNewLogo(data);
-          notificationOperations.displayAdvisory("Logo Uploaded")
+          interfaceOperations.displayAdvisory("Logo Uploaded")
           $("#logo_name").val("");
           $("#logo_description").val("");
           //clearFileInput( "#logo_path");
@@ -378,13 +404,62 @@ var ajaxOperations = {
           console.log(data)
         }
       });
+  },
+
+  initializeListeners: function(){
+    ajaxOperations.ajaxFileUploadActions();
+    ajaxOperations.uploadSuccessEvents();
   }
 
 
 };
 
 var businessCardOperations = {
+  
+  initializeListeners: function(){
+    $('.open_business_card_modal').on('click', function(e) {
+      e.preventDefault()    
+      $('.business_card_pdf').addClass('business_card_preview');
+    }); 
 
+    $('.change_background').on('click', function(e) {
+      e.preventDefault();
+      var color = $(this).data("color");
+      $('.business_card_preview').css('background-color', color)
+    });
+
+
+    $('#add_border').on('click', function(e) {
+      e.preventDefault();
+      $('.no_border').toggleClass('add_card_border');
+    });
+
+    $('.change_image').on('click', function(e) {
+      e.preventDefault();
+      var imageString = $(this).data("image");
+      var image = imageString.slice(1);
+      var source = $('<img>').attr('src', image).addClass('business_image_format')
+      if($('.business_card_pdf').find('img') != 'undefined') {
+          $('#business_card_image').find('img').remove();
+        };
+        $(source).appendTo('#business_card_image');
+    });
+
+    // FIND ALL STYLES
+
+    $('#business_card_generation').on('click', function(e) {
+      styles = document.getElementsByClassName('business_card_pdf')
+      console.log(styles)
+    });
+  }
+};
+
+var brandPageInit = function(){
+  
+  ajaxOperations.initializeListeners();
+  businessCardOperations.initializeListeners();
+  interfaceOperations.initializeListeners();
+  colorOperations.colorToClipboard();
 
 };
 
@@ -392,86 +467,7 @@ var businessCardOperations = {
 
 $( document ).ready(function() {
 
-	$('#dashboardTab').on("click", "dashboardTab", function (e) {
-  	e.preventDefault()
-  	$(this).tab('show')
-	});
+  brandPageInit();  
 
-	$('#accountTab').on("click", "accountTab", function (e) {
-  	e.preventDefault()
-  	$(this).tab('show')
-	}); 
-
-  // Ajax Event listeners.
-
-  ajaxOperations.uploadSuccessEvents();
-  ajaxOperations.ajaxFileUploadActions();
-
-
-
-  function clearFileInput(element) {
-     var assetPathInput = $(element);
-    assetPathInput.wrap("<form>").parent("form").trigger("reset");
-    console.log(assetPathInput);
-    assetPathInput.unwrap();
-  };
-  
-
-
-  // ASSET DELETE EVENT LISTENERS =>
-
-  $(".color-name  .delete-asset").on("click", function(event){
-    colorOperations.destroyColor(event);
-  });
-
-  $(".logo-meta .delete-asset").on("click", function(event){
-    logoOperations.destroyLogo(event);
-  });
-
-  $(".font-header .delete-asset").on("click", function(event){
-    typographyOperations.destroyTypography(event);
-  });
-
-  //  <= End of Asset deletion EVENT LISTENERS
-
-
-  // BUSINESS CARD METHODS =>
-  
-  $('.open_business_card_modal').on('click', function(e) {
-    e.preventDefault()    
-    $('.business_card_pdf').addClass('business_card_preview');
-  }); 
-
-  $('.change_background').on('click', function(e) {
-    e.preventDefault();
-    var color = $(this).data("color");
-    $('.business_card_preview').css('background-color', color)
-  });
-
-
-  $('#add_border').on('click', function(e) {
-    e.preventDefault();
-    $('.no_border').toggleClass('add_card_border');
-  });
-
-  $('.change_image').on('click', function(e) {
-    e.preventDefault();
-    var imageString = $(this).data("image");
-    var image = imageString.slice(1);
-    var source = $('<img>').attr('src', image).addClass('business_image_format')
-    if($('.business_card_pdf').find('img') != 'undefined') {
-        $('#business_card_image').find('img').remove();
-      };
-      $(source).appendTo('#business_card_image');
-  });
-
-  // FIND ALL STYLES
-
-  $('#business_card_generation').on('click', function(e) {
-    styles = document.getElementsByClassName('business_card_pdf')
-    console.log(styles)
-  });
-
-// END OF BUSINESS CARD METHODS <=
 
 });

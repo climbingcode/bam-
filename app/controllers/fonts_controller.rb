@@ -25,7 +25,7 @@ class FontsController < ApplicationController
   # POST /fonts.json
   def create
     @font = Font.new(font_params)
-
+    binding.pry
     respond_to do |format|
       if @font.save
         format.html { redirect_to user_brand_path(current_user, @font.brand_id), notice: 'Font was successfully saved.' }
@@ -57,7 +57,7 @@ class FontsController < ApplicationController
     @font.destroy
     respond_to do |format|
       format.html { redirect_to fonts_url, notice: 'Font was successfully destroyed.' }
-      format.json { head :no_content }
+      format.json { render json: @font, status: :accepted, location: user_brand_path(current_user, @font.brand_id) }
     end
   end
 
