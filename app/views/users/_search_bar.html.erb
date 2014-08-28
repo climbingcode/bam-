@@ -1,1 +1,4 @@
-_search_bar.html.erb
+<%= form_for search_brand_path, :url => {:action => "search_brand", :controller => "brand"} do |f| %>
+	<%= f.text_field :search %>
+	<%= f.submit %>
+<% end %>

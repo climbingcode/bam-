@@ -1,3 +1,14 @@
-<h1>Brand#index</h1>
-<p>Find me in app/views/brand/index.html.erb</p>
-<%binding.pry%>
+<section class="search_body">
+
+
+
+</section>
+
+<div class="brands_search_results">
+	<h1>All Brands Matching result</h1>
+	<%@brands.each do |brand| %>
+    <h1><%=link_to brand.name, brand_show_path(brand) %></h1>
+  <% end %>
+
+</div>
+    

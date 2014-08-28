@@ -32,7 +32,7 @@ Rails.application.routes.draw do
 
   resources :contact_form, only: [:new, :create] 
 
-  resource :brand, only: [:show, :index]
+  resources :brand, only: [:show, :index, :search_brand]
   
   scope 'pdfs/:id' do
     get 'business_card', to: 'pdfs#business_card'
@@ -42,7 +42,11 @@ Rails.application.routes.draw do
     resources :users 
   end
 
-  match '/add_brand', to: 'users#add_brand', via: 'post'
+  match '/add_brand', to: 'users#add_brand', via: 'put'
+
+  match '/search_brand', to: 'brand#search_brand', via: 'post'
+
+  
 
   get '/:id', to: 'brand#show'
 

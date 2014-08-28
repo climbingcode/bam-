@@ -16,7 +16,7 @@ class UsersController < ApplicationController
 
 	def create
 		@user = User.new(user_params)
-		@brand = Brand.find_by(name: params[:name])
+		@brand = Brand.find_by(name: params[:name].downcase)
     if @user.save
       if !@brand 
         if @user.brands.create(name: params[:name], website: params[:website]).save
