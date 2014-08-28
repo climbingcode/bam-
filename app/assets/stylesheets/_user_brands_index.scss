@@ -1,0 +1,57 @@
+.user-brand-index{
+  height: 100%;
+  background: white;
+  margin-top: 50px;
+    h1{
+      margin-bottom: 45px;
+    }
+    a{
+  font-size: 2em;
+  color: #444;
+  margin-bottom: 45px!important;
+  line-height: 45px;
+  }
+  a:hover{
+    color: $primary-color;
+    text-decoration: none;
+  }
+}
+
+.brand_thumbnail{
+  margin-right: auto;
+  margin-left: auto;
+
+}
+
+  .plus{
+    margin-top: 7.5px;
+  }
+
+.each_brand_wrapper{
+  display: table-cell;
+}
+
+.logo-thumbnail-container{
+  height: 100px;
+  width: 100px;
+  padding: 10px;
+  margin-top: 0px;
+  background-image: url('/assets/bg.jpg');
+  display: inline-block;
+  border: solid 1px #999;
+}
+
+.brand-index-wrapper{
+  margin-left: auto;
+  margin-right: auto;
+  display: block;
+  float: none;
+}
+
+.brand-link-wrapper{
+  display: inline;
+  margin-top: 30px;
+  margin-left: 30px;
+  margin-bottom: 45px!important;
+}
+
