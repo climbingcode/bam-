@@ -57,7 +57,7 @@
 
 
 #pricing{
-  background-color: #3ac1d4;
+  background-color:$primary-color;
   // background-color: $accent-color;
   // background-image: url("/assets/computer.jpg");
   padding: 45px;
@@ -89,7 +89,6 @@
 #personal-column, #agency-column{
   position: relative;
   top: 50px;
-  
   transition: all 0.5s;
 }
 
@@ -152,6 +151,9 @@
 
 #signUpModal{
   color: #333;
+  .form-control{
+    border: 1px solid #ccc;
+  }
   .modal-body{
     background: white;
   }

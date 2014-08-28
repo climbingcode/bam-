@@ -58,13 +58,19 @@
            <%= form_for Color.new, url: user_brand_colors_path(params[:user_id], params[:id], format: :json), remote: true, authenticity_token: true,  method: 'post' do |f| %>
 
           <!--   <%= f.label(:hex, "Hex Colour code") %> -->
-            <%= f.text_field(:hex, class: "form-control", :maxlength => 7, :placeholder => 'HEX Color', :id => "hex-input") %>
-            <div class="checkbox-wrapper">
-            <%= f.check_box(:primary, :id => "check-1") %>
-            <%= f.label(:Primary, for: "check-1", class: "check-box") %>
+
+          <%= f.text_field(:name, class: "form-control", :placeholder => 'Color Name' ) %>
+
+              <div class="checkbox-wrapper">
+                <%= f.check_box(:primary, :id => "check-1") %>
+                <%= f.label(:Primary, for: "check-1", class: "check-box") %>
+                <!-- <%= f.label(:name, "Colour name") %> -->
+              </div>
+              <div class="input-group color-picker">
+              <%= f.text_field(:hex, class: "form-control", :maxlength => 7, :placeholder => 'HEX Color', :id => "hex-input") %><span class="input-group-addon" id="colorpicker-input-addon"><i><img src="/assets/eyedropper.png" class="img-responsive"></i></span>
+
             </div>
-            <!-- <%= f.label(:name, "Colour name") %> -->
-            <%= f.text_field(:name, class: "form-control", :placeholder => 'Color Name' ) %>
+
 
             <%= f.hidden_field(:brand_id, :value => params[:id], class: "hidden-field") %>
             <%= f.submit('Add colour', class: "bam_btn_grey btn") %>
@@ -74,10 +80,17 @@
         </div>
       </div>
     </div>
+    <script type="text/javascript">
+
+    $(function(){
+        $('.color-picker').colorpicker();
+    });
+
+    </script>
 
   <div class="panel ">
       <a data-toggle="collapse" data-parent="#accordion" href="#collapseThree">
-        <div class="panel-heading">
+        <div class="panel-heading" id="brand-copy-header">
           <h4 class="panel-title">Brand Copy</h4>
         </div>
       </a>
