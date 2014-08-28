@@ -2,7 +2,6 @@ class UsersController < ApplicationController
 
 	include UsersHelper
 
-  before_filter :redirect_to_brands_page_if_signed_in
 
 	def index 
     @user = User.new
@@ -33,8 +32,6 @@ class UsersController < ApplicationController
         session[:current_brand] = @brand.id
      		send_email_to_admin(params[:name], @user)
         awaiting_admin_confirmation(@user, @brand)
-        session[:current_brand].clear
-        session[:user].clear
      		redirect_to '/', notice: 'Waiting for account holder to grant access'
  	    end 
     else
@@ -51,7 +48,6 @@ class UsersController < ApplicationController
   # add brands through account panel
   def add_brand
     if Brand::does_brand_exist?(params[:name])
-      binding.pry
       if current_user.brands.create(name: params[:name], website: params[:website]).save
         brand = current_user.brands.last 
         current_user.user_brands.find_by(brand_id: brand.id).update(permission: 4)

@@ -571,9 +571,6 @@ $( document ).ready(function() {
   $('#business_card_generation').on('click', function(e) {
     styles = document.getElementsByClassName('business_card_pdf')
     console.log(styles)
-    alert('hello')
-  
-  
   });
 
 });

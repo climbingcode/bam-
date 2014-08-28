@@ -1,6 +1,33 @@
 
-<h1>Listing brands</h1>
-<%= link_to 'New Brand', new_user_brand_path %><hr>
-<% @brands.each do |brand|%>
-	<%= link_to "Go to #{brand.name}", user_brand_path(@user.id, brand.id)%><hr>
-<% end %>
+<section class="user-brand-index">
+  <div class="container">
+    <div class="col-sm-8 brand-index-wrapper">
+      <h1>Welcome Back, Here Are Your Brands</h1>
+        <div class="each_brand_wrapper">
+          <div class="logo-thumbnail-container">
+            <a href="#"><%= image_tag("/assets/plus.png", class: "plus img-responsive brand_thumbnail") %></a>
+            </div>
+            <div class="brand-link-wrapper">
+            <%= link_to 'Create a New Brand', new_user_brand_path %>
+            </div>
+            </div>
+              <hr>
+
+                  <% @brands.each do |brand|%>
+                  <div class="each_brand_wrapper row">
+                    <a href="#">
+                      <div class="logo-thumbnail-container">
+                        <%= image_tag("/assets/lighthouse-labs.png", class: "img-responsive brand_thumbnail") %>
+                      </div>
+                    </a>
+
+                    <div class="brand-link-wrapper">
+                  	 <%= link_to "Go to #{brand.name}", user_brand_path(@user.id, brand.id)%>
+                    </div>
+                  </div>
+                  <hr/>
+                  <% end %>
+
+      </div>
+      </div>
+</section>

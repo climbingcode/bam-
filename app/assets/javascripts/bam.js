@@ -46,7 +46,7 @@ $( document ).ready(function() {
   //Dropdown for Logo Files
 
   $('.switch_brand').on('click', function(){
-    alert('hello')
+
   })
 
 
