@@ -1,0 +1,42 @@
+<section class="search_body">
+
+	<div class="brands_search_results">
+		<h1>All Brands Matching result</h1>
+	<!-- 	LOGIN TO FIND SEARCH RESULTS -->
+		<% brands_id = cookies[:tracked_brands].split.map(&:to_i) %>
+		<% @brands = [] %>
+		<% brands_id.each do |id| %>
+			<% @brands << Brand.find(id) %>
+		<% end %>
+
+			<% if !current_user %>
+				<% @brands.each do |brand| %>
+					<h1><%= brand.name %>
+    		<% end %>
+			<% else  %>
+				<% if @brands != [] %>
+    			<% @brands.each do |brand| %>
+    				<h1><%=link_to brand.name, user_brand_path(current_user, brand.id) %></h1>
+    			<% end %>
+  			<% end %>
+  		<% end %>  		
+	</div>
+<!-- 	
+	RENDERS LOGIN, SIGNUP OR LINK TO BRANDS DEPENDING ON SESSIONS -->
+
+		<div class="brands_search_results">
+			<% if !current_user %>
+				<%= render "sign_up_search_brands" %>
+			<% else %>
+					<h1>Your Brands</h1>
+						<% @user_brand.each do |brand| %>
+							<h1><%= link_to brand.name, user_brand_path(current_user, brand.id) %></h1>
+						<% end %>
+				<% end %>
+		</div>
+	
+
+</section>
+
+
+

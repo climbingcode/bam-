@@ -4,6 +4,7 @@ module UsersHelper
 # 1 = full access to whole of site
 # 4 = Awaiting admin confirmation
 
+
 	def set_user_to_admin(user, brand)
 		brand_id = Brand.find_by(name: brand).id
 		user.user_brands.find_by(brand_id: brand_id).update(permission: 1)

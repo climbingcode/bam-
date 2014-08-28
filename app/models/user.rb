@@ -12,6 +12,14 @@ class User < ActiveRecord::Base
 	has_many :brands, through: :user_brands 
 
 
+	before_create :check_params
+
+	def check_params
+		self.username.downcase
+		self.firstname.downcase
+		self.surname.downcase
+	end
+
 # has user been give permissions / use to check when loading page 
 	def user_given_permissions(brand_id)
 		permission = self.user_brands.find_by(brand_id: brand_id).permission
@@ -35,7 +43,12 @@ class User < ActiveRecord::Base
 
 # returns true if user has admin permissions
  	def user_has_admin_permissions?(brand)
- 		return true if self.user_brands.find_by(brand_id: brand).permission == 1
+ 		if self.user_brands.find_by(brand_id: brand).present?
+ 			return true if self.user_brands.find_by(brand_id: brand).permission == 1
+ 		else
+ 			brand = Brand.find(brand)
+ 			self.user_brands.create(user_id: self.id, brand_id: brand.id, permission: 4)
+ 		end
  	end
 
 # assign user with admin status

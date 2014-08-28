@@ -1,30 +1,26 @@
 
 <div class="col-xs-12" id="sign_up_form_wrapper">
 
+    <%= bootstrap_form_for @user do |f| %>
 
-
-
-<%= bootstrap_form_for @user do |f| %>
-
-  <div class="users_signup">
-<!--     brand information -->
-    <div class="form-group">
-    <%= label_tag :name, "Brand Name"%>
-    <%= text_field_tag :name, nil, class: 'form-control'%>
-    <%= label_tag :website, "Brand Website"%>
-    <%= url_field_tag :website, nil, class: 'form-control' %>
-    </div>
-<!-- user information -->
-    <%= f.text_field :firstname %>
-    <%= f.text_field :surname %>
-    <%= f.text_field :username %>
-    <%= f.email_field :email %>
-    <%= f.text_field :position %>
-    <%= f.password_field :password %>
-    <%= f.password_field :password_confirmation%>
-    <%= f.submit  :class => "bam_btn btn", :id => "sign_up_submit" %>
-  </div>
-<% end %>
-
+        <div class="users_signup">
+        <!--     brand information -->
+            <div class="form-group">
+            <%= label_tag :name, "Brand Name"%>
+            <%= text_field_tag :name, nil, class: 'form-control'%>
+            <%= label_tag :website, "Brand Website"%>
+            <%= url_field_tag :website, nil, class: 'form-control' %>
+            </div>
+        <!-- user information -->
+            <%= f.text_field :firstname %>
+            <%= f.text_field :surname %>
+            <%= f.text_field :username %>
+            <%= f.email_field :email %>
+            <%= f.text_field :position %>
+            <%= f.password_field :password %>
+            <%= f.password_field :password_confirmation%>
+            <%= f.submit  :class => "bam_btn btn", :id => "sign_up_submit" %>
+        </div>
+    <% end %>
 
 </div>

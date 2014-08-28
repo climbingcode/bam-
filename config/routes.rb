@@ -31,8 +31,6 @@ Rails.application.routes.draw do
   resource :sessions, only: [:new, :create, :destroy]
 
   resources :contact_form, only: [:new, :create] 
-
-  resource :brand, only: [:show, :index]
   
   scope 'pdfs/:id' do
     get 'business_card', to: 'pdfs#business_card'
@@ -43,6 +41,14 @@ Rails.application.routes.draw do
   end
 
   match '/add_brand', to: 'users#add_brand', via: 'post'
+
+  match '/search_brand', to: 'brands#search_brand', via: 'post'
+
+  match '/search_results', to: 'brands#search_results', via: 'get'
+
+  match '/sign_up_at_search', to: 'users#sign_up_at_search', via: 'post'
+
+  match '/sign_in_at_search', to: 'sessions#sign_in_at_search', via: 'post'
 
   get '/:id', to: 'brand#show'
 

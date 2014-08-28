@@ -7,10 +7,19 @@ class Brand < ActiveRecord::Base
 	has_many :misc_assets
 	has_many :users, through: :user_brands 
 
+	
+  before_create :check_brand_params
+  before_update :check_brand_params
+
 	validates :name, :website, presence: true
 
 	extend FriendlyId
   friendly_id :name, use: :slugged
+
+
+	def check_brand_params
+		self.name.downcase
+	end
 
   def self.does_brand_exist?(brand_name)
   	Brand.find_by(name: brand_name).present?

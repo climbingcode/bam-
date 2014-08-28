@@ -1,0 +1,34 @@
+
+<div class="col-xs-12" id="sign_up_form_wrapper">
+	<h1>Sign Up to Access a Brands Assets</h1>
+    <%= bootstrap_form_for sign_up_at_search_path, :url => {:controller => 'users', :action => 'sign_up_at_search'} do |f| %>
+
+        <div class="users_signup">
+        <!--     brand information -->
+            <div class="form-group">
+        <!-- user information -->
+            <%= f.text_field :firstname %>
+            <%= f.text_field :surname %>
+            <%= f.text_field :username %>
+            <%= f.email_field :email %>
+            <%= f.text_field :position %>
+            <%= f.password_field :password %>
+            <%= f.password_field :password_confirmation%>
+            <%= f.submit  :class => "bam_btn btn", :id => "sign_up_submit" %>
+        </div>
+    <% end %>
+
+    <h1>Already Have a Account, Sign up here</h1>
+
+    <%= bootstrap_form_for sign_in_at_search_path, :url => {:controller => 'sessions', :action => 'sign_in_at_search'}, :method => 'post'  do |f|  %>
+  				<%= f.text_field :username, :placeholder => "Username", hide_label: true, :id => 'username_input' %>
+  				<%= f.password_field :password, :placeholder => "Password", hide_label: true, :id => 'password_input' %>
+ 			 		<%= f.submit 'Log In', :class => 'bam_btn btn sign-in-button' %>
+ 		<% end %>
+
+
+    <% if flash[:notice] %>
+      <h1 class="notice"><%= flash[:notice] %></h1>
+    <% end %>
+
+</div>

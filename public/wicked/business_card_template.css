@@ -1,4 +1,4 @@
-.business_card_pdf {
+#business_card_pdf {
 	height: 2in;
 	width: 3.5in;
 	background-color: white ;
@@ -42,5 +42,5 @@
 }
 
 h1 {
-	color: red;
+	color: blue;
 }

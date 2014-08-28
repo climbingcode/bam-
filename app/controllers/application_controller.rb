@@ -5,6 +5,16 @@ class ApplicationController < ActionController::Base
 
   protected
 
+
+
+  def tracked_search_brands(brands)
+    @searched_results = ""
+    binding.pry
+    brands.each do |brand|
+       searched_results << brand.id.to_s
+    end
+  end
+
   def restrict_access
     if !current_user
       flash[:alert] = "You must log in."
