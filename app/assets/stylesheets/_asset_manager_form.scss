@@ -168,6 +168,20 @@ input#logo_path.form-control{
   height: 30px;
 }
 
+input[type="submit"] {
+  transition: all 0.5s;
+  -webkit-transition: all 0.5s;
+}
+
+input[type="submit"]:disabled {
+
+}
+
+input[type="submit"]:enabled {
+  background-color: #3DC9B3 !important;
+
+}
+
 
 /*Checkbox Specific styles*/
 input[type='checkbox']{

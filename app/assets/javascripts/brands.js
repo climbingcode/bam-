@@ -90,6 +90,10 @@ var colorOperations = {
 
     colorOperations.colorToClipboard();
 
+    $(".color-name  .delete-asset").on("click", function(event){
+      colorOperations.destroyColor(event);
+    });
+
   },
 
   colorToClipboard: function(){
@@ -292,6 +296,7 @@ var interfaceOperations = {
   initializeListeners: function(){
     interfaceOperations.deleteAssetEvents();
     interfaceOperations.dashBoardEvents();
+    interfaceOperations.validationActions();
   }
 
 
@@ -341,6 +346,8 @@ var ajaxOperations = {
 
   },
 
+  ajaxFileQueue: 0,
+
   ajaxFileUploadActions: function() {
 
       $('#new_logo').fileupload({
@@ -361,7 +368,9 @@ var ajaxOperations = {
         add: function(e, data){
           data.context = $(tmpl("logo_upload", data.files[0]))
             console.log(data.files);
-            $('#logo-upload-status').append(data.context)
+            $('#logo-upload-status').append(data.context);
+            ajaxOperations.ajaxFileQueue += 1;
+            console.log(ajaxOperations.ajaxFileQueue)
             $("#logo_submit").on("click", function(event){
               event.preventDefault();
                 function clearFileInput(element) {
