@@ -169,6 +169,7 @@ input#logo_path.form-control{
 }
 
 input[type="submit"] {
+  border-radius: 3px;
   transition: all 0.5s;
   -webkit-transition: all 0.5s;
 }
@@ -179,9 +180,16 @@ input[type="submit"]:disabled {
 
 input[type="submit"]:enabled {
   background-color: #3DC9B3 !important;
-
 }
 
+input[type="submit"]:hover {
+  opacity: 0.75;
+  border-color: #fff;
+}
+
+input[type="submit"]:active {
+  opacity: 1.0;
+}
 
 /*Checkbox Specific styles*/
 input[type='checkbox']{
