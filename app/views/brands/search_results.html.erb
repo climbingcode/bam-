@@ -1,7 +1,10 @@
-<section class="search_body">
+<section class="search_body row">
 
-	<div class="brands_search_results">
-		<h1>All Brands Matching result</h1>
+<div class="container search_result_container">
+	<h1>Here's What We Found:</h1>
+	<hr/>
+	<div class="col-sm-6 brands_search_results">
+
 	<!-- 	LOGIN TO FIND SEARCH RESULTS -->
 		<% brands_id = cookies[:tracked_brands].split.map(&:to_i) %>
 		<% @brands = [] %>
@@ -12,37 +15,83 @@
 		<% if @brands != [] %>
 			<% if !current_user %>
 				<% @brands.each do |brand| %>
-					<h1><%= brand.name %>
+				<div class="search_result">
+					
+					<%= image_tag(brand.logos.first.path.url, class: "brand_thumbnail img-responsive") %>
+					<%= brand.name.titleize %>
+
+					</div>
     		<% end %>
-			<% else  %>
+			<% else %>
     		<% @brands.each do |brand| %>
     			<% if brand.open %>
+
     				<h1><%=link_to brand.name, user_brand_path(current_user, brand.id) %></h1>
+    				<%= image_tag(brand.logos.first.path.url, class: "brand_thumbnail img-responsive") %>
+
     			<% else %>
     				<h1><%= brand.name %>
+    				<%= image_tag(brand.logos.first.path.url, class: "brand_thumbnail img-responsive") %>
     			<% end %>
     		<% end %>
   		<% end %>
-  		<% else %>
-  			<% @all_brands.each do |brand| %>
-  				<h1><%= brand.name %></h1>
-  			<% end %>
-  		<% end %>  		
+  	<% end %>
+
+  		
+  	
 	</div>
-<!-- 	
+<!--
 	RENDERS LOGIN, SIGNUP OR LINK TO BRANDS DEPENDING ON SESSIONS -->
 
-		<div class="brands_search_results">
+		<div class="col-sm-6 brands_search_results search_results_right">
+
 			<% if !current_user %>
+				<h3>Sign Up To Gain Access</h3>
+				  <button class="btn bam_btn" data-toggle="modal" data-target="#signUpFromSearchModal">
+            Sign Up
+          </button>
+          <hr/>
+         <h3>Already Have a Account, Sign up here</h3>
+
+         
+
+		    <%= form_for sign_in_at_search_path, :url => {:controller => 'sessions', :action => 'sign_in_at_search'}, :method => 'post'  do |f|  %>
+		    <div class="search_result_sign_in_wrapper">
+		  				<%= f.text_field :username, :placeholder => "Username", hide_label: true, :id => 'search_form_sign_in_username', class: 'form-control' %>
+		  				<%= f.password_field :password, :placeholder => "Password", hide_label: true, :id => 'search_form_sign_in_password', class: 'form-control' %>
+		 			 		<%= f.submit 'Log In', :class => 'bam_btn btn', :id => "search_result_sign-in-button"%>
+		 			 		</div>
+		 		<% end %>
+		 		
+
+
+		    <% if flash[:notice] %>
+		      <h1 class="notice"><%= flash[:notice] %></h1>
+		    <% end %>
+
+          <div class="modal fade" id="signUpFromSearchModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+        <h4 class="modal-title">Sign Up</h4>
+      </div>
+      <div class="modal-body">
 				<%= render "sign_up_search_brands" %>
-			<% else %>
-					<h1>Your Brands</h1>
-						<% @user_brand.each do |brand| %>
-							<h1><%= link_to brand.name, user_brand_path(current_user, brand.id) %></h1>
-						<% end %>
+      </div>
+    </div>
+  </div>
+</div>
+
 				<% end %>
 		</div>
-	
+		</div>
+
+
+
+
+
+
 
 </section>
 

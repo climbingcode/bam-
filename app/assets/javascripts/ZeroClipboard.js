@@ -348,7 +348,7 @@
     swfObjectId: "global-zeroclipboard-flash-bridge",
     hoverClass: "zeroclipboard-is-hover",
     activeClass: "zeroclipboard-is-active",
-    forceHandCursor: false,
+    forceHandCursor: true,
     title: null,
     zIndex: 999999999
   };

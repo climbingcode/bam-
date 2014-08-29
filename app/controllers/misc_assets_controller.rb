@@ -21,6 +21,8 @@ class MiscAssetsController < ApplicationController
   def edit
   end
 
+
+
   # POST /misc_assets
   # POST /misc_assets.json
   def create

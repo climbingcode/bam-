@@ -2,11 +2,15 @@
   // margin-top: 58px;
   margin-left: auto;
   margin-right: auto;
-  display: block;
+  // display: block;
   float: none;
 }
 
 .users_signup{
+    .form-control{
+    border: solid 1px #999;
+    width: 60%;
+  }
   .form-control:focus{
     border: solid 1px $primary-color;
   }

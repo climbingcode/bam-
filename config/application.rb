@@ -15,6 +15,10 @@ module Bam
     config.action_mailer.default_url_options = { host: 'tom_doido@hotmail.com' }
     # pdf config for pdf generation
     # Mime::Type.register "application/pdf", :pdf 
+
+    # Filepreviews.configure do |config|
+    # config.api_key = 'rSvOfDC8FD6rWCKV8dYgcApP6gbUlU'
+    # end
     
     # Settings in config/environments/* take precedence over those specified here.
     # Application configuration should go into files in config/initializers

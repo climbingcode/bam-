@@ -17,7 +17,7 @@ class BrandsController < ApplicationController
   end
 
   # methods for view only and ask for access
-  def search_brand 
+  def search_brand
     search = params['/search_brand'][:search].downcase
     @brands = Brand.where('name LIKE ?', "%#{search}%")
     tracked_brands = @brands.pluck(:id).join(' ')
