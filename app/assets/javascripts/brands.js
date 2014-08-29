@@ -444,11 +444,20 @@ var ajaxOperations = {
           $("#logo_description").val("");
           //clearFileInput( "#logo_path");
           console.log(data.files, data.files.length);
+          var logoForm = $("#new_logo");
+          var parent = logoForm.parent();
+          console.log(parent);
+          var logoUploadScript = $("#logo_upload");
           data.files = [];
           data.originalFiles = [];
           // debugger
           console.log(data.files.length);
           $("#logo-upload-status").empty();
+          logoForm.remove();
+          logoUploadScript.remove();
+          parent.append(logoForm);
+          parent.append(logoUploadScript);
+
         }
       });
 
