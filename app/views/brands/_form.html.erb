@@ -18,11 +18,7 @@
                 <%= f.text_field(:name, class: "form-control", :placeholder => 'Logo Name') %>
                <!--  <%= f.label(:description, "What is the logo used for?") %> -->
                 <%= f.text_field(:description, class: "form-control", :placeholder => 'Logo Description') %>
-                <div class="logo-checkbox-wrapper">
-                <%= f.check_box(:permission, :id => "check-private") %>
-                <%= f.label(:permission, "Private", for: "check-private", class: "check-box") %>
-                <%= f.label(:path, "Add a logo") %>
-                </div>
+                
                 <%= f.file_field(:path, class: "form-control") %>
                 <p>Click or drag a file into the section above to upload</p> 
                 <section id="logo-upload-status">

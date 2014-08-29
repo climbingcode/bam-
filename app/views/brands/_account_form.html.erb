@@ -64,12 +64,13 @@
             <% @user.brands.each do |brand|%>
                 <% if @user.user_given_permissions(brand.id) %>
                   <h4 class="switch_brand"><strong><%= link_to brand.name.capitalize, user_brand_path(current_user.id, brand.id) %></strong></h4><br>
-                    <div class="logo-checkbox-wrapper">
-                      <%= form_for brand, :url => url_for(:controller => 'brands', :action => 'change_privacy', :remote => true, :html => {:'data-type' => 'json'}) do |f| %>
-                      <%= f.check_box(:open, :id => "check") %>
-                      <%= f.label(:open, "Private", for: "check-private", class: "check-box") %>             
-                      <% end %>
-                    </div>  
+                    
+                      <input type="checkbox" name="open" class="check-private" id="check-private-<%=brand.id%>" data-brand="<%= brand.id %>"<br>
+                        
+                        <%= label_tag(:open, "Private") %>
+                        <%= label_tag(:path, "Add a logo") %>
+
+                     
                 <% else %>
                   <h4><strong><%= brand.name.capitalize %></strong></h4><br>
                 <% end %>

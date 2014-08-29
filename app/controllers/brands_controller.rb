@@ -39,8 +39,15 @@ class BrandsController < ApplicationController
   # GET /brands/1
   # GET /brands/1.json
   def change_privacy
-    binding.pry
+    brand = Brand.find(params[:brands_id].to_i)
+    if brand.open == true 
+      brand.open = false 
+    else 
+      brand.open = true
+    end 
+    format.json {render json: brand, status: :accepted}
   end
+
   def show
       session[:current_brand] = params[:id].to_i
       @user = User.find(params[:user_id])
