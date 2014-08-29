@@ -33,7 +33,7 @@
                 </section>
                 <%= f.hidden_field(:brand_id, :value => params[:id]) %>
 
-                <%= f.submit('Add File', id: "logo_submit", class: "bam_btn btn") %>
+                <%= f.submit('Add File', id: "logo_submit", class: "bam_btn btn", disabled: true) %>
 
               <% end %>
               <script id="logo_upload" type="text/x-tmpl">

@@ -325,24 +325,49 @@ var interfaceOperations = {
     });
   },
 
-  validationActions: function(){
-    // $("#new_logo > input").on("change", function(event){
-    //   $("#new_logo > input").each(function(){
-    //     console.log($(this).val());
-    //     if ( $(this).val() !== " " ) {
-    //       $("#logo_submit").prop("disabled", false);
-    //     };  
-    //   });
-    // });
-  },
-
 
   initializeListeners: function(){
     interfaceOperations.deleteAssetEvents();
     interfaceOperations.dashBoardEvents();
-    interfaceOperations.validationActions();
   }
 
+
+};
+
+var validationOperations = {
+  checkFileAndTextPresent: function(){
+    var logoName = $("#logo_name").val();
+    var fieldComplete = false;
+    if ( (logoName === " ") || (ajaxOperations.ajaxFileQueue === 0)){
+    } else if((logoName) && (ajaxOperations.ajaxFileQueue > 0)){
+      fieldComplete = true;
+    };
+    return fieldComplete;
+  },
+
+  checkTextPresentOnFileAddition: function(){
+    var logoName = $("#logo_name").val();
+    if(validationOperations.checkFileAndTextPresent()) {
+      $("#logo_submit").prop("disabled", false);
+    } else {
+     $("#logo_submit").prop("disabled", true); 
+    };   
+  },
+
+  logoTextValidation: function(){
+    $("#logo_name").on("keyup", function(event){         
+      if (validationOperations.checkFileAndTextPresent()) {
+         $("#logo_submit").prop("disabled", false);
+       } else {
+         $("#logo_submit").prop("disabled", true); 
+       };
+    });
+    
+  },
+
+  validationListeners: function(){
+    validationOperations.logoTextValidation();    
+  }
 
 };
 
@@ -414,17 +439,12 @@ var ajaxOperations = {
             console.log(data.files);
             $('#logo-upload-status').append(data.context);
             ajaxOperations.ajaxFileQueue += 1;
-            console.log(ajaxOperations.ajaxFileQueue)
+            console.log(ajaxOperations.ajaxFileQueue);
+            validationOperations.checkTextPresentOnFileAddition();
             $("#logo_submit").on("click", function(event){
               event.preventDefault();
-                function clearFileInput(element) {
-                var assetPathInput = $(element);
-                 assetPathInput.wrap("<form>").parent("form").trigger("reset");
-                  console.log(assetPathInput);
-                     assetPathInput.unwrap();
-                };
-                data.submit();
-              });
+              data.submit();
+            });
           },
 
         progress: function(e, data){
@@ -440,24 +460,22 @@ var ajaxOperations = {
           var assetName = data.name;
           logoOperations.addNewLogo(data);
           interfaceOperations.displayAdvisory("Logo Uploaded")
-          $("#logo_name").val("");
-          $("#logo_description").val("");
-          //clearFileInput( "#logo_path");
-          console.log(data.files, data.files.length);
           var logoForm = $("#new_logo");
           var parent = logoForm.parent();
-          console.log(parent);
           var logoUploadScript = $("#logo_upload");
           data.files = [];
           data.originalFiles = [];
-          // debugger
-          console.log(data.files.length);
           $("#logo-upload-status").empty();
+          
           logoForm.remove();
           logoUploadScript.remove();
           parent.append(logoForm);
           parent.append(logoUploadScript);
           ajaxOperations.ajaxFileUploadActions();
+          validationOperations.checkTextPresentOnFileAddition();
+          validationOperations.validationListeners();
+          ajaxOperations.ajaxFileQueue = 0;
+          $("#logo_submit").prop("disabled", true);
 
         }
       });
@@ -525,6 +543,7 @@ var brandPageInit = function(){
   interfaceOperations.initializeListeners();
   colorOperations.colorToClipboard();
   interfaceOperations.hideFileUpload();
+  validationOperations.validationListeners();
 
 };
 
