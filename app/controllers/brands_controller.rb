@@ -42,16 +42,20 @@ class BrandsController < ApplicationController
     brand = Brand.find(params[:brands_id].to_i)
     if brand.open == true 
       brand.open = false 
+      brand.save
     else 
       brand.open = true
+      brand.save
     end 
-    format.json {render json: brand, status: :accepted}
+    respond_to do |format|
+      format.json { render json: {:msg => 'successful'} }
+    end
   end
 
   def show
       session[:current_brand] = params[:id].to_i
       @user = User.find(params[:user_id])
-      @brand = Brand.find(params[:id])
+      @brand = Brand.find(params[:id]) 
       @brands = @user.brands
       @colors = @brand.colors.all
       @logos = @brand.logos.all

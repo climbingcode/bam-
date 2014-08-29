@@ -470,6 +470,7 @@ $( document ).ready(function() {
 
   brandPageInit();  
 
+
   $('.check-private').on('click', function() {
     var brand_id = $(this).data('brand')
     var url = window.location.pathname.split('/');
@@ -481,7 +482,7 @@ $( document ).ready(function() {
       url: str,
       data: brand_id,
       success: function(data) {
-        console.log('data')
+        console.log(data)
       },
       dataType: "json"
     });

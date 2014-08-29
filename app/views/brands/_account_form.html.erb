@@ -65,16 +65,20 @@
                 <% if @user.user_given_permissions(brand.id) %>
                   <h4 class="switch_brand"><strong><%= link_to brand.name.capitalize, user_brand_path(current_user.id, brand.id) %></strong></h4><br>
                     
-                      <input type="checkbox" name="open" class="check-private" id="check-private-<%=brand.id%>" data-brand="<%= brand.id %>"<br>
-                        
-                        <%= label_tag(:open, "Private") %>
-                        <%= label_tag(:path, "Add a logo") %>
 
+                    <% if brand.open == true %>
+
+                      <input type="checkbox" name="open" class="check-private" id="check-private-<%=brand.id%>" data-brand="<%= brand.id %>" checked="checked" ><br>
+                      <label>Brand is private</label>
+                    <% else %>
+                      <input type="checkbox" name="open" class="check-private" id="check-private-<% brand.id%>" data-brand="<%= brand.id %>"><br>
+                      <label>Brand is viewable to all</label>
+                    <% end %>
                      
                 <% else %>
                   <h4><strong><%= brand.name.capitalize %></strong></h4><br>
                 <% end %>
-                <%= @user.display_permission_status(brand) %><hr> 
+                <p><%= @user.display_permission_status(brand) %></p><hr> 
                   <% if @user.user_has_admin_permissions?(brand) %>
                   <% users = User::users_awaiting_permission(brand) %>
                       <% users.each do |user| %>
