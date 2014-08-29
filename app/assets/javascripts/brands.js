@@ -457,6 +457,7 @@ var ajaxOperations = {
           logoUploadScript.remove();
           parent.append(logoForm);
           parent.append(logoUploadScript);
+          ajaxOperations.ajaxFileUploadActions();
 
         }
       });
