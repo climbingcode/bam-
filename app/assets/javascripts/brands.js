@@ -288,25 +288,65 @@ var interfaceOperations = {
     });
   },
 
-  validationActions: function(){
-    // $("#new_logo > input").on("change", function(event){
-    //   $("#new_logo > input").each(function(){
-    //     console.log($(this).val());
-    //     if ( $(this).val() !== " " ) {
-    //       $("#logo_submit").prop("disabled", false);
-    //     };  
-    //   });
-    // });
-  },
-
-
   initializeListeners: function(){
     interfaceOperations.deleteAssetEvents();
     interfaceOperations.dashBoardEvents();
-    interfaceOperations.validationActions();
   }
 
 
+};
+
+validationOperations = { 
+
+  checkFileAndTextPresent: function(){
+    var logoName = $("#logo_name").val();
+    // var logoDescription = $("#logo_description").val();
+    var fieldComplete = false;
+    console.log(logoName /*, logoDescription*/);
+    if ( (logoName === " ") || (ajaxOperations.ajaxFileQueue === 0)){
+      fieldComplete = false;
+    // } else if ((logoName === " " || logoDescription === " ") && (ajaxOperations.ajaxFileQueue > 0)) { 
+    //   fieldComplete = false;
+    } else if((logoName) && (ajaxOperations.ajaxFileQueue > 0)){
+      fieldComplete = true;
+    };
+    console.log(fieldComplete);
+    return fieldComplete;
+  },
+
+  checkTextPresentOnFileAddition: function(){
+    var logoName = $("#logo_name").val();
+    // var logoDescription = $("#logo_description").val();
+    console.log(logoName);
+    // var fieldsPopulated = false;
+    if(validationOperations.checkFileAndTextPresent()) {
+      $("#logo_submit").prop("disabled", false);
+    } else {
+     $("#logo_submit").prop("disabled", true); 
+    };   
+  },
+
+  logoTextValidation: function(){
+    // var fieldComplete = false;
+    $("#new_logo > input[type='text']").on("keyup", function(event){         
+        // validationOperations.checkFileAndTextPresent();
+    if (validationOperations.checkFileAndTextPresent()) {
+       $("#logo_submit").prop("disabled", false);
+     } else {
+       $("#logo_submit").prop("disabled", true); 
+     };
+    });
+    
+  },
+
+  initializeValidations: function(){
+    validationOperations.logoTextValidation();
+  }
+
+  // reinitializeValidations: function() {
+  //   interactionOperations.logoTextValidation()
+
+  // }
 };
 
 var ajaxOperations = {
@@ -377,17 +417,13 @@ var ajaxOperations = {
             console.log(data.files);
             $('#logo-upload-status').append(data.context);
             ajaxOperations.ajaxFileQueue += 1;
-            console.log(ajaxOperations.ajaxFileQueue)
+            console.log(ajaxOperations.ajaxFileQueue);
+            validationOperations.checkTextPresentOnFileAddition();
+            console.log($("#logo_name").val());
             $("#logo_submit").on("click", function(event){
               event.preventDefault();
-                function clearFileInput(element) {
-                var assetPathInput = $(element);
-                 assetPathInput.wrap("<form>").parent("form").trigger("reset");
-                  console.log(assetPathInput);
-                     assetPathInput.unwrap();
-                };
-                data.submit();
-              });
+              data.submit();
+            });
           },
 
         progress: function(e, data){
@@ -407,20 +443,45 @@ var ajaxOperations = {
           $("#logo_description").val("");
           //clearFileInput( "#logo_path");
           console.log(data.files, data.files.length);
-          data.files = [];
-          data.originalFiles = [];
-          // debugger
-          console.log(data.files.length);
+
+          // $("#logo_upload").remove();
+          //var stuff = '<script id="logo_upload" type="text/x-tmpl"><div class="file-upload-status"><p class="file-upload-name">{%= o.name%}</p><div class="file-progress-meter"><div class="file-progress-strip"></div></div></div></script>';
+          // $("#new_logo").append(stuff);
+          // var fileUploadField = $('#logo_path');
           $("#logo-upload-status").empty();
+          var recycleFrame = $("#new_logo");
+          var uploadScript = $("logo_upload");
+          
+          var $parent  = $("#new_logo").closest(".asset_module");
+          data.files = [];
+          $("#new_logo").remove();
+          $("#logo_upload").remove()
+          
+          console.log("removed!");
+
+          $parent.append(recycleFrame);
+          $parent.append(uploadScript);
+          ajaxOperations.ajaxFileUploadActions();
+          ajaxOperations.ajaxFileQueue = 0;
+          validationOperations.checkTextPresentOnFileAddition();
+          validationOperations.initializeValidations();
+          console.log("added!");
+          // debugger
+
+          console.log(data.files.length);
+          
+          
+          
+          $("#logo_submit").prop("disabled", true);
         }
       });
 
-      $('#new_misc_asset').fileupload({
-        dataType: 'json',
-        done: function(e, data){
-          console.log(data)
-        }
-      });
+      // $('#new_misc_asset').fileupload({
+      //   dataType: 'json',
+      //   done: function(e, data){
+      //     console.log(data)
+      //   }
+      // });
   },
 
   initializeListeners: function(){
@@ -477,6 +538,7 @@ var brandPageInit = function(){
   businessCardOperations.initializeListeners();
   interfaceOperations.initializeListeners();
   colorOperations.colorToClipboard();
+  validationOperations.initializeValidations();
 
 };
 
