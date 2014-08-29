@@ -10,14 +10,14 @@ body{
   position: fixed;
   background-color: white;
   color: $primary-color;
-  border: solid 2px $primary-color;
+  border: solid 1px $primary-color;
   font-size: 1em;
   width: 25%;
   height: 45px;
   z-index: 200;
   transition: all 0.5s;
   color: #60d2c1;
-  border-radius: 10px;
+  border-radius: 2px;
   -webkit-transition: all 0.5s;
   top: 60px;
   
@@ -104,16 +104,22 @@ display:none;
 
 }
 
-  .delete-asset {
+
+  .clipboard, .delete-asset {
     float: right;
     right: 20px;
     height: 20px;
     width: 20px;
-    opacity: 0.2;
-    background-image: url("trashcan_transparent.png");
+    opacity: 0.3;
     background-position: center;
     background-size: cover;
     background-repeat: no-repeat;
     transition: opacity 0.5s;
     -webkit-transition: opacity 0.5s;
+  }
+  .clipboard{
+    background-image: url("clipboard.png");
+  }
+  .delete-asset{
+    background-image: url("trashcan_transparent.png");
   }

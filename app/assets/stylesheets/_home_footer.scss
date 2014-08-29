@@ -1,29 +1,13 @@
 footer{
-  height: 150px;
-  background: #111;
+  height: auto;
+  background: #333;
   padding: 45px;
-  a{
-    color: #fff;
-  }
-  a:hover{
-    text-decoration: none;
-    color: $primary-color;
-  }
-  ul{
-    list-style-type: none;
+  color: #fff;
+  text-align: center;
+  font-size: 2em;
+  font-weight: 100;
+  p{
+    margin-bottom: 0px;
   }
 }
 
-#back-to-top{
-  height: 30px;
-  width: 30px;
-  background: #444;
-  float: right;
-  font-size: 2em;
-  font-weight: bold;
-  padding-left:6px;
-  color: #fff;
-}
-#back-to-top:hover{
-  background: $primary-color;
-}

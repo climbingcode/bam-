@@ -7,18 +7,56 @@
   padding:45px;
   p{
     font-size: 1.2em;
+    text-align: justify;
   }
+  h3{
+    text-align: center;
+    font-size: 2em;
+  }
+}
+
+.search_form_wrapper{
+  border-bottom: solid 4px #666;
+}
+
+#home-search-bar{
+  width: 75%;
+  background: transparent;
+  border:none;
+  color: white;
+  height: 90px;
+  padding: 0px;
+  margin-left: 30px;
+  font-size: 3em;
+}
+
+
+  #home-search-bar::-webkit-input-placeholder {color: white;}
+  #home-search-bar:-moz-placeholder { /* Firefox 18- */color: white;}
+  #home-search-bar::-moz-placeholder {  /* Firefox 19+ */color: white;}
+  #home-search-bar:-ms-input-placeholder { color: white;}
+
+#home-search-submit{
+  background: transparent;
+  background-image: url('/assets/search_icon.png');
+  background-repeat: no-repeat;
+  border: none;
+  height: 50px;
+  width: 50px;
+  margin-top: 10px;
+
 }
 
 
 #parallax-bg{
-  height: 600px;
+  height: auto;
   background-color: $primary-color;
-  background-image: url("/assets/computer_tile.png");
+  background-image: url("/assets/full_page_bg.png");
   background-repeat: no-repeat;
   background-position: center;
   margin-top: 52px;
-  background-size: cover;
+
+
 }
 
 @media (max-width: 1079px) {
@@ -28,7 +66,7 @@
   }
 
 #left-landing-box{
-  margin-top: 150px;
+  margin-top: 100px;
 
   h3{
     font-size: 3.6em;

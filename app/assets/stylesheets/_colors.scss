@@ -28,14 +28,17 @@ ul{
   color: white;
 }
 
-.clipboard{
-  float: right;
-  margin-top: -3px;
-  opacity: 0.6;
-}
-.clipboard:hover{
-  opacity: 1;
-}
+// .clipboard{
+//   float: right;
+//   margin-top: -3px;
+//   opacity: 0.5;
+//   height: 24px;
+//   width: 24px;
+//   background-image: url('/assets/clipboard.png')
+// }
+// .clipboard:hover{
+//   opacity: 1;
+// }
 
 .copy-alert.p{
   margin-top: 30px;
@@ -79,6 +82,13 @@ ul{
 
 }
 
-.swatch-wrapper:hover .delete-asset {
+.clipboard.zeroclipboard-is-hover {
+  opacity: 1;
+  cursor: hand;
+  }
+
+.delete-asset:hover {
   opacity: 1.0;
 }
+
+

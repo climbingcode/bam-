@@ -69,11 +69,11 @@ var colorOperations = {
     var colorSwatch = $("<div>").addClass("swatch").css("background-color", "#"+data.hex);
     var colorList = $("<ul>").addClass("color-list");
     var colorName = $("<li>").addClass("color-name").data("colorid", data.id).html(data.name);
-    var colorHex = $("<li>").html("CSS HEX: <span class='copy_text' data-clipboard-text>#" + upperCaseHex +  "</span><img src='/assets/clipboard.png' class='clipboard'/>");
+    var colorHex = $("<li>").html("CSS HEX: <span class='copy_text' data-clipboard-text>#" + upperCaseHex +  "</span>" + "<span class='clipboard hex-clipboard'></span>");
     var colorRgb = $("<li>").html("RGB: <span>" + r + ", " + g + ", "+ b + "</span>");
     var colorCmyk = $("<li>").html("CMYK: <span>" + colorOperations.hexToCMYK(data.hex) + "</span>");
     var colorListItems = targetColor + " ul.color-list";
-    var colorSass = $("<li>").html("Sass: <span class='sass'>$" + data.name +  ": #" + upperCaseHex + ";</span>");
+    var colorSass = $("<li>").html("Sass: <span class='sass'>$" + data.name +  ": #" + upperCaseHex + ";</span>" + "<span class='clipboard sass-clipboard'></span>");
 
     $color.append(colorWrapper);
     colorSwatch.appendTo(colorWrapper);
@@ -89,6 +89,7 @@ var colorOperations = {
 
     $(".color-name .delete-asset").on("click", function(event){
       colorOperations.destroyColor(event);
+    });
 
     colorOperations.colorToClipboard();
 
@@ -96,16 +97,16 @@ var colorOperations = {
 
   colorToClipboard: function(){
 
-    var client = new ZeroClipboard( $('.copy_text') );
+    var hexClipboard = new ZeroClipboard( $('.hex-clipboard') );
 
-      client.on( 'ready', function(event) {
+      hexClipboard.on( 'ready', function(event) {
 
-        client.on( 'copy', function(event) {
-          var textToCopy = event.target.innerHTML
-          event.clipboardData.setData('text/plain', textToCopy);
+        hexClipboard.on( 'copy', function(event) {
+          var targetText = $(event.target).parents('li').find('.copy_text').text();
+          event.clipboardData.setData('text/plain', targetText);
         });
 
-        client.on( 'aftercopy', function(event) {
+        hexClipboard.on( 'aftercopy', function(event) {
           console.log('Copied text to clipboard: ' + event.data['text/plain']);
 
           var copyAlert = $(event.target).parents('.swatch-wrapper').find('.copy-alert')
@@ -120,7 +121,37 @@ var colorOperations = {
 
       });
 
-      client.on( 'error', function(event) {
+      hexClipboard.on( 'error', function(event) {
+        // console.log( 'ZeroClipboard error of type "' + event.name + '": ' + event.message );
+        ZeroClipboard.destroy();
+
+    });
+
+          var sassClipboard = new ZeroClipboard( $('.sass-clipboard') );
+
+      sassClipboard.on( 'ready', function(event) {
+
+        sassClipboard.on( 'copy', function(event) {
+          var targetText = $(event.target).parents('li').find('.sass').text();
+          event.clipboardData.setData('text/plain', targetText);
+        });
+
+        sassClipboard.on( 'aftercopy', function(event) {
+          console.log('Copied text to clipboard: ' + event.data['text/plain']);
+
+          var copyAlert = $(event.target).parents('.swatch-wrapper').find('.copy-alert')
+
+          copyAlert.toggleClass('copied')
+
+          setTimeout(function () {
+            copyAlert.toggleClass('copied')
+          }, 1000);
+
+        });
+
+      });
+
+      sassClipboard.on( 'error', function(event) {
         // console.log( 'ZeroClipboard error of type "' + event.name + '": ' + event.message );
         ZeroClipboard.destroy();
 
@@ -243,6 +274,13 @@ var typographyOperations = {
 
 
 var interfaceOperations = {
+
+  hideFileUpload: function(){
+    $('#hide-file-upload').css({
+      'visibility': 'hidden'
+    })
+
+  },
 
   displayAdvisory: function(message) {
     var advisory = $("#user-action-messages");
@@ -460,6 +498,7 @@ var brandPageInit = function(){
   businessCardOperations.initializeListeners();
   interfaceOperations.initializeListeners();
   colorOperations.colorToClipboard();
+  interfaceOperations.hideFileUpload();
 
 };
 

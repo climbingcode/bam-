@@ -17,19 +17,25 @@
                <!--  <%= f.label(:name, "Logo Name") %> -->
                 <%= f.text_field(:name, class: "form-control", :placeholder => 'Logo Name') %>
                <!--  <%= f.label(:description, "What is the logo used for?") %> -->
-                <%= f.text_field(:description, class: "form-control", :placeholder => 'Logo Description') %>
-                <div class="logo-checkbox-wrapper">
+<!--                 <%= f.text_field(:description, class: "form-control", :placeholder => 'Logo Description') %> -->
+<!--                 <div class="logo-checkbox-wrapper">
                 <%= f.check_box(:permission, :id => "check-private") %>
                 <%= f.label(:permission, "Private", for: "check-private", class: "check-box") %>
-                <%= f.label(:path, "Add a logo") %>
+                
+                </div> -->
+                <div class="file-upload-box">
+                <%= f.label(:path, "Add a logo", :id => 'file-upload-label', :for => 'hide-file-upload') %>
+                <%= f.file_field(:path, :id => "hide-file-upload") %>
                 </div>
-                <%= f.file_field(:path, class: "form-control") %>
-                <p>Click or drag a file into the section above to upload</p> 
+
+                <p>Click or drag a file into the section above to upload</p>
                 <section id="logo-upload-status">
                 </section>
                 <%= f.hidden_field(:brand_id, :value => params[:id]) %>
+
                 <%= f.submit('Add File', id: "logo_submit", class: "bam_btn btn") %>
-              <% end %> 
+
+              <% end %>
               <script id="logo_upload" type="text/x-tmpl">
 
                 <div class="file-upload-status">
@@ -41,6 +47,7 @@
 
                 </div>
               </script>
+
             </div>
           </div>
         </div>
@@ -210,7 +217,7 @@
       <div class="panel-body">
         <div class="asset_module">
 
-          <button class="btn-sm bam_btn open_business_card_modal" data-toggle="modal" data-target="#businessCardModal">
+          <button class="btn bam_btn open_business_card_modal" data-toggle="modal" data-target="#businessCardModal">
             Business Cards
           </button>     
         </div>

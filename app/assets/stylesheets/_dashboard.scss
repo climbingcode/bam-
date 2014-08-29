@@ -1,8 +1,14 @@
 #dashboard{
   background: #333;
+  z-index: 10000;
   // padding-top: 10px;
   transition: all 1s;
   height: auto;
+  hr{
+    background-color: $primary-color;
+    border:none;
+    height: 1px;
+  }
 }
 
 .display-none{
@@ -91,10 +97,43 @@
   }
 }
 
+#close-notification-icon{
+  cursor: pointer;
+}
+.file-upload-box input type[file]{
+  background: $primary-color!important;
+}
+#file-upload-label{
+  width: 100%;
+  height: 100%;
+  padding:15px;
+  border-radius: 4px;
+  background-color: #666;
+
+}
+#file-upload-label:hover{
+  border: solid 1px $primary-color;
+  padding: 14px;
+}
 
 #dashboard-accordion, #permissions_form{
   .panel-group{
     transition: all 1s;
+  }
+
+  select{
+    width: 75%;
+    background: #666;
+    height: 30px;
+    font-size: 1em;
+    border: none;
+  }
+  .permissions-select{
+    margin-bottom: 15px;
+  }
+  .permissions-select-submit{
+    margin-top: 15px;
+    width: 20%;
   }
   .panel{
     border-radius: 0px;
@@ -114,6 +153,7 @@
     color: #999;
     transition: all 0.25s;
     border:none;
+    margin-bottom: 5px;
     h4{
       font-size: 1.5em;
       font-weight: 200;
@@ -124,11 +164,11 @@
     color: #fff;
     background: $primary-color;
   }
-  .panel-body{
-    // border-top: solid 4px $primary-color;
-  }
 
 }
+.panel-group .panel-heading + .panel-collapse > .panel-body {
+  border:none;
+  }
 
 #brand-copy-header{
   margin-top: 5px;
@@ -137,34 +177,50 @@
 .add-brand-panel{
     .form-control{
     background: #666;
-    // margin: 4px;
+    color: white;
+    margin-bottom: 4px;
     border: none;
+
   }
 }
+
+#edit-user-headline{
+  display:inline;
+}
+#edit-user-link{
+  display:inline;
+  margin-left: 10px;
+  a{
+    color: $primary-color;
+  }
+}
+
 .nav-tabs{
   border-bottom: 0px;
   margin-bottom: 10px;
 }
 
 .nav-tabs li a{
-  color: #fff;
+  color: $primary-color;
+  
   border-radius: 3px;
   background: #333;
   border: 0px;
 
-  // border-bottom: solid 2px $primary-color;
-
 }
 .nav-tabs li a:hover{
-  background: #666;
+  background: #333;
   border: none;
+  border-bottom: solid 2px $primary-color;
 }
 
 
 .nav-tabs > li.active > a, .nav-tabs > li.active > a:hover, .nav-tabs > li.active > a:focus {
-  background: #444;
+  background: #333;
   border: none;
-  color: $primary-color;
+  border-bottom: solid 2px $primary-color;
+  color: #fff;
+  
 
   
 } 
