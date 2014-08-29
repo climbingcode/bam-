@@ -36,6 +36,8 @@
 
 }
 
+
+
 .brand_thumbnail{
   height: 100px;
   width: 100px;
@@ -68,7 +70,11 @@ margin-top: 0px;
   margin-right: auto;
   margin-left: auto;
   display: block;
-  float: none;
+  float: left;
   text-align: center
+}
+
+#search_sign_up_wrapper{
+  float:left;
 }
 

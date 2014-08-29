@@ -16,15 +16,7 @@
     <div class="tab-content">
 
       <div id="dashboardTab" class="tab-pane fade in active">
-        <% if find_all_users_with_brand.count > 1 %>
-        <div id="access-request-notification">
-        <p>You Have
-        <%= find_all_users_with_brand.count %>
-        Requests
-        <!-- <button class="bam_btn_alt_inverse" id="view-notification-button">View</button> -->
-        <span class="times" id="close-notification-icon">&times;</span></p>
-        </div>
-        <% end %>
+
 
         <%= render 'form' %>  <!--render dashboard here -->
       </div>

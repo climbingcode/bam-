@@ -39,13 +39,7 @@
           </div>
           <div id="accountCollapseAllUsers" class="panel-collapse collapse"> 
             <div class="panel-body">
-              <% find_all_users_with_brand.each do |user| %>
-                <% if user.user_given_permissions(session[:current_brand]) %>
-                  <p><%= user.firstname.capitalize %> <%= user.surname.capitalize %>
-                 <!-- <%=image_tag('glyphicons_030_pencil.png', size: "30x30") %> -->
-                 <!-- <%= image_tag('trashcan_transparent.png', size: "30x30") %></p> -->
-                <% end %>
-              <% end %>
+     
             </div>
           </div>
         </div>

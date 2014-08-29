@@ -12,7 +12,13 @@ nav{
 
 }
 
+.navbar-toggle {
+  border: solid 1px $primary-color;
+}
 
+.icon-bar{
+  color: $primary-color;
+}
 
 .navbar-brand{
   color: $primary-color;
