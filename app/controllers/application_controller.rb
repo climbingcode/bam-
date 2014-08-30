@@ -5,8 +5,6 @@ class ApplicationController < ActionController::Base
 
   protected
 
-
-
   def tracked_search_brands(brands)
     @searched_results = ""
     binding.pry

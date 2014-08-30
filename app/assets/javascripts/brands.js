@@ -275,6 +275,7 @@ var typographyOperations = {
 
 var interfaceOperations = {
 
+
   hideFileUpload: function(){
     $('#hide-file-upload').css({
       'visibility': 'hidden'
@@ -457,13 +458,13 @@ var businessCardOperations = {
   initializeListeners: function(){
     $('.open_business_card_modal').on('click', function(e) {
       e.preventDefault()    
-      $('.business_card_pdf').addClass('business_card_preview');
+      $('business_card_pdf').addClass('business_card_preview');
     }); 
 
     $('.change_background').on('click', function(e) {
       e.preventDefault();
       var color = $(this).data("color");
-      $('.business_card_preview').css('background-color', color)
+      $(element).attr("no_background", "background-color")
     });
 
 
@@ -500,19 +501,11 @@ var brandPageInit = function(){
   colorOperations.colorToClipboard();
   interfaceOperations.hideFileUpload();
 
-};
 
-
-
-$( document ).ready(function() {
-
-  brandPageInit();  
-
-
-  $('.check-private').on('click', function() {
+   $('.check-private').on('click', function() {
     var brand_id = $(this).data('brand')
     var url = window.location.pathname.split('/');
-    url.pop()
+    url.pop();
     var str = url.join('/') + '/' + brand_id + '/change_privacy'
     console.log(str);
     $.ajax({
@@ -525,5 +518,14 @@ $( document ).ready(function() {
       dataType: "json"
     });
   });
+
+};
+
+
+
+
+$( document ).ready(function() {
+
+  brandPageInit();  
 
 });

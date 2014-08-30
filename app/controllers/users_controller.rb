@@ -53,6 +53,8 @@ class UsersController < ApplicationController
       	else
      			render :new, notice: "Please enter a brand"
      		end
+      elsif @brand.open 
+        redirect_to brand_page_path(@brand.id), notice: 'welcome'
    		else
         session[:current_brand] = @brand.id
      		send_email_to_admin(params[:name], @user)
