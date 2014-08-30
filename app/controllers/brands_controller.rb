@@ -18,6 +18,7 @@ class BrandsController < ApplicationController
 
   # methods for view only and ask for access
   def search_brand
+    @disable_nav = false
     search = params['/search_brand'][:search].downcase
     @brands = Brand.where('name LIKE ?', "%#{search}%")
     tracked_brands = @brands.pluck(:id).join(' ')
@@ -34,13 +35,28 @@ class BrandsController < ApplicationController
   def search_results
     @user_brand = current_user.brands if current_user
     @user ||= User.find(current_user.id) if current_user
+    @all_brands = Brand.all
   end
   # GET /brands/1
   # GET /brands/1.json
+  def change_privacy
+    brand = Brand.find(params[:brands_id].to_i)
+    if brand.open == true 
+      brand.open = false 
+      brand.save
+    else 
+      brand.open = true
+      brand.save
+    end 
+    respond_to do |format|
+      format.json { render json: {:msg => 'successful'} }
+    end
+  end
+
   def show
       session[:current_brand] = params[:id].to_i
       @user = User.find(params[:user_id])
-      @brand = Brand.find(params[:id])
+      @brand = Brand.find(params[:id]) 
       @brands = @user.brands
       @colors = @brand.colors.all
       @logos = @brand.logos.all

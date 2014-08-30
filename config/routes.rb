@@ -1,7 +1,5 @@
 Rails.application.routes.draw do
 
-
-
   get 'brand/show'
 
   get 'brand/index'
@@ -23,9 +21,9 @@ Rails.application.routes.draw do
       resources :guidelines 
 
       resources :misc_assets 
+
     end
   end
-
 
 
   resource :sessions, only: [:new, :create, :destroy]
@@ -52,5 +50,6 @@ Rails.application.routes.draw do
 
   get '/:id', to: 'brand#show'
 
+  match 'users/:user_id/brands/:brands_id/change_privacy', to: 'brands#change_privacy', via: 'post'
 
 end

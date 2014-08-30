@@ -24,7 +24,5 @@ class Brand < ActiveRecord::Base
   def self.does_brand_exist?(brand_name)
   	Brand.find_by(name: brand_name).present?
   end
-
-  
   
 end

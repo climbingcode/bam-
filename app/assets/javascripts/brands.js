@@ -93,10 +93,6 @@ var colorOperations = {
 
     colorOperations.colorToClipboard();
 
-    $(".color-name  .delete-asset").on("click", function(event){
-      colorOperations.destroyColor(event);
-    });
-
   },
 
   colorToClipboard: function(){
@@ -326,21 +322,13 @@ var interfaceOperations = {
   },
 
   validationActions: function(){
-    // $("#new_logo > input").on("change", function(event){
-    //   $("#new_logo > input").each(function(){
-    //     console.log($(this).val());
-    //     if ( $(this).val() !== " " ) {
-    //       $("#logo_submit").prop("disabled", false);
-    //     };  
-    //   });
-    // });
+
   },
 
 
   initializeListeners: function(){
     interfaceOperations.deleteAssetEvents();
     interfaceOperations.dashBoardEvents();
-    interfaceOperations.validationActions();
   }
 
 
@@ -390,8 +378,6 @@ var ajaxOperations = {
 
   },
 
-  ajaxFileQueue: 0,
-
   ajaxFileUploadActions: function() {
 
       $('#new_logo').fileupload({
@@ -412,9 +398,7 @@ var ajaxOperations = {
         add: function(e, data){
           data.context = $(tmpl("logo_upload", data.files[0]))
             console.log(data.files);
-            $('#logo-upload-status').append(data.context);
-            ajaxOperations.ajaxFileQueue += 1;
-            console.log(ajaxOperations.ajaxFileQueue)
+            $('#logo-upload-status').append(data.context)
             $("#logo_submit").on("click", function(event){
               event.preventDefault();
                 function clearFileInput(element) {
@@ -524,5 +508,22 @@ $( document ).ready(function() {
 
   brandPageInit();  
 
+
+  $('.check-private').on('click', function() {
+    var brand_id = $(this).data('brand')
+    var url = window.location.pathname.split('/');
+    url.pop()
+    var str = url.join('/') + '/' + brand_id + '/change_privacy'
+    console.log(str);
+    $.ajax({
+      type: "POST",
+      url: str,
+      data: brand_id,
+      success: function(data) {
+        console.log(data)
+      },
+      dataType: "json"
+    });
+  });
 
 });

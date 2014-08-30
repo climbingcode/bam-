@@ -12,24 +12,33 @@
 			<% @brands << Brand.find(id) %>
 		<% end %>
 
+		<% if @brands != [] %>
 			<% if !current_user %>
 				<% @brands.each do |brand| %>
 				<div class="search_result">
-					<h2><%= brand.name.titleize %></h2>
+					
 					<%= image_tag(brand.logos.first.path.url, class: "brand_thumbnail img-responsive") %>
+					<h2><%= brand.name.titleize %></h2>
+
 					</div>
     		<% end %>
-			<% else  %>
-				<% if @brands != [] %>
-    			<% @brands.each do |brand| %>
-    				<h2><%=link_to brand.name, user_brand_path(current_user, brand.id) %></h2>
+			<% else %>
+    		<% @brands.each do |brand| %>
+    			<% if brand.open %>
+
+    				<h1><%=link_to brand.name, user_brand_path(current_user, brand.id) %></h1>
     				<%= image_tag(brand.logos.first.path.url, class: "brand_thumbnail img-responsive") %>
-    				<hr/>
+
+    			<% else %>
+    				<h1><%= brand.name %>
+    				<%= image_tag(brand.logos.first.path.url, class: "brand_thumbnail img-responsive") %>
     			<% end %>
-  			<% end %>
+    		<% end %>
   		<% end %>
+  	<% end %>
 
-
+  		
+  	
 	</div>
 <!--
 	RENDERS LOGIN, SIGNUP OR LINK TO BRANDS DEPENDING ON SESSIONS -->
@@ -74,13 +83,6 @@
   </div>
 </div>
 
-				
-			<% else %>
-					<h1>Your Brands</h1>
-						<% @user_brand.each do |brand| %>
-							<h1><%= link_to brand.name.titleize, user_brand_path(current_user, brand.id) %></h1>
-							    				<%= image_tag(brand.logos.first.path.url, class: "brand_thumbnail img-responsive") %>
-						<% end %>
 				<% end %>
 		</div>
 		</div>

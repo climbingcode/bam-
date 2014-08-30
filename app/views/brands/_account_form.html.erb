@@ -58,20 +58,39 @@
           <div class="panel-body">
             <% @user.brands.each do |brand|%>
                 <% if @user.user_given_permissions(brand.id) %>
-                  <h4 class="switch_brand"><%= link_to brand.name.capitalize, user_brand_path(current_user.id, brand.id) %></h4><br>
+
+                  <h4 class="switch_brand"><%= link_to brand.name.titleize, user_brand_path(current_user.id, brand.id) %></h4><br>
+                    
+
+                    <% if brand.open == true %>
+
+                      <input type="checkbox" name="open" class="check-private" id="check-private-<%=brand.id%>" data-brand="<%= brand.id %>" checked="checked" ><br>
+                      <label class="permission-label">Private
+                        <span class="permission-icon">
+                          <%= render 'svg_icons/lock_icon' %>
+                        </span>
+                      </label>
+
+                    <% else %>
+                      <input type="checkbox" name="open" class="check-private" id="check-private-<% brand.id%>" data-brand="<%= brand.id %>"><br>
+                      <label>Brand is viewable to all</label>
+                    <% end %>
+                     
+
                 <% else %>
                   <h4><%= brand.name.titleize %></h4><br>
                 <% end %>
 
-                <%= @user.display_permission_status(brand) %>
-                  <h3>Requests</h3>
-                <hr> 
+                <p><%= @user.display_permission_status(brand) %></p><hr> 
+
+
+               
                   <% if @user.user_has_admin_permissions?(brand) %>
 
                   <% users = User::users_awaiting_permission(brand) %>
                       <% users.each do |user| %>
                         <% if user != nil%>
-                          <h4><%= "#{user.firstname.capitalize} #{user.surname.capitalize}" %> awaiting access to <%= brand.name.titleize %><h4>
+                          <h4><%= "#{user.firstname.capitalize} #{user.surname.capitalize}" %> awaiting access to <%= brand.name.titleize %></h4>
                           <%= bootstrap_form_for users_path(user), :url => {:controller => 'users', :action => 'update', :id => user }, :html=>{:method=>:put} do |f| %>
                           <%= select_tag "permission", "<option>Update / View Users and Assets</option><option>Update / View Assets Only</option><option>View Only</option><option>No Permissions Granted</option>".html_safe, class: "permission-select" %>
                           <%= hidden_field_tag :brand, brand.id %>
