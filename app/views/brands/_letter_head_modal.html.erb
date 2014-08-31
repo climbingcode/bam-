@@ -3,14 +3,18 @@
     <div class="modal-content">
       <div class="modal-header">
         <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
-        <h4 class="modal-title" id="letterHeadModal">Business Card Builder</h4>
+        <h4 class="modal-title" id="letterHeadModal"></h4>
       </div>
-      <div class="modal-body">
+      <div class="modal-body" id="letterHeadModal">
         <div id ="business_card_background">
           <% content_for :head_includes do %>
             <link rel="stylesheet" type="text/css" href="/wicked/business_card_template.css">
           <% end %>
-          <%= render 'pdfs/business_card.pdf.erb' %>
+          <div id="letter_head_preview">
+            <%= render 'letter_head_preview.html.erb' %>
+          </div>
+          <button type="button" class="letter_head_one btn bam-btn" data-letterhead="1" >Preview Template One</button>
+          <button type="button" class="letter_head_two btn bam-btn" data-letterhead="2" >Preview Template Two</button>
         </div>
       </div>
       <div class="modal-footer">
