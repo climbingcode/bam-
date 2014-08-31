@@ -453,6 +453,34 @@ var ajaxOperations = {
 
 };
 
+var letterheadOperations = {
+
+   
+
+   initializeListeners: function(){
+
+    var path = window.location.pathname
+    console.log(path)
+    
+    $.ajax({
+    type: "GET",
+    url: path,
+    dataType: "json",
+    success: function(data){
+        console.log(data) 
+      }
+    });
+
+    $('.letter_head_one').on('click', function() {
+      $('.lh-background').toggleClass('lh-background-one');
+    });
+  
+    $('.letter_head_two').on('click', function() {
+      $('.lh-background').toggleClass('lh-background-two');
+    });
+  } 
+}
+
 var businessCardOperations = {
   
   initializeListeners: function(){
@@ -500,6 +528,7 @@ var brandPageInit = function(){
   interfaceOperations.initializeListeners();
   colorOperations.colorToClipboard();
   interfaceOperations.hideFileUpload();
+  letterheadOperations.initializeListeners();
 
 
    $('.check-private').on('click', function() {
