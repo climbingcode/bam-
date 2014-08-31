@@ -10,11 +10,11 @@ $(window).resize(function(){
 
 $( document ).ready(function() {
 
-    function resize(){
-    var divWidth = $('.img-background').width();
-    $('.img-background').height(divWidth);
+    // function resize(){
+    // var divWidth = $('.img-background').width();
+    // $('.img-background').height(divWidth);
 
-    };
+    // };
 
   var initWidth = function(){ $('.image-column').width();
     $('.img-background').height(initWidth - 30);
@@ -25,7 +25,8 @@ $( document ).ready(function() {
     $('#personal-column').height(pricingHeight);
 
 
-
+  var divWidth = $('.img-background').width();
+  $('.img-background').height(divWidth);
 
   //DASHBOARD ==================================================
 
@@ -35,12 +36,13 @@ $( document ).ready(function() {
 
     dashboardToggle.on('click', function() {
       dashboard.animate({
-        'margin-left:': '-350px'
-      }, 1000);
-      dashboard.toggleClass('dashboard-closed');
+        'left:': '-350px'
+      }, 2000);
+      // dashboard.toggleClass('dashboard-closed');
+
+
       $('#mobile-nav').toggleClass('open');
-      var divWidth = $('.img-background').width();
-      $('.img-background').height(divWidth);
+
 
     //   if(brandPage.css('width') != window.innerWidth){
     //     brandPage.animate({

@@ -3,7 +3,7 @@
 <div class="container search_result_container">
 	<h1>Here's What We Found:</h1>
 	<hr/>
-	<div class="col-sm-6 brands_search_results">
+	<div class="col-sm-8 brands_search_results">
 
 	<!-- 	LOGIN TO FIND SEARCH RESULTS -->
 		<% brands_id = cookies[:tracked_brands].split.map(&:to_i) %>
@@ -25,9 +25,9 @@
 			<% else %>
     		<% @brands.each do |brand| %>
     			<% if brand.open %>
-
-    				<h1><%=link_to brand.name, user_brand_path(current_user, brand.id) %></h1>
-    				<%= image_tag(brand.logos.first.path.url, class: "brand_thumbnail img-responsive") %>
+            <%= image_tag(brand.logos.first.path.url, class: "brand_thumbnail img-responsive") %>
+    				<h2><%=link_to brand.name, user_brand_path(current_user, brand.id) %></h2>
+    				
 
     			<% else %>
     				<h1><%= brand.name %>
@@ -43,7 +43,7 @@
 <!--
 	RENDERS LOGIN, SIGNUP OR LINK TO BRANDS DEPENDING ON SESSIONS -->
 
-		<div class="col-sm-6 brands_search_results search_results_right">
+		<div class="col-sm-4 brands_search_results search_results_right">
 
 			<% if !current_user %>
 				<h3>Sign Up To Gain Access</h3>

@@ -99,7 +99,7 @@ class UsersController < ApplicationController
       if current_user.brands.create(name: params[:name], website: params[:website]).save
         brand = current_user.brands.last 
         current_user.user_brands.find_by(brand_id: brand.id).update(permission: 4)
-        redirect_to user_brand_path(current_user.id, session[:current_brand]), notice: "Awaiting confirmation form admin"
+        redirect_to user_brand_path(current_user.id, session[:current_brand]), notice: "Awaiting confirmation from admin"
       else 
         redirect_to user_brand_path(current_user.id, session[:current_brand]), notice: "Sorry there where issues with saving the brand"
       end
