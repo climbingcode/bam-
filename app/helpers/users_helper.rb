@@ -16,6 +16,16 @@ module UsersHelper
 		user.user_brands.create(user_id: user.id, brand_id: brand_id, permission: 4)
 	end
 
+	# def count_user_requests(user)
+	# 	brand_count = 0
+	# 	user.brands.each do |brand|
+	# 		if awaiting_admin_confirmation(user, brand).present?
+	# 			brand_count += 1
+	# 		end
+	# 	end
+	# 	return brand_count
+	# end
+
 	def find_email_info(brandname, user)
 		users = []
 		brand = Brand.find_by(name: brandname)
@@ -35,14 +45,14 @@ module UsersHelper
 		end	
 	end
 
-	def find_all_users_with_brand
-		users = []
-		UserBrand.all.each do |user_brand|
-			if user_brand.brand_id == session[:current_brand] 
-				users << User.find(user_brand.user_id)
-			end
-		end
-		users
-	end
+	# def find_all_users_with_brand
+	# 	users = []
+	# 	UserBrand.all.each do |user_brand|
+	# 		if user_brand.brand_id == session[:current_brand] 
+	# 			users << User.find(user_brand.user_id)
+	# 		end
+	# 	end
+	# 	users
+	# end
 
 end

@@ -39,13 +39,7 @@
           </div>
           <div id="accountCollapseAllUsers" class="panel-collapse collapse"> 
             <div class="panel-body">
-              <% find_all_users_with_brand.each do |user| %>
-                <% if user.user_given_permissions(session[:current_brand]) %>
-                  <p><%= user.firstname.capitalize %> <%= user.surname.capitalize %>
-                 <!-- <%=image_tag('glyphicons_030_pencil.png', size: "30x30") %> -->
-                 <!-- <%= image_tag('trashcan_transparent.png', size: "30x30") %></p> -->
-                <% end %>
-              <% end %>
+     
             </div>
           </div>
         </div>
@@ -65,13 +59,18 @@
             <% @user.brands.each do |brand|%>
                 <% if @user.user_given_permissions(brand.id) %>
 
-                  <h4 class="switch_brand"><strong><%= link_to brand.name.capitalize, user_brand_path(current_user.id, brand.id) %></strong></h4><br>
+                  <h4 class="switch_brand"><%= link_to brand.name.titleize, user_brand_path(current_user.id, brand.id) %></h4><br>
                     
 
                     <% if brand.open == true %>
 
                       <input type="checkbox" name="open" class="check-private" id="check-private-<%=brand.id%>" data-brand="<%= brand.id %>" checked="checked" ><br>
-                      <label>Brand is private</label>
+                      <label class="permission-label">Private
+                        <span class="permission-icon">
+                          <%= render 'svg_icons/lock_icon' %>
+                        </span>
+                      </label>
+
                     <% else %>
                       <input type="checkbox" name="open" class="check-private" id="check-private-<% brand.id%>" data-brand="<%= brand.id %>"><br>
                       <label>Brand is viewable to all</label>

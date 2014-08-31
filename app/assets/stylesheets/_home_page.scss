@@ -13,6 +13,12 @@
     text-align: center;
     font-size: 2em;
   }
+    img{
+    margin-left: auto;
+    margin-right: auto;
+    display: block;
+    
+  }
 }
 
 .search_form_wrapper{
@@ -55,15 +61,27 @@
   background-repeat: no-repeat;
   background-position: center;
   margin-top: 52px;
+  padding:45px;
 
 
 }
 
-@media (max-width: 1079px) {
-  #parallax-bg{
-    height: 400px;
+// @media (max-width: 1079px) {
+//   #parallax-bg{
+//     height: 400px;
+//   }
+//   }
+
+#right-landing-box{
+
+  img{
+    margin-left: auto;
+    margin-right: auto;
+    display: block;
   }
-  }
+}
+
+
 
 #left-landing-box{
   margin-top: 100px;
@@ -75,6 +93,16 @@
     border-bottom: solid 4px #666;
   }
 
+}
+
+@media (max-width: 1200px) {
+  #left-landing-box{
+    margin-top: 0px;
+        margin-left: auto;
+    margin-right: auto;
+    display: block;
+    float: none!important;
+  }
 }
 
 #sign_up_btn{
@@ -142,6 +170,12 @@
   padding: 15px;
   font-size: 1.2em;
  border: solid 3px #666;
+  img{
+    margin-left: auto;
+    margin-right: auto;
+    display: block;
+
+  }
  }
 
 #search_form_area{

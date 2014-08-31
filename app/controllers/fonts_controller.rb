@@ -24,8 +24,12 @@ class FontsController < ApplicationController
   # POST /fonts
   # POST /fonts.json
   def create
-    @font = Font.new(font_params)
-    # binding.pry
+
+    @font = Font.new(
+    name: params[:font][:name],
+    font_family: params[:font_family],
+    brand_id: params[:brand_id]
+    )
     respond_to do |format|
       if @font.save
         format.html { redirect_to user_brand_path(current_user, @font.brand_id), notice: 'Font was successfully saved.' }
@@ -69,6 +73,6 @@ class FontsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def font_params
-      params.require(:font).permit(:font_family, :brand_id)
+      params.require(params).permit(:name, :font_family, :brand_id)
     end
 end

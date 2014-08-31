@@ -1,3 +1,13 @@
+$(window).resize(function(){
+    var divWidth = $('.img-background').width();
+    $('.img-background').height(divWidth);
+
+    var pricingHeight = $('#agency-column').height();
+    $('#business-column').height(pricingHeight + 50);
+    $('#personal-column').height(pricingHeight);
+  });
+
+
 $( document ).ready(function() {
 
     function resize(){
@@ -14,15 +24,20 @@ $( document ).ready(function() {
     $('#business-column').height(pricingHeight + 50);
     $('#personal-column').height(pricingHeight);
 
+
+
+
+  //DASHBOARD ==================================================
+
   var dashboard = $('#dashboard');
   var dashboardToggle = $('#dashboard_toggle');
   var brandPage = $('#brand-page');
 
     dashboardToggle.on('click', function() {
       dashboard.animate({
-        'margin-left:': '-400px'
+        'margin-left:': '-350px'
       }, 1000);
-      // dashboard.toggleClass('dashboard-closed');
+      dashboard.toggleClass('dashboard-closed');
       $('#mobile-nav').toggleClass('open');
       var divWidth = $('.img-background').width();
       $('.img-background').height(divWidth);
@@ -48,9 +63,15 @@ $( document ).ready(function() {
 
 
       // $("#multi_asset_form").animate({'left': '-500px'}, 500);
-   
 
-  $('#close-notification-icon').on('click', function() {
+
+
+
+
+
+
+
+    $('#close-notification-icon').on('click', function() {
     $('#access-request-notification').addClass('close-notification')
     $(this).addClass('close-notification')
         setTimeout(function () {
@@ -58,17 +79,6 @@ $( document ).ready(function() {
       }, 1000);
   });
 
-  // $('#view-notifivation-icon').on('click', function(){
-  //   // $(this).addClass('close-notification');
-  // });
-
-
-
-  //Dropdown for Logo Files
-
-  $('.switch_brand').on('click', function(){
-
-  })
 
 
   $('.dropdown-toggle').dropdown()
@@ -79,18 +89,22 @@ $( document ).ready(function() {
   $("#secondary_lower_case_letters").fitText(1.9);
 
 
-  $(window).resize(function(){
 
-    var divWidth = $('.img-background').width();
-    $('.img-background').height(divWidth);
-
-    var pricingHeight = $('#agency-column').height();
-    $('#business-column').height(pricingHeight + 50);
-    $('#personal-column').height(pricingHeight);
-  });
 
 
 });
+
+// JS GRAVEYARD - - WHAT IS ALL THIS THIS???
+
+
+  // $('.switch_brand').on('click', function(){
+
+  // })
+
+
+  // $('#view-notifivation-icon').on('click', function(){
+  //   // $(this).addClass('close-notification');
+  // });
 
 
 

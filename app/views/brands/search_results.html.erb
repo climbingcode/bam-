@@ -16,10 +16,12 @@
 			<% if !current_user %>
 				<% @brands.each do |brand| %>
 				<div class="search_result">
+
 					<% if brand.logos.present? %>
 						<%= image_tag(brand.logos.first.path.url, class: "brand_thumbnail img-responsive") %>
 					<% end %>
 					<%= brand.name.titleize %>
+
 
 					</div>
     		<% end %>

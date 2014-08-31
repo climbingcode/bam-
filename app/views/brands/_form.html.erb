@@ -6,7 +6,7 @@
       <a data-toggle="collapse" data-parent="#accordion" href="#collapseOne">
         <div class="panel-heading">
           <h4 class="panel-title">
-              Logos
+              Logos<span class="dashboard-icon"><%= render 'svg_icons/logo_icon' %></span>
           </h4>
         </div>
         </a>
@@ -22,7 +22,7 @@
 <!--                 <div class="logo-checkbox-wrapper">
                 <%= f.check_box(:permission, :id => "check-private") %>
                 <%= f.label(:permission, "Private", for: "check-private", class: "check-box") %>
-                
+
                 </div> -->
                 <div class="file-upload-box">
                 <%= f.label(:path, "Add a logo", :id => 'file-upload-label', :for => 'hide-file-upload') %>
@@ -35,8 +35,8 @@
                 <%= f.hidden_field(:brand_id, :value => params[:id]) %>
 
                 <%= f.submit('Add File', id: "logo_submit", class: "bam_btn btn") %>
-
               <% end %>
+
               <script id="logo_upload" type="text/x-tmpl">
 
                 <div class="file-upload-status">
@@ -57,7 +57,7 @@
   <div class="panel">
     <a data-toggle="collapse" data-parent="#accordion" href="#collapseTwo">
       <div class="panel-heading">
-        <h4 class="panel-title">Colors</h4>
+        <h4 class="panel-title">Colors<span class="dashboard-icon"><%= render 'svg_icons/color_icon' %></span></h4>
       </div>
     </a>
     <div id="collapseTwo" class="panel-collapse collapse">
@@ -99,7 +99,7 @@
   <div class="panel ">
       <a data-toggle="collapse" data-parent="#accordion" href="#collapseThree">
         <div class="panel-heading" id="brand-copy-header">
-          <h4 class="panel-title">Brand Copy</h4>
+          <h4 class="panel-title">Brand Copy<span class="dashboard-icon"><%= render 'svg_icons/brand_copy_icon' %></span></h4>
         </div>
       </a>
     <div id="collapseThree" class="panel-collapse collapse">
@@ -123,14 +123,14 @@
   <div class="panel">
     <a data-toggle="collapse" data-parent="#accordion" href="#collapseFour">
       <div class="panel-heading">
-        <h4 class="panel-title">Typography</h4>
+        <h4 class="panel-title">Typography<span class="dashboard-icon"><%= render 'svg_icons/typography_icon' %></span></h4>
       </div>
     </a>
     <div id="collapseFour" class="panel-collapse collapse">
       <div class="panel-body">
           <div class="asset_module">
           <%= form_for Font.new, url: user_brand_fonts_path(params[:user_id], params[:id], format: :json), remote: true, authenticity_token: true, method: 'post' do |f| %>
-
+          <%= f.text_field(:name, class: 'form-control', :placeholder => 'Font Use')%>
           <%= f.hidden_field(:brand_id, :value => params[:id]) %>
           <%= select_tag :font_family,
           "<option>Abril Fatface</option>
@@ -150,7 +150,7 @@
           <option>Source Sans Pro</option>
           <option>Raleway</option>
           <option>Ubuntu</option>
-          <option>Vollkorn</option>".html_safe %>
+          <option>Vollkorn</option>".html_safe%>
           <%= f.submit('Add font', class: "bam_btn_grey btn", disabled: false) %>
 
         <% end %>
@@ -162,9 +162,14 @@
   <div class="panel">
     <a data-toggle="collapse" data-parent="#accordion" href="#collapseFive">
       <div class="panel-heading">
-        <h4 class="panel-title">Brand Guidelines</h4>
+        <h4 class="panel-title">Brand Guidelines<span class="dashboard-icon"><%= render 'svg_icons/guideline_icon' %></span></h4>
       </div>
     </a>
+
+
+
+
+    </style>
     <div id="collapseFive" class="panel-collapse collapse">
       <div class="panel-body">
         <div class="asset_module">
@@ -185,7 +190,7 @@
     <div class="panel">
       <a data-toggle="collapse" data-parent="#accordion" href="#collapseSix">
         <div class="panel-heading">
-          <h4 class="panel-title">Files</h4>
+          <h4 class="panel-title">Files<span class="dashboard-icon"><%= render 'svg_icons/file_icon' %></span></h4>
         </div>
       </a>
     <div id="collapseSix" class="panel-collapse collapse">
@@ -211,7 +216,7 @@
   <div class="panel">
       <a data-toggle="collapse" data-parent="#accordion" href="#collapseSeven">
         <div class="panel-heading">
-          <h4 class="panel-title">Templates</h4>
+          <h4 class="panel-title">Templates<span class="dashboard-icon"><%= render 'svg_icons/template_icon' %></span></h4>
         </div>
       </a>
     <div id="collapseSeven" class="panel-collapse collapse">
@@ -226,6 +231,7 @@
             Letter Heads
           </button>
               
+
         </div>
       </div>
     </div>
