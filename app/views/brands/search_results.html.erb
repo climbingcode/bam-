@@ -16,22 +16,29 @@
 			<% if !current_user %>
 				<% @brands.each do |brand| %>
 				<div class="search_result">
-					
-					<%= image_tag(brand.logos.first.path.url, class: "brand_thumbnail img-responsive") %>
-					<h2><%= brand.name.titleize %></h2>
+
+					<% if brand.logos.present? %>
+						<%= image_tag(brand.logos.first.path.url, class: "brand_thumbnail img-responsive") %>
+					<% end %>
+					<%= brand.name.titleize %>
+
 
 					</div>
     		<% end %>
 			<% else %>
     		<% @brands.each do |brand| %>
     			<% if brand.open %>
+
             <%= image_tag(brand.logos.first.path.url, class: "brand_thumbnail img-responsive") %>
     				<h2><%=link_to brand.name, user_brand_path(current_user, brand.id) %></h2>
     				
 
+
     			<% else %>
     				<h1><%= brand.name %>
-    				<%= image_tag(brand.logos.first.path.url, class: "brand_thumbnail img-responsive") %>
+    				<% if brand.logos.present? %>
+    					<%= image_tag(brand.logos.first.path.url, class: "brand_thumbnail img-responsive") %>
+    				<% end %>
     			<% end %>
     		<% end %>
   		<% end %>
@@ -70,8 +77,8 @@
 		    <% end %>
 
           <div class="modal fade" id="signUpFromSearchModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-  <div class="modal-dialog">
-    <div class="modal-content">
+  				<div class="modal-dialog">
+    			<div class="modal-content">
       <div class="modal-header">
         <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
         <h4 class="modal-title">Sign Up</h4>

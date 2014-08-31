@@ -1,10 +1,8 @@
 #business_card_pdf {
 	height: 2in;
 	width: 3.5in;
-	background-color: white ;
 	border: 1px dashed;
 	margin: 32px;
-	background-color: green;
 	text-align: center;
 	padding: 15px;
 }
@@ -13,11 +11,15 @@
 	background-color: red;
 }
 
+#background_color {
+	background-color: green:
+}
+
 #no_background {
 	background-color: white;
 }
 
-.business_card_preview {
+#business_card_preview {
 	height: 3in;
 	width: 5.5in;	
 	border: 2px solid;

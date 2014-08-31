@@ -1,0 +1,25 @@
+<!--  -->
+
+
+
+  <div id="brand-page" class="" >
+
+
+      
+
+
+    <h1 id="brand-name-header"><%= Brand.find(session[:current_brand]).name.titleize %></h1> 
+    <%= render 'brand_nav' %>  
+    <%= render 'logos' %>
+    <hr/>
+    <%= render 'typography' %>
+    <hr/>
+    <%= render 'color' %>
+    <!--render misc files-->
+    <!--render guidelines-->
+    <!--render copy-->
+  </div>
+
+</div>
+
+

@@ -1,0 +1,24 @@
+<section id="color" class="row">
+<h2>Colors</h2>
+
+<% if @colors.size > 0 %>
+  <% @colors.each do | color | %>
+    <div id="color<%= color.id %>" class="col-sm-4 swatch-wrapper">
+      <div class="swatch" style="background-color: #<%= color.hex %>;">
+        <div class="copy-alert">
+          Copied
+        </div>
+      </div>
+      <ul class="color-list">
+        <li class="color-name"><%= color.name %><a href="#" class="delete-asset" data-colorid="<%= color.id %>"></a></li>
+        <li>CSS HEX: <span class="copy_text" data-clipboard-text="">#<%= color.hex.upcase %></span></li>
+        <li>RGB: <%= rgb_to_display(color.hex) %></li>
+        <li>CMYK: <%= hex_to_cmyk(color.hex)%></li>
+      </ul>
+    </div>
+  <% end %>
+<% else %>
+  <h3> Looks like you need to add some colors to your brand!</h3>
+<% end %>
+
+</section>

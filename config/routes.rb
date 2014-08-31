@@ -25,6 +25,7 @@ Rails.application.routes.draw do
     end
   end
 
+  resources :brandpages, only: [:show]
 
   resource :sessions, only: [:new, :create, :destroy]
 
@@ -32,6 +33,7 @@ Rails.application.routes.draw do
   
   scope 'pdfs/:id' do
     get 'business_card', to: 'pdfs#business_card'
+    get 'letter_head', to: 'pdfs#letter_head'
   end
 
   namespace 'permission' do 
@@ -47,6 +49,8 @@ Rails.application.routes.draw do
   match '/sign_up_at_search', to: 'users#sign_up_at_search', via: 'post'
 
   match '/sign_in_at_search', to: 'sessions#sign_in_at_search', via: 'post'
+
+  match "/:slug", to: "brandpages#show", via: 'get'
 
   get '/:id', to: 'brand#show'
 

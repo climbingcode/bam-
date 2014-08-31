@@ -12,8 +12,12 @@ class SessionsController < ApplicationController
         brands = Brand.all
         redirect_to search_results_path(brands)
       elsif @user.brands.count == 1
-        session[:current_brand] = @user.brands[0].id
-        redirect_to user_brand_path(@user.id, @user.brands[0].id), notice: "Welcome back, #{@user.username}!"
+        if @user.user_brands.find_by(brand_id: @user.brands[0].id).permission <= 2
+          session[:current_brand] = @user.brands[0].id
+          redirect_to user_brand_path(@user.id, @user.brands[0].id), notice: "Welcome back, #{@user.username}!" 
+        else 
+          redirect_to brandpage_path(@user.brands[0].id)
+        end
       else 
         redirect_to user_brands_path(@user.id)
       end
