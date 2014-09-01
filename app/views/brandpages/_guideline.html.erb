@@ -1,0 +1,21 @@
+<section id="guide" class="row">
+
+	<h2>Guidelines</h2>
+
+	<% if @guidelines.size > 0 %>
+
+  <% @guidelines.each do | guide | %>
+  	<div class="guide-text">
+	    <div id="guideline<%= guide.id %>" class="guide_wrapper col-sm-15">
+	       <div style="font-family: #<%= @fonts.first.font_family if @fonts.present? %>;">
+	        <h3 id="guide-desc-<%= guide.id%>"><strong><%= guide.description.titleize %></strong><a href='#' class="delete-asset"  data-guidelineid='<%= guide.id%>'></a></h3>
+	        <hr>
+	     		<h4 id="guide-text-<%= guide.id%>"><%= guide.text.capitalize %></h4>
+	      </div>
+	    </div>
+	  </div>
+  <% end %>
+<% else %>
+  <h3 id="guide-add-message"> How do you want your assets to be used?</h3>
+<% end %>
+</section>

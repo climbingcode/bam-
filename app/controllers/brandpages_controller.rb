@@ -14,6 +14,8 @@ class BrandpagesController < ApplicationController
 				@colors = brand.colors 
 				@logos = brand.logos 
 				@fonts = brand.fonts
+				@copies = brand.copies
+				@guidelines = brand.guidelines 
 			else 
 				redirect_to search_results_path, notice: 'Sorry, this page is locked'
 			end 

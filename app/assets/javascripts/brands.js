@@ -196,8 +196,8 @@ var logoOperations = {
     var logoPng = $("<li>");
     var logoJpg = $("<li>");
     var logoToAiLink = $("<a>").attr("href", "#").html(logoName + ".ai");
-    var logoToPngLink = $("<a>").attr("href", "#").html(logoName + ".png");
-    var logoToJpgLink = $("<a>").attr("href", "#").html(logoName + ".jpg");
+    var logoToPngLink = $("<a>").attr("href", "#").attr("download", "public/uploads/convert/" + logoId + ".png").text(logoName + ".png");
+    var logoToJpgLink = $("<a>").attr("href", "#").attr("download", "public/uploads/convert/" + logoId + ".jpg").text(logoName + ".jpg");
 
     logoBackground.appendTo(logoWrapper);
     logoPicture.appendTo(logoBackground);
@@ -249,7 +249,7 @@ var typographyOperations = {
       var lowerCaseLetters = upperCaseLetters.toLowerCase();
       var typoWrapper = $("<div>").attr("id", "font" + data.id).addClass("letters_wrapper col-sm-10");
       var typoFontHeader = $("<div>").addClass("font-header");
-      var typoFontDelete = $("<a>").data("fontid", data.id).addClass("asset-delete");
+      var typoFontDelete = $("<a>").attr('href', '#').data("fontid", data.id).addClass("asset-delete");
       var typoFontDescription = $("<h3>").addClass("font-description").html(fontName + ":");
       var typoFontFamily = $("<h3>").addClass("font-name").html(fontFamily);
       var lineDivider = $("<hr>");
@@ -258,7 +258,7 @@ var typographyOperations = {
         
     
       typoFontHeader.appendTo(typoWrapper);
-      typoFontDescription.appendTo(typoFontHeader);
+      typoFontDescription.appendTo(typoFontHeader); 
       typoFontFamily.appendTo(typoFontHeader);
       typoFontDelete.appendTo(typoFontHeader)
       $("<hr>").appendTo(typoWrapper);
@@ -282,9 +282,8 @@ var copyOperations = {
     var copyId = data.id;
     var copyDesc = data.description;
     var copyText = data.text;
-
-    var copyWrapper = $('<div>').attr("id", "copie" + data.id).addClass('copyWrapper');
-    var copyDelete = $('<a>').addClass('delete-asset');
+    var copyWrapper = $('<div>').attr("id", "copie" + data.id).addClass('copy-text');
+    var copyDelete = $('<a>').attr('href', '#').addClass('delete-asset').data("copieid", data.id);
     var copyDescription = $('<h3>').text(copyDesc).append('<hr>').addClass('header');
     var copyBody = $('<h4>').text(copyText).append('<hr>');
     
@@ -295,6 +294,9 @@ var copyOperations = {
     
     $copy.append(copyWrapper);
 
+    $(".copy-text .delete-asset").on('click', function(event) {
+      copyOperations.destroyCopy(event);
+    });
   },
 };
 
@@ -309,8 +311,8 @@ var guidelineOperations = {
     var guideId = data.id;
     var guideDesc = data.description;
     var guideText = data.text;
-    var guideWrapper = $('<div>').attr("id", "guide" + data.id).addClass('guideWrapper');
-    var guideDelete = $('<a>').attr("href", "#").addClass('delete-asset').data("guidelineid", data.id);
+    var guideWrapper = $('<div>').addClass('guide-text').attr("id", "guideline" + data.id);
+    var guideDelete = $('<a>').attr('href', '#').addClass('delete-asset').data("guidelineid", data.id);
     var guideDescription = $('<h3>').text(guideDesc).append('<hr>').addClass('header');
     var guideBody = $('<h4>').text(guideText).append('<hr>');
     
@@ -318,8 +320,12 @@ var guidelineOperations = {
     guideDescription.appendTo(guideWrapper);
     guideDelete.appendTo(guideDescription);
     guideBody.appendTo(guideWrapper);
-    
     $guide.append(guideWrapper);
+
+    $(".guide-text .delete-asset").on('click', function(event) {
+      $('#guide-add-message').remove();
+      guidelineOperations.destroyGuide(event);
+    });
 
   },
 };

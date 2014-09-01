@@ -1,0 +1,21 @@
+<section id="copy" class="row">
+<h2>Copy</h2>
+
+<% if @copies.size > 0 %>
+
+  <% @copies.each do | copy | %>
+  	<div class="copy-text">
+	    <div id="copie<%= copy.id %>" class="copy_wrapper col-sm-15">
+	       <div style="font-family: #<%= @fonts.first.font_family if @fonts.present? %>;">
+	        <h3 id="copy-desc-<%= copy.id%>"><strong><%= copy.description.titleize %></strong><a href='#' class="delete-asset"  data-copieid='<%= copy.id%>'></a></h3>
+	        <hr>
+	     		<h4 id="copy-text-<%= copy.id%>"><%= copy.text.capitalize %></h4>
+	      </div>
+	    </div>
+	  </div>
+  <% end %>
+<% else %>
+  <h3 id="copy-add-message"> Whats your companies story, mission, vision?</h3><br><br>
+<% end %>
+
+</section>

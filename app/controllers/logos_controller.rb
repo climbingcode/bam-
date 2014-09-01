@@ -9,6 +9,11 @@ class LogosController < ApplicationController
 
     respond_to do |format|
       if @logo.save
+        @jpeg1 = MiniMagick::Image.open("#{@logo.path.path}") 
+        @jpeg1.write "public/uploads/convert/#{@logo.id}.jpg"
+        @png1 = MiniMagick::Image.open("#{@logo.path.path}") 
+        @png1.write "public/uploads/convert/#{@logo.id}.png"
+        
         format.html { redirect_to user_brand_path(current_user, @logo.brand_id), notice: 'Logo was successfully saved.' }
         format.json { render json: @logo, status: :created, location: user_brand_path(current_user, @logo.brand_id) }
         # render :show, status: :created, location: user_brand_path(current_user, @logo.brand_id)
