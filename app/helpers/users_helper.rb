@@ -4,6 +4,11 @@ module UsersHelper
 # 1 = full access to whole of site
 # 4 = Awaiting admin confirmation
 
+	def check_session_status
+    if current_user 
+      redirect_to user_brands_path(current_user.id)
+    end
+  end
 
 	def set_user_to_admin(user, brand)
 		brand_id = Brand.find_by(name: brand).id

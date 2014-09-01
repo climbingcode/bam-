@@ -5,6 +5,7 @@ class BrandsController < ApplicationController
   before_filter :restrict_access, only: [:show, :create, :update, :destroy]
 
   before_filter :check_permission_status, only: [:show, :create, :update, :destroy]
+
   # GET /brands
   # GET /brands.json
   def index
@@ -67,10 +68,9 @@ class BrandsController < ApplicationController
       current_brand(@brand)
       @colors = @brand.colors
       @images = @brand.logos
-
       respond_to do |format|
       format.html
-      format.json { render json: @colors }
+
     end    
 
   end

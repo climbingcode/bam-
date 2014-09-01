@@ -2,6 +2,7 @@ class UsersController < ApplicationController
 
 	include UsersHelper
 
+  before_filter :check_session_status
 
 	def index 
     if current_user != nil

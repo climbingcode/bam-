@@ -162,8 +162,6 @@ var colorOperations = {
 };
 
 
-
-
 var logoOperations = {
 
 
@@ -272,6 +270,60 @@ var typographyOperations = {
 
 };
 
+var copyOperations = {
+
+  destroyCopy: function(event) {
+    ajaxOperations.destroyAsset(event, "copie");
+  },
+
+  addNewCopy: function(data) {
+  
+    var $copy = $('#copy')
+    var copyId = data.id;
+    var copyDesc = data.description;
+    var copyText = data.text;
+
+    var copyWrapper = $('<div>').attr("id", "copie" + data.id).addClass('copyWrapper');
+    var copyDelete = $('<a>').addClass('delete-asset');
+    var copyDescription = $('<h3>').text(copyDesc).append('<hr>').addClass('header');
+    var copyBody = $('<h4>').text(copyText).append('<hr>');
+    
+    
+    copyDescription.appendTo(copyWrapper);
+    copyDelete.appendTo(copyDescription);
+    copyBody.appendTo(copyWrapper);
+    
+    $copy.append(copyWrapper);
+
+  },
+};
+
+var guidelineOperations = {
+
+  destroyGuide: function(event) {
+    ajaxOperations.destroyAsset(event, "guideline");
+  },
+
+  addNewGuide: function(data) {
+    var $guide = $('#guide')
+    var guideId = data.id;
+    var guideDesc = data.description;
+    var guideText = data.text;
+    var guideWrapper = $('<div>').attr("id", "guide" + data.id).addClass('guideWrapper');
+    var guideDelete = $('<a>').attr("href", "#").addClass('delete-asset').data("guidelineid", data.id);
+    var guideDescription = $('<h3>').text(guideDesc).append('<hr>').addClass('header');
+    var guideBody = $('<h4>').text(guideText).append('<hr>');
+    
+    
+    guideDescription.appendTo(guideWrapper);
+    guideDelete.appendTo(guideDescription);
+    guideBody.appendTo(guideWrapper);
+    
+    $guide.append(guideWrapper);
+
+  },
+};
+
 
 var interfaceOperations = {
 
@@ -307,6 +359,14 @@ var interfaceOperations = {
 
     $(".font-header .delete-asset").on("click", function(event){
       typographyOperations.destroyTypography(event);
+    });
+
+    $(".copy-text .delete-asset").on('click', function(event) {
+      copyOperations.destroyCopy(event);
+    });
+
+    $(".guide-text .delete-asset").on('click', function(event) {
+      guidelineOperations.destroyGuide(event);
     });
   },
 
@@ -360,21 +420,20 @@ var ajaxOperations = {
 
     $('#new_color').on('ajax:success', function(e,data) {
       colorOperations.createNewColor(data);
-      this.reset(); 
     });
 
     $('#new_copy').on('ajax:success', function(e,data) {
-      console.log("success", data);
+      $('#copy-add-message').remove();
+      copyOperations.addNewCopy(data);
     });
 
     $('#new_font').on('ajax:success', function(e, data){
       typographyOperations.addTypography(data);
-      console.log(data);
-
     }); 
 
     $("#new_guideline").on('ajax:success', function(e, data) {
-      console.log(data);
+      $('#guide-add-message').remove();
+      guidelineOperations.addNewGuide(data)
     });
 
   },
@@ -529,7 +588,7 @@ var brandPageInit = function(){
   colorOperations.colorToClipboard();
   interfaceOperations.hideFileUpload();
   letterheadOperations.initializeListeners();
-
+  ;
 
    $('.check-private').on('click', function() {
     var brand_id = $(this).data('brand')
@@ -549,9 +608,6 @@ var brandPageInit = function(){
   });
 
 };
-
-
-
 
 $( document ).ready(function() {
 

@@ -1,5 +1,5 @@
 module BrandsHelper
-
+    
     def hex_convert_to_red(hex)
       hex_red = hex.chomp[0,2]
       hex_red.to_i(16)
