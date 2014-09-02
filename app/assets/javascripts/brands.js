@@ -196,8 +196,8 @@ var logoOperations = {
     var logoPng = $("<li>");
     var logoJpg = $("<li>");
     var logoToAiLink = $("<a>").attr("href", "#").html(logoName + ".ai");
-    var logoToPngLink = $("<a>").attr("href", "#").attr("download", "public/uploads/convert/" + logoId + ".png").text(logoName + ".png");
-    var logoToJpgLink = $("<a>").attr("href", "#").attr("download", "public/uploads/convert/" + logoId + ".jpg").text(logoName + ".jpg");
+    var logoToPngLink = $("<a>").attr("href", "#").text(logoName + ".png");
+    var logoToJpgLink = $("<a>").attr("href", "#").text(logoName + ".jpg");
 
     logoBackground.appendTo(logoWrapper);
     logoPicture.appendTo(logoBackground);
@@ -227,8 +227,6 @@ var logoOperations = {
     $(".logo-meta .delete-asset").on("click", function(event){
       logoOperations.destroyLogo(event);
     });
-
-
 
   } 
 
@@ -333,7 +331,6 @@ var guidelineOperations = {
 
 var interfaceOperations = {
 
-
   hideFileUpload: function(){
     $('#hide-file-upload').css({
       'visibility': 'hidden'
@@ -392,7 +389,6 @@ var interfaceOperations = {
 
   },
 
-
   initializeListeners: function(){
     interfaceOperations.deleteAssetEvents();
     interfaceOperations.dashBoardEvents();
@@ -425,6 +421,7 @@ var ajaxOperations = {
   uploadSuccessEvents: function(){
 
     $('#new_color').on('ajax:success', function(e,data) {
+      $('#no-color').remove();
       colorOperations.createNewColor(data);
     });
 
@@ -448,7 +445,6 @@ var ajaxOperations = {
 
       $('#new_logo').fileupload({
         dataType: 'json',
-    
         // drop: function(e, data){
         //   $.each(data.files, function(index, file){
         //     // $('#upload_file_name').append("<p>" + file.name +"</p>");
@@ -462,18 +458,17 @@ var ajaxOperations = {
         // },
 
         add: function(e, data){
+
           data.context = $(tmpl("logo_upload", data.files[0]))
             console.log(data.files);
             $('#logo-upload-status').append(data.context)
             $("#logo_submit").on("click", function(event){
               event.preventDefault();
-                function clearFileInput(element) {
-                var assetPathInput = $(element);
-                 assetPathInput.wrap("<form>").parent("form").trigger("reset");
-                  console.log(assetPathInput);
-                     assetPathInput.unwrap();
-                };
+                
                 data.submit();
+          var assetPathInput = $('logo_submit');
+          assetPathInput.wrap("<form>").parent("form").trigger("reset");
+          console.log(assetPathInput);
               });
           },
 
@@ -492,11 +487,10 @@ var ajaxOperations = {
           interfaceOperations.displayAdvisory("Logo Uploaded")
           $("#logo_name").val("");
           $("#logo_description").val("");
-          //clearFileInput( "#logo_path");
+          assetPathInput.unwrap();
           console.log(data.files, data.files.length);
           data.files = [];
           data.originalFiles = [];
-          // debugger
           console.log(data.files.length);
           $("#logo-upload-status").empty();
         }
@@ -514,13 +508,9 @@ var ajaxOperations = {
     ajaxOperations.ajaxFileUploadActions();
     ajaxOperations.uploadSuccessEvents();
   }
-
-
 };
 
 var letterheadOperations = {
-
-   
 
    initializeListeners: function(){
 

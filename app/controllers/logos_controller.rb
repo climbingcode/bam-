@@ -1,9 +1,6 @@
 class LogosController < ApplicationController
-  # before_action :set_logo, only: [:show, :edit, :update, :destroy]
 
 
-  # POST /logos
-  # POST /logos.json
   def create
     @logo = Logo.new(logo_params)
 
@@ -13,41 +10,25 @@ class LogosController < ApplicationController
         @jpeg1.write "public/uploads/convert/#{@logo.id}.jpg"
         @png1 = MiniMagick::Image.open("#{@logo.path.path}") 
         @png1.write "public/uploads/convert/#{@logo.id}.png"
-        
         format.html { redirect_to user_brand_path(current_user, @logo.brand_id), notice: 'Logo was successfully saved.' }
         format.json { render json: @logo, status: :created, location: user_brand_path(current_user, @logo.brand_id) }
-        # render :show, status: :created, location: user_brand_path(current_user, @logo.brand_id)
       else
-        # format.html { redirect_to user_brand_path(current_user, @logo.brand_id), notice: 'Logo was not saved.' }
         format.json { render json: @logo.errors, status: :unprocessable_entity }
       end
     end
   end
 
-  # GET /logos
-  # GET /logos.json
-  # def index
-  #   @logos = Logo.all
-  # end
+  def download
+    @logo = Logo.find(params[:format].to_i)
+    @filename = "#{Rails.root}/public/uploads/convert/#{@logo.id}.jpg"
+    send_file(@filename,
+              :filename => "#{@logo.name}"
+      ) 
+  end
 
-  # # GET /logos/1
-  # # GET /logos/1.json
-  # def show
-  # end
-
-  # # GET /logos/new
-  # def new
-  #   @logo = Logo.new
-  # end
-
-  # GET /logos/1/edit
   def edit
   end
 
-
-
-  # PATCH/PUT /logos/1
-  # PATCH/PUT /logos/1.json
   def update
     respond_to do |format|
       if @logo.update(logo_params)
@@ -60,12 +41,13 @@ class LogosController < ApplicationController
     end
   end
 
-  # DELETE /logos/1
-  # DELETE /logos/1.json
   def destroy
     @logo = Logo.find(params[:id])
-    @logo.destroy
+   
     respond_to do |format|
+      @logo.destroy
+      File.delete(Rails.root + "public/uploads/convert/#{@logo.id}.jpg")
+      File.delete(Rails.root + "public/uploads/convert/#{@logo.id}.png")
       format.html { redirect_to logos_url, notice: 'Logo was successfully destroyed.' }
       format.json { render json: @logo, status: :accepted, location: user_brand_path(current_user, @logo.brand_id)}
     end

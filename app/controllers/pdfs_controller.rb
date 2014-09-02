@@ -43,17 +43,13 @@ class PdfsController < ApplicationController
     @images = @brand.logos
 
     @letter_head = 1
-
-    render  do |format|
-
-     
+    
+    respond_to do |format|    
       format.pdf do
         render  :pdf => "letter_heads_#{@brand.id}.pdf",
                 :template => 'pdfs/letter_head.pdf.erb',
                 :layout   => 'layouts/wicked.html.erb',  
                 :page_size => 'Letter'
-            
-        
       end
     end
   end

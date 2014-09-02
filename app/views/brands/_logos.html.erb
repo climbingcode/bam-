@@ -24,8 +24,8 @@
             <ul role="menu" class="dropdown-menu">
               <li class="dropdown-header">Download</li>
               <li><a href="#"><%= logo.name %>.ai</a></li>
-              <li><a href="#"><%= logo.name %>.png</a></li>
-              <li><a href="#"><%= logo.name %>.jpg</a></li>
+              <li><%= link_to "#{logo.name}.png", download_logos_path(logo) %></li>
+              <li><%= link_to "#{logo.name}.jpg", download_logos_path(logo) %></li>
             </ul>
 
           </div>

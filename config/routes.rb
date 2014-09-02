@@ -10,7 +10,7 @@ Rails.application.routes.draw do
 
     resources :brands do
 
-      resources :logos 
+      resources :logos
 
       resources :colors
 
@@ -30,6 +30,13 @@ Rails.application.routes.draw do
   resource :sessions, only: [:new, :create, :destroy]
 
   resources :contact_form, only: [:new, :create] 
+
+  resources :logos do
+    collection do
+      get :download
+    end
+  end
+
   
   scope 'pdfs/:id' do
     get 'business_card', to: 'pdfs#business_card'
@@ -52,8 +59,7 @@ Rails.application.routes.draw do
 
   match "/:slug", to: "brandpages#show", via: 'get'
 
-  get '/:id', to: 'brand#show'
-
   match 'users/:user_id/brands/:brands_id/change_privacy', to: 'brands#change_privacy', via: 'post'
+
 
 end
