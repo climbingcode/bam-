@@ -34,7 +34,7 @@
                 </section>
                 <%= f.hidden_field(:brand_id, :value => params[:id]) %>
 
-                <%= f.submit('Add File', id: "logo_submit", class: "bam_btn btn") %>
+                <%= f.submit('Add File', id: "logo_submit", class: "bam_btn dashboard_btn btn") %>
               <% end %>
 
               <script id="logo_upload" type="text/x-tmpl">
@@ -81,7 +81,7 @@
 
 
             <%= f.hidden_field(:brand_id, :value => params[:id], class: "hidden-field") %>
-            <%= f.submit('Add colour', class: "bam_btn_grey btn", disabled: false) %>
+            <%= f.submit('Add colour', class: "bam_btn_grey dashboard_btn btn", disabled: false) %>
 
             <% end %>
           </div>
@@ -113,7 +113,7 @@
               <%= f.label(:text, "Copy text") %>
               <%= f.text_area(:text, class: "form-control") %>
               <%= f.hidden_field(:brand_id, :value => params[:id]) %>
-              <%= f.submit('Add copy', class: "bam_btn_grey btn", disabled: false) %>
+              <%= f.submit('Add copy', class: "bam_btn_grey dashboard_btn btn", disabled: false) %>
             <% end %>
         </div>
       </div>
@@ -130,7 +130,7 @@
       <div class="panel-body">
           <div class="asset_module">
           <%= form_for Font.new, url: user_brand_fonts_path(params[:user_id], params[:id], format: :json), remote: true, authenticity_token: true, method: 'post' do |f| %>
-          <%= f.text_field(:name, class: 'form-control', :placeholder => 'Font Use')%>
+          <%= f.text_field(:name, class: 'form-control',  :value => "my default value", :placeholder => 'Font Use')%>
           <%= f.hidden_field(:brand_id, :value => params[:id]) %>
           <%= select_tag :font_family,
           "<option>Abril Fatface</option>
@@ -141,7 +141,8 @@
           <option>Exo</option>
           <option>Josefin Slab</option>
           <option>Lato</option>
-          <option>league-gothic</option>
+          <option value='league-gothic'>League Gothic</option>
+          <option value='tk-museo-slab'>Museo Slab</option>
           <option>Nobile</option>
           <option>Old Standard TT</option>
           <option>Open Sans</option>
@@ -152,7 +153,7 @@
           <option>Raleway</option>
           <option>Ubuntu</option>
           <option>Vollkorn</option>".html_safe%>
-          <%= f.submit('Add font', class: "bam_btn_grey btn", disabled: false) %>
+          <%= f.submit('Add font', class: "bam_btn_grey dashboard_btn btn", disabled: false) %>
 
         <% end %>
         </div>
@@ -181,7 +182,7 @@
             <%= f.label(:text, "Guideline") %>
             <%= f.text_area(:text, class: "form-control") %>
             <%= f.hidden_field(:brand_id, :value => params[:id]) %>
-            <%= f.submit('Add Guideline', class: "bam_btn_grey btn",disabled: false) %>
+            <%= f.submit('Add Guideline', class: "bam_btn_grey dashboard_btn btn",disabled: false) %>
           <% end %>
         </div>
       </div>
@@ -207,7 +208,7 @@
             <%= f.label(:permissions, "Public") %>
             <%= f.check_box(:permissions) %>
             <%= f.hidden_field(:brand_id, :value => params[:id]) %>
-            <%= f.submit("Add Asset", class: "bam_btn_grey btn", disabled: false) %>
+            <%= f.submit("Add Asset", class: "bam_btn_grey dashboard_btn btn", disabled: false) %>
           <% end %>
         </div>
       </div>

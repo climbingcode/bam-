@@ -61,6 +61,7 @@ class BrandsController < ApplicationController
       @brands = @user.brands
       @colors = @brand.colors.all
       @logos = @brand.logos.all
+      @logos_json = @logos.to_json
       @fonts = @brand.fonts.all
       @copies = @brand.copies.all
       @guidelines = @brand.guidelines.all
@@ -70,9 +71,8 @@ class BrandsController < ApplicationController
       @images = @brand.logos
       respond_to do |format|
       format.html
-
+      format.json { render @logos, status: :created, location: @brand }
     end    
-
   end
 
   # GET /brands/new

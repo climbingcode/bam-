@@ -1,6 +1,6 @@
 #dashboard{
   background: #333;
-  z-index: 10000;
+  z-index: 100000!important;
   // padding-top: 10px;
   transition: all 1s;
   height: auto;
@@ -10,6 +10,12 @@
     height: 1px;
   }
 }
+
+// .icon-column{
+//   height: 1000px;
+//   width: 100px;
+//   background: red;
+// }
 
 .display-none{
   display: none;

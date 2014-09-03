@@ -17,10 +17,12 @@
 @import 'bootstrap-colorpicker';
 @import 'user_brands_index';
 @import 'search_results';
+
 @import 'templates_preview';
 @import 'copy';
 @import 'letter_head_form';
 @import 'letter_head_preview';
+
 
 
 .entire-page{
@@ -34,7 +36,7 @@
 
 body{
   font-family: $font-stack;
-  background: #333;
+  // background: #333;
 }
 
 .pass-nav {

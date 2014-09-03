@@ -8,8 +8,20 @@ function borderSelected(border) {
 }
 
 function imageAdd(image) {
-	$("#letter_head_logo").prepend('<img>')
+	path = window.location.pathname;
+	var logos = <% @logos_json %>
+	console.log(logos)
+
+	// $.ajax({
+	// 	type: "GET",
+	// 	url: path,
+	// 	success: function(data) {
+	// 		console.log(data);
+	// 	}
+	// });
+
 };
+
 
 $(document).ready(function(){
 
@@ -30,7 +42,7 @@ $(document).ready(function(){
 
 	$('#pdf_logo').change(function() {
 		var val = $(this).val();
-		console.log(imageAdd)
+		imageAdd(val)
 	});	
 
 });

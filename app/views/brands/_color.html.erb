@@ -14,7 +14,7 @@
         <li>CSS HEX: <span class="copy_text" data-clipboard-text="">#<%= color.hex.upcase %><span class='clipboard hex-clipboard'></span></li>
         <li>RGB: <%= rgb_to_display(color.hex) %></li>
         <li>CMYK: <%= hex_to_cmyk(color.hex)%></li>
-        <li>Sass:<span class="sass"> $<%= color.name %>: #<%= color.hex.upcase %><span class='clipboard sass-clipboard'></span></li>
+        <li>Sass: <span class="sass">$<%= color.name.gsub(/\s/,'-').downcase.capitalize %>: #<%= color.hex.upcase %><span class='clipboard sass-clipboard'></span></li>
       </ul>
     </div>
   <% end %>

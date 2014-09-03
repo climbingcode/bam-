@@ -10,7 +10,10 @@
       <div id="font<%= font.id %>" class="letters_wrapper col-sm-10">
         <div class="font-header">
           <h3 class="font-description"><%= font.name %></h3>
-          <h3 class="font-name"><%= font.font_family %></h3>
+          <h3 class="font-name"><%= font_converter(font) %>
+
+         
+          </h3>
           <a class="delete-asset" data-fontid="<%= font.id %>"></a>
         </div>
 

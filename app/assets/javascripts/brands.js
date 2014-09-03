@@ -73,7 +73,7 @@ var colorOperations = {
     var colorRgb = $("<li>").html("RGB: <span>" + r + ", " + g + ", "+ b + "</span>");
     var colorCmyk = $("<li>").html("CMYK: <span>" + colorOperations.hexToCMYK(data.hex) + "</span>");
     var colorListItems = targetColor + " ul.color-list";
-    var colorSass = $("<li>").html("Sass: <span class='sass'>$" + data.name +  ": #" + upperCaseHex + ";</span>" + "<span class='clipboard sass-clipboard'></span>");
+    var colorSass = $("<li>").html("Sass: <span class='sass'>$" + data.name.replace(/\s/g, "-") +  ": #" + upperCaseHex + ";</span>" + "<span class='clipboard sass-clipboard'></span>");
 
     $color.append(colorWrapper);
     colorSwatch.appendTo(colorWrapper);
@@ -242,6 +242,8 @@ var typographyOperations = {
 
       var fontName = data.name;
       var fontFamily = data.font_family;
+      var titleizedFontFamily = fontFamily.split('-').join(' ').toLowerCase().replace(/\b[a-z](?=[a-z]{2})/g, function(letter) {
+        return letter.toUpperCase(); } );;
       var upperCaseLetters = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
       var $typo = $("#typography");
       var lowerCaseLetters = upperCaseLetters.toLowerCase();
@@ -249,7 +251,7 @@ var typographyOperations = {
       var typoFontHeader = $("<div>").addClass("font-header");
       var typoFontDelete = $("<a>").attr('href', '#').data("fontid", data.id).addClass("asset-delete");
       var typoFontDescription = $("<h3>").addClass("font-description").html(fontName + ":");
-      var typoFontFamily = $("<h3>").addClass("font-name").html(fontFamily);
+      var typoFontFamily = $("<h3>").addClass("font-name").html(titleizedFontFamily);
       var lineDivider = $("<hr>");
       var typoCapitalLetters = $("<p>").addClass("primary_capital_letters").css("font-family", fontFamily).html(upperCaseLetters);
       var typoLowerCaseLetters = $("<p>").addClass("primary_lower_case_letters").css("font-family", fontFamily).html(lowerCaseLetters);
