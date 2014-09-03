@@ -18,7 +18,7 @@
 @import 'bootstrap-colorpicker';
 @import 'user_brands_index';
 @import 'search_results';
-@import 'pushy';
+
 @import 'templates_preview';
 
 
@@ -34,7 +34,7 @@
 
 body{
   font-family: $font-stack;
-  background: #333;
+  // background: #333;
 }
 
 .pass-nav {
