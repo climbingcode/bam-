@@ -1,0 +1,36 @@
+
+function titleColorSelected(color) {
+	$('#title_color').css('color', '#' + color);
+};
+
+function borderSelected(border) {
+	$('#letter_head_border').toggleClass('letter_head_border_line');
+}
+
+function imageAdd(image) {
+	$("#letter_head_logo").prepend('<img>')
+};
+
+$(document).ready(function(){
+
+	
+	$('#pdf_primary_color').change(function() {
+		var val = $(this).val();
+		titleColorSelected(val)	
+	});
+
+	$('#letter_head_check_box').change(function() {
+		var val = $(this).val();
+		borderSelected(val)	
+	});
+
+	$('#street_number_letter_head').bind(function() {
+		$(this).val();
+	});
+
+	$('#pdf_logo').change(function() {
+		var val = $(this).val();
+		console.log(imageAdd)
+	});	
+
+});

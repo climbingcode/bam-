@@ -5,6 +5,7 @@ class Brand < ActiveRecord::Base
 	has_many :copies
 	has_many :guidelines
 	has_many :misc_assets
+	has_many :pdfs
 	has_many :users, through: :user_brands 
 
 	

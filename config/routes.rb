@@ -20,8 +20,9 @@ Rails.application.routes.draw do
 
       resources :guidelines 
 
-      resources :misc_assets 
+      resources :misc_assets
 
+      resources :pdfs 
     end
   end
 
@@ -38,10 +39,10 @@ Rails.application.routes.draw do
   end
 
   
-  scope 'pdfs/:id' do
-    get 'business_card', to: 'pdfs#business_card'
-    get 'letter_head', to: 'pdfs#letter_head'
-  end
+  # scope 'pdfs/:id' do
+  #   get 'business_card', to: 'pdfs#business_card'
+  #   get 'letter_head', to: 'pdfs#letter_head'
+  # end
 
   namespace 'permission' do 
     resources :users 

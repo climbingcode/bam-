@@ -1,0 +1,16 @@
+#letter_head_form {
+	float: right;
+	margin-right: 5%;
+}
+
+#letter_head_preview {
+	float: left;
+}
+
+#letter_head_footer {
+	clear: both;
+}
+
+#letter_head_check_box {
+	margin-left: -45%;
+}

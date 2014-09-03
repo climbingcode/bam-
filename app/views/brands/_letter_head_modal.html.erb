@@ -13,17 +13,42 @@
           <div id="letter_head_preview">
             <%= render 'letter_head_preview.html.erb' %>
           </div>
-          <button type="button" class="letter_head_one btn bam-btn" data-letterhead="1" >Preview Template One</button>
-          <button type="button" class="letter_head_two btn bam-btn" data-letterhead="2" >Preview Template Two</button>
+        
+          <div id="letter_head_form">
+            <h1>Please select the layout you want</h1>
+            <%= form_for(Pdf.new, :url => {:controller => "pdfs", :action => "create", :user_id => current_user.id, :brand_id => @brand.id}, method: 'post') do |f| %>
+
+                <%= f.hidden_field(:kind, :value => "letter_head") %>
+                <%= f.label(:primary_color, class: "form-control") %>
+                <%= f.select(:primary_color, @colors.pluck(:hex), :html => {:id => "primary_color"}) %>
+                 <%= f.label(:secondary_color, class: "form-control") %>
+                <%= f.select(:secondary_color, @colors.pluck(:hex), :html => {:id => "secondary_color"}) %>
+                 <%= f.label(:logo, class: "form-control") %>
+                <%= f.select(:logo, @logos.pluck(:name), :html => {:id => "logo"}) %>
+                <%= f.label(:font, class: "form-control") %>
+                <%= f.select(:font, @fonts.pluck(:font_family), :html => {:id => "font_selected"})%>
+                 <%= f.label(:border, class: "form-control") %>
+                <%= f.check_box(:border, class: "form-control", :id => "letter_head_check_box")%>
+                 <%= f.label(:street_number, class: "form-control") %>
+                <%= f.text_field(:street_number, class: "form-control", :id => "street_number_letter_head") %>
+                 <%= f.label(:street_address, class: "form-control") %>  
+                <%= f.text_field(:street_address, class: "form-control") %>
+                <%= f.label(:post_code, class: "form-control") %>
+                <%= f.text_field(:post_code, class: "form-control")%>
+                <%= f.label(:number, "Phone number", class: "form-contol") %>
+                 <%= f.text_field(:number, class: "form-control")%>
+                <%= f.submit('DownLoad as PDF', class: "bam_btn_grey btn", disabled: false) %>      
+              <% end %>
+            </div>
+
+
+
         </div>
       </div>
-      <div class="modal-footer">
+      <div class="modal-footer" id="letter_head_footer">
         <button type="button" class="btn bam_btn" data-dismiss="modal">Close</button>
-      
+          
     
-          <div id="business_card_generation">
-          <%= link_to "Download to pdf", letter_head_path(@user, :format => "pdf"), :id => "businessCardGenerator", :class => "btn bam_btn"%>
-        </div>
       </div>    
     </div>
   </div>

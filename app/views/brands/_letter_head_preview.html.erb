@@ -1,29 +1,3 @@
-<style>
-.modal-dialog {
-	width: 50%;
-	height: 80%;
-	overflow-y: auto;
-}
-
-.lh-background {
-	background-color: white;
-	height: 100%;
-}
+<%= render "pdfs/letter_head_preview.html.erb" %>
 
 
-.lh-background-one {
-	background-color: #<%= @colors.first.hex if @colors.present? %>;
-
-	height: 100%;
-	}
-
-.lh-background-two {
-	background-color: #<%= @colors[1].hex if @colors[1].present?%>;
-	height: 100%;
-}
-</style>
-
-
-<section class="lh-background">
-	<div id="brand-name-lh-one"><%= @brand.name.titleize %></div>
-</section>

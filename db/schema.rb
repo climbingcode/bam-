@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140821224001) do
+ActiveRecord::Schema.define(version: 20140902224826) do
 
   create_table "brands", force: true do |t|
     t.string   "name"
@@ -101,6 +101,21 @@ ActiveRecord::Schema.define(version: 20140821224001) do
   end
 
   add_index "misc_assets", ["brand_id"], name: "index_misc_assets_on_brand_id"
+
+  create_table "pdfs", force: true do |t|
+    t.integer "brand_id"
+    t.string  "kind"
+    t.string  "primary_color"
+    t.string  "secondary_color"
+    t.string  "logo"
+    t.string  "font"
+    t.boolean "border"
+    t.string  "street_number"
+    t.string  "street_address"
+    t.string  "city"
+    t.string  "post_code"
+    t.string  "number"
+  end
 
   create_table "user_brands", force: true do |t|
     t.integer  "user_id"

@@ -1,0 +1,8 @@
+.letter_head_border_line {
+	float: right; 
+	margin-top: 30px;
+	margin-left: 5px; 
+	height: 5px; 
+	width: 480px;
+	background-color: black; 
+}
