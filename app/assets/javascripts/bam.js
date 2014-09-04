@@ -112,6 +112,9 @@ window.setInterval(function(){
   $(".primary_lower_case_letters").fitText(2.5);
     var divWidth = $('.img-background').width();
   $('.img-background').height(divWidth);
+      var pricingHeight = $('#agency-column').height();
+    $('#business-column').height(pricingHeight + 50);
+    $('#personal-column').height(pricingHeight);
 
 }, 1000);
 

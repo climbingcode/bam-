@@ -36,22 +36,44 @@
 
 }
 
+.search-result-brand-name-container{
+  display: inline;
+
+}
+
+.brand-thumbnail-container{
+  display: inline-block;
+  width: 60px;
+  height: 60px;
+  padding: 5px;
+  background-image: url('/assets/bg.jpg');
+
+}
 
 
 .brand_thumbnail{
-  height: 100px;
-  width: 100px;
+  // height: 100px;
+  // width: 100px;
   float: left;
-  display: inline;
+ 
   margin-right: 45px;
 }
 .search_result{
+  display: inline;
 
   height: 120px;
   h2{
-    margin-right: 30px;
-    margin-top: 45px;
+    position: absolute;
+    margin-left: 30px;
+    margin-bottom: 30px;
     display: inline;
+  }
+  a{
+    color: $primary-color;
+  }
+  a:hover{
+    text-decoration: none;
+    color: #444;
   }
 }
 

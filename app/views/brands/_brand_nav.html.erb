@@ -1,12 +1,12 @@
 <nav id="brand-nav">
   <ul>
 
-    <li><a href="#logos">Logos</a></li>
-    <li><a href="#colors">Colors</a></li>
-    <li><a href="#typography">Typography</a></li>
-    <li><a href="#copy">Copy</a></li>
-    <li><a href="guidelines">Guidelines</a></li>
-    <li><a href="#files">Files</a></li>
+    <% if @logos.size > 0 %><li><a href="#logos">Logos</a></li><% end %>
+    <% if @colors.size > 0 %><li><a href="#colors">Colors</a></li><% end %>
+    <% if @fonts.size > 0 %><li><a href="#typography">Typography</a></li><% end %>
+    <% if @copies.size > 0 %><li><a href="#copy">Copy</a></li><% end %>
+    <% if @guidelines.size > 0 %><li><a href="guidelines">Guidelines</a></li><% end %>
+    <% if @misc_assets.size > 0 %><li><a href="#files">Files</a></li><% end %>
   </ul>
 
 <hr/>

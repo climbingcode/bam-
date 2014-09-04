@@ -12,33 +12,49 @@
 			<% brands_id.each do |id| %>
 				<% @brands << Brand.find(id) %>
 			<% end %>
-
 			<% if @brands != [] %>
 				<% if !current_user %>
 					<% @brands.each do |brand| %>
 					<div class="search_result">
-
 						<% if brand.logos.present? %>
-							<%= image_tag(brand.logos.first.path.url, class: "brand_thumbnail img-responsive") %>
+						
+								<div class="brand-thumbnail-container">
+									<%= image_tag(brand.logos.first.path.url, class: "brand_thumbnail img-responsive") %>
+								</div>
+							
 						<% end %>
-						<%= brand.name.titleize %>
-
+						<div class="search-result-brand-name-container">
+						<h2><%= brand.name.titleize %></h2>
+						</div>
 					</div>
+					<br/><hr/>
 		    		<% end %>
 					<% else %>
 		    		<% @brands.each do |brand| %>
+		    		<div class="search_result">
 		    			<% if brand.open %>
-		    			<h1><%=link_to brand.name, user_brand_path(current_user, brand.id) %></h1>
-		    				<% if brand.logos.present? %>
+		    			<% if brand.logos.present? %>
+		    			<div class="brand-thumbnail-container">
 		    				<%= image_tag(brand.logos.first.path.url, class: "brand_thumbnail img-responsive") %>
+		    			</div>
 		    				<% end %>
+		    				<div class="search-result-brand-name-container">
+		    				<h2><%=link_to brand.name, user_brand_path(current_user, brand.id) %></h2>
+		    				</div>
+		    		</div>
 
 		    			<% else %>
-		    				<h1><%= brand.name %>
+		    			<div class="search_result">
 		    				<% if brand.logos.present? %>
+		    				<div class="brand-thumbnail-container">
 		    					<%= image_tag(brand.logos.first.path.url, class: "brand_thumbnail img-responsive") %>
+		    					</div>
 		    				<% end %>
+		    				<div class="search-result-brand-name-container">
+		    				<h2><%= brand.name %></h2>
+		    				</div>
 		    			<% end %>
+		    			<br/><hr/>
 		    		<% end %>
 		  		<% end %>
 		  	<% end %>

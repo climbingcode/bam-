@@ -122,9 +122,16 @@ margin-left: -25%;
     -webkit-transition: opacity 0.5s;
   }
   .clipboard{
+
     background-image: url("clipboard.png");
   }
   .delete-asset{
     background-image: url("trashcan_transparent.png");
+  }
+
+  .guide_wrapper{
+    margin-left: auto;
+    margin-right: auto;
+    float: none;
   }
 

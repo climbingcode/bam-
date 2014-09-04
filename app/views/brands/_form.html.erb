@@ -130,7 +130,7 @@
       <div class="panel-body">
           <div class="asset_module">
           <%= form_for Font.new, url: user_brand_fonts_path(params[:user_id], params[:id], format: :json), remote: true, authenticity_token: true, method: 'post' do |f| %>
-          <%= f.text_field(:name, class: 'form-control',  :value => "my default value", :placeholder => 'Font Use')%>
+          <%= f.text_field(:name, class: 'form-control',   :placeholder => 'Font Use')%>
           <%= f.hidden_field(:brand_id, :value => params[:id]) %>
           <%= select_tag :font_family,
           "<option>Abril Fatface</option>

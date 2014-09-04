@@ -21,6 +21,10 @@
   display: none;
 }
 
+.textarea{
+  color: #fff;
+}
+
   .close-notification{
     transform: translateX(-600px);
     transition: all 1s;
@@ -123,13 +127,21 @@
   padding: 14px;
 }
 
+.colorpicker{
+  background-color: #444;
+}
+
+.colorpicker:after{
+  border-bottom: 6px solid #444!important;
+}
+
 #dashboard-accordion, #permissions_form{
   .panel-group{
     transition: all 1s;
   }
 
   select{
-    width: 75%;
+    width: 100%;
     background: #666;
     height: 30px;
     font-size: 1em;

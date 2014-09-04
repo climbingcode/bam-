@@ -1,5 +1,5 @@
 .entire-page{
-  margin-top: 52px;
+  margin-top: 50px;
 }
 
 #about{
@@ -60,7 +60,7 @@
   background-image: url("/assets/full_page_bg.png");
   background-repeat: no-repeat;
   background-position: center;
-  margin-top: 52px;
+  margin-top: 50px;
   padding:45px;
 
 
@@ -96,13 +96,43 @@
 }
 
 @media (max-width: 1200px) {
-  #left-landing-box{
-    margin-top: 0px;
-        margin-left: auto;
-    margin-right: auto;
-    display: block;
-    float: none!important;
+
+  #left-landing-box h3{
+    font-size: 3em;
   }
+  // #left-landing-box{
+  //   margin-top: 0px;
+  //       margin-left: auto;
+  //   margin-right: auto;
+  //   display: block;
+  //   float: none!important;
+  // }
+}
+@media (max-width: 600px) {
+  #left-landing-box h3{
+    font-size: 2em;
+  }
+  #left-landing-box{
+    margin-top: 30px;
+  }
+  #home-search-bar {
+    font-size: 1.5em;
+    margin-left: 5px;
+  }
+  #home-search-submit{
+    height: 30px;
+    width: 30px;
+    background-size: cover;
+  }
+}
+@media (max-width: 1200px) {
+  // #left-landing-box{
+  //   margin-top: 0px;
+  //       margin-left: auto;
+  //   margin-right: auto;
+  //   display: block;
+  //   float: none!important;
+  // }
 }
 
 #sign_up_btn{

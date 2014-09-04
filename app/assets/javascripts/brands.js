@@ -162,6 +162,8 @@ var colorOperations = {
 };
 
 
+
+
 var logoOperations = {
 
 
@@ -196,8 +198,8 @@ var logoOperations = {
     var logoPng = $("<li>");
     var logoJpg = $("<li>");
     var logoToAiLink = $("<a>").attr("href", "#").html(logoName + ".ai");
-    var logoToPngLink = $("<a>").attr("href", "#").text(logoName + ".png");
-    var logoToJpgLink = $("<a>").attr("href", "#").text(logoName + ".jpg");
+    var logoToPngLink = $("<a>").attr("href", "#").html(logoName + ".png");
+    var logoToJpgLink = $("<a>").attr("href", "#").html(logoName + ".jpg");
 
     logoBackground.appendTo(logoWrapper);
     logoPicture.appendTo(logoBackground);
@@ -228,6 +230,8 @@ var logoOperations = {
       logoOperations.destroyLogo(event);
     });
 
+
+
   } 
 
 };
@@ -243,13 +247,17 @@ var typographyOperations = {
       var fontName = data.name;
       var fontFamily = data.font_family;
       var titleizedFontFamily = fontFamily.split('-').join(' ').toLowerCase().replace(/\b[a-z](?=[a-z]{2})/g, function(letter) {
-        return letter.toUpperCase(); } );;
+      return letter.toUpperCase(); } );;
       var upperCaseLetters = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
       var $typo = $("#typography");
       var lowerCaseLetters = upperCaseLetters.toLowerCase();
       var typoWrapper = $("<div>").attr("id", "font" + data.id).addClass("letters_wrapper col-sm-10");
       var typoFontHeader = $("<div>").addClass("font-header");
-      var typoFontDelete = $("<a>").attr('href', '#').data("fontid", data.id).addClass("asset-delete");
+
+      // $("<a>").attr("href", "#").data("colorid", data.id).addClass("delete-asset");
+
+
+      var typoFontDelete = $("<a>").data("fontid", data.id).addClass("delete-asset");
       var typoFontDescription = $("<h3>").addClass("font-description").html(fontName + ":");
       var typoFontFamily = $("<h3>").addClass("font-name").html(titleizedFontFamily);
       var lineDivider = $("<hr>");
@@ -258,7 +266,7 @@ var typographyOperations = {
         
     
       typoFontHeader.appendTo(typoWrapper);
-      typoFontDescription.appendTo(typoFontHeader); 
+      typoFontDescription.appendTo(typoFontHeader);
       typoFontFamily.appendTo(typoFontHeader);
       typoFontDelete.appendTo(typoFontHeader)
       $("<hr>").appendTo(typoWrapper);
@@ -270,68 +278,9 @@ var typographyOperations = {
 
 };
 
-var copyOperations = {
-
-  destroyCopy: function(event) {
-    ajaxOperations.destroyAsset(event, "copie");
-  },
-
-  addNewCopy: function(data) {
-  
-    var $copy = $('#copy')
-    var copyId = data.id;
-    var copyDesc = data.description;
-    var copyText = data.text;
-    var copyWrapper = $('<div>').attr("id", "copie" + data.id).addClass('copy-text');
-    var copyDelete = $('<a>').attr('href', '#').addClass('delete-asset').data("copieid", data.id);
-    var copyDescription = $('<h3>').text(copyDesc).append('<hr>').addClass('header');
-    var copyBody = $('<h4>').text(copyText).append('<hr>');
-    
-    
-    copyDescription.appendTo(copyWrapper);
-    copyDelete.appendTo(copyDescription);
-    copyBody.appendTo(copyWrapper);
-    
-    $copy.append(copyWrapper);
-
-    $(".copy-text .delete-asset").on('click', function(event) {
-      copyOperations.destroyCopy(event);
-    });
-  },
-};
-
-var guidelineOperations = {
-
-  destroyGuide: function(event) {
-    ajaxOperations.destroyAsset(event, "guideline");
-  },
-
-  addNewGuide: function(data) {
-    var $guide = $('#guide')
-    var guideId = data.id;
-    var guideDesc = data.description;
-    var guideText = data.text;
-    var guideWrapper = $('<div>').addClass('guide-text').attr("id", "guideline" + data.id);
-    var guideDelete = $('<a>').attr('href', '#').addClass('delete-asset').data("guidelineid", data.id);
-    var guideDescription = $('<h3>').text(guideDesc).append('<hr>').addClass('header');
-    var guideBody = $('<h4>').text(guideText).append('<hr>');
-    
-    
-    guideDescription.appendTo(guideWrapper);
-    guideDelete.appendTo(guideDescription);
-    guideBody.appendTo(guideWrapper);
-    $guide.append(guideWrapper);
-
-    $(".guide-text .delete-asset").on('click', function(event) {
-      $('#guide-add-message').remove();
-      guidelineOperations.destroyGuide(event);
-    });
-
-  },
-};
-
 
 var interfaceOperations = {
+
 
   hideFileUpload: function(){
     $('#hide-file-upload').css({
@@ -365,14 +314,6 @@ var interfaceOperations = {
     $(".font-header .delete-asset").on("click", function(event){
       typographyOperations.destroyTypography(event);
     });
-
-    $(".copy-text .delete-asset").on('click', function(event) {
-      copyOperations.destroyCopy(event);
-    });
-
-    $(".guide-text .delete-asset").on('click', function(event) {
-      guidelineOperations.destroyGuide(event);
-    });
   },
 
   dashBoardEvents: function(){
@@ -390,6 +331,7 @@ var interfaceOperations = {
   validationActions: function(){
 
   },
+
 
   initializeListeners: function(){
     interfaceOperations.deleteAssetEvents();
@@ -423,22 +365,22 @@ var ajaxOperations = {
   uploadSuccessEvents: function(){
 
     $('#new_color').on('ajax:success', function(e,data) {
-      $('#no-color').remove();
       colorOperations.createNewColor(data);
+      this.reset(); 
     });
 
     $('#new_copy').on('ajax:success', function(e,data) {
-      $('#copy-add-message').remove();
-      copyOperations.addNewCopy(data);
+      console.log("success", data);
     });
 
     $('#new_font').on('ajax:success', function(e, data){
       typographyOperations.addTypography(data);
+      console.log(data);
+
     }); 
 
     $("#new_guideline").on('ajax:success', function(e, data) {
-      $('#guide-add-message').remove();
-      guidelineOperations.addNewGuide(data)
+      console.log(data);
     });
 
   },
@@ -447,6 +389,7 @@ var ajaxOperations = {
 
       $('#new_logo').fileupload({
         dataType: 'json',
+    
         // drop: function(e, data){
         //   $.each(data.files, function(index, file){
         //     // $('#upload_file_name').append("<p>" + file.name +"</p>");
@@ -460,20 +403,18 @@ var ajaxOperations = {
         // },
 
         add: function(e, data){
-
           data.context = $(tmpl("logo_upload", data.files[0]))
             console.log(data.files);
             $('#logo-upload-status').append(data.context)
             $("#logo_submit").on("click", function(event){
               event.preventDefault();
-                
+                function clearFileInput(element) {
+                var assetPathInput = $(element);
+                 assetPathInput.wrap("<form>").parent("form").trigger("reset");
+                  console.log(assetPathInput);
+                     assetPathInput.unwrap();
+                };
                 data.submit();
-        
-          console.log($('#hide-file-upload').empty());
-          var assetPathInput = $('logo_submit');
-          assetPathInput.wrap("<form>").parent("form").trigger("reset");
-          console.log(assetPathInput);
-              
               });
           },
 
@@ -492,9 +433,11 @@ var ajaxOperations = {
           interfaceOperations.displayAdvisory("Logo Uploaded")
           $("#logo_name").val("");
           $("#logo_description").val("");
+          //clearFileInput( "#logo_path");
           console.log(data.files, data.files.length);
           data.files = [];
           data.originalFiles = [];
+          // debugger
           console.log(data.files.length);
           $("#logo-upload-status").empty();
         }
@@ -512,14 +455,18 @@ var ajaxOperations = {
     ajaxOperations.ajaxFileUploadActions();
     ajaxOperations.uploadSuccessEvents();
   }
+
+
 };
 
 var letterheadOperations = {
 
+   
+
    initializeListeners: function(){
 
-    var path = window.location.pathname
-    console.log(path)
+    var path = window.location.pathname;
+  
     
     $.ajax({
     type: "GET",
@@ -540,16 +487,55 @@ var letterheadOperations = {
   } 
 }
 
+var businessCardOperations = {
+  
+  initializeListeners: function(){
+    $('.open_business_card_modal').on('click', function(e) {
+      e.preventDefault()    
+      $('business_card_pdf').addClass('business_card_preview');
+    }); 
 
+    $('.change_background').on('click', function(e) {
+      e.preventDefault();
+      var color = $(this).data("color");
+      $(element).attr("no_background", "background-color")
+    });
+
+
+    $('#add_border').on('click', function(e) {
+      e.preventDefault();
+      $('.no_border').toggleClass('add_card_border');
+    });
+
+    $('.change_image').on('click', function(e) {
+      e.preventDefault();
+      var imageString = $(this).data("image");
+      var image = imageString.slice(1);
+      var source = $('<img>').attr('src', image).addClass('business_image_format')
+      if($('.business_card_pdf').find('img') != 'undefined') {
+          $('#business_card_image').find('img').remove();
+        };
+        $(source).appendTo('#business_card_image');
+    });
+
+    // FIND ALL STYLES
+
+    $('#business_card_generation').on('click', function(e) {
+      styles = document.getElementsByClassName('business_card_pdf')
+      console.log(styles)
+    });
+  }
+};
 
 var brandPageInit = function(){
   
   ajaxOperations.initializeListeners();
+  businessCardOperations.initializeListeners();
   interfaceOperations.initializeListeners();
   colorOperations.colorToClipboard();
   interfaceOperations.hideFileUpload();
   letterheadOperations.initializeListeners();
-  ;
+
 
    $('.check-private').on('click', function() {
     var brand_id = $(this).data('brand')
@@ -569,6 +555,9 @@ var brandPageInit = function(){
   });
 
 };
+
+
+
 
 $( document ).ready(function() {
 

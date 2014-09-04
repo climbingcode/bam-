@@ -18,6 +18,7 @@ nav{
 
 .icon-bar{
   color: $primary-color;
+  border: solid 1px $primary-color;
 }
 
 .navbar-brand{
@@ -32,9 +33,11 @@ nav{
   background-color: #fff;
   padding-left: 15px;
   padding-right: 15px;
-
 }
 
+.bam_logo{
+  height: 50px;
+}
 .sign-in-button{
   margin-top: 2px;
 }
@@ -54,10 +57,10 @@ nav{
   border: solid 1px #999;
   transition: all 1s;
   
-  ::-webkit-input-placeholder {color: red;}
-  :-moz-placeholder           {color: red;}
-  ::-moz-placeholder          {color: red;}
-  :-ms-input-placeholder      {color: red;} 
+  // ::-webkit-input-placeholder {color: red;}
+  // :-moz-placeholder           {color: red;}
+  // ::-moz-placeholder          {color: red;}
+  // :-ms-input-placeholder      {color: red;} 
 }
 
 #username_input:focus, #password_input:focus{

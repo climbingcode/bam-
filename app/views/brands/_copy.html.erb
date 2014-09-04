@@ -5,7 +5,7 @@
 
   <% @copies.each do | copy | %>
   	<div class="copy-text">
-	    <div id="copie<%= copy.id %>" class="copy_wrapper col-sm-15">
+	    <div id="copie<%= copy.id %>" class="copy_wrapper col-sm-10">
 	       <div style="font-family: #<%= @fonts.first.font_family if @fonts.present? %>;">
 	        <h3 id="copy-desc-<%= copy.id%>"><strong><%= copy.description.titleize %></strong><a href='#' class="delete-asset"  data-copieid='<%= copy.id%>'></a></h3>
 	        <hr>

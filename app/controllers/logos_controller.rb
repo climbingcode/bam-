@@ -4,12 +4,13 @@ class LogosController < ApplicationController
   def create
     @logo = Logo.new(logo_params)
 
+     # @jpeg1 = MiniMagick::Image.open("#{@logo.path.path}") 
+        # @jpeg1.write "public/uploads/convert/#{@logo.id}.jpg"
+        # @png1 = MiniMagick::Image.open("#{@logo.path.path}") 
+        # @png1.write "public/uploads/convert/#{@logo.id}.png"
     respond_to do |format|
       if @logo.save
-        @jpeg1 = MiniMagick::Image.open("#{@logo.path.path}") 
-        @jpeg1.write "public/uploads/convert/#{@logo.id}.jpg"
-        @png1 = MiniMagick::Image.open("#{@logo.path.path}") 
-        @png1.write "public/uploads/convert/#{@logo.id}.png"
+       
         format.html { redirect_to user_brand_path(current_user, @logo.brand_id), notice: 'Logo was successfully saved.' }
         format.json { render json: @logo, status: :created, location: user_brand_path(current_user, @logo.brand_id) }
       else
@@ -46,8 +47,8 @@ class LogosController < ApplicationController
    
     respond_to do |format|
       @logo.destroy
-      File.delete(Rails.root + "public/uploads/convert/#{@logo.id}.jpg")
-      File.delete(Rails.root + "public/uploads/convert/#{@logo.id}.png")
+      # File.delete(Rails.root + "public/uploads/convert/#{@logo.id}.jpg")
+      # File.delete(Rails.root + "public/uploads/convert/#{@logo.id}.png")
       format.html { redirect_to logos_url, notice: 'Logo was successfully destroyed.' }
       format.json { render json: @logo, status: :accepted, location: user_brand_path(current_user, @logo.brand_id)}
     end

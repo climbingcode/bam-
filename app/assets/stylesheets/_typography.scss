@@ -43,3 +43,17 @@
 .letters_wrapper:hover .delete-asset {
   opacity: 1.0;
 }
+
+.asset-delete{
+    float: right;
+    right: 20px;
+    height: 20px;
+    width: 20px;
+    opacity: 0.3;
+    background-position: center;
+    background-size: cover;
+    background-repeat: no-repeat;
+    transition: opacity 0.5s;
+    -webkit-transition: opacity 0.5s;
+    background-image: url("trashcan_transparent.png");
+  }
