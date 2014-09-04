@@ -14,3 +14,29 @@
 #letter_head_check_box {
 	margin-left: -45%;
 }
+
+#brand_title {
+	text-align:center;
+	margin-top: 15px;
+}
+
+#street_address_input {
+	text-align: center;
+}
+
+#city_input {
+	text-align: center;
+}
+
+#post_code_input {
+	text-align: center;
+}
+
+#phone_number_input {
+	text-align: center;
+}
+
+
+
+
+

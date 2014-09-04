@@ -24,15 +24,15 @@
                  <%= f.label(:secondary_color, class: "form-control") %>
                 <%= f.select(:secondary_color, @colors.pluck(:hex), :html => {:id => "secondary_color"}) %>
                  <%= f.label(:logo, class: "form-control") %>
-                <%= f.select(:logo, @logos.pluck(:name), :html => {:id => "logo"}) %>
+                <%= f.select(:logo, @logos.pluck(:name), :html => {:id => "logo_input"}) %>
                 <%= f.label(:font, class: "form-control") %>
                 <%= f.select(:font, @fonts.pluck(:font_family), :html => {:id => "font_selected"})%>
                  <%= f.label(:border, class: "form-control") %>
                 <%= f.check_box(:border, class: "form-control", :id => "letter_head_check_box")%>
-                 <%= f.label(:street_number, class: "form-control") %>
-                <%= f.text_field(:street_number, class: "form-control", :id => "street_number_letter_head") %>
                  <%= f.label(:street_address, class: "form-control") %>  
                 <%= f.text_field(:street_address, class: "form-control") %>
+                  <%= f.label(:city, class: "form-control") %>  
+                <%= f.text_field(:city, class: "form-control") %>
                 <%= f.label(:post_code, class: "form-control") %>
                 <%= f.text_field(:post_code, class: "form-control")%>
                 <%= f.label(:number, "Phone number", class: "form-contol") %>

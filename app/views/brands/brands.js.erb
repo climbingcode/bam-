@@ -7,16 +7,17 @@ function borderSelected(border) {
 	$('#letter_head_border').toggleClass('letter_head_border_line');
 }
 
-function imageAdd(image) {
-	path = window.location.pathname;
-	<%= @logos %>
-	<% binding.pry %>
-};
+// function imageAdd(image) {
+// 	path = window.location.pathname;
+// 	console.log(<%= @logos_to_json %>)
+	
+// };
 
 
 $(document).ready(function(){
 
-	
+
+
 	$('#pdf_primary_color').change(function() {
 		var val = $(this).val();
 		titleColorSelected(val)	
@@ -27,6 +28,13 @@ $(document).ready(function(){
 		borderSelected(val)	
 	});
 
+	$('#logo').change(function() {
+		console.log('working');
+		// var val = $(this).val();
+		// console.log(val);
+		// imageAdd(val);
+	});
+	
 	$('#pdf_street_address').blur(function() {
 		$('#street_address_input').text($(this).val());
 	});
@@ -51,10 +59,5 @@ $(document).ready(function(){
 		$('#phone_number_input').text($(this).val());
 	});
 
-
-	$('#pdf_logo').change(function() {
-		var val = $(this).val();
-		imageAdd(val)
-	});	
 
 });

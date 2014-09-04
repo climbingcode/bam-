@@ -8,10 +8,12 @@
 
 <!-- BRAND TITLE -->
 <div id="title_color">
-	<div style="float: right; margin-right: 190px; margin-top: 20px; font-size: 2em; text-align:center;"><%= @brand.name.titleize %></div>
-	<div style=" "><%= @pdf.street_number.titleize if @pdf.present? %></div>
-	<div style=" "><%= @brand.street_address.titleize if @pdf.present? %></div>
-	<div style=" "><%= @brand.post_code.titleize if @pdf.present? %></div>
+
+	<div id="brand_title" style=";"><%= @brand.name.titleize %></div>
+	<div id="street_address_input"></div>
+	<div id="city_input"></div>
+	<div id="post_code_input"></div>
+	<div id="phone_number_input"></div>
 </div>
 
 <!-- 
