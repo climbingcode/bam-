@@ -69,11 +69,11 @@
 
           <%= f.text_field(:name, class: "form-control", :placeholder => 'Color Name', :value => "Color" ) %>
 
-              <div class="checkbox-wrapper">
+        <!--       <div class="checkbox-wrapper">
                 <%= f.check_box(:primary, :id => "check-1") %>
                 <%= f.label(:Primary, for: "check-1", class: "check-box") %>
-                <!-- <%= f.label(:name, "Colour name") %> -->
-              </div>
+           
+              </div> -->
               <div class="input-group color-picker">
               <%= f.text_field(:hex, class: "form-control", :maxlength => 7, :placeholder => 'HEX Color', :id => "hex-input") %><span class="input-group-addon" id="colorpicker-input-addon"><i><img src="/assets/eyedropper.png" class="img-responsive"></i></span>
 

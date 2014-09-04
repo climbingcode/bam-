@@ -20,7 +20,7 @@ class BrandpagesController < ApplicationController
 				redirect_to search_results_path, notice: 'Sorry, this page is locked'
 			end 
 		else 
-			cookies[:tracked_brands] = brand.id
+		
 			redirect_to search_results_path, notice: 'Sorry, you have to be logged in to view a page'
 		end
 	end
