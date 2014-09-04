@@ -1,6 +1,7 @@
 class PdfsController < ApplicationController
 	
   def new
+<<<<<<< HEAD
     @pdf = Pdf.new
   end
 
@@ -43,7 +44,5 @@ class PdfsController < ApplicationController
             :template => "pdfs/#{@kind}.pdf.erb",
             :layout   => 'layouts/wicked.html.erb' 
   end
-
-
 
 end
