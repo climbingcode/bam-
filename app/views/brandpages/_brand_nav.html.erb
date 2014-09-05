@@ -1,13 +1,12 @@
 <nav id="brand-nav">
   <ul>
 
-    <li><a href="#logos">Logos</a></li>
-    <li><a href="#colors">Colors</a></li>
-    <li><a href="#typography">Typography</a></li>
-    <li><a href="#copy">Copy</a></li>
-    <li><a href="#guidelines">Guideline</a></li>
-    <li><a href="#files">Files</a></li>
-  </ul>
+    <% if @brand.logos.present?%><li><a href="#logos">Logos</a></li><% end %>
+    <% if @brand.colors.present?%><li><li><a href="#colors">Colors</a></li><% end %>
+    <% if @brand.fonts.present?%><li><li><a href="#typography">Typography</a></li><% end %>
+    <% if @brand.copies.present?%><li><li><a href="#copy">Copy</a></li><% end %>
+    <% if @brand.guidelines.present? %><li><a href="#guidelines">Guideline</a></li><%end %>
+    
 
 <hr/>
 </nav>

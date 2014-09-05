@@ -1,0 +1,54 @@
+<div class="modal fade" id="businessCardModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+        <h4 class="modal-title" id="letterHeadModal"></h4>
+      </div>
+      <div class="modal-body" id="letterHeadModal">
+          
+          <div class="col-sm-12">
+            <div id="business_card_preview">
+              <%= render partial: 'pdfs/business_card_preview.html.erb' %>
+            </div>
+          </div>
+          
+          <div >
+            <div class="col-sm-12">  
+              <h1>Layout</h1>
+              <%= form_for(Pdf.new, :url => {:controller => "pdfs", :action => "create", :user_id => current_user.id, :brand_id => @brand.id}, method: 'post') do |f| %>
+
+                  <%= f.hidden_field(:kind, :value => "business_card") %>
+                  <%= f.label(:primary_color, class: "form-control") %>
+                  <%= f.select(:primary_color, @colors.pluck(:hex), :html => {:id => "primary_color"}) %>
+                   <%= f.label(:secondary_color, class: "form-control") %>
+                  <%= f.select(:secondary_color, @colors.pluck(:hex), :html => {:id => "secondary_color"}) %>
+                   <%= f.label(:logo, class: "form-control") %>
+                  <%= f.select(:logo, @logos.pluck(:name), :html => {class: "logo_input"}) %>
+                  <% if @fonts.present? %>
+                  <%= f.label(:font, class: "form-control") %>
+                  <%= f.select(:font, @fonts.pluck(:font_family), :html => {:id => "font_selected"})%>
+                  <% end %>
+                   <%= f.label(:border, class: "form-control") %>
+                  <%= f.check_box(:border, class: "form-control", :id => "letter_head_check_box")%>
+                   <%= f.label(:street_address, class: "form-control") %>  
+                  <%= f.text_field(:street_address, class: "form-control") %>
+                    <%= f.label(:city, class: "form-control") %>  
+                  <%= f.text_field(:city, class: "form-control") %>
+                  <%= f.label(:post_code, class: "form-control") %>
+                  <%= f.text_field(:post_code, class: "form-control")%>
+                  <%= f.label(:number, "Phone number", class: "form-contol") %>
+                   <%= f.text_field(:number, class: "form-control")%>
+                  <%= f.submit('DownLoad as PDF', class: "bam_btn btn", disabled: false) %>      
+                <% end %>
+              </div>
+            </div>
+      <div class="modal-footer" id="letter_head_footer">
+        <button type="button" class="btn bam_btn" data-dismiss="modal">Close</button>
+          
+    
+      </div>
+      </div>    
+    </div>
+  </div>
+</div>

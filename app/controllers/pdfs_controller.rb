@@ -16,8 +16,8 @@ class PdfsController < ApplicationController
       logo: logo_path,
       font: params[:pdf][:font],
       border: params[:pdf][:border],
-      street_number: params[:pdf][:street_number],
       street_address: params[:pdf][:street_address],
+      city: params[:pdf][:city],
       post_code: params[:pdf][:post_code],
       number: params[:pdf][:number]
       )
@@ -38,10 +38,20 @@ class PdfsController < ApplicationController
     @secondary_color = pdf.secondary_color
     @font = pdf.font
 
-
+    if @kind == "letter_head"
+    
     render  :pdf => "#{@type}_#{@brand.id}.pdf",
             :template => "pdfs/#{@kind}.pdf.erb",
             :layout   => 'layouts/wicked.html.erb' 
+    else 
+
+    render :pdf => "#{@type}_#{@brand.id}.pdf",
+            :template => "pdfs/#{@kind}.pdf.erb",
+            :layouts => "layouts/wicked.html.erb",
+            :page_height => "5in",
+            :page_width => "7in"
+
+    end
   end
 
 end

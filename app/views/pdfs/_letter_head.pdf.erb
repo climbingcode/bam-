@@ -5,24 +5,26 @@
 <!-- BRAND LOGO -->
 
 
-<img src=<%= @logo %> style="height: 150px; width: 150px; "> 
+<img src=<%= @logo %> style="height: 150px; width: 150px; float: left;"> 
 
 
 <!-- BRAND TITLE -->
-<link rel="stylesheet" src="/assets/stylesheets/letter_head.css">
-<div style="font-size: 35px; float: right; margin-right: 200px; color: #<%= @primary_color %>;"><%= @brand.name.titleize %></div>
-<div style=" "><%= @pdf.street_number if @pdf.present? %></div>
-<div style=" "><%= @pdf.street_address.titleize %></div>
-<div style=" "><%= @pdf.post_code.upcase %></div>
-
+<div style="width: 250px; height: 200px; margin-right: auto; margin-left: auto; text-align: center;" >
+	<link rel="stylesheet" src="/assets/stylesheets/letter_head.css">
+	<div style="color: #<%= @primary_color %>; font-size: 30px;"><%= @brand.name.titleize %></div>
+	<div style="color: #<%= @primary_color %>; font-size: 20px;"><%= @pdf.street_address if @pdf.present? %></div>
+	<div style="color: #<%= @primary_color %>; font-size: 20px;"><%= @pdf.city.titleize if @pdf.present? %></div>
+	<div style="color: #<%= @primary_color %>; font-size: 20px;"><%= @pdf.post_code.upcase if @pdf.present? %></div>
+	<div style="color: #<%= @primary_color %>; font-size: 20px;"><%= @pdf.number.upcase%></div>
+</div>
 <!-- 
 BORDER STYLE -->
 
-	<div style="float: right; margin-top: 30px;height: 5px; width: 580px; background-color: #<%= @primary_color%>"></div>
+	<div style="float: right; margin-top: -30px;height: 5px; width: 700px; background-color: #<%= @primary_color%>"></div>
 
 <!-- FOOTER -->
 
-	<div style="margin-top: 900px; height: 5px; width: 500px; background-color: #<%= @primary_color%>"></div>
+	<div style="margin-top: 800px; height: 5px; background-color: #<%= @primary_color%>"></div>
 
 
 

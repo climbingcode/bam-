@@ -50,6 +50,7 @@ class BrandsController < ApplicationController
       brand.save
     end 
     respond_to do |format|
+      format.html
       format.json { render json: {:msg => 'successful'} }
     end
   end
