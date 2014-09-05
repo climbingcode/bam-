@@ -6,7 +6,7 @@ class Logo < ActiveRecord::Base
   def self.to_hash_of_name_and_path(logos)
   	new_array = {}
   	logos.each do |logo|
-			new_array[logo.name] = logos.first.path.file.file
+			new_array[logo.name] = logo.path.url
   	end
   	new_array
   end

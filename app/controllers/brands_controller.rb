@@ -69,6 +69,11 @@ class BrandsController < ApplicationController
       current_brand(@brand)
       @colors = @brand.colors
       @images = @brand.logos
+      
+      respond_to do |format|
+        format.html
+        format.js { render :json => @logos_to_json }
+      end
   end
 
   # GET /brands/new
