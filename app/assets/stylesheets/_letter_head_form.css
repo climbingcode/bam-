@@ -2,6 +2,14 @@
 
 }
 
+#letter_head_logo {
+	margin: 15px;
+	height: 50px;
+	width: auto;
+	background-size: contain!important;
+	background-repeat: no-repeat!important;
+}
+
 #letter_head_preview {
 	height: 320px;
 	width: 100%;
@@ -23,11 +31,11 @@
 }
 
 .letter_head_border {
-	margin-top: 5px;
+	margin-top: 2px;
 	background-color: black;
 	float: right;
 	height: 1px; 
-	width: 200px
+	width: 100%;
 }
 
 .footer_border {
@@ -39,28 +47,42 @@
 }
 
 #brand_title {
+
+	float: right;
 	text-align:center;
-	margin-top: 15px;
+	display: block;
+	margin-right: 80px;
 }
 
 #street_address_input {
 	text-align: center;
 	font-size: 5px;
+	float: right;
+	margin-left: auto;
+	margin-right: auto;
+
+
 }
 
 #city_input {
 	text-align: center;
 	font-size: 5px;
+
+	margin-right: 80px;
 }
 
 #post_code_input {
 	text-align: center;
 	font-size: 5px;
+
+	margin-right: 80px;
 }
 
 #phone_number_input {
 	text-align: center;
 	font-size: 5px;
+	margin-top: -50px;
+	margin-right: 80px;
 }
 
 

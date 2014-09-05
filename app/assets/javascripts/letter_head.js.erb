@@ -3,23 +3,23 @@ function titleColorSelected(color) {
 	$('#title_color').css('color', '#' + color);
 };
 
-function borderSelected(border) {
-	$('#border_selection').toggleClass('letter_head_border')
-	$('#footer_selection').toggleClass('footer_border')
+function borderSelected(border) {	
+	$('#border_selection').toggleClass('letter_head_border');
 }
 
 function imageAdd(image) {
 	path = window.location.pathname;
-	
-	$.ajax({
-    type: "GET",
-    url: path,
-    dataType: "json",
-    success: function(){
-        alert(data.name) // Will alert Max
-    }        
-});
+	$.getJSON(path, function(data) {
+		for (key in data) {
+			if (key === image) {
+				console.log(data[key])
+				$('#letter_head_logo').css({background: 'url("' + data[key] + '")'});
+			}
+		}
+			
 
+	});
+	
 };
 
 
