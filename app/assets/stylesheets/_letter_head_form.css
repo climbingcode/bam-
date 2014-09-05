@@ -1,10 +1,17 @@
 #letter_head_form {
-	float: right;
-	margin-right: 5%;
+
 }
 
 #letter_head_preview {
-	float: left;
+	height: 320px;
+	width: 100%;
+	float:left;
+	border: solid;
+
+}
+
+#letter_head_form {
+	float:right;
 }
 
 #letter_head_footer {
@@ -12,7 +19,24 @@
 }
 
 #letter_head_check_box {
-	margin-left: -45%;
+
+}
+
+.letter_head_border {
+	margin-top: 5px;
+	background-color: black;
+	float: right;
+	height: 1px; 
+	width: 200px
+}
+
+.footer_border {
+	margin-bottom: 10px;
+	background-color: black;
+	float: right;
+	height: 1px; 
+	width: 200px
+
 }
 
 #brand_title {
@@ -22,18 +46,22 @@
 
 #street_address_input {
 	text-align: center;
+	font-size: 5px;
 }
 
 #city_input {
 	text-align: center;
+	font-size: 5px;
 }
 
 #post_code_input {
 	text-align: center;
+	font-size: 5px;
 }
 
 #phone_number_input {
 	text-align: center;
+	font-size: 5px;
 }
 
 

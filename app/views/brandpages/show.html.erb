@@ -8,7 +8,7 @@
       
 
 
-    <h1 id="brand-name-header"><%= Brand.find(session[:current_brand]).name.titleize %></h1> 
+    <h1 id="brand-name-header"><%= @brand.name.titleize %></h1> 
     <%= render 'brand_nav' %>  
     <%= render 'logos' %>
     <hr/>

@@ -487,7 +487,7 @@ var ajaxOperations = {
          interfaceOperations.displayAdvisory("Logo Uploaded")
          $("#logo_name").val("");
          $("#logo_description").val("");
-         assetPathInput.unwrap();
+         // assetPathInput.unwrap();
          console.log(data.files, data.files.length);
          data.files = [];
          data.originalFiles = [];

@@ -1,7 +1,6 @@
 class PdfsController < ApplicationController
 	
   def new
-<<<<<<< HEAD
     @pdf = Pdf.new
   end
 

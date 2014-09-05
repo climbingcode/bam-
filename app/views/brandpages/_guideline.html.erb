@@ -2,7 +2,7 @@
 
 	<h2>Guidelines</h2>
 
-	<% if @guidelines.size > 0 %>
+	<% if @guidelines.present? %>
 
   <% @guidelines.each do | guide | %>
   	<div class="guide-text">

@@ -12,25 +12,28 @@
 			<% brands_id.each do |id| %>
 				<% @brands << Brand.find(id) %>
 			<% end %>
+
 			<% if @brands != [] %>
 				<% if !current_user %>
 					<% @brands.each do |brand| %>
 					<div class="search_result">
-						<% if brand.logos.present? %>
-						
-								<div class="brand-thumbnail-container">
-									<%= image_tag(brand.logos.first.path.url, class: "brand_thumbnail img-responsive") %>
-								</div>
-							
-						<% end %>
 						<div class="search-result-brand-name-container">
-						<h2><%= brand.name.titleize %></h2>
+							<div class="brand-thumbnail-container">
+			<!-- 				CHECKS IF BRAND IS PUBLIC OR NOT IF NOT SIGNED IN -->
+								<% if brand.open %>
+									<%= image_tag(brand.logos.first.path.url, class: "brand_thumbnail img-responsive") %>
+									<h2><%=link_to brand.name, brandpage_path(brand.id) %></h2>
+								<% else %>
+									<h2><%= brand.name %></h2>
+									<%= image_tag(brand.logos.first.path.url, class: "brand_thumbnail img-responsive") %>
+								<% end %>
+							</div>			
 						</div>
 					</div>
 					<br/><hr/>
-		    		<% end %>
-					<% else %>
-		    		<% @brands.each do |brand| %>
+		  		<% end %>
+				<% else %>
+		    	<% @brands.each do |brand| %>
 		    		<div class="search_result">
 		    			<% if brand.open %>
 		    			<% if brand.logos.present? %>
