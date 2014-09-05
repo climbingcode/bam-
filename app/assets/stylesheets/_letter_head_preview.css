@@ -6,3 +6,37 @@
 	width: 480px;
 	background-color: black; 
 }
+
+#title_color {
+	height: 50px;
+	width: 180px;
+	float: right;
+	margin-top: -70px;
+	text-align: center;
+}
+
+#brand_title {
+	width: 180px;
+	margin-right: 0px;
+}
+
+#street_address_input {
+	width: 180px;
+	margin-right: 0px;
+}
+
+#city_input {
+	width: 180px;
+	margin-right: -50px;
+}
+
+#post_code_input {
+	width: 180px;
+	margin-right: -50px;
+}
+
+#border_selection {
+	float: right;
+	width: 100%;
+	margin-top: -10px;
+}
