@@ -7,8 +7,8 @@
   <% @guidelines.each do | guide | %>
   	<div class="guide-text">
 	    <div id="guideline<%= guide.id %>" class="guide_wrapper col-sm-10">
-	       <div style="font-family: <%= @fonts.first.font_family if @fonts.present? %>;">
-	        <h3 id="guide-desc-<%= guide.id%>"><strong><%= guide.description.titleize %></strong><a href='#' class="delete-asset"  data-guidelineid='<%= guide.id%>'></a></h3>
+	       <div >
+	        <h3 id="guide-desc-<%= guide.id%>"><strong><%= guide.description.titleize %></strong></h3>
 	        <hr>
 	     		<h4 id="guide-text-<%= guide.id%>"><%= guide.text.capitalize %></h4>
 	      </div>

@@ -11,7 +11,7 @@
 <!-- BRAND TITLE -->
 <link rel="stylesheet" src="/assets/stylesheets/letter_head.css">
 <div style="font-size: 35px; float: right; margin-right: 200px; color: #<%= @primary_color %>;"><%= @brand.name.titleize %></div>
-<div style=" "><%= @pdf.street_number.titleize if @pdf.present? %></div>
+<div style=" "><%= @pdf.street_number if @pdf.present? %></div>
 <div style=" "><%= @pdf.street_address.titleize %></div>
 <div style=" "><%= @pdf.post_code.upcase %></div>
 

@@ -18,6 +18,12 @@ ul{
   font-family: $code;
 }
 
+.tooltip-toggle a{
+  height: 24px;
+  width: 24px;
+  background: red;
+}
+
 .copy-alert{
   visibility: hidden;
   transition: all 1s;

@@ -97,9 +97,26 @@ var colorOperations = {
 
  colorToClipboard: function(){
 
+
+
    var hexClipboard = new ZeroClipboard( $('.hex-clipboard') );
 
+    
+
+
+
+
      hexClipboard.on( 'ready', function(event) {
+
+            $('#global-zeroclipboard-html-bridge').attr('rel', 'tooltip').attr({
+    'data-toggle':'tooltip',
+    'data-title': 'Copy to Clipboard',
+    'data-placement': 'bottom',
+    'data-html': true
+    } );
+
+      $('#global-zeroclipboard-html-bridge').tooltip();
+
 
        hexClipboard.on( 'copy', function(event) {
          var targetText = $(event.target).parents('li').find('.copy_text').text();
@@ -119,7 +136,12 @@ var colorOperations = {
 
        });
 
+
+
      });
+
+
+
 
      hexClipboard.on( 'error', function(event) {
        // console.log( 'ZeroClipboard error of type "' + event.name + '": ' + event.message );
@@ -243,7 +265,7 @@ var typographyOperations = {
      var fontName = data.name;
      var fontFamily = data.font_family;
       var titleizedFontFamily = fontFamily.split('-').join(' ').toLowerCase().replace(/\b[a-z](?=[a-z]{2})/g, function(letter) {
-      return letter.toUpperCase(); } );;
+    return letter.toUpperCase(); } );;
      var upperCaseLetters = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
      var $typo = $("#typography");
      var lowerCaseLetters = upperCaseLetters.toLowerCase();

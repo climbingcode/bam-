@@ -9,7 +9,7 @@
 
   <% if @logos.size != 0 %>
     <% @logos.each do | logo | %>
-      <div id="logo<%= logo.id %>" data-file-location="<%= logo.path %>" class="col-sm-3">
+      <div id="logo<%= logo.id %>" data-file-location="<%= logo.path %>" class="col-sm-4">
         <div class="img-background" style="height: 339px;">
           <div class="img-background-inner">
           <img src="<%= logo.path %>" class="img-responsive logo">

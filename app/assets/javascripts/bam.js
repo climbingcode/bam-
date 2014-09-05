@@ -5,6 +5,7 @@ $(window).resize(function(){
     var pricingHeight = $('#agency-column').height();
     $('#business-column').height(pricingHeight + 50);
     $('#personal-column').height(pricingHeight);
+
   });
 
 
@@ -15,6 +16,8 @@ $( document ).ready(function() {
     // $('.img-background').height(divWidth);
 
     // };
+
+   $('[data-toggle="tooltip"]').tooltip({'placement': 'right'});
 
    $('#logo_submit').on('click', function() {
       $('.empty-section-notification').hide();
@@ -27,6 +30,7 @@ $( document ).ready(function() {
   var pricingHeight = $('#agency-column').height();
     $('#business-column').height(pricingHeight + 50);
     $('#personal-column').height(pricingHeight);
+
 
 
   var divWidth = $('.img-background').width();
@@ -49,6 +53,7 @@ $( document ).ready(function() {
       //   'color:': 'red'
       // }, 2000);
       dashboard.toggleClass('dashboard-closed');
+
 
       setTimeout(function () {
          brandPage.toggleClass('dashboard-closed');
@@ -90,7 +95,7 @@ $( document ).ready(function() {
       if (target.length) {
         $('html,body').animate({
           scrollTop: target.offset().top
-        }, 1000);
+        }, 500);
         return false;
       }
     }

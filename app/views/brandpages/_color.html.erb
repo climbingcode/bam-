@@ -10,15 +10,16 @@
         </div>
       </div>
       <ul class="color-list">
-        <li class="color-name"><%= color.name %><a href="#" class="delete-asset" data-colorid="<%= color.id %>"></a></li>
-        <li>CSS HEX: <span class="copy_text" data-clipboard-text="">#<%= color.hex.upcase %></span></li>
+        <li class="color-name"><%= color.name %></li>
+        <li>CSS HEX: <span class="copy_text" data-clipboard-text="">#<%= color.hex.upcase %><span class='clipboard hex-clipboard'></span></li>
         <li>RGB: <%= rgb_to_display(color.hex) %></li>
         <li>CMYK: <%= hex_to_cmyk(color.hex)%></li>
+        <li>Sass: <span class="sass">$<%= color.name.gsub(/\s/,'-').downcase.capitalize %>: #<%= color.hex.upcase %><span class='clipboard sass-clipboard'></span></li>
       </ul>
     </div>
   <% end %>
 <% else %>
-  <div id="no-color"><h3> Looks like you need to add some colors to your brand!</h3></div>
+  <h3> Looks like you need to add some colors to your brand!</h3>
 <% end %>
 
 </section>

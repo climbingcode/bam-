@@ -15,8 +15,8 @@
             </div>
           </div>
           
-          <div id="letter_head_form">
-            <div class="col-sm-12">  
+          <div >
+            <div class="col-sm-6">  
               <h1>Layout</h1>
               <%= form_for(Pdf.new, :url => {:controller => "pdfs", :action => "create", :user_id => current_user.id, :brand_id => @brand.id}, method: 'post') do |f| %>
 
@@ -41,7 +41,7 @@
                   <%= f.text_field(:post_code, class: "form-control")%>
                   <%= f.label(:number, "Phone number", class: "form-contol") %>
                    <%= f.text_field(:number, class: "form-control")%>
-                  <%= f.submit('DownLoad as PDF', class: "bam_btn_grey btn", disabled: false) %>      
+                  <%= f.submit('DownLoad as PDF', class: "bam_btn btn", disabled: false) %>      
                 <% end %>
               </div>
             </div>

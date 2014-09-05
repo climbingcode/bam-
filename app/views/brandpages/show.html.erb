@@ -1,6 +1,7 @@
 <!--  -->
 
 
+<div class="container">
 
   <div id="brand-page" style="width: 100%;" class="" >
 
@@ -10,15 +11,15 @@
 
     <h1 id="brand-name-header"><%= @brand.name.titleize %></h1> 
     <%= render 'brand_nav' %>  
-    <%= render 'logos' %>
+    <%= render 'logos' if @brand.logos.present? %>
     <hr/>
-    <%= render 'color' %>
+    <%= render 'color' if @brand.colors.present? %>
     <hr/>
-    <%= render 'typography' %>
+    <%= render 'typography' if @brand.fonts.present? %>
     <hr/>
-    <%= render 'copy' %>
+    <%= render 'copy' if @brand.copies.present? %>
     <hr/>
-    <%= render 'guideline' %>
+    <%= render 'guideline' if @brand.guidelines.present? %>
     <!--render misc files-->
     <!--render guidelines-->
     <!--render copy-->

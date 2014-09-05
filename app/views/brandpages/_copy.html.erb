@@ -6,8 +6,8 @@
   <% @copies.each do | copy | %>
   	<div class="brand-copy-text col-sm-10 col-sm-offset-1">
 	    <div id="copie<%= copy.id %>" class="copy_wrapper">
-	       <div style="font-family:<%= @fonts.first.font_family if @fonts.present? %>;">
-	        <h3 id="copy-desc-<%= copy.id%>"><strong><%= copy.description.titleize %></strong><a href='#' class="delete-asset"  data-copieid='<%= copy.id%>'></a></h3>
+	       <div >
+	        <h3 id="copy-desc-<%= copy.id%>"><strong><%= copy.description.titleize %></strong></h3>
 	        <hr>
 	     		<h4 id="copy-text-<%= copy.id%>"><%= copy.text.capitalize %></h4>
 	      </div>
