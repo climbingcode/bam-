@@ -9,9 +9,11 @@
 
   <% if @logos.size != 0 %>
     <% @logos.each do | logo | %>
-      <div id="logo<%= logo.id %>" data-file-location="<%= logo.path %>" class="col-sm-4">
+      <div id="logo<%= logo.id %>" data-file-location="<%= logo.path %>" class="col-sm-3">
         <div class="img-background" style="height: 339px;">
+          <div class="img-background-inner">
           <img src="<%= logo.path %>" class="img-responsive logo">
+          </div>
         </div>
         <div class="logo-meta">
           <label class="img-label"><%= logo.name %></label>
@@ -33,7 +35,9 @@
       </div>
     <% end %>
   <% else %>
+  <div class="empty-section-notification">
     <%= "Looks Like You Need to Add Some Logos" %>
+    </div>
   <% end %>
 
 

@@ -17,6 +17,11 @@
 }
 
 
+// .img-background-inner{
+//   height: 100%;
+//   width: 100%;
+//   display: table-cell;
+// }
 
 .img-background{
   background-image: url("/assets/bg.jpg");
@@ -24,6 +29,7 @@
   height: width;
   text-align: center;
   vertical-align: middle;
+  // display: block;
   display: table-cell;
   width: 100%;
   // display: inline-block;

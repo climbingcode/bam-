@@ -16,7 +16,9 @@ $( document ).ready(function() {
 
     // };
 
-
+   $('#logo_submit').on('click', function() {
+      $('.empty-section-notification').hide();
+    });
 
   var initWidth = function(){ $('.image-column').width();
     $('.img-background').height(initWidth - 30);

@@ -1,13 +1,13 @@
 <div id="permissions_form">
 
 	<div class="panel-group" id="accordion">
-      
+
  <!--      ACCOUNT INFORMATION PANEL -->
       <div class="panel ">
         <div class="panel-heading">
          <a data-toggle="collapse" data-parent="#accordion" href="#accountCollapseInfo">
           <h4 class="panel-title">
-             Account Information
+             Account Information<span class="dashboard-icon"><%= render 'svg_icons/gear_icon' %></span>
         	</h4>
           </a>
         </div>
@@ -16,12 +16,13 @@
         	<div class="panel-body">
           <div class="asset_module">
               
-            <h3 id="edit-user-headline"><%= @brand.name.capitalize %></h3><%= link_to "Edit", edit_user_path(@user.id), :id => 'edit-user-link' %>
-            <br>
-              Name: <%= @user.firstname.capitalize %> <%= @user.surname.capitalize %><hr>
-        		  Email: <%= @user.email %><hr>
-              Username: <%= @user.username %><hr>
-              Job Title: <%= @user.position %> 
+            <h3 id="edit-user-headline"><%= @brand.name.titleize %></h3>
+            <!--<%= link_to "Edit", edit_user_path(@user.id), :id => 'edit-user-link' %>-->
+            <hr/>
+              <strong>Name:</strong> <%= @user.firstname.capitalize %> <%= @user.surname.capitalize %><hr>
+        		   <strong>Email:</strong> <%= @user.email %><hr>
+               <strong>Username:</strong> <%= @user.username %><hr>
+               <strong>Job Title:</strong> <%= @user.position %> 
         	</div>
           </div>
         </div>
@@ -33,7 +34,8 @@
           <div class="panel-heading">
           <a data-toggle="collapse" data-parent="#accordion" href="#accountCollapseAllUsers">
             <h4 class="panel-title">
-               All Users with Permissions to <%= Brand.find(session[:current_brand]).name.capitalize %> 
+               All Users with Permissions to <%= Brand.find(session[:current_brand]).name.capitalize %>
+               <span class="dashboard-icon"><%= render 'svg_icons/users_icon' %></span>
             </h4>
             </a>
           </div>
@@ -50,7 +52,7 @@
         <div class="panel-heading">
           <a data-toggle="collapse" data-parent="#accordion" href="#accountCollapsePermissions">
           <h4 class="panel-title">
-              Brands and Permissions
+              Brands and Permissions <span class="dashboard-icon"><%= render 'svg_icons/key_icon' %>
           </h4>
           </a>
         </div>

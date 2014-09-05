@@ -11,6 +11,48 @@
   }
 }
 
+.switch_brand{
+  color: $primary-color!important;
+}
+
+  .panel-heading:hover{
+    
+    background: $primary-color;
+    h4{
+      color: #fff!important;
+    }
+    .template-icon,
+    .guideline-icon,
+    .file-icon,
+    .typography-icon,
+    .brand-copy-icon,
+    .color-icon,
+    .logo-icon,
+    .users-icon,
+    .gear-icon,
+    .key-icon {
+      stroke: #fff;
+    }
+  }
+
+  .template-icon,
+  .guideline-icon,
+  .file-icon,
+  .typography-icon,
+  .brand-copy-icon,
+  .color-icon,
+  .logo-icon,
+  .lock-icon,
+  .users-icon,
+  .gear-icon,
+  .key-icon {
+    stroke: #999;
+    stroke-width: 1.5px;
+  }
+  .lock-icon{
+    stroke: $alt-color;
+  }
+
 // .icon-column{
 //   height: 1000px;
 //   width: 100px;
@@ -98,6 +140,11 @@
   color: #ccc;
 }
 
+  .dashboard-icon{
+    float: right;
+    // margin-top: -2px;
+  }
+
 .nav-tabs{
   width: auto;
   li{
@@ -179,39 +226,11 @@
     }
 
   }
-  .panel-heading:hover{
-    color: #fff;
-    background: $primary-color;
-    .template-icon,
-    .guideline-icon,
-    .file-icon,
-    .typography-icon,
-    .brand-copy-icon,
-    .color-icon,
-    .logo-icon{
-      stroke: #fff;
-    }
-  }
 
-  .dashboard-icon{
-    float: right;
-    // margin-top: -2px;
-  }
 
-  .template-icon,
-  .guideline-icon,
-  .file-icon,
-  .typography-icon,
-  .brand-copy-icon,
-  .color-icon,
-  .logo-icon,
-  .lock-icon{
-    stroke: #999;
-    stroke-width: 1.5px;
-  }
-  .lock-icon{
-    stroke: $alt-color;
-  }
+
+
+
 
 }
 .panel-group .panel-heading + .panel-collapse > .panel-body {

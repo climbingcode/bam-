@@ -84,11 +84,14 @@
 				 			 		<%= f.submit 'Log In', :class => 'bam_btn btn', :id => "search_result_sign-in-button"%>
 				 			 		</div>
 				 		<% end %>
+
 				 		
 
 
 				    <% if flash[:notice] %>
-				      <h1 class="notice"><%= flash[:notice] %></h1>
+				    <hr/>
+				    <br/>
+				      <h3 class="notice"><%= flash[:notice] %></h3>
 				    <% end %>
 
 		          <div class="modal fade" id="signUpFromSearchModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
