@@ -21,11 +21,11 @@
 							<div class="brand-thumbnail-container">
 			<!-- 				CHECKS IF BRAND IS PUBLIC OR NOT IF NOT SIGNED IN -->
 								<% if brand.open %>
-									<%= image_tag(brand.logos.first.path.url, class: "brand_thumbnail img-responsive") %>
+									<%= image_tag(brand.logos.first.path.url, class: "brand_thumbnail img-responsive") if brand.logos.present? %>
 									<h2><%=link_to brand.name, brandpage_path(brand.id) %></h2>
 								<% else %>
 									<h2><%= brand.name %></h2>
-									<%= image_tag(brand.logos.first.path.url, class: "brand_thumbnail img-responsive") %>
+									<%= image_tag(brand.logos.first.path.url, class: "brand_thumbnail img-responsive") if brand.logos.present? %>
 								<% end %>
 							</div>			
 						</div>
@@ -38,11 +38,11 @@
 		    			<% if brand.open %>
 		    			<% if brand.logos.present? %>
 		    			<div class="brand-thumbnail-container">
-		    				<%= image_tag(brand.logos.first.path.url, class: "brand_thumbnail img-responsive") %>
+		    				<%= image_tag(brand.logos.first.path.url, class: "brand_thumbnail img-responsive") if brand.logos.present? %>
 		    			</div>
 		    				<% end %>
 		    				<div class="search-result-brand-name-container">
-		    				<h2><%=link_to brand.name, user_brand_path(current_user, brand.id) %></h2>
+		    				<h2><%=link_to brand.name, user_brand_path(current_user, brand.id) if brand.logos.present?%></h2>
 		    				</div>
 		    		</div>
 

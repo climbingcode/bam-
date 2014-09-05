@@ -45,7 +45,7 @@ class UsersController < ApplicationController
 		@brand = Brand.find_by(name: params[:name].downcase)
     if @user.save
       if !@brand 
-        if @user.brands.create(name: params[:name], website: params[:website]).save
+        if @user.brands.create(name: params[:name].downcase, website: params[:website]).save
       	  @brand = @user.brands.last
           session[:current_brand] = @brand.id
           session[:user_id] = @user.id
