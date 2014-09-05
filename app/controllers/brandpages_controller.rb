@@ -3,6 +3,7 @@ class BrandpagesController < ApplicationController
 
 	def show
 		if params[:slug].present?
+		
 			@brand = Brand.find_by(name: params[:slug])
 		else 
 			@brand = Brand.find(params[:id])

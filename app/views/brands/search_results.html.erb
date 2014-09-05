@@ -24,8 +24,9 @@
 									<%= image_tag(brand.logos.first.path.url, class: "brand_thumbnail img-responsive") %>
 									<h2><%=link_to brand.name, brandpage_path(brand.id) %></h2>
 								<% else %>
-									<h2><%= brand.name %></h2>
 									<%= image_tag(brand.logos.first.path.url, class: "brand_thumbnail img-responsive") %>
+									<h2><%= brand.name %></h2>
+									
 								<% end %>
 							</div>			
 						</div>
