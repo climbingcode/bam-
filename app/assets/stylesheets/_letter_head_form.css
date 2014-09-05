@@ -1,0 +1,69 @@
+#letter_head_form {
+
+}
+
+#letter_head_preview {
+	height: 320px;
+	width: 100%;
+	float:left;
+	border: solid;
+
+}
+
+#letter_head_form {
+	float:right;
+}
+
+#letter_head_footer {
+	clear: both;
+}
+
+#letter_head_check_box {
+
+}
+
+.letter_head_border {
+	margin-top: 5px;
+	background-color: black;
+	float: right;
+	height: 1px; 
+	width: 200px
+}
+
+.footer_border {
+	background-color: black;
+	float: right;
+	height: 1px; 
+	width: 200px
+
+}
+
+#brand_title {
+	text-align:center;
+	margin-top: 15px;
+}
+
+#street_address_input {
+	text-align: center;
+	font-size: 5px;
+}
+
+#city_input {
+	text-align: center;
+	font-size: 5px;
+}
+
+#post_code_input {
+	text-align: center;
+	font-size: 5px;
+}
+
+#phone_number_input {
+	text-align: center;
+	font-size: 5px;
+}
+
+
+
+
+

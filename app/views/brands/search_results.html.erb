@@ -1,0 +1,123 @@
+<section class="search_body row">
+
+
+	<div class="container search_result_container">
+		<h1>Here's What We Found:</h1>
+		<hr/>
+		<div class="col-sm-6 brands_search_results">
+
+			<!-- 	LOGIN TO FIND SEARCH RESULTS -->
+			<% brands_id = cookies[:tracked_brands].split.map(&:to_i) %>
+			<% @brands = [] %>
+			<% brands_id.each do |id| %>
+				<% @brands << Brand.find(id) %>
+			<% end %>
+
+			<% if @brands != [] %>
+				<% if !current_user %>
+					<% @brands.each do |brand| %>
+					<div class="search_result">
+						<div class="search-result-brand-name-container">
+							<div class="brand-thumbnail-container">
+			<!-- 				CHECKS IF BRAND IS PUBLIC OR NOT IF NOT SIGNED IN -->
+								<% if brand.open %>
+									<%= image_tag(brand.logos.first.path.url, class: "brand_thumbnail img-responsive") if brand.logos.present? %>
+									<h2><%=link_to brand.name, brandpage_path(brand.id) %></h2>
+								<% else %>
+									<h2><%= brand.name %></h2>
+									<%= image_tag(brand.logos.first.path.url, class: "brand_thumbnail img-responsive") if brand.logos.present? %>
+								<% end %>
+							</div>			
+						</div>
+					</div>
+					<br/><hr/>
+		  		<% end %>
+				<% else %>
+		    	<% @brands.each do |brand| %>
+		    		<div class="search_result">
+		    			<% if brand.open %>
+		    	
+		    			<div class="brand-thumbnail-container">
+		    				<%= image_tag(brand.logos.first.path.url, class: "brand_thumbnail img-responsive") if brand.logos.present? %>
+		    			</div>
+		    			
+		    				<div class="search-result-brand-name-container">
+		    				<%if current_user.user_brands.find_by(brand_id: brand.id) && current_user.user_brands.find_by(brand_id: brand.id).permission <= 2 %>
+		    					<h2><%=link_to brand.name, user_brand_path(current_user, brand.id) %></h2>
+		    				<% else %>
+		    					<h2><%= link_to brand.name, brandpage_path(brand.id)%></h2>
+		    				<% end %>
+		    				</div>
+		    		</div>
+
+		    			<% else %>
+		    			<div class="search_result">
+		    				<% if brand.logos.present? %>
+		    				<div class="brand-thumbnail-container">
+		    					<%= image_tag(brand.logos.first.path.url, class: "brand_thumbnail img-responsive") %>
+		    					</div>
+		    				<% end %>
+		    				<div class="search-result-brand-name-container">
+		    				<h2><%= brand.name %></h2>
+		    				</div>
+		    			<% end %>
+		    			<br/><hr/>
+		    		<% end %>
+		  		<% end %>
+		  	<% end %>
+
+		  		
+		  	
+			</div>
+		<!--
+			RENDERS LOGIN, SIGNUP OR LINK TO BRANDS DEPENDING ON SESSIONS -->
+
+				<div class="col-sm-6 brands_search_results search_results_right">
+
+					<% if !current_user %>
+						<h3>Sign Up To Gain Access</h3>
+						  <button class="btn bam_btn" data-toggle="modal" data-target="#signUpFromSearchModal">
+		            Sign Up
+		          </button>
+		          <hr/>
+		         <h3>Already Have a Account, Sign up here</h3>
+
+		         
+
+				    <%= form_for sign_in_at_search_path, :url => {:controller => 'sessions', :action => 'sign_in_at_search'}, :method => 'post'  do |f|  %>
+				    <div class="search_result_sign_in_wrapper">
+				  				<%= f.text_field :username, :placeholder => "Username", hide_label: true, :id => 'search_form_sign_in_username', class: 'form-control' %>
+				  				<%= f.password_field :password, :placeholder => "Password", hide_label: true, :id => 'search_form_sign_in_password', class: 'form-control' %>
+				 			 		<%= f.submit 'Log In', :class => 'bam_btn btn', :id => "search_result_sign-in-button"%>
+				 			 		</div>
+				 		<% end %>
+				 		
+
+
+				    <% if flash[:notice] %>
+				      <h1 class="notice"><%= flash[:notice] %></h1>
+				    <% end %>
+
+		          <div class="modal fade" id="signUpFromSearchModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+		  				<div class="modal-dialog">
+		    			<div class="modal-content">
+		      <div class="modal-header">
+		        <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+		        <h4 class="modal-title">Sign Up</h4>
+		      </div>
+		      <div class="modal-body">
+						<%= render "sign_up_search_brands" %>
+		      </div>
+		    </div>
+		  </div>
+
+		</div>
+
+		<% end %>
+		</div>
+		</div>
+
+</section>
+
+
+

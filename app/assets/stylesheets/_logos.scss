@@ -1,0 +1,83 @@
+#logos{
+  margin-left: 0px;
+  margin-right: 0px;
+}
+
+.logo-dropdown-header{
+  color: red;
+  cursor: pointer;
+}
+
+.image-column{
+  box-sizing: border-box;
+}
+
+.download-icon{
+  float: right;
+}
+
+
+
+.img-background{
+  background-image: url("/assets/bg.jpg");
+  width: 100%!important;
+  height: width;
+  text-align: center;
+  vertical-align: middle;
+  display: table-cell;
+  width: 100%;
+  // display: inline-block;
+  white-space: nowrap;
+  padding: 15px;
+  position: relative;
+  transition: all 0.5s;
+}
+// .img-wrapper{
+
+//   vertical-align: middle;
+//   height: 100%;
+// }
+
+.logo{
+  vertical-align: middle;
+  position: relative;
+  width: 100%!important;
+}
+
+
+
+.img-label{
+  padding:5px;
+  font-weight: 400;
+}
+.logo-meta{
+  border:radius 2px;
+  padding: 5px;
+  color: #444;
+  a{
+    color: #999;
+    display: inline;
+  }
+  a:hover{
+    color: $primary-color;
+    text-decoration: none;
+  }
+  p{
+    margin-bottom: 0px;
+    border-bottom: solid 1px #ddd;
+  }
+  ul{
+    list-style-type: none;
+    padding-left: 5px;
+  }
+  li{
+    border-bottom: solid 1px #ddd;
+  }
+}
+
+.col-sm-4:hover .logo-meta .delete-asset {
+  opacity: 1.0;
+}
+
+
+  

@@ -1,0 +1,85 @@
+nav{
+
+  ul{
+    display: inline;
+  }
+  li{
+    display: inline;
+  }
+  form{
+    display: inline!important;
+  }
+
+}
+
+.navbar-toggle {
+  border: solid 1px $primary-color;
+}
+
+.icon-bar{
+  color: $primary-color;
+  border: solid 1px $primary-color;
+}
+
+.navbar-brand{
+  color: $primary-color;
+}
+
+#bam-nav{
+  border-bottom: solid 1px #999;
+  
+}
+.navbar{
+  background-color: #fff;
+  padding-left: 15px;
+  padding-right: 15px;
+}
+
+.bam_logo{
+  height: 50px;
+}
+.sign-in-button{
+  margin-top: 2px;
+}
+  .form-group{
+    display: inline!important;
+  }
+
+.navbar-form{
+  .form-control{
+    display: inline;
+  }
+}
+
+#password_input, #username_input  {
+  font-size: 1.2em;
+  width: 150px;
+  border: solid 1px #999;
+  transition: all 1s;
+  
+  // ::-webkit-input-placeholder {color: red;}
+  // :-moz-placeholder           {color: red;}
+  // ::-moz-placeholder          {color: red;}
+  // :-ms-input-placeholder      {color: red;} 
+}
+
+#username_input:focus, #password_input:focus{
+  width: 170px;
+  border: solid 1px $primary-color;
+  outline: none!important;
+
+}
+
+input, textarea{
+  outline: none!important;
+  box-shadow: none!important;
+}
+
+[contenteditable="true"]:focus {
+    outline: none!important;
+}
+input:focus,
+select:focus,
+textarea:focus, {
+    outline: none!important;
+}

@@ -2,13 +2,45 @@
 <html>
 <head>
   <title>Bam</title>
+   <script src="//ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
   <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
   <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
   <%= csrf_meta_tags %>
+
+
+  <%= stylesheet_link_tag 'application', :media => "all" %>   
+<script type="text/javascript" src="//use.typekit.net/chy0lpf.js"></script>
+<script type="text/javascript">try{Typekit.load();}catch(e){}</script>
+  <%= yield :head_includes %>
+
 </head>
 <body>
 
+<%= render 'layouts/header' unless @disable_nav %>
+
 <%= yield %>
 
+
+
+  <% flash.each do |key, value| %>
+    <%= content_tag(:div, value) %>
+  <% end %>
+
+
+
+
+<!--<script type="text/javascript">
+//   $('#requestAccessModal').modal(options)
+// </script>
+-->
+
+<script src="//ajax.googleapis.com/ajax/libs/webfont/1.4.7/webfont.js"></script>
+<script>
+  WebFont.load({
+    google: {
+      families: ['Abril Fatface', 'Arimo', 'Arvo', 'Droid Sans', 'Droid Serif', 'Exo', 'Josefin Slab', 'Lato', 'Nobile', 'Old Standard TT', 'Open Sans', 'Playfair Display', 'PT Sans', 'Roboto', 'Raleway', 'Source Sans Pro', 'Ubuntu', 'Vollkorn']      
+    }
+  });
+</script>
 </body>
 </html>

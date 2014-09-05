@@ -1,0 +1,5 @@
+<%= form_for search_brand_path, :url => {:action => "search_brand", :controller => "brands"} do |f| %>
+
+	<%= f.text_field :search, :id => 'home-search-bar', :placeholder => 'Find a Brand...', :autocomplete => "off" %>
+  <%= f.submit '', :id => 'home-search-submit' %>
+<% end %>

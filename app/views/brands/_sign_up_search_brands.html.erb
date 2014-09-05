@@ -1,0 +1,22 @@
+
+<div class="" id="sign_up_form_wrapper">
+    <%= bootstrap_form_for sign_up_at_search_path, :url => {:controller => 'users', :action => 'sign_up_at_search'} do |f| %>
+        <div class="users_signup">
+        <!--     brand information -->
+            <div class="form-group">
+            <!-- user information -->
+            <%= f.text_field :firstname %>
+            <%= f.text_field :surname %>
+            <%= f.text_field :username %>
+            <%= f.email_field :email %>
+          <!--  <%= f.text_field :position %> -->
+            <%= f.password_field :password %>
+            <%= f.password_field :password_confirmation%>
+            <%= f.submit  :class => "bam_btn btn", :id => "sign_up_submit" %>
+            </div>
+    <% end %>
+
+
+
+</div>
+</div>

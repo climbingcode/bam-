@@ -4,7 +4,12 @@ class ColorsController < ApplicationController
   # GET /colors
   # GET /colors.json
   def index
-    @colors = Color.all
+    @colors = Color.where("brand_id = ?", params[:brand_id])
+    respond_to do | format |
+      format.html 
+      format.json { render json: @colors, location: user_brand_path(current_user, params[:brand_id])  }
+    end
+
   end
 
   # GET /colors/1
@@ -25,13 +30,15 @@ class ColorsController < ApplicationController
   # POST /colors.json
   def create
     @color = Color.new(color_params)
-
+    if @color.hex[0] == "#"
+      @color.hex = @color.hex[1,7];
+    end
     respond_to do |format|
-      if @color.save
-        format.html { redirect_to @color, notice: 'Color was successfully created.' }
-        format.json { render :show, status: :created, location: @color }
+      if @color.save  
+        format.html { redirect_to user_brand_path(current_user, @color.brand_id), notice: 'Color was successfully created.' }
+        format.json { render json: @color, status: :created, location: user_brand_path(current_user, @color.brand_id) }
       else
-        format.html { render :new }
+        format.html { redirect_to user_brand_path(current_user, params[:id]), notice: 'Color was not created.' }
         format.json { render json: @color.errors, status: :unprocessable_entity }
       end
     end
@@ -43,7 +50,7 @@ class ColorsController < ApplicationController
     respond_to do |format|
       if @color.update(color_params)
         format.html { redirect_to @color, notice: 'Color was successfully updated.' }
-        format.json { render :show, status: :ok, location: @color }
+        format.json { render json: @color, status: :ok, location: @color }
       else
         format.html { render :edit }
         format.json { render json: @color.errors, status: :unprocessable_entity }
@@ -57,7 +64,7 @@ class ColorsController < ApplicationController
     @color.destroy
     respond_to do |format|
       format.html { redirect_to colors_url, notice: 'Color was successfully destroyed.' }
-      format.json { head :no_content }
+      format.json { render json: @color, status: :accepted,  location: user_brand_path(current_user, @color.brand_id) }
     end
   end
 
@@ -69,6 +76,6 @@ class ColorsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def color_params
-      params[:color]
+      params.require(:color).permit(:hex, :name, :primary, :brand_id)
     end
 end

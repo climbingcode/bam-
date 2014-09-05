@@ -1,23 +1,32 @@
-<h1>Listing brands</h1>
+<section class="user-brand-index">
+  <div class="container">
+    <div class="col-sm-8 brand-index-wrapper">
+      <h1>Welcome Back, Here Are Your Brands</h1>
+        <div class="each_brand_wrapper">
+          <div class="logo-thumbnail-container">
+            <a href="#"><%= image_tag("/assets/plus.png", class: "plus img-responsive brand_thumbnail") %></a>
+            </div>
+            <div class="brand-link-wrapper">
+            <%= link_to 'Create a New Brand', new_user_brand_path %>
+            </div>
+            </div>
+              <hr>
 
-<table>
-  <thead>
-    <tr>
-      <th colspan="3"></th>
-    </tr>
-  </thead>
+                  <% @brands.each do |brand|%>
+                  <div class="each_brand_wrapper row">
+                    <a href="#">
+                      <div class="logo-thumbnail-container">
+                        <%= image_tag("/assets/lighthouse-labs.png", class: "img-responsive brand_thumbnail") %>
+                      </div>
+                    </a>
 
-  <tbody>
-    <% @brands.each do |brand| %>
-      <tr>
-        <td><%= link_to 'Show', brand %></td>
-        <td><%= link_to 'Edit', edit_brand_path(brand) %></td>
-        <td><%= link_to 'Destroy', brand, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
+                    <div class="brand-link-wrapper">
+                  	 <%= link_to "Go to #{brand.name}", user_brand_path(@user.id, brand.id)%>
+                    </div>
+                  </div>
+                  <hr/>
+                  <% end %>
 
-<br>
-
-<%= link_to 'New Brand', new_brand_path %>
+      </div>
+      </div>
+</section>

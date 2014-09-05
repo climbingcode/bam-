@@ -1,17 +1,243 @@
-<%= form_for(@brand) do |f| %>
-  <% if @brand.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(@brand.errors.count, "error") %> prohibited this brand from being saved:</h2>
+<div id="multi_asset_form">
 
-      <ul>
-      <% @brand.errors.full_messages.each do |message| %>
-        <li><%= message %></li>
-      <% end %>
-      </ul>
+    <div class="panel-group" id="dashboard-accordion">
+      
+      <div class="panel">
+      <a data-toggle="collapse" data-parent="#accordion" href="#collapseOne">
+        <div class="panel-heading">
+          <h4 class="panel-title">
+              Logos<span class="dashboard-icon"><%= render 'svg_icons/logo_icon' %></span>
+          </h4>
+        </div>
+        </a>
+        <div id="collapseOne" class="panel-collapse collapse"> 
+          <div class="panel-body">
+            <div class="asset_module">
+              <%= form_for(Logo.new, url: user_brand_logos_path(params[:user_id], params[:id], format: :json), remote: true, authenticity_token: true, method: 'post', multipart: true) do |f| %>
+               <!--  <%= f.label(:name, "Logo Name") %> -->
+                <%= f.text_field(:name, class: "form-control", :placeholder => 'Logo Name') %>
+               <!--  <%= f.label(:description, "What is the logo used for?") %> -->
+
+<!--                 <%= f.text_field(:description, class: "form-control", :placeholder => 'Logo Description') %> -->
+<!--                 <div class="logo-checkbox-wrapper">
+                <%= f.check_box(:permission, :id => "check-private") %>
+                <%= f.label(:permission, "Private", for: "check-private", class: "check-box") %>
+
+                </div> -->
+                <div class="file-upload-box">
+                <%= f.label(:path, "Add a logo", :id => 'file-upload-label', :for => 'hide-file-upload') %>
+                <%= f.file_field(:path, :id => "hide-file-upload") %>
+                </div>
+
+                <p>Click or drag a file into the section above to upload</p>
+                <section id="logo-upload-status">
+                </section>
+                <%= f.hidden_field(:brand_id, :value => params[:id]) %>
+
+                <%= f.submit('Add File', id: "logo_submit", class: "bam_btn dashboard_btn btn") %>
+              <% end %>
+
+              <script id="logo_upload" type="text/x-tmpl">
+
+                <div class="file-upload-status">
+
+                  <p class="file-upload-name">{%= o.name%}</p>
+                  <div class="file-progress-meter">
+                    <div class="file-progress-strip"></div>
+                  </div>
+
+                </div>
+              </script>
+
+            </div>
+          </div>
+        </div>
+      </div>
+    
+  <div class="panel">
+    <a data-toggle="collapse" data-parent="#accordion" href="#collapseTwo">
+      <div class="panel-heading">
+        <h4 class="panel-title">Colors<span class="dashboard-icon"><%= render 'svg_icons/color_icon' %></span></h4>
+      </div>
+    </a>
+    <div id="collapseTwo" class="panel-collapse collapse">
+      <div class="panel-body">
+          <div class="asset_module">
+           <%= form_for Color.new, url: user_brand_colors_path(params[:user_id], params[:id], format: :json), remote: true, authenticity_token: true,  method: 'post' do |f| %>
+
+          <!--   <%= f.label(:hex, "Hex Colour code") %> -->
+
+          <%= f.text_field(:name, class: "form-control", :placeholder => 'Color Name', :value => "Color" ) %>
+
+              <div class="checkbox-wrapper">
+                <%= f.check_box(:primary, :id => "check-1") %>
+                <%= f.label(:Primary, for: "check-1", class: "check-box") %>
+                <!-- <%= f.label(:name, "Colour name") %> -->
+              </div>
+              <div class="input-group color-picker">
+              <%= f.text_field(:hex, class: "form-control", :maxlength => 7, :placeholder => 'HEX Color', :id => "hex-input") %><span class="input-group-addon" id="colorpicker-input-addon"><i><img src="/assets/eyedropper.png" class="img-responsive"></i></span>
+
+            </div>
+
+
+            <%= f.hidden_field(:brand_id, :value => params[:id], class: "hidden-field") %>
+            <%= f.submit('Add colour', class: "bam_btn_grey dashboard_btn btn", disabled: false) %>
+
+            <% end %>
+          </div>
+        </div>
+      </div>
     </div>
-  <% end %>
+    <script type="text/javascript">
 
-  <div class="actions">
-    <%= f.submit %>
+      $(function(){
+          $('.color-picker').colorpicker();
+      });
+
+    </script>
+
+  <div class="panel ">
+      <a data-toggle="collapse" data-parent="#accordion" href="#collapseThree">
+        <div class="panel-heading" id="brand-copy-header">
+          <h4 class="panel-title">Brand Copy<span class="dashboard-icon"><%= render 'svg_icons/brand_copy_icon' %></span></h4>
+        </div>
+      </a>
+    <div id="collapseThree" class="panel-collapse collapse">
+      <div class="panel-body">
+        <div class="asset_module">
+          <h3>Brand Copy</h3>
+            <%= form_for Copy.new, url: user_brand_copies_path(params[:user_id], params[:id], format: :json), remote: true, authenticity_token: true, method: 'post' do |f| %>
+
+              <%= f.label(:description, "Copy description") %>
+              <%= f.text_field(:description, class: "form-control") %>
+              <%= f.label(:text, "Copy text") %>
+              <%= f.text_area(:text, class: "form-control") %>
+              <%= f.hidden_field(:brand_id, :value => params[:id]) %>
+              <%= f.submit('Add copy', class: "bam_btn_grey dashboard_btn btn", disabled: false) %>
+            <% end %>
+        </div>
+      </div>
+    </div>
   </div>
-<% end %>
+
+  <div class="panel">
+    <a data-toggle="collapse" data-parent="#accordion" href="#collapseFour">
+      <div class="panel-heading">
+        <h4 class="panel-title">Typography<span class="dashboard-icon"><%= render 'svg_icons/typography_icon' %></span></h4>
+      </div>
+    </a>
+    <div id="collapseFour" class="panel-collapse collapse">
+      <div class="panel-body">
+          <div class="asset_module">
+          <%= form_for Font.new, url: user_brand_fonts_path(params[:user_id], params[:id], format: :json), remote: true, authenticity_token: true, method: 'post' do |f| %>
+          <%= f.text_field(:name, class: 'form-control',   :placeholder => 'Font Use')%>
+          <%= f.hidden_field(:brand_id, :value => params[:id]) %>
+          <%= select_tag :font_family,
+          "<option>Abril Fatface</option>
+          <option>Arimo</option>
+          <option>Arvo</option>
+          <option>Droid Sans</option>
+          <option>Droid Serif</option>
+          <option>Exo</option>
+          <option>Josefin Slab</option>
+          <option>Lato</option>
+          <option value='league-gothic'>League Gothic</option>
+          <option value='tk-museo-slab'>Museo Slab</option>
+          <option>Nobile</option>
+          <option>Old Standard TT</option>
+          <option>Open Sans</option>
+          <option>Playfair Display</option>
+          <option>PT Sans</option>
+          <option>Roboto</option>
+          <option>Source Sans Pro</option>
+          <option>Raleway</option>
+          <option>Ubuntu</option>
+          <option>Vollkorn</option>".html_safe%>
+          <%= f.submit('Add font', class: "bam_btn_grey dashboard_btn btn", disabled: false) %>
+
+        <% end %>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="panel">
+    <a data-toggle="collapse" data-parent="#accordion" href="#collapseFive">
+      <div class="panel-heading">
+        <h4 class="panel-title">Brand Guidelines<span class="dashboard-icon"><%= render 'svg_icons/guideline_icon' %></span></h4>
+      </div>
+    </a>
+
+
+
+
+    </style>
+    <div id="collapseFive" class="panel-collapse collapse">
+      <div class="panel-body">
+        <div class="asset_module">
+          <%= form_for Guideline.new, url: user_brand_guidelines_path(params[:user_id], params[:id], format: :json), remote: true, authenticity_token: true,  method: 'post' do |f| %>
+
+            <%= f.label :description, "Guideline description" %>
+            <%= f.text_field(:description, class: "form-control") %>
+            <%= f.label(:text, "Guideline") %>
+            <%= f.text_area(:text, class: "form-control") %>
+            <%= f.hidden_field(:brand_id, :value => params[:id]) %>
+            <%= f.submit('Add Guideline', class: "bam_btn_grey dashboard_btn btn",disabled: false) %>
+          <% end %>
+        </div>
+      </div>
+    </div>
+  </div>
+
+    <div class="panel">
+      <a data-toggle="collapse" data-parent="#accordion" href="#collapseSix">
+        <div class="panel-heading">
+          <h4 class="panel-title">Files<span class="dashboard-icon"><%= render 'svg_icons/file_icon' %></span></h4>
+        </div>
+      </a>
+    <div id="collapseSix" class="panel-collapse collapse">
+      <div class="panel-body">
+          <div class="asset_module">
+          <%= form_for(MiscAsset.new, url: user_brand_misc_assets_path(params[:user_id], params[:id]), authenticity_token: true, method: 'post') do |f| %>
+            <%= f.label(:name, "Asset name" ) %>
+            <%= f.text_field(:name, class: "form-control") %>
+            <%= f.label(:description, "Asset description") %>
+            <%= f.text_field(:description, class: "form-control") %>
+            <%= f.label(:thumbnail, "Asset") %>
+            <%= f.file_field(:thumbnail, class: "form-control") %>
+            <%= f.label(:permissions, "Public") %>
+            <%= f.check_box(:permissions) %>
+            <%= f.hidden_field(:brand_id, :value => params[:id]) %>
+            <%= f.submit("Add Asset", class: "bam_btn_grey dashboard_btn btn", disabled: false) %>
+          <% end %>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="panel">
+      <a data-toggle="collapse" data-parent="#accordion" href="#collapseSeven">
+        <div class="panel-heading">
+          <h4 class="panel-title">Templates<span class="dashboard-icon"><%= render 'svg_icons/template_icon' %></span></h4>
+        </div>
+      </a>
+    <div id="collapseSeven" class="panel-collapse collapse">
+      <div class="panel-body">
+        <div class="asset_module">
+
+          <button class="btn bam_btn open_business_card_modal" data-toggle="modal" data-target="#businessCardModal">
+            Business Cards
+          </button> 
+
+          <button class="btn bam_btn open_letter_head_modal" data-toggle="modal" data-target="#letterHeadModal">
+            Letter Heads
+          </button>
+              
+
+        </div>
+      </div>
+    </div>
+  </div>
+
+    </div><!--panel-group-->
+  </div><!--#multi-asset-form-->

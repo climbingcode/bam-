@@ -1,23 +1,122 @@
-<h1>Listing users</h1>
+<%= render 'layouts/header' unless @disable_nav %>
 
-<table>
-  <thead>
-    <tr>
-      <th colspan="3"></th>
-    </tr>
-  </thead>
+<section id="home_landing" class="row">
+  <div id="parallax-bg">
+    <div class="container">
+      
+      <div class="col-sm-12 col-md-6 pull-right" id="right-landing-box">
+        <img src="/assets/cloud.png" class="img-responsive">
+      </div>
+      <div class="col-sm-12 col-md-6 pull-left " id="left-landing-box">
+      
+          <h3>All Your Brand Assets</h3>
+          <h3>In One Place</h3>
 
-  <tbody>
-    <% @users.each do |user| %>
-      <tr>
-        <td><%= link_to 'Show', user %></td>
-        <td><%= link_to 'Edit', edit_user_path(user) %></td>
-        <td><%= link_to 'Destroy', user, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
+          <div class="search_form_wrapper">
+            <%= render 'search_bar' %>
+            <% if flash[:notice] %>
+              <h1 class="notice"><%= flash[:notice] %></h1>
+            <% end %>
+          </div>
+        
+        <button class="btn bam_btn bam_btn_alt" id="sign_up_btn" data-toggle="modal" data-target="#signUpModal">Sign Up
+        </button>
+      </div>
+    </div>
+  </div>
+<!--   <div class="call-to-action">
+      <button class="btn bam_btn bam_btn_alt" id="sign_up_btn" data-toggle="modal" data-target="#signUpModal">
+      Sign Up
+    </button>
+  </div> -->
+ 
+  <!-- sign up model -->
+  <div class="modal fade" id="signUpModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+          <h4 class="modal-title" id="requestAccessLabel">Sign Up</h4>
+        </div>
+        <div class="modal-body">
+          <%= render 'sign_up_form' %>
+      </div>
+    </div>
+  </div>
 
-<br>
+9</section>
 
-<%= link_to 'New User', new_user_path %>
+<section id="about">
+  <div class="container">
+    <div class="col-sm-4">
+      <img src="/assets/shield.png" class="img-responsive">
+      <h3>Control Your Brand</h3>
+      <p>You put a lot of work into developing your brand. We make sure that you can control occurences of your brand, but providing access to correct versions of your assets to ensure consistency.</p>
+    </div>
+    <div class="col-sm-4">
+    <img src="/assets/dropper.png" class="img-responsive">
+      <h3>Build Your Brand</h3>
+      <p>Branding is much more than a logo. We give you tools to generate color palettes and typographic systems so you can create a holistic brand identity.</p>
+    </div>
+    <div class="col-sm-4">
+    <img src="/assets/airplane.png" class="img-responsive">
+      <h3>Share Your Brand</h3>
+      <p>You might be overwhelmed with requests for your logo. We give you the tools easily distribute your brand assets. </p>
+    </div>
+
+  </div>
+</section>
+
+
+<section id="pricing" class="row">
+  <div class="container">
+    <div class="col-sm-4">
+      <div class="pricing-column" id="personal-column">
+      <img src="/assets/personal.png" class="img-responsive">
+      <h2>Personal Brand</h2>
+      <h3>Free</h3>
+      <hr/>
+        <ul>
+          <li><span class="tick">&#10003</span>Upload Headshot</li>
+          <li><span class="tick">&#10003</span>Upload Resume</li>
+          <li><span class="tick">&#10003</span>Manage Your Personal Brand</li>
+        </ul>
+      </div>
+    </div>
+    <div class="col-sm-4">
+      <div class="pricing-column" id="business-column">
+      <img src="/assets/business.png" class="img-responsive">
+      <h2>Business</h2>
+      <h3>$5/month</h3>
+      <hr/>
+        <ul>
+          <li><span class="tick">&#10003</span>Unlimited Uploads</li>
+          <li><span class="tick">&#10003</span>Unlimited Users</li>
+          <li><span class="tick">&#10003</span>Complete Privacy Control</li>
+          <li><span class="tick">&#10003</span>Build Business Cards</li>
+          <li><span class="tick">&#10003</span>Create Letterhead</li>
+        </ul>
+      </div>
+    </div>
+    <div class="col-sm-4">
+      <div class="pricing-column" id="agency-column">
+      <img src="/assets/agency.png" class="img-responsive">
+      <h2>Agencies</h2>
+      <h3>$20/month</h3>
+      <hr/>
+        <ul>
+          <li><span class="tick">&#10003</span>Unlimited Uploads</li>
+          <li><span class="tick">&#10003</span>Unlimited Brands</li>
+          <li><span class="tick">&#10003</span>Unlimited Users</li>
+          <li><span class="tick">&#10003</span>White Label</li>
+          <li><span class="tick">&#10003</span>Complete Privacy Control</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+</section>
+
+
+
+<%= render 'home_footer' %>

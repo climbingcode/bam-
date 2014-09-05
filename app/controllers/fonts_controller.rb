@@ -24,14 +24,18 @@ class FontsController < ApplicationController
   # POST /fonts
   # POST /fonts.json
   def create
-    @font = Font.new(font_params)
 
+    @font = Font.new(
+    name: params[:font][:name],
+    font_family: params[:font_family],
+    brand_id: params[:brand_id]
+    )
     respond_to do |format|
       if @font.save
-        format.html { redirect_to @font, notice: 'Font was successfully created.' }
-        format.json { render :show, status: :created, location: @font }
+        format.html { redirect_to user_brand_path(current_user, @font.brand_id), notice: 'Font was successfully saved.' }
+        format.json { render json: @font, status: :created, location: user_brand_path(current_user, @font.brand_id) }
       else
-        format.html { render :new }
+        format.html { redirect_to user_brand_path(current_user, @font.brand_id), notice: 'Font was not saved.' }
         format.json { render json: @font.errors, status: :unprocessable_entity }
       end
     end
@@ -57,7 +61,7 @@ class FontsController < ApplicationController
     @font.destroy
     respond_to do |format|
       format.html { redirect_to fonts_url, notice: 'Font was successfully destroyed.' }
-      format.json { head :no_content }
+      format.json { render json: @font, status: :accepted, location: user_brand_path(current_user, @font.brand_id) }
     end
   end
 
@@ -69,6 +73,6 @@ class FontsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def font_params
-      params[:font]
+      params.require(params).permit(:name, :font_family, :brand_id)
     end
 end

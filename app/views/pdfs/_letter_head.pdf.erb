@@ -1,0 +1,32 @@
+
+<!-- <!-- BORDER STYLES -->
+<section style="border-width: 5px; height: 200px;">
+
+<!-- BRAND LOGO -->
+
+
+<img src=<%= @logo %> style="height: 150px; width: 150px; "> 
+
+
+<!-- BRAND TITLE -->
+<link rel="stylesheet" src="/assets/stylesheets/letter_head.css">
+<div style="font-size: 35px; float: right; margin-right: 200px; color: #<%= @primary_color %>;"><%= @brand.name.titleize %></div>
+<div style=" "><%= @pdf.street_number.titleize if @pdf.present? %></div>
+<div style=" "><%= @pdf.street_address.titleize %></div>
+<div style=" "><%= @pdf.post_code.upcase %></div>
+
+<!-- 
+BORDER STYLE -->
+
+	<div style="float: right; margin-top: 30px;height: 5px; width: 580px; background-color: #<%= @primary_color%>"></div>
+
+<!-- FOOTER -->
+
+	<div style="margin-top: 900px; height: 5px; width: 500px; background-color: #<%= @primary_color%>"></div>
+
+
+
+
+
+
+</section> 

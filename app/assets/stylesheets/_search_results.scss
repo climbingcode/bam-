@@ -1,0 +1,102 @@
+.brands_search_results {
+
+    h3{
+      margin-top: 0px;
+      position: relative;}
+
+    // opacity: 0.7;
+    // filter: alpha(opacity=40);
+    // width: 35%; 
+    // height: 600px;
+    // margin: 100px;
+    // margin-top: -800px !important;
+    // margin-left:  100px !important;
+.modal-header{
+  background: $primary-color;
+}
+}
+.search_results_right{
+  h3{
+    display: inline;
+  
+}}
+
+.search_body {
+  background:$primary-color;
+  height: 100%;
+  width: 100%;
+  background-image: url('/assets/full_page_bg.png');
+ 
+}
+.search_result_container{
+  margin-top:100px;
+  background:white;
+  padding: 15px;
+  margin-bottom: 100px;
+
+}
+
+.search-result-brand-name-container{
+  display: inline;
+
+}
+
+.brand-thumbnail-container{
+  display: inline-block;
+  width: 60px;
+  height: 60px;
+  padding: 5px;
+  background-image: url('/assets/bg.jpg');
+
+}
+
+
+.brand_thumbnail{
+  // height: 100px;
+  // width: 100px;
+  float: left;
+ 
+  margin-right: 45px;
+}
+.search_result{
+  display: inline;
+
+  height: 120px;
+  h2{
+    position: absolute;
+    margin-left: 30px;
+    margin-bottom: 30px;
+    display: inline;
+  }
+  a{
+    color: $primary-color;
+  }
+  a:hover{
+    text-decoration: none;
+    color: #444;
+  }
+}
+
+#search_result_sign_in_button{
+margin-top: 0px;
+}
+
+#search_form_sign_in_username, #search_form_sign_in_password{
+  display: inline;
+  width: auto;
+  border: solid 1px #999;
+}
+
+.search_result_sign_in_wrapper{
+  width: auto;
+  margin-right: auto;
+  margin-left: auto;
+  display: block;
+  float: left;
+  text-align: center
+}
+
+#search_sign_up_wrapper{
+  float:left;
+}
+

@@ -1,0 +1,70 @@
+
+function titleColorSelected(color) {
+	$('#title_color').css('color', '#' + color);
+};
+
+function borderSelected(border) {
+	$('#border_selection').toggleClass('letter_head_border')
+	$('#footer_selection').toggleClass('footer_border')
+}
+
+function imageAdd(image) {
+	path = window.location.pathname;
+	
+	$.ajax({
+    type: "GET",
+    url: path,
+    dataType: "json",
+    success: function(){
+        alert(data.name) // Will alert Max
+    }        
+});
+
+};
+
+
+$(document).ready(function(){
+
+	
+	$('#pdf_primary_color').change(function() {
+		var val = $(this).val();
+		titleColorSelected(val)	
+	});
+
+	$('#letter_head_check_box').change(function() {
+		var val = $(this).val();
+		borderSelected(val)	
+	});
+
+	$('#pdf_street_address').blur(function() {
+		$('#street_address_input').text($(this).val());
+	});
+
+	$('#pdf_street_address').blur(function() {
+		$('#street_address_input').text($(this).val());
+	});
+
+	$('#pdf_street_address').blur(function() {
+		$('#street_address_input').text($(this).val());
+	});
+
+	$('#pdf_city').blur(function() {
+		$('#city_input').text($(this).val());
+	});
+
+	$('#pdf_post_code').blur(function() {
+		$('#post_code_input').text($(this).val());
+	});
+
+	$('#pdf_number').blur(function() {
+		$('#phone_number_input').text($(this).val());
+	});
+
+
+	$('#pdf_logo').change(function() {
+
+		var val = $(this).val();
+		imageAdd(val)
+	});	
+
+});

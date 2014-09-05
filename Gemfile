@@ -16,6 +16,7 @@ gem 'coffee-rails', '~> 4.0.0'
 
 # Use jquery as the JavaScript library
 gem 'jquery-rails'
+
 # Turbolinks makes following links in your web application faster. Read more: https://github.com/rails/turbolinks
 gem 'turbolinks'
 # Build JSON APIs with ease. Read more: https://github.com/rails/jbuilder
@@ -26,10 +27,49 @@ gem 'sdoc', '~> 0.4.0',          group: :doc
 # Spring speeds up development by keeping your application running in the background. Read more: https://github.com/rails/spring
 gem 'spring',        group: :development
 
+#development testing
+
 gem 'tux'
 
+gem 'pry'
+
+
+gem 'mail_form'
+
+group :development do
+  gem "better_errors"
+  gem "binding_of_caller"
+end
+
+
+#layout and design 
+gem "twitter-bootstrap-rails"
+gem 'bootstrap_form'
+
+# Uploading Assets
+
+gem 'jquery-fileupload-rails'
+# gem 'remotipart'
+gem 'carrierwave'
+gem 'mini_magick'
+gem "therubyracer"
+gem "less-rails" #Sprockets (what Rails 3.1 uses for its asset pipeline) supports LESS
+
+# pdf generation
+gem 'wkhtmltopdf-binary'
+gem 'wicked_pdf'
+
+# url structure 
+gem 'friendly_id', '~> 5.0.0'
+
 # Use ActiveModel has_secure_password
-# gem 'bcrypt', '~> 3.1.7'
+gem 'bcrypt', '~> 3.1.7'
+
+# Ensure javascript is reload when partials loaded.
+
+gem 'jquery-turbolinks'
+
+# gem 'filepreviews'
 
 # Use unicorn as the app server
 # gem 'unicorn'

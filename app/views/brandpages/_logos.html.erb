@@ -1,0 +1,37 @@
+<section id="logos" class="row">
+
+  <h2>Logos</h2>
+
+
+  <% if @logos.size != 0 %>
+    <% @logos.each do | logo | %>
+      <div id="logo<%= logo.id %>" data-file-location="<%= logo.path %>" class="col-sm-4">
+        <div class="img-background" style="height: 339px;">
+          <img src="<%= logo.path %>" class="img-responsive logo">
+        </div>
+        <div class="logo-meta">
+          <label class="img-label"><%= logo.name %></label>
+          <div class="logo-options">
+            <a href="#" data-toggle="dropdown" class="dropdown-toggle">Options
+              <span class="caret"></span>
+            </a>
+
+            <ul role="menu" class="dropdown-menu">
+              <li class="dropdown-header">Download</li>
+              <li><a href="#"><%= logo.name %>.ai</a></li>
+              <li><a href="#"><%= logo.name %>.png</a></li>
+              <li><a download=""><%= logo.name %>.jpg</a></li>
+            </ul>
+
+          </div>
+        </div>
+      </div>
+    <% end %>
+  <% else %>
+    <%= "Looks like you need to add some logos" %>
+  <% end %>
+
+
+
+
+</section>

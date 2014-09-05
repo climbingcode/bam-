@@ -1,81 +1,66 @@
 Rails.application.routes.draw do
 
-  get 'session/new'
+  get 'brand/show'
 
-  get 'session/create'
+  get 'brand/index'
 
-  get 'session/destroy'
+  root to: 'users#index'
 
-  resources :users 
+  resources :users do
 
-  resources :brands
+    resources :brands do
 
-  resources :logos
+      resources :logos
 
-  resources :colors
+      resources :colors
 
-  resources :fonts 
+      resources :fonts 
 
-  resources :copies
+      resources :copies
 
-  resources :guidelines 
+      resources :guidelines 
 
-  resources :misc_assets 
+      resources :misc_assets
 
-  resource :session, only: [:new, :create, :destroy]
+      resources :pdfs 
+    end
+  end
 
-  # The priority is based upon order of creation: first created -> highest priority.
-  # See how all your routes lay out with "rake routes".
+  resources :brandpages, only: [:show]
 
-  # You can have the root of your site routed with "root"
-  # root 'welcome#index'
+  resource :sessions, only: [:new, :create, :destroy]
 
-  # Example of regular route:
-  #   get 'products/:id' => 'catalog#view'
+  resources :contact_form, only: [:new, :create] 
 
-  # Example of named route that can be invoked with purchase_url(id: product.id)
-  #   get 'products/:id/purchase' => 'catalog#purchase', as: :purchase
+  resources :logos do
+    collection do
+      get :download
+    end
+  end
 
-  # Example resource route (maps HTTP verbs to controller actions automatically):
-  #   resources :products
+  
+  # scope 'pdfs/:id' do
+  #   get 'business_card', to: 'pdfs#business_card'
+  #   get 'letter_head', to: 'pdfs#letter_head'
+  # end
 
-  # Example resource route with options:
-  #   resources :products do
-  #     member do
-  #       get 'short'
-  #       post 'toggle'
-  #     end
-  #
-  #     collection do
-  #       get 'sold'
-  #     end
-  #   end
+  namespace 'permission' do 
+    resources :users 
+  end
 
-  # Example resource route with sub-resources:
-  #   resources :products do
-  #     resources :comments, :sales
-  #     resource :seller
-  #   end
+  match '/add_brand', to: 'users#add_brand', via: 'post'
 
-  # Example resource route with more complex sub-resources:
-  #   resources :products do
-  #     resources :comments
-  #     resources :sales do
-  #       get 'recent', on: :collection
-  #     end
-  #   end
+  match '/search_brand', to: 'brands#search_brand', via: 'post'
 
-  # Example resource route with concerns:
-  #   concern :toggleable do
-  #     post 'toggle'
-  #   end
-  #   resources :posts, concerns: :toggleable
-  #   resources :photos, concerns: :toggleable
+  match '/search_results', to: 'brands#search_results', via: 'get'
 
-  # Example resource route within a namespace:
-  #   namespace :admin do
-  #     # Directs /admin/products/* to Admin::ProductsController
-  #     # (app/controllers/admin/products_controller.rb)
-  #     resources :products
-  #   end
+  match '/sign_up_at_search', to: 'users#sign_up_at_search', via: 'post'
+
+  match '/sign_in_at_search', to: 'sessions#sign_in_at_search', via: 'post'
+
+  match "/:slug", to: "brandpages#show", via: 'get'
+
+  match 'users/:user_id/brands/:brands_id/change_privacy', to: 'brands#change_privacy', via: 'post'
+
+
 end

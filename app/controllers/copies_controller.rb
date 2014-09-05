@@ -28,10 +28,10 @@ class CopiesController < ApplicationController
 
     respond_to do |format|
       if @copy.save
-        format.html { redirect_to @copy, notice: 'Copy was successfully created.' }
-        format.json { render :show, status: :created, location: @copy }
+        format.html { redirect_to user_brand_path(current_user, @copy.brand_id), notice: 'Copy was successfully saved.' }
+        format.json { render json: @copy, status: :created, location: user_brand_path(current_user, @copy.brand_id) }
       else
-        format.html { render :new }
+        format.html { redirect_to user_brand_path(current_user, @copy.brand_id), notice: 'Copy was not saved.'}
         format.json { render json: @copy.errors, status: :unprocessable_entity }
       end
     end
@@ -69,6 +69,6 @@ class CopiesController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def copy_params
-      params[:copy]
+      params.require(:copy).permit(:description, :text, :brand_id)
     end
 end

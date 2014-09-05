@@ -1,0 +1,9 @@
+
+<%= bootstrap_form_tag url: '/sessions' do |f|  %>
+
+  <%= f.text_field :username, :placeholder => "Username", hide_label: true, :id => 'username_input' %>
+  <%= f.password_field :password, :placeholder => "Password", hide_label: true, :id => 'password_input' %>
+  <%= f.submit 'Log In', :class => 'bam_btn btn sign-in-button' %>
+
+<% end %>
+

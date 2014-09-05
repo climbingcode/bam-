@@ -1,0 +1,130 @@
+.bam_btn{
+  background: $primary-color;
+  border-radius: 3px;
+  color: #fff;
+  // border-bottom: solid 3px #2D9F8E;
+  // box-shadow: 0px 3px 0px 0px #2D9F8E;
+  transition: all 0.25s;
+  -webkit-transition: all 0.25s;
+}
+
+.bam_btn_grey{
+  background: #666;
+  border-radius: 3px;
+}
+.bam_btn_grey:hover{
+  background: $primary-color;
+}
+
+
+.bam_btn:active {
+  // border-bottom: solid 3px $primary-color;
+  box-sizing: border-box;
+  box-shadow: 0px 3px 0px 0px $accent-color;
+}
+
+.bam_btn_alt{
+  background: $alt-color;
+  font-size: 2em;
+}
+
+.bam_btn_alt_inverse{
+  background: transparent;
+  border: solid 2px $alt-color;
+  border-radius: 5px; 
+}
+
+.bam_btn_alt_inverse:hover{
+  background: $alt-color;
+  border: solid 2px $alt-color;
+  color: #444;
+}
+
+// .bam_btn:hover{
+//   border-bottom: solid 3px $accent-color;
+//   margin-bottom: -3px;
+// }
+
+
+.bam_btn_inverse{
+  background: transparent;
+  border: solid 1px $primary-color;
+  border-radius: 1px;
+  color: $primary-color;
+}
+
+.bam_btn_inverse:hover{
+  background: $primary-color;
+  color: white;
+}
+
+
+
+
+// .menu-button-target {
+//   background: transparent;
+//   border: none;
+//   outline: none;
+//   cursor: pointer;
+
+//   z-index: 200;
+
+//   padding: 0 10px;
+  
+//   &.active {
+    
+//     .menu-button {
+//       transition: background .2s ease;
+//       background-color: transparent;
+//       &:before,
+//       &:after {
+//         transition: top .3s ease, transform .3s .2s ease;  // to 'x' symbol
+//       }
+      
+//       &:before {
+//         top: 0;
+//         transform: rotate(45deg);
+//       }
+//       &:after {
+//         top: 0;
+//         transform: rotate(-45deg);
+//       }
+//     }
+//   }
+// }
+
+// .menu-button {
+//     position: relative;
+//     top: 50%;
+//     left: 0;
+//     display: block;
+//     width: 50px;
+//     height: 4px;
+//     margin-top: -2px;
+//     background-color: $primary-color;
+//     border-radius: 10px;
+//     transition: background .2s .2s;
+  
+//     &:before,
+//     &:after {
+//       content: "";
+//       display: block;
+//       position: absolute;
+//       width: 100%;
+//       height: 100%;
+//       left: 0;
+//       background-color: $primary-color;
+//       transition: top .3s .2s ease, transform .3s ease; // back to menu symbol
+//       border-radius: 10px;
+//       transform-origin: 50% 50%;
+//     }
+  
+//     &:before {
+//       top: -10px;
+//       transform: rotate(0deg);
+//     }
+//     &:after {
+//       top: 10px;
+//       transform: rotate(0deg);
+//     }
+// }

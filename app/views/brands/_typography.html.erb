@@ -1,0 +1,40 @@
+<!---USE LETTERING.js plugin to resize letters -->
+
+<section id="typography" class="row">
+
+  <h2>Typography</h2>
+  <% if @fonts.present? %>
+    <% @fonts.each do | font | %>
+
+    
+      <div id="font<%= font.id %>" class="letters_wrapper col-sm-10">
+        <div class="font-header">
+          <h3 class="font-description"><%= font.name %></h3>
+          <h3 class="font-name"><%= font_converter(font) %>
+
+         
+          </h3>
+          <a class="delete-asset" data-fontid="<%= font.id %>"></a>
+        </div>
+
+        <hr/>
+        <p class="primary_capital_letters" style="font-family:<%= font.font_family %>">ABCDEFGHIJKLMNOPQRSTUVWXYZ</p>
+        <p class="primary_lower_case_letters" style="font-family:<%= font.font_family %>">abcdefghijklmnopqrstuvwxyz</p>
+        <hr/>
+      </div>
+     <% end %>
+    <% else %>
+      <h3>Looks like you need to add some fonts to your brand!</h3>
+    <% end %>
+      <div class="letters_wrapper col-sm-10">
+        <div class="font-header">
+<!--           <h3 class="font-description">Body:</h3>
+          <h3 class="font-name">Proxima-nova</h3>
+          <a class="delete-asset"></a>
+        </div>
+        <hr/>
+        <p class="secondary_capital_letters">ABCDEFGHIJKLMNOPQRSTUVWXYZ</p>
+        <p class="secondary_lower_case_letters">abcdefghijklmnopqrstuvwxyz</p> -->
+      </div>
+    
+</section>

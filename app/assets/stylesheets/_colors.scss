@@ -1,0 +1,95 @@
+#color{
+  list-style-type: none;
+ul{
+  list-style-type: none;
+  }
+  li{
+    padding: 7.5px;
+    border-bottom: #999 solid 1px;
+  }
+}
+
+.sass{
+  border: solid 1px #ccc;
+  border-radius: 3px;
+  background:#eee;
+  padding-left: 5px;
+  padding-right: 5px;
+  font-family: $code;
+}
+
+.copy-alert{
+  visibility: hidden;
+  transition: all 1s;
+  text-align: center;
+  padding:30px;
+  font-size: 2em;
+  font-style: bold;
+  color: white;
+}
+
+.clipboard{
+  float: right;
+  margin-top: -3px;
+  opacity: 0.3;
+  height: 20px;
+  width: 20px;
+  background-size: cover;
+  background-image: url('/assets/clipboard.png')
+}
+.clipboard:hover{
+  opacity: 1;
+}
+
+.copy-alert.p{
+  margin-top: 30px;
+  font-weight: 400;
+  color: white;
+}
+
+.copy-alert.copied{
+  visibility: visible;
+  display: block;
+  background-color: rgba(0, 0, 0, 0.5);
+  height: 100%;
+  width: 100%;
+  transition: all 1s;
+}
+
+.swatch-wrapper{
+  transition: all 1s;
+}
+
+  .color-name{
+    font-weight: bold;
+    span{
+      font-weight: 200;
+      }
+  }
+.swatch{
+  height: 100px;
+  width: 100%;
+  // background: $primary-color;
+}
+
+.color-list{
+  list-style-type: none;
+  padding-left: 0px;
+  li{
+    padding: 7.5px;
+    border-bottom: #999 solid 1px;
+
+  }
+
+}
+
+.clipboard.zeroclipboard-is-hover {
+  opacity: 1;
+  cursor: hand;
+  }
+
+.delete-asset:hover {
+  opacity: 1.0;
+}
+
+

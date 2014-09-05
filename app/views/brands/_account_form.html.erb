@@ -1,0 +1,133 @@
+<div id="permissions_form">
+
+	<div class="panel-group" id="accordion">
+      
+ <!--      ACCOUNT INFORMATION PANEL -->
+      <div class="panel ">
+        <div class="panel-heading">
+         <a data-toggle="collapse" data-parent="#accordion" href="#accountCollapseInfo">
+          <h4 class="panel-title">
+             Account Information
+        	</h4>
+          </a>
+        </div>
+
+      	<div id="accountCollapseInfo" class="panel-collapse collapse "> 
+        	<div class="panel-body">
+          <div class="asset_module">
+              
+            <h3 id="edit-user-headline"><%= @brand.name.capitalize %></h3><%= link_to "Edit", edit_user_path(@user.id), :id => 'edit-user-link' %>
+            <br>
+              Name: <%= @user.firstname.capitalize %> <%= @user.surname.capitalize %><hr>
+        		  Email: <%= @user.email %><hr>
+              Username: <%= @user.username %><hr>
+              Job Title: <%= @user.position %> 
+        	</div>
+          </div>
+        </div>
+      </div>
+
+      <!--     LIST ALL USERS -->
+      <% if @user.user_has_admin_permissions?(session[:current_brand]) %>
+        <div class="panel ">
+          <div class="panel-heading">
+          <a data-toggle="collapse" data-parent="#accordion" href="#accountCollapseAllUsers">
+            <h4 class="panel-title">
+               All Users with Permissions to <%= Brand.find(session[:current_brand]).name.capitalize %> 
+            </h4>
+            </a>
+          </div>
+          <div id="accountCollapseAllUsers" class="panel-collapse collapse"> 
+            <div class="panel-body">
+     
+            </div>
+          </div>
+        </div>
+      <% end %>
+
+<!-- BRAND PERMISSIONS PANEL -->
+      <div class="panel ">
+        <div class="panel-heading">
+          <a data-toggle="collapse" data-parent="#accordion" href="#accountCollapsePermissions">
+          <h4 class="panel-title">
+              Brands and Permissions
+          </h4>
+          </a>
+        </div>
+        <div id="accountCollapsePermissions" class="panel-collapse collapse"> 
+          <div class="panel-body">
+            <% @user.brands.each do |brand|%>
+                <% if @user.user_given_permissions(brand.id) %>
+
+                  <h4 class="switch_brand"><%= link_to brand.name.titleize, user_brand_path(current_user.id, brand.id) %></h4><br>
+                    
+
+                    <% if brand.open == true %>
+
+                      <input type="checkbox" name="open" class="check-private" id="check-private-<%=brand.id%>" data-brand="<%= brand.id %>" checked="checked" ><br>
+                      <label class="permission-label">Private
+                        <span class="permission-icon">
+                          <%= render 'svg_icons/lock_icon' %>
+                        </span>
+                      </label>
+
+                    <% else %>
+                      <input type="checkbox" name="open" class="check-private" id="check-private-<% brand.id%>" data-brand="<%= brand.id %>"><br>
+                      <label>Brand is viewable to all</label>
+                    <% end %>
+                     
+
+                <% else %>
+                  <h4><%= brand.name.titleize %></h4><br>
+                <% end %>
+
+                <p><%= @user.display_permission_status(brand) %></p><hr> 
+
+
+               
+                  <% if @user.user_has_admin_permissions?(brand) %>
+
+                  <% users = User::users_awaiting_permission(brand) %>
+                      <% users.each do |user| %>
+                        <% if user != nil%>
+                          <h4><%= "#{user.firstname.capitalize} #{user.surname.capitalize}" %> awaiting access to <%= brand.name.titleize %></h4>
+                          <%= bootstrap_form_for users_path(user), :url => {:controller => 'users', :action => 'update', :id => user }, :html=>{:method=>:put} do |f| %>
+                          <%= select_tag "permission", "<option>Update / View Users and Assets</option><option>Update / View Assets Only</option><option>View Only</option><option>No Permissions Granted</option>".html_safe, class: "permission-select" %>
+                          <%= hidden_field_tag :brand, brand.id %>
+                          <%= f.submit "Submit", class: 'btn bam_btn permission-select-submit' %>
+                          <hr/>
+                        <% end %>
+                      <% end %>
+                    <% end %>
+                  <% end %>
+                <% end %>
+        	    </div>
+            </div>
+			 </div>
+
+
+
+<!--       ADD BRAND PANEL -->
+
+<!--         <div class="panel ">
+          <div class="panel-heading">
+            <a data-toggle="collapse" data-parent="#accordion" href="#accountCollapseAddBrand">
+              <h4 class="panel-title">
+                Add Brand
+              </h4>
+            </a>
+        </div>
+
+        <div id="accountCollapseAddBrand" class="panel-collapse collapse"> 
+          <div class="panel-body add-brand-panel">
+            <%= form_tag({controller: "users", action: "add_brand"}, method: "post") do %>
+              <%= text_field_tag :name, nil, {label: "Brand Name", placeholder: "New Brand", class: "form-control"} %>
+              <%= url_field_tag :website, nil, {label: "Website", placeholder: "Website", class: "form-control"} %>
+              <%= submit_tag "Submit", class: 'btn bam_btn' %>
+            <% end %>
+          </div>
+        </div>
+      </div> -->
+
+	</div><!--panel-group-->
+</div><!--#multi-asset-form-->

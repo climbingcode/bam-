@@ -1,0 +1,271 @@
+.entire-page{
+  margin-top: 50px;
+}
+
+#about{
+  background: white;
+  padding:45px;
+  p{
+    font-size: 1.2em;
+    text-align: justify;
+  }
+  h3{
+    text-align: center;
+    font-size: 2em;
+  }
+    img{
+    margin-left: auto;
+    margin-right: auto;
+    display: block;
+    
+  }
+}
+
+.search_form_wrapper{
+  border-bottom: solid 4px #666;
+}
+
+#home-search-bar{
+  width: 75%;
+  background: transparent;
+  border:none;
+  color: white;
+  height: 90px;
+  padding: 0px;
+  margin-left: 30px;
+  font-size: 3em;
+}
+
+
+  #home-search-bar::-webkit-input-placeholder {color: white;}
+  #home-search-bar:-moz-placeholder { /* Firefox 18- */color: white;}
+  #home-search-bar::-moz-placeholder {  /* Firefox 19+ */color: white;}
+  #home-search-bar:-ms-input-placeholder { color: white;}
+
+#home-search-submit{
+  background: transparent;
+  background-image: url('/assets/search_icon.png');
+  background-repeat: no-repeat;
+  border: none;
+  height: 50px;
+  width: 50px;
+  margin-top: 10px;
+
+}
+
+
+#parallax-bg{
+  height: auto;
+  background-color: $primary-color;
+  background-image: url("/assets/full_page_bg.png");
+  background-repeat: no-repeat;
+  background-position: center;
+  margin-top: 50px;
+  padding:45px;
+
+
+}
+
+// @media (max-width: 1079px) {
+//   #parallax-bg{
+//     height: 400px;
+//   }
+//   }
+
+#right-landing-box{
+
+  img{
+    margin-left: auto;
+    margin-right: auto;
+    display: block;
+  }
+}
+
+
+
+#left-landing-box{
+  margin-top: 100px;
+
+  h3{
+    font-size: 3.6em;
+    padding: 10px;
+    color: white;
+    border-bottom: solid 4px #666;
+  }
+
+}
+
+@media (max-width: 1200px) {
+
+  #left-landing-box h3{
+    font-size: 3em;
+  }
+  // #left-landing-box{
+  //   margin-top: 0px;
+  //       margin-left: auto;
+  //   margin-right: auto;
+  //   display: block;
+  //   float: none!important;
+  // }
+}
+@media (max-width: 600px) {
+  #left-landing-box h3{
+    font-size: 2em;
+  }
+  #left-landing-box{
+    margin-top: 30px;
+  }
+  #home-search-bar {
+    font-size: 1.5em;
+    margin-left: 5px;
+  }
+  #home-search-submit{
+    height: 30px;
+    width: 30px;
+    background-size: cover;
+  }
+}
+@media (max-width: 1200px) {
+  // #left-landing-box{
+  //   margin-top: 0px;
+  //       margin-left: auto;
+  //   margin-right: auto;
+  //   display: block;
+  //   float: none!important;
+  // }
+}
+
+#sign_up_btn{
+  margin-top: 45px;
+  margin-left: auto;
+  margin-right: auto;
+  display: block;
+  float: none;
+  // position: relative;
+  // top: 500px;
+}
+
+.call-to-action{
+  width: 100%;
+  background: $alt-color;
+  padding: 45px;
+}
+
+
+#pricing{
+  background-color:$primary-color;
+  // background-color: $accent-color;
+  // background-image: url("/assets/computer.jpg");
+  padding: 45px;
+
+  h2, h3{
+    text-align: center;
+  }
+  h2{color: $primary-color;}
+  h3{color: #333;}
+  ul{
+    list-style-type: none;
+    padding-left: 0px;
+  }
+  li{
+    padding: 10px;
+    border-bottom: 1px solid #eee;
+  }
+  hr{
+    height: 2px;
+    
+  }
+}
+
+.tick{
+  color: $primary-color;
+  padding-right: 15px;
+}
+
+#personal-column, #agency-column{
+  position: relative;
+  top: 50px;
+  transition: all 0.5s;
+}
+
+
+#agency-column{
+  height: auto;
+}
+
+
+.pricing-column{
+  background: white;
+  height: auto;
+  padding: 15px;
+  font-size: 1.2em;
+ border: solid 3px #666;
+  img{
+    margin-left: auto;
+    margin-right: auto;
+    display: block;
+
+  }
+ }
+
+#search_form_area{
+  width: 100%;
+  height: 400px;
+  background-image: url("/assets/computer.jpg");
+  
+}
+#sign_up_area{
+  width: 100%;
+  height: 400px;
+  background-color: white;
+}
+
+#search_input_wrapper{
+  margin-left: auto;
+  margin-right: auto;
+  display: block;
+  float: none;
+  padding: 0px;
+  width: 400px;
+  margin-top: 175px;
+}
+
+#search_form_input_wrapper{
+  border-left: solid 2px #fff;
+  border-top: solid 2px #fff;
+  border-bottom: solid 2px #fff;
+  height: 50px;
+  width: 350px;
+  display: inline;
+  float: left;
+  background-color: rgba(255, 255, 255, 0.5)
+}
+
+#search_icon_wrapper{
+  height: 50px;
+  width: 50px;;
+  float: right;
+  border: solid 2px $primary-color;
+  background-color: rgba(61, 201, 179, 0.5);
+  display: inline;
+  padding: 5px;
+}
+
+#signUpModal{
+  color: #333;
+  .form-control{
+    border: 1px solid #ccc;
+  }
+  .modal-body{
+    background: white;
+  }
+  .modal-header{
+    background: $primary-color;
+    color: white;
+  }
+  .close{
+    color: white;
+    opacity: 1;
+  }
+}
+

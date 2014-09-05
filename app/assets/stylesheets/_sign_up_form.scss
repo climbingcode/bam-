@@ -1,0 +1,25 @@
+#sign_up_form_wrapper{
+  // margin-top: 58px;
+  margin-left: auto;
+  margin-right: auto;
+  // display: block;
+  float: none;
+}
+
+.users_signup{
+    .form-control{
+    border: solid 1px #999;
+    width: 60%;
+  }
+  .form-control:focus{
+    border: solid 1px $primary-color;
+  }
+}
+
+#sign_up_submit{
+  margin: 15px;
+  margin-left: auto;
+  margin-right: auto;
+  float: none;
+  display: block;
+}

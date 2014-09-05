@@ -1,4 +1,68 @@
-<p id="notice"><%= notice %></p>
 
-<%= link_to 'Edit', edit_brand_path(@brand) %> |
-<%= link_to 'Back', brands_path %>
+
+<%= render 'letter_head_modal' %>
+
+<div id="user-action-messages" class="user-action-messages-hidden">
+</div>
+<div id="logged-in-page-wrapper">
+
+<div id="pushy">
+  <div id="dashboard" class="">
+    <div id="dashboard-inner">
+
+    <ul class="nav nav-tabs">
+      <li class="active" id="dashboardTabWrap"><a href="#dashboardTab" data-toggle="tab">Dashboard</a></li>
+      <li><a href="#accountTab" data-toggle="tab">Account</a></li>
+    </ul>
+
+    <div class="tab-content">
+
+      <div id="dashboardTab" class="tab-pane fade in active">
+
+
+        <%= render 'form' %>  <!--render dashboard here -->
+      </div>
+      <div id="accountTab" class="tab-pane fade">
+        <%= render 'account_form'%>
+      </div>
+    </div>
+    </div>
+  </div>
+  <div class="icon-column"></div>
+
+
+
+  <div id="brand-page" class="" >
+
+
+      <div id="dashboard_toggle">
+        <a id="mobile-nav" class="menu-nav" ></a>
+      </div>
+
+
+    <h1 id="brand-name-header"><%= Brand.find(session[:current_brand]).name.titleize %></h1> 
+    <%= render 'brand_nav' %>  
+    <%= render 'logos' %>
+    <hr/>
+    <%= render 'color' %>
+    <hr/>
+    <%= render 'typography' %>
+    <hr/>
+    <%= render 'copy'%>
+    <hr/>
+    <%= render 'guidelines'%>
+    
+    <!--render misc files-->
+    <!--render guidelines-->
+    <!--render copy-->
+  </div>
+<%= render 'business_card_modal' %>
+</div>
+
+<!-- IF PAGE IS SET TO PRIVATE AND USER IS NOT LOGGED IN: -->
+<div class="hidden"><!--hidden until we gett sessions working-->
+  <%= render 'private_page' %>
+
+</div>
+
+
