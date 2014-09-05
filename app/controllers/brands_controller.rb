@@ -61,6 +61,8 @@ class BrandsController < ApplicationController
       @brands = @user.brands
       @colors = @brand.colors.all
       @logos = @brand.logos.all
+      @logos_to_json = @logos.to_hash_of_name_and_path(@logos)
+      render @logos_to_json
       @fonts = @brand.fonts.all
       @copies = @brand.copies.all
       @guidelines = @brand.guidelines.all

@@ -7,7 +7,6 @@ class ApplicationController < ActionController::Base
 
   def tracked_search_brands(brands)
     @searched_results = ""
-    binding.pry
     brands.each do |brand|
        searched_results << brand.id.to_s
     end
