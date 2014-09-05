@@ -93,7 +93,7 @@
                       <% users.each do |user| %>
                         <% if user != nil%>
                           <h4><%= "#{user.firstname.capitalize} #{user.surname.capitalize}" %> awaiting access to <%= brand.name.titleize %></h4>
-                          <%= bootstrap_form_for users_path(user), :url => {:controller => 'users', :action => 'update', :id => user }, :html=>{:method=>:put} do |f| %>
+                          <%= bootstrap_form_for users_path(user), :url => {:controller => 'users', :action => 'update', :id => 'user'}, :html => {:method=>:put} do |f| %>
                           <%= select_tag "permission", "<option>Update / View Users and Assets</option><option>Update / View Assets Only</option><option>View Only</option><option>No Permissions Granted</option>".html_safe, class: "permission-select" %>
                           <%= hidden_field_tag :brand, brand.id %>
                           <%= f.submit "Submit", class: 'btn bam_btn permission-select-submit' %>

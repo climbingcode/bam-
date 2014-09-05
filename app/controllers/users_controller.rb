@@ -76,6 +76,7 @@ class UsersController < ApplicationController
   # add brands through account panel
 
   def update
+    binding.pry
     user = User.find(params[:id])
     permission = params[:permission]
     if permission == "Update / View Users and Assets"

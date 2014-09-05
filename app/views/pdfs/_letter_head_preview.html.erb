@@ -4,8 +4,9 @@
 
 
 <!-- BRAND LOGO -->
+<% if @logos.first.present? %>
 <div id="letter_head_logo" style="background-image: url(<%= @logos.first.path.url %>)"></div>
-
+<% end %>
 
 <!-- BRAND TITLE -->
 <div id="title_color">

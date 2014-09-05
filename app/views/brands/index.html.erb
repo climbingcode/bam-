@@ -16,7 +16,9 @@
                   <div class="each_brand_wrapper row">
                     <a href="#">
                       <div class="logo-thumbnail-container">
-                        <%= image_tag(brand.logos.first.path.url, class: "img-responsive brand_thumbnail") %>
+                        <% if brand.logos.first.present? %>
+                          <%= image_tag(brand.logos.first.path.url, class: "img-responsive brand_thumbnail") %>
+                        <% end %>
                       </div>
                     </a>
 

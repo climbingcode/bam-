@@ -1,5 +1,6 @@
+<% if @logos.first.present? %>
 <div id="letter_head_logo" style="background-image: url(<%= @logos.first.path.url %>)"></div>
-
+<% end %>
 <div id="business_card_name"><%= current_user.firstname.capitalize%> <%= current_user.surname.capitalize%></div>
 <div id="business_card_brand"><%= @brand.name.titleize %></div>
 <div id="business_card_street_address"></div>
