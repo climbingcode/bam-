@@ -10,7 +10,6 @@ class ContactForm < MailForm::Base
   # in ActionMailer accepts.
 
   def headers
-    binding.pry
     {
       :subject => "My Contact Form",
       :to => "#{params[:id].email}",

@@ -23,8 +23,6 @@
                   <%= f.hidden_field(:kind, :value => "letter_head") %>
                   <%= f.label(:primary_color, class: "form-control") %>
                   <%= f.select(:primary_color, @colors.pluck(:hex), :html => {:id => "primary_color"}) %>
-                   <%= f.label(:secondary_color, class: "form-control") %>
-                  <%= f.select(:secondary_color, @colors.pluck(:hex), :html => {:id => "secondary_color"}) %>
                    <%= f.label(:logo, class: "form-control") %>
                   <%= f.select(:logo, @logos.pluck(:name), :html => {class: "logo_input"}) %>
                   <% if @fonts.present? %>

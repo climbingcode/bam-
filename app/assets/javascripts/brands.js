@@ -97,14 +97,7 @@ var colorOperations = {
 
  colorToClipboard: function(){
 
-
-
    var hexClipboard = new ZeroClipboard( $('.hex-clipboard') );
-
-    
-
-
-
 
      hexClipboard.on( 'ready', function(event) {
 
@@ -186,6 +179,9 @@ var colorOperations = {
 
 var logoOperations = {
 
+  clearInput: function(data) {
+    $('#hide-file-upload :input').val('');
+  },
 
  destroyLogo: function(event){ 
    ajaxOperations.destroyAsset(event, "logo");
@@ -483,17 +479,17 @@ var ajaxOperations = {
 
        add: function(e, data){
 
-         data.context = $(tmpl("logo_upload", data.files[0]))
-           console.log(data.files);
-           $('#logo-upload-status').append(data.context)
-           $("#logo_submit").on("click", function(event){
-             event.preventDefault();
-
-               data.submit();
-         var assetPathInput = $('logo_submit');
-         assetPathInput.wrap("<form>").parent("form").trigger("reset");
-         console.log(assetPathInput);
-             });
+          data.context = $(tmpl("logo_upload", data.files[0]))
+          console.log(data.files);
+          $('#logo-upload-status').append(data.context)
+          $("#logo_submit").on("click", function(event){
+            event.preventDefault();
+            console.log('got here')
+            data.submit();
+            var assetPathInput = $('#logo_submit');
+            assetPathInput.wrap("<form>").parent("form").trigger("reset");
+            console.log(assetPathInput);
+          });
          },
 
        progress: function(e, data){
@@ -512,10 +508,12 @@ var ajaxOperations = {
          $("#logo_name").val("");
          $("#logo_description").val("");
          console.log(data.files, data.files.length);
+         logoOperations.clearInput(data)
          data.files = [];
          data.originalFiles = [];
          console.log(data.files.length);
          $("#logo-upload-status").empty();
+         $("#logo_submit").unbind("click");
        }
      });
 

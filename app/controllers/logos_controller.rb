@@ -3,10 +3,8 @@ class LogosController < ApplicationController
 
   def create
     @logo = Logo.new(logo_params)
-
     respond_to do |format|
       if @logo.save
-       
         format.html { redirect_to user_brand_path(current_user, @logo.brand_id), notice: 'Logo was successfully saved.' }
         format.json { render json: @logo, status: :created, location: user_brand_path(current_user, @logo.brand_id) }
       else
